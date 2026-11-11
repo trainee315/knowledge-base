@@ -162,9 +162,14 @@ try {
   await page.getByText('此资源暂未提供可解析正文，原件和元数据均已保存。', { exact: true }).waitFor();
   await page.screenshot({ path: join(evidence, 'unsupported-resource.png'), fullPage: true });
   await page.getByRole('button', { name: /组织与体系/ }).click();
-  await page.getByRole('heading', { name: '个人知识管理入门', exact: true }).waitFor();
-  await page.getByRole('heading', { name: '阅读清单', exact: true }).waitFor();
-  await page.getByRole('link', { name: '01 · 从资源到知识 ↗', exact: true }).waitFor();
+  await page.getByLabel('组织方式', { exact: true }).selectOption('system');
+  await page.locator('.collection-row').filter({ hasText: '个人知识管理入门' }).click();
+  await page.locator('.browse-tree').getByRole('button', { name: '01 · 从资源到知识', exact: true }).waitFor();
+  assert.equal(await page.getByLabel('组织方式', { exact: true }).locator('option').filter({ hasText: '阅读清单' }).count(), 1);
+  await page.locator('.browse-document').filter({ hasText: '知识库 使用指南' }).click();
+  await page.locator('.browse-detail').getByRole('heading', { name: '让知识形成可复用的线索' }).waitFor();
+  await page.reload();
+  await page.locator('.browse-detail').getByRole('heading', { name: '让知识形成可复用的线索' }).waitFor();
   await page.screenshot({ path: join(evidence, 'organizations.png'), fullPage: true });
   await page.getByRole('button', { name: /插件状态/ }).click();
   await page.getByRole('heading', { name: 'scheduler', exact: true }).waitFor();

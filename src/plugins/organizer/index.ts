@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto';
+import { KnowledgeError } from '../../core/errors.js';
 import type { PluginDefinition, QueryItem } from '../../contracts/index.js';
 import type { ContentApi } from '../content/index.js';
 import type { KeywordsApi } from '../keywords/index.js';
@@ -19,7 +20,7 @@ export interface Candidate {
   status: 'pending' | 'decided' | 'protected'; review: boolean; createdAt: string;
   processorVersion: string;
 }
-export interface OrganizerQuery { filename?: string[]; body?: string[]; keywords?: string[]; tags?: string[]; systems?: string[]; parseStatus?: string[]; offset?: number; limit?: number }
+export interface OrganizerQuery { tagMatch?: 'any' | 'all'; filename?: string[]; body?: string[]; keywords?: string[]; tags?: string[]; systems?: string[]; parseStatus?: string[]; offset?: number; limit?: number }
 export interface OrganizerApi {
   reconcile(): Promise<{ enqueued: number; resources: number }>;
   run(options?: RunOptions): Promise<TaskRunResult>;
@@ -141,6 +142,7 @@ export const organizerPlugin: PluginDefinition = {
         }
         if (input.parseStatus?.some(status => !['parsed', 'unsupported', 'failed', 'pending'].includes(status))) throw new Error('INVALID_INPUT: 未知解析状态');
         if (![input.offset ?? 0, input.limit ?? 50].every(Number.isSafeInteger) || (input.offset ?? 0) < 0 || (input.limit ?? 50) < 0 || (input.limit ?? 50) > 1000) throw new Error('INVALID_INPUT: offset/limit必须为非负整数，limit最多1000');
+        if (input.tagMatch !== undefined && !['any', 'all'].includes(input.tagMatch)) throw new KnowledgeError('INVALID_ARGUMENT', 'tagMatch必须为any或all', undefined, 2);
         const selectedTags = input.tags?.length ? await Promise.all(input.tags.map(value => tags.get(value).catch(() => undefined))) : [];
         const selectedSystems = input.systems?.length ? (await systems.list()).filter(system => input.systems!.some(value => system.id === value || normalize(system.name) === normalize(value))) : [];
         const items: (QueryItem & { matchReasons: string[] })[] = [];
@@ -159,7 +161,7 @@ export const organizerPlugin: PluginDefinition = {
           includes(input.keywords, words?.inputVersion === resource.contentVersion ? words.items.map(word => word.value) : [], '关键词');
           if (input.tags?.length) {
             const found = selectedTags.filter(tag => tag && tags.decisions(resource).some(decision => decision.tagId === tag.id && decision.accepted));
-            if (!found.length) matches = false; else reasons.push(`标签: ${found.map(tag => tag!.name).join(', ')}`);
+            if (!found.length || input.tagMatch === 'all' && found.length !== selectedTags.length) matches = false; else reasons.push(`标签: ${found.map(tag => tag!.name).join(', ')}`);
           }
           if (input.systems?.length) {
             const found = selectedSystems.filter(system => (system.data as unknown as SystemData).nodes.some(node => node.resourceId === resource.id));
@@ -176,7 +178,7 @@ export const organizerPlugin: PluginDefinition = {
         return { items: items.slice(offset, offset + limit), total: items.length, offset, limit };
       },
     };
-    context.registerCommand('organize query', async ({ input }) => api.query({ filename: strings(input.filename), body: strings(input.body), keywords: strings(input.keywords), tags: strings(input.tags), systems: strings(input.systems), parseStatus: strings(input.parseStatus), offset: number(input.offset, 0), limit: number(input.limit, 50) }));
+    context.registerCommand('organize query', async ({ input }) => api.query({ tagMatch: input.tagMatch as 'any' | 'all' | undefined, filename: strings(input.filename), body: strings(input.body), keywords: strings(input.keywords), tags: strings(input.tags), systems: strings(input.systems), parseStatus: strings(input.parseStatus), offset: number(input.offset, 0), limit: number(input.limit, 50) }));
     context.registerCommand('organize candidates', async ({ input }) => api.candidates({ includeResolved: input.includeResolved === undefined ? false : boolean(input.includeResolved), resourceId: input.resourceId === undefined ? undefined : required(input, 'resourceId') }));
     context.registerCommand('organize material', async ({ input }) => api.material(required(input, 'id')));
     context.registerCommand('organize submit', async ({ input }) => api.submit(input as unknown as Parameters<OrganizerApi['submit']>[0]));

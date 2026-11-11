@@ -1,5 +1,6 @@
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import type { CoreApi, ResourceMeta } from '../contracts/index.js';
+import { browse } from './browse.js';
 export interface PreviewApplication {
   manager: CoreApi;
   plugins: { list(): unknown; execute(name: string, input: Record<string, unknown>, args: string[]): Promise<unknown> };
@@ -43,8 +44,10 @@ export function createReadOnlyHandler(options: HandlerOptions) {
         return true;
       }
       if (request.method !== 'GET' && request.method !== 'HEAD') { previewJson(response, 405, { ok: false, error: { code: 'READ_ONLY', message: '预览只支持读取' } }); return true; }
+      if (url.pathname.startsWith('/api/browse/') || url.pathname.startsWith('/api/project-tracking/')) { previewJson(response, 200, { ok: true, data: await browse(app, url) }); return true; }
       if (url.pathname === '/api/resources') {
         const input: Record<string, unknown> = {};
+        if (url.searchParams.has('tagMatch')) input.tagMatch = url.searchParams.get('tagMatch');
         for (const name of ['filename', 'body', 'keywords', 'tags', 'systems', 'parseStatus']) if (url.searchParams.has(name)) input[name] = url.searchParams.getAll(name);
         for (const name of ['offset', 'limit']) if (url.searchParams.has(name)) {
           const value = Number(url.searchParams.get(name));

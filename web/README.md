@@ -49,3 +49,7 @@ npm run test:web
 回归导入 Markdown、TXT、PNG、二进制、创建标签并提交人工归属、编排体系，再通过核心补充到 33 份真实资源。先验证独立 Vite 单端口页面/API，不为开发启动第二个 API 服务，再检验 CLI 构建页面预览：分页、无结果、正文/关键词/标签/体系组合和解析状态筛选、详情、安全 Markdown、UUID 图片解码与重复资源导航、失效引用诊断、无法解析二进制、组织节点、当前全部插件状态、级联停用后的筛选与面板，以及 390px 布局。测试最终停止自己创建的预览、关闭 Chrome 并清理临时数据；不操作用户现有服务。
 
 截图和结构化结果默认生成在 `artifacts/preview/`。2026-11-10 本机 Chrome 回归已通过；`resources-markdown.png`、`resources-mobile.png`、`broken-reference.png`、`empty-results.png`、`unsupported-resource.png`、`organizations.png`、`plugins-enabled.png`、`plugins-disabled.png` 供视觉复核。浏览器连接插件不可用时，此回归仍可运行，不访问用户既有页签。
+
+## v0.0.4组织阅读
+
+组织与体系页签按方式、条目、关联文档、正文浏览；标签可多选任意/全部，关键词按完整归一化词组选取，体系支持目录递归汇总，项目记录读取固定历史版本。普通页30/最大200，项目页20；URL的#browse参数恢复选择与阅读。新增GET /api/browse/collections、/api/browse/documents与/api/project-tracking/:projectId/entries/:entryId；列表不返回全文。真实资料验收脚本web/tests/organization-browser.mjs需显式KB_BROWSER_DATA_DIR，全程只读。

@@ -1,14 +1,8 @@
 # Knowledge Base
 
-2026-11-11：用户已验收v0.0.3，正式包与CLI版本0.0.3；按计划归档发布。此前待验收描述与测试版本号保留为历史记录。归档入口：doc/v0.0.3/readme.md。
+当前已发布 **v0.0.4**，2026-11-11用户验收通过。按标签、关键词、体系和项目跟踪浏览文档，支持标签交集、固定历史正文、URL恢复与文章概览选中状态。[004归档](doc/v0.0.4/readme.md) · [运行说明](doc/v0.0.4/running.md) · [版本历史](doc/version-history.md)。
 
-开发分支`feat/v0.0.3-project-tracking`的 [v0.0.3 项目开发跟踪](./doc/新增需求/v0.0.3/readme.md)候选已实现并完成验证，包与CLI为0.0.3-dev，待用户验收，未提交、推送或发布。集中70/70测试、独立项目9/9、Chrome10插件/33资源和PPC2/2通过，见[验证总表](./artifacts/verification/v0.0.3/summary.json)。以下为当前已发布v0.0.2介绍。
-
-003候选可运行`node examples/project-tracking/create-demo.mjs`创建独立临时演示库，展示已发布版本基线、固定原件快照和项目内全文查询，默认不启动服务。见[项目跟踪演示](./examples/project-tracking/README.md)；历史全文使用project-track read/query，普通UUID资源链接仍指向当前版本。
-
-由工作Agent通过CLI管理的单人本地文件知识库。当前版本 **v0.0.2**（2026-11-11），按用户实施计划完成归档发布；提供资源入库、文件事务、知识整理、持久任务、只读预览及通用Agent基础设施。[版本归档](./doc/v0.0.2/readme.md) · [文档入口](./doc/readme.md) · [版本历史](./doc/version-history.md)。
-
-`agent status`、`agent profile list/get`和配置查询不联网；无费用示例为`node examples/agent/generic.mjs`。真实调用需安全配置进程环境DEEPSEEK_API_KEY并显式运行generate或选agent评分，profile不保存密钥，默认关系评分仍离线。缓存只补缺失词对，0分只存coverage；标签定义修改不自动重评，重评需显式逻辑版本或生成语义切换。JSON schema为支持子集，不是完整自主Agent运行时。项目跟踪属于后续0.0.3，不在本版。
+保留文件知识库、资源与组织管理、Agent基础设施、项目跟踪和单端口开发预览；Git发布标识v0.0.4。
 
 要求 Node.js 24+、npm。首次运行：
 
@@ -62,6 +56,6 @@ npm run build
 
 整理默认使用离线词汇相关评分，分数只召回候选，最终标签归属由工作Codex/人工提交。DeepSeek已支持显式generate或agent评分调用，可能产生费用；自动任务默认模型次数预算0。OCR、复杂格式正文解析、向量检索、远程插件和实际操作系统定时任务尚未实现。`schedule configure/get/tick/run`保存夜间策略并响应显式调用；如需定时触发，由外部工具调用schedule tick。默认03:00/Asia/Shanghai、100任务/60秒，费用参数按声明估算，不代表供应商实时账单硬限。
 
-验证使用 `npm test`、`npm run build`、`npm run test:web`；规模基准使用 `node dist/core/benchmark.js`。当前能力见 [运行说明](./doc/v0.0.2/running.md)、[公共契约](./doc/v0.0.2/contracts.md)、[验证与局限](./doc/v0.0.2/verification.md)。[002开发历史](./doc/新增需求/v0.0.2/readme.md)与 [001归档](./doc/v0.0.1/readme.md)保留原始证据；PPC独立转发不依赖PPC后台，跨仓库接入见 [integrations/ppc](./integrations/ppc/README.md)。
+验证使用 `npm test`、`npm run build`、`npm run test:web`；规模基准使用 `node dist/core/benchmark.js`。当前能力见 [运行说明](./doc/v0.0.4/running.md)、[公共契约](./doc/v0.0.4/contracts.md)、[验证与局限](./doc/v0.0.4/verification.md)。[002开发历史](./doc/新增需求/v0.0.2/readme.md)与 [001归档](./doc/v0.0.1/readme.md)保留原始证据；PPC独立转发不依赖PPC后台，跨仓库接入见 [integrations/ppc](./integrations/ppc/README.md)。
 
-002发布检查：typecheck、构建、62/62测试、9插件/33资源Chrome、正式CLI/PPC2/2及补丁验证通过。新增同UUID跨kind引用保护回归，真实模型账本沿用已关闭3次，不追加调用。当前发布证据位于 `artifacts/verification/v0.0.2/release`；001的34项冻结验证与1000资源21.35秒合成基准保留为历史，不冒充新性能结果。
+002发布检查：typecheck、构建、62/62测试、9插件/33资源Chrome、正式CLI/PPC2/2及补丁验证通过。新增同UUID跨kind引用保护回归，真实模型账本沿用已关闭3次，不追加调用。002历史发布证据位于 `artifacts/verification/v0.0.2/release`；001的34项冻结验证与1000资源21.35秒合成基准保留为历史，不冒充新性能结果。

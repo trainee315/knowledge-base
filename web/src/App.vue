@@ -2,6 +2,7 @@
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { renderMarkdown } from '../../src/preview/markdown';
 import { previewPanels } from './panels';
+import OrganizationBrowser from './OrganizationBrowser.vue';
 
 type Resource = { id: string; originalName: string; extension: string; mediaType: string; size: number; contentVersion: number; updatedAt: string; deletedAt?: string; plugins: Record<string, unknown> };
 type Item = { resource: Resource; reasons?: string[]; matchReasons?: string[]; parseStatus: string };
@@ -49,7 +50,7 @@ async function openResource(id: string): Promise<void> {
   catch (cause) { error.value = String(cause instanceof Error ? cause.message : cause); }
   finally { detailBusy.value = false; }
 }
-function readHash(): void { const match = /^#resource\/([a-f\d-]{36})$/i.exec(location.hash); if (match) void openResource(match[1]); }
+function readHash(): void { if (location.hash.startsWith('#browse')) { tab.value='organizations'; return; } const match = /^#resource\/([a-f\d-]{36})$/i.exec(location.hash); if (match) void openResource(match[1]); }
 function closeDetail(): void { selected.value = undefined; history.replaceState(null, '', location.pathname + location.search); }
 function bytes(size: number): string { return size < 1024 ? `${size} B` : size < 1048576 ? `${(size / 1024).toFixed(1)} KB` : `${(size / 1048576).toFixed(1)} MB`; }
 function parseLabel(status: string): string { return ({ parsed: '已解析', unsupported: '暂不支持', pending: '待解析', unparsed: '待解析', failed: '解析失败' } as Record<string, string>)[status] ?? status; }
@@ -113,8 +114,7 @@ onUnmounted(() => window.removeEventListener('hashchange', readHash));
           <section v-else class="detail-placeholder"><div>▤</div><h2>从资源开始探索</h2><p>选择一项资源，浏览正文、元数据与关联信息。</p><span>本地存储 · UUID 引用 · 按需预览</span></section>
         </div>
       </template>
-      <template v-if="tab === 'organizations'"><h2 class="organization-section-title">组织方式 <span class="muted">{{ organizationTypes.length }}</span></h2><div class="card-grid organization-types"><section v-for="kind in organizationTypes" :key="kind.id" class="organization-card"><span class="status">{{ kind.enabled ? '已启用' : '已停用' }}</span><h2>{{ kind.name }}</h2><code>{{ kind.id }}</code><p class="muted">{{ kind.description || '通用组织方式' }}</p><p class="handler-label">处理器：{{ kind.handlerPluginId || '通用处理器' }}</p><details><summary>方式配置</summary><pre>{{ formatted(kind.config) }}</pre></details></section></div><h2 class="organization-section-title">组织实例与体系节点</h2></template>
-      <div v-if="tab === 'organizations'" class="card-grid"><section v-for="org in organizations" :key="org.id" class="organization-card"><div class="eyebrow">{{ org.type }}</div><h2>{{ org.name }}</h2><code>{{ org.id }}</code><ul class="reference-list"><li v-for="reference in org.references" :key="reference.id"><a v-if="reference.kind === 'resource'" :href="`#resource/${reference.id}`" @click.prevent="openResource(reference.id)">资源 {{ reference.id }} ↗</a><span v-else>组织 {{ reference.id }}</span></li></ul><div v-for="node in org.data?.nodes ?? []" :key="node.id" class="system-node" :style="{ marginLeft: node.parentId ? '16px' : '0' }"><a v-if="node.resourceId" :href="`#resource/${node.resourceId}`" @click.prevent="openResource(node.resourceId)">{{ node.title || node.id }} ↗</a><span v-else>{{ node.title || node.id }}</span></div><details><summary>组织数据</summary><pre>{{ formatted(org.data) }}</pre></details></section><div v-if="!organizations.length" class="empty">暂无组织数据</div></div>
+      <OrganizationBrowser v-if="tab === 'organizations'" :types="organizationTypes" :organizations="organizations" />
       <p v-if="tab === 'plugins'" class="muted">当前展示本次预览启动时载入的插件状态。插件启停变更后，请停止并重新启动预览。</p>
       <div v-if="tab === 'plugins'" class="card-grid"><section v-for="plugin in plugins" :key="plugin.id" class="plugin-card"><span class="status">{{ plugin.status ?? (plugin.enabled === false ? 'disabled' : 'ready') }}</span><h2>{{ plugin.id }}</h2><p class="muted">{{ plugin.version }}</p><h3>直接依赖</h3><p>{{ Object.keys(plugin.dependencies ?? {}).join(' → ') || '无' }}</p></section></div>
       <footer>Agent 知识库 <span>临时预览服务 · 关闭后数据仍保存在文件中</span></footer>

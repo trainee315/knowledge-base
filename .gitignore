@@ -17,3 +17,8 @@ coverage/
 .preview/
 *.backup.json
 *.secrets.json
+
+# 私人知识资料与真实资料验收截图仅本地保留。
+artifacts/session-curation/
+artifacts/verification/v0.0.4/real-library/
+web/.dev-integration-*/

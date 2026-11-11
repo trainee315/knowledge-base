@@ -1,0 +1,45 @@
+{
+  "version": "0.0.4-dev",
+  "status": "awaiting-user-acceptance",
+  "publishedBase": "v0.0.3",
+  "releaseCommit": "9eede150324b89e67f130b73fb0b5a4860a73c31",
+  "checks": {
+    "typecheck": true,
+    "build": true,
+    "tests": {
+      "passed": 72,
+      "failed": 0
+    },
+    "independentProject": {
+      "passed": 9,
+      "failed": 0
+    },
+    "devIntegration": {
+      "passed": 1,
+      "failed": 0
+    },
+    "browser": true,
+    "realLibrary": {
+      "pngDocuments": 4,
+      "architectureDocuments": 5,
+      "keywordPhrase": true,
+      "multiTagAll": 5,
+      "reload": true,
+      "back": true,
+      "mobile": true,
+      "historical": true,
+      "formalFilesUnchanged": true,
+      "pageErrors": []
+    },
+    "diffCheck": true
+  },
+  "notes": [
+    "真实资料验收截图仅本地保留，不提交公开仓库。",
+    "首轮新增CLI测试误用逗号字符串，改为JSON数组后通过。",
+    "浏览器首轮精确label定位失败，给组织方式下拉添加明确aria-label后通过。",
+    "003发布已归档并写入知识库，004待用户验收，不提前发布。"
+  ],
+  "committed": false,
+  "pushed": false,
+  "tagged": false
+}

@@ -1,0 +1,47 @@
+{
+  "version": "0.0.4",
+  "userAccepted": true,
+  "acceptedScope": [
+    "组织方式阅读",
+    "文章概览唯一选中与刷新恢复"
+  ],
+  "checks": {
+    "typecheck": {
+      "exitCode": 0
+    },
+    "test": {
+      "exitCode": 0,
+      "passed": 72,
+      "failed": 0
+    },
+    "build": {
+      "exitCode": 0
+    },
+    "candidateIndependentProject": {
+      "passed": 9,
+      "failed": 0
+    },
+    "candidateDevIntegration": {
+      "passed": 1,
+      "failed": 0
+    },
+    "candidateBrowser": true,
+    "selectionBrowser": {
+      "uniqueSelected": true,
+      "ariaCurrent": true,
+      "reload": true
+    },
+    "libraryCheck": {
+      "valid": true,
+      "resourcesBeforeReleaseRecord": 31
+    }
+  },
+  "baseRelease": "v0.0.3",
+  "tag": "v0.0.4",
+  "privateMaterialExcluded": [
+    ".data",
+    "artifacts/session-curation",
+    "artifacts/verification/v0.0.4/real-library"
+  ],
+  "paidCalls": 0
+}
