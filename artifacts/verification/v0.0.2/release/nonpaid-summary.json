@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "version": "0.0.2",
+  "verificationDate": "2026-11-11",
+  "productionBuildByCore": { "typecheckExitCode": 0, "tests": 62, "passed": 62, "buildExitCode": 0 },
+  "browser": { "passed": true, "resources": 33, "plugins": 9, "evidence": "browser/browser-result.json", "viewports": ["1440x1100", "390x844"] },
+  "ppc": { "fixedEntryHelpVersion": "0.0.2", "dedicatedTests": 2, "passed": 2, "evidence": ["ppc.json", "ppc.tap"] },
+  "ppcPatch": { "applyCheck": true, "temporaryCleanApplication": true, "knowledgeVersion": "0.0.2", "dedicatedTests": 2, "passed": 2, "originalIndexUnchanged": true, "temporaryDirectoryRemoved": true, "evidence": "ppc-patch.json" },
+  "secretAudit": { "passed": true, "filesScanned": 331, "exactMatches": 0, "matchingFiles": [], "backupEntriesDecoded": true, "cliStdoutAndStderrChecked": true, "externalRequests": 0, "evidence": "secret-audit.json" },
+  "deepseekCampaign": { "closed": true, "previousRequests": 3, "additionalRequests": 0, "unusedAllowanceFrozen": 2 },
+  "v001EvidenceOverwritten": false,
+  "previousV002DevelopmentEvidenceOverwritten": false,
+  "externalPpcSourceOrIndexModified": false,
+  "ppcServiceOrPackInvoked": false,
+  "systemTasksCreated": false,
+  "previewBrowserAndVerifierProcessesStopped": true,
+  "v003ImplementationStarted": false
+}

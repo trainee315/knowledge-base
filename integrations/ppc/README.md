@@ -45,3 +45,11 @@ node integrations/ppc/verify.mjs 'C:/Users/mamar/Desktop/personalProjectCenter' 
 验证器只从 PPC 基线读取五个 CLI 必需文件（包括原有 `api.mjs`、`service.mjs`、`windows.mjs`），导出到带中文和空格的独立临时目录。在该目录先 `git apply --check` 再应用补丁，检查 PPC 帮助、向真实知识库 CLI 转发帮助，以及两项专属测试。测试覆盖中文/空格/shell 特殊字符参数、路径配置、JSON/stdout/stderr/退出码透传及缺失构建错误。
 
 验证器不会将补丁应用到原始 PPC 工作区，不修改其 Git index，不运行 `service` 或 `pack` 命令。结束时先验证临时目录的绝对路径和归属，再删除自己创建的目录。结果写入 [verification.json](./verification.json)，其中记录补丁 SHA-256、基线、测试输出及原始 index/文件未变的检查。
+
+知识库转发版本与目标 `package.json.version` 比对，不固定为 0.0.1。发布回归可设置 `KB_PPC_VERIFY_OUTPUT` 保存到独立路径，避免覆盖历史验证证据：
+
+```powershell
+$env:KB_PPC_VERIFY_OUTPUT = 'D:/project/knowledge-base/artifacts/verification/v0.0.2/release/ppc-patch.json'
+node integrations/ppc/verify.mjs 'C:/Users/mamar/Desktop/personalProjectCenter' 'D:/project/knowledge-base'
+Remove-Item Env:KB_PPC_VERIFY_OUTPUT
+```

@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "entry": "C:/Users/mamar/Desktop/personalProjectCenter/cli/ppc.mjs",
+  "node": "C:/nvm4w/nodejs/node.exe",
+  "helpVersion": "0.0.2",
+  "agentCommandsVisible": true,
+  "dedicatedTests": 2,
+  "testsPassed": 2,
+  "backendRequired": false,
+  "externalPpcSourceModified": false,
+  "serviceOrPackInvoked": false
+}

@@ -1,0 +1,14 @@
+{
+  "messages": [
+    { "role": "system", "content": "Return a json object only, matching the requested schema." },
+    { "role": "user", "content": "Extract this synthetic record as json: title is Example; category is knowledge. Expected shape: {\"title\":\"Example\",\"category\":\"knowledge\"}." }
+  ],
+  "maxTokens": 256,
+  "reasoning": "off",
+  "schema": {
+    "type": "object",
+    "properties": { "title": { "type": "string", "minLength": 1 }, "category": { "type": "string", "enum": ["knowledge", "other"] } },
+    "required": ["title", "category"],
+    "additionalProperties": false
+  }
+}

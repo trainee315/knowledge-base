@@ -14,6 +14,7 @@ const TEMP_PREFIX = 'knowledge-base-ppc-patch-中文 空格-';
 const SOURCE = resolve(process.argv[2] ?? 'C:/Users/mamar/Desktop/personalProjectCenter');
 const KNOWLEDGE_HOME = resolve(process.argv[3] ?? fileURLToPath(new URL('../../', import.meta.url)));
 const PATCH = fileURLToPath(new URL('./knowledge-cli.patch', import.meta.url));
+const OUTPUT = process.env.KB_PPC_VERIFY_OUTPUT ? resolve(process.env.KB_PPC_VERIFY_OUTPUT) : fileURLToPath(new URL('./verification.json', import.meta.url));
 const env = { ...process.env, GIT_OPTIONAL_LOCKS: '0' };
 for (const key of ['GIT_DIR', 'GIT_WORK_TREE', 'GIT_INDEX_FILE']) delete env[key];
 const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex');
@@ -28,6 +29,8 @@ async function main() {
   assert.ok(process.argv.length <= 4, '用法：node integrations/ppc/verify.mjs [PPC仓库] [知识库仓库]');
   assert.equal(git(['rev-parse', 'HEAD']).toString().trim(), BASELINE, '验证要求 PPC HEAD 与补丁基线一致');
   await access(join(KNOWLEDGE_HOME, 'dist/cli/main.js'));
+  const knowledgeVersion = JSON.parse(await readFile(join(KNOWLEDGE_HOME, 'package.json'), 'utf8')).version;
+  assert.equal(typeof knowledgeVersion, 'string', '目标知识库必须声明版本');
   const patch = await readFile(PATCH);
   const paths = [...patch.toString('utf8').matchAll(/^diff --git a\/(.+) b\/(.+)$/gm)].map((match) => { assert.equal(match[1], match[2]); return match[1]; }).sort();
   assert.deepEqual(paths, PATCH_FILES);
@@ -53,13 +56,13 @@ async function main() {
     assert.match(help, /ppc knowledge/); assert.match(help, /ppc note search/);
     const forwarded = run(process.execPath, [join(directory, 'cli/ppc.mjs'), 'knowledge', '--help', '--knowledge-home', KNOWLEDGE_HOME, '--json'], directory).toString();
     const response = JSON.parse(forwarded);
-    assert.equal(response.ok, true); assert.equal(response.data.version, '0.0.1');
+    assert.equal(response.ok, true); assert.equal(response.data.version, knowledgeVersion);
     const tests = run(process.execPath, ['--test', '--test-reporter=tap', join(directory, 'cli/knowledge.test.mjs')], directory).toString();
     assert.match(tests, /# tests 2/); assert.match(tests, /# pass 2/); assert.match(tests, /# fail 0/);
     assert.equal(sha256(await readFile(index)), indexBefore, '原始 PPC git index 不得改变');
     for (const [file, hash] of Object.entries(originalFiles)) assert.equal(sha256(await readFile(join(SOURCE, file))), hash);
     result = {
-      passed: true, verifiedAt: new Date().toISOString(), baseline: BASELINE,
+      passed: true, verifiedAt: new Date().toISOString(), baseline: BASELINE, knowledgeVersion,
       node: process.version, git: git(['--version']).toString().trim(),
       patchSha256: sha256(patch), patchBytes: patch.length, patchFiles: paths, exportedBaselineFiles: BASE_FILES,
       applyCheck: true, appliedOnlyToTemporaryDirectory: true, cliHelp: true, realKnowledgeHelpForwarding: true,
@@ -76,7 +79,8 @@ async function main() {
   }
   await assert.rejects(access(directory), { code: 'ENOENT' });
   result.temporaryDirectoryRemoved = true;
-  await writeFile(new URL('./verification.json', import.meta.url), JSON.stringify(result, null, 2) + '\n');
+  await mkdir(dirname(OUTPUT), { recursive: true });
+  await writeFile(OUTPUT, JSON.stringify(result, null, 2) + '\n');
   console.log(JSON.stringify({ passed: true, applyCheck: true, cliHelp: true, realKnowledgeHelpForwarding: true, dedicatedTests: 2, originalIndexUnchanged: true, temporaryDirectoryRemoved: true }));
 }
 

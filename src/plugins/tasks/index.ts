@@ -17,10 +17,13 @@ export interface Task extends TaskInput {
 }
 export interface TaskExecution { signal: AbortSignal; checkpoint(value: unknown): Promise<void> }
 export type TaskHandler = (task: Task, execution: TaskExecution) => Promise<unknown>;
+/** prepare仅核对本地输入和预估预算，不得请求模型或提交业务结果。 */
+export interface TaskPreparation { obsolete?: boolean; estimatedCalls?: number; estimatedCost?: number }
+export interface TaskRegistration { prepare?(task: Task): Promise<TaskPreparation> }
 export interface RunOptions { maxTasks?: number; maxDurationMs?: number; maxCalls?: number; maxCost?: number; now?: string }
 export interface TaskRunResult { processed: number; completed: number; failed: number; calls: number; cost: number; stopped: string; unfinished: number; draining: number }
 export interface TasksApi {
-  enqueue(input: TaskInput): Promise<Task>; list(): Promise<Task[]>; register(type: string, handler: TaskHandler): void;
+  enqueue(input: TaskInput): Promise<Task>; list(): Promise<Task[]>; register(type: string, handler: TaskHandler, options?: TaskRegistration): void;
   run(options?: RunOptions): Promise<TaskRunResult>; retry(id: string): Promise<Task>;
 }
 
@@ -28,15 +31,17 @@ export const tasksPlugin: PluginDefinition = {
   manifest: manifest('tasks'),
   async load(context) {
     const handlers = new Map<string, TaskHandler>();
+    const preparations = new Map<string, TaskRegistration['prepare']>();
     // 超时只终止本次等待；旧处理器未退出前隔离整批执行，禁止与重试重叠写入。
     const inFlight = new Map<string, Promise<unknown>>();
     let running = false;
     const queue = await context.store.read<Task[]>(QUEUE_KEY, []);
     async function save() { await context.store.write(QUEUE_KEY, queue); }
     const api: TasksApi = {
-      register(type, handler) {
+      register(type, handler, options) {
         if (handlers.has(type)) throw new Error(`TASK_HANDLER_CONFLICT: ${type}`);
         handlers.set(type, handler);
+        if (options?.prepare) preparations.set(type, options.prepare);
       },
       async list() { return structuredClone(queue).map(task => ({ ...task, draining: inFlight.has(task.id) })); },
       async enqueue(input) {
@@ -77,12 +82,34 @@ export const tasksPlugin: PluginDefinition = {
           for (const task of interrupted) { task.status = 'pending'; task.error = '进程中断，待恢复'; }
           if (interrupted.length) await save();
           for (const task of queue) {
-            if (task.status === 'completed' || task.attempts >= (task.maxAttempts ?? DEFAULT_MAX_ATTEMPTS)) continue;
+            if (task.status === 'completed') continue;
+            const exhausted = task.attempts >= (task.maxAttempts ?? DEFAULT_MAX_ATTEMPTS);
+            const prepare = preparations.get(task.type);
+            if (exhausted && !prepare) continue;
             if (result.processed >= maxTasks) { result.stopped = 'task-budget'; break; }
             if (Date.now() - start >= duration) { result.stopped = 'time-budget'; break; }
             const handler = handlers.get(task.type);
             if (!handler) { result.stopped = 'handler-unavailable'; continue; }
-            if (result.calls + (task.estimatedCalls ?? 0) > maxCalls || result.cost + (task.estimatedCost ?? 0) > maxCost) { result.stopped = 'model-budget'; break; }
+            if (prepare) {
+              try {
+                const prepared = await prepare(structuredClone(task));
+                if (!prepared || typeof prepared !== 'object' || Array.isArray(prepared) || prepared.obsolete !== undefined && typeof prepared.obsolete !== 'boolean' || prepared.estimatedCalls !== undefined && (!Number.isSafeInteger(prepared.estimatedCalls) || prepared.estimatedCalls < 0) || prepared.estimatedCost !== undefined && (!Number.isFinite(prepared.estimatedCost) || prepared.estimatedCost < 0)) throw new Error('INVALID_TASK_PREPARATION');
+                if (prepared.obsolete) {
+                  task.status = 'completed'; task.result = { obsolete: true }; task.updatedAt = new Date().toISOString(); delete task.error;
+                  result.processed++; result.completed++; await save(); continue;
+                }
+                if (prepared.estimatedCalls !== undefined) task.estimatedCalls = prepared.estimatedCalls;
+                if (prepared.estimatedCost !== undefined) task.estimatedCost = prepared.estimatedCost;
+              } catch (error) {
+                if (exhausted) continue;
+                task.status = 'failed'; task.attempts++; task.error = error instanceof Error ? error.message : String(error); task.updatedAt = new Date().toISOString();
+                result.processed++; result.failed++; await save(); continue;
+              }
+            }
+            if (exhausted) continue;
+            if (Date.now() - start >= duration) { result.stopped = 'time-budget'; break; }
+            // 预算不足的任务留待下批，后面的零费用任务仍可继续，避免队首阻塞。
+            if (result.calls + (task.estimatedCalls ?? 0) > maxCalls || result.cost + (task.estimatedCost ?? 0) > maxCost) { result.stopped = 'model-budget'; continue; }
             task.status = 'running'; task.attempts++; task.updatedAt = new Date().toISOString(); delete task.error;
             await save();
             result.processed++; result.calls += task.estimatedCalls ?? 0; result.cost += task.estimatedCost ?? 0;

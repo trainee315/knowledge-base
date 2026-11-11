@@ -32,6 +32,44 @@ test('resource dedup, explicit copy, history, soft delete, references and backup
   } finally { await manager.close(); await rm(f.dir, { recursive: true, force: true }); }
 });
 
+test('same UUID organization references protect resource and all content versions from purge', async () => {
+  const f = await fixture(); const manager = await CoreManager.open(f.data);
+  try {
+    const { resource } = await manager.importResource(f.input);
+    await manager.createOrganization({ id: resource.id, type: 'review', name: '同UUID组织', references: [{ kind: 'resource', id: resource.id }] });
+    await writeFile(f.input, 'second content version'); await manager.updateResource(resource.id, f.input);
+    await manager.deleteResource(resource.id);
+    await assert.rejects(manager.purgeResource(resource.id), error => (error as { code?: string }).code === 'REFERENCED');
+    assert.match((await manager.readContent(resource.id, 1)).toString(), /knowledge architecture/);
+    await manager.updateOrganization(resource.id, { references: [] }); await manager.purgeResource(resource.id);
+    assert.equal((await manager.check()).valid, true);
+  } finally { await manager.close(); await rm(f.dir, { recursive: true, force: true }); }
+});
+
+test('same UUID resource references protect organization from deletion', async () => {
+  const f = await fixture(); const manager = await CoreManager.open(f.data);
+  try {
+    const { resource } = await manager.importResource(f.input);
+    await manager.createOrganization({ id: resource.id, type: 'review', name: '同UUID组织' });
+    await manager.updatePluginMeta(resource.id, 'review', {}, { references: [{ kind: 'organization', id: resource.id }] });
+    await assert.rejects(manager.deleteOrganization(resource.id), error => (error as { code?: string }).code === 'REFERENCED');
+    await manager.updatePluginMeta(resource.id, 'review', {}, { references: [] }); await manager.deleteOrganization(resource.id);
+    assert.equal((await manager.check()).valid, true);
+  } finally { await manager.close(); await rm(f.dir, { recursive: true, force: true }); }
+});
+
+test('true same-kind self references do not block deleting their own entity', async () => {
+  const f = await fixture(); const manager = await CoreManager.open(f.data);
+  try {
+    const { resource } = await manager.importResource(f.input);
+    await manager.updatePluginMeta(resource.id, 'review', {}, { references: [{ kind: 'resource', id: resource.id }] });
+    await manager.deleteResource(resource.id); await manager.purgeResource(resource.id);
+    const organization = await manager.createOrganization({ type: 'review', name: '自身引用' });
+    await manager.updateOrganization(organization.id, { references: [{ kind: 'organization', id: organization.id }] });
+    await manager.deleteOrganization(organization.id); assert.equal((await manager.check()).valid, true);
+  } finally { await manager.close(); await rm(f.dir, { recursive: true, force: true }); }
+});
+
 test('single writer and injected interrupted transaction recovers all files on reopen', async () => {
   const f = await fixture(); let manager = await CoreManager.open(f.data, { failAfterWrites: 1 });
   try {

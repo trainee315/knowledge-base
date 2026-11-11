@@ -11,7 +11,7 @@ import { boolean, manifest, number, required, strings } from '../shared.js';
 
 // 离线评分只召回候选；最终归属必须经工作Codex或人工提交。
 const CANDIDATE_THRESHOLD = 0.35;
-const PROCESSOR_VERSION = '1';
+const PROCESSOR_VERSION = '2';
 const CANDIDATES_KEY = 'candidates';
 export interface Candidate {
   id: string; resourceId: string; tagId: string; contentVersion: number; tagRevision: number;
@@ -42,32 +42,35 @@ export const organizerPlugin: PluginDefinition = {
     const tasks = context.getDependency<TasksApi>('tasks');
     const systems = context.getDependency<SystemsApi>('systems');
     const candidates = await context.store.read<Candidate[]>(CANDIDATES_KEY, []);
-    const processingVersion = () => [PROCESSOR_VERSION, content.processorVersion, keywords.processorVersion, relations.provider().id, relations.provider().version, relations.provider().kind].join(':');
+    const processingVersion = () => [PROCESSOR_VERSION, content.processorVersion, keywords.processorVersion, relations.provider().cacheIdentity].join(':');
+    const inputVersion = (contentVersion: number, allTags: { id: string; revision: number }[], values: string[]) => `${contentVersion}:${fingerprint(allTags)}:${createHash('sha256').update(JSON.stringify([...new Set(values)].sort())).digest('hex').slice(0, 16)}`;
     tasks.register('organizer.resource', async (task, execution) => {
       const resource = await context.core.getResource(task.entityId);
       const allTags = await tags.list();
-      const version = `${resource.contentVersion}:${fingerprint(allTags)}`;
+      const words = await keywords.extract(resource.id);
+      const version = inputVersion(resource.contentVersion, allTags, words.items.map(word => word.value));
       if (resource.deletedAt || version !== task.inputVersion || task.processorVersion !== processingVersion()) return { obsolete: true };
       execution.signal.throwIfAborted();
-      const words = await keywords.extract(resource.id);
       const checkpoint = task.checkpoint as { completedTags?: string[] } | undefined;
       const completedTags = new Set(checkpoint?.completedTags ?? []);
+      let remainingRequests = task.estimatedCalls ?? 0;
       for (const tag of allTags) {
         if (completedTags.has(tag.id)) continue;
         execution.signal.throwIfAborted();
         const latest = await context.core.getResource(resource.id);
         const previous = tags.decisions(latest).find(decision => decision.tagId === tag.id);
         const unchanged = previous?.contentVersion === resource.contentVersion && previous.tagRevision === tag.revision;
-        // 接受和拒绝在相同输入下都不重复判断；人工决定变化后只提出复核建议。
+        // 评分覆盖与最终归属分开；版本升级仍补评分，已有人工/工作Agent决定不重复提交。
+        const scored = await relations.score(tag.id, words.items.map(word => word.value), execution.signal, { maxRequests: remainingRequests });
+        if (scored.provider.kind === 'model') remainingRequests -= scored.stats?.requests ?? 0;
         if (!unchanged) {
-          const scored = await relations.score(tag.id, words.items.map(word => word.value), execution.signal);
           execution.signal.throwIfAborted();
           const best = scored.scores.filter(score => score.score >= CANDIDATE_THRESHOLD).sort((a, b) => b.score - a.score);
           const currentResource = await context.core.getResource(resource.id);
           if (currentResource.contentVersion !== resource.contentVersion || (await tags.get(tag.id)).revision !== tag.revision) return { obsolete: true };
           const id = createHash('sha256').update(JSON.stringify([resource.id, resource.contentVersion, tag.id, tag.revision, task.processorVersion])).digest('hex');
           if (best.length && !candidates.some(candidate => candidate.id === id)) {
-            candidates.push({ id, resourceId: resource.id, tagId: tag.id, contentVersion: resource.contentVersion, tagRevision: tag.revision, processorVersion: task.processorVersion, score: best[0].score, reasons: best.slice(0, 5).map(score => `${score.keyword}: ${score.reason} (${score.score.toFixed(3)})`), provider: scored.provider, status: 'pending', review: previous?.source === 'manual', createdAt: new Date().toISOString() });
+            candidates.push({ id, resourceId: resource.id, tagId: tag.id, contentVersion: resource.contentVersion, tagRevision: tag.revision, processorVersion: task.processorVersion, score: best[0].score, reasons: [...best.slice(0, 5).map(score => `${score.keyword}: ${score.reason} (${score.score.toFixed(3)})`), ...scored.warnings], provider: scored.provider, status: 'pending', review: previous?.source === 'manual', createdAt: new Date().toISOString() });
             await context.store.write(CANDIDATES_KEY, candidates);
           }
         }
@@ -75,15 +78,29 @@ export const organizerPlugin: PluginDefinition = {
         await execution.checkpoint({ completedTags: [...completedTags] });
       }
       return { resourceId: resource.id, parsed: (await content.get(resource.id))?.status, keywords: words.items.length, tagsChecked: allTags.length, assignmentPending: true };
-    });
+    }, { async prepare(task) {
+      let resource;
+      try { resource = await context.core.getResource(task.entityId); }
+      catch (error) { if ((error as { code?: string }).code === 'NOT_FOUND') return { obsolete: true }; throw error; }
+      if (resource.deletedAt || task.processorVersion !== processingVersion()) return { obsolete: true };
+      const allTags = await tags.list(); const words = await keywords.get(resource.id);
+      if (!words || words.inputVersion !== resource.contentVersion || task.inputVersion !== inputVersion(resource.contentVersion, allTags, words.items.map(word => word.value))) return { obsolete: true };
+      let estimatedCalls = 0;
+      for (const tag of allTags) estimatedCalls += (await relations.plan(tag.id, words.items.map(word => word.value))).estimatedCalls;
+      return { estimatedCalls };
+    } });
     const api: OrganizerApi = {
       /** 全量版本核对补齐漏事件，稳定输入键避免重复任务。 */
       async reconcile() {
         const resources = await context.core.listResources();
         const allTags = await tags.list();
-        const tagVersion = fingerprint(allTags);
         const before = (await tasks.list()).length;
-        for (const { resource } of resources) await tasks.enqueue({ type: 'organizer.resource', entityId: resource.id, inputVersion: `${resource.contentVersion}:${tagVersion}`, processorVersion: processingVersion(), payload: { contentVersion: resource.contentVersion, tags: allTags.map(tag => ({ id: tag.id, revision: tag.revision })) } });
+        for (const { resource } of resources) {
+          const words = await keywords.extract(resource.id);
+          let estimatedCalls = 0;
+          for (const tag of allTags) estimatedCalls += (await relations.plan(tag.id, words.items.map(word => word.value))).estimatedCalls;
+          await tasks.enqueue({ type: 'organizer.resource', entityId: resource.id, inputVersion: inputVersion(resource.contentVersion, allTags, words.items.map(word => word.value)), processorVersion: processingVersion(), estimatedCalls, payload: { contentVersion: resource.contentVersion, tags: allTags.map(tag => ({ id: tag.id, revision: tag.revision })) } });
+        }
         return { enqueued: (await tasks.list()).length - before, resources: resources.length };
       },
       async run(options) { await api.reconcile(); return tasks.run(options); },

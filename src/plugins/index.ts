@@ -1,4 +1,5 @@
 import contentPlugin from './content/index.js';
+import agentPlugin from './agent/index.js';
 import keywordsPlugin from './keywords/index.js';
 import tagsPlugin from './tags/index.js';
 import relationsPlugin from './relations/index.js';
@@ -7,4 +8,4 @@ import organizerPlugin from './organizer/index.js';
 import schedulerPlugin from './scheduler/index.js';
 import systemsPlugin from './systems/index.js';
 import type { PluginDefinition } from '../contracts/index.js';
-export const builtinPlugins: PluginDefinition[] = [contentPlugin, keywordsPlugin, tagsPlugin, relationsPlugin, tasksPlugin, organizerPlugin, schedulerPlugin, systemsPlugin];
+export const builtinPlugins: PluginDefinition[] = [agentPlugin, contentPlugin, keywordsPlugin, tagsPlugin, relationsPlugin, tasksPlugin, organizerPlugin, schedulerPlugin, systemsPlugin];

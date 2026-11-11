@@ -155,7 +155,7 @@ try {
   await page.screenshot({ path: join(evidence, 'organizations.png'), fullPage: true });
   await page.getByRole('button', { name: /插件状态/ }).click();
   await page.getByRole('heading', { name: 'scheduler', exact: true }).waitFor();
-  assert.equal(await page.locator('.plugin-card').count(), 8);
+  assert.equal(await page.locator('.plugin-card').count(), 9);
   await page.screenshot({ path: join(evidence, 'plugins-enabled.png'), fullPage: true });
   await cli(['preview', 'stop']); preview = undefined;
   await cli(['plugin', 'disable', '--id', 'keywords', '--cascade']);
@@ -173,7 +173,7 @@ try {
   await page.locator('.plugin-card').filter({ has: page.getByRole('heading', { name: 'keywords', exact: true }) }).getByText('disabled', { exact: true }).waitFor();
   await page.screenshot({ path: join(evidence, 'plugins-disabled.png'), fullPage: true });
   assert.deepEqual(failures, []);
-  await writeFile(join(evidence, 'browser-result.json'), JSON.stringify({ passed: true, viewport: '1440x1100 / 390x844', resources: 33, pluginCards: 8, checks: ['PPC import', 'manual tag decision', 'Vite development proxy', 'pagination', 'empty results', 'combined body/keyword/tag/system filters', 'parse-status filter', 'Markdown HTML escaping', 'UUID image decode', 'repeated UUID resource navigation', 'broken UUID diagnostics', 'unsupported binary', 'system nodes', 'plugin state and restart notice', 'disabled filters and panels', 'mobile no horizontal overflow'], screenshots: ['resources-markdown.png', 'resources-mobile.png', 'broken-reference.png', 'empty-results.png', 'unsupported-resource.png', 'organizations.png', 'plugins-enabled.png', 'plugins-disabled.png'] }, null, 2));
+  await writeFile(join(evidence, 'browser-result.json'), JSON.stringify({ passed: true, viewport: '1440x1100 / 390x844', resources: 33, pluginCards: 9, checks: ['PPC import', 'manual tag decision', 'Vite development proxy', 'pagination', 'empty results', 'combined body/keyword/tag/system filters', 'parse-status filter', 'Markdown HTML escaping', 'UUID image decode', 'repeated UUID resource navigation', 'broken UUID diagnostics', 'unsupported binary', 'system nodes', 'plugin state and restart notice', 'disabled filters and panels', 'mobile no horizontal overflow'], screenshots: ['resources-markdown.png', 'resources-mobile.png', 'broken-reference.png', 'empty-results.png', 'unsupported-resource.png', 'organizations.png', 'plugins-enabled.png', 'plugins-disabled.png'] }, null, 2));
   console.log(JSON.stringify({ passed: true, evidence }));
 } finally {
   await development?.close();

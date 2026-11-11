@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "viewport": "1440x1100 / 390x844",
+  "resources": 33,
+  "pluginCards": 9,
+  "checks": [
+    "PPC import",
+    "manual tag decision",
+    "Vite development proxy",
+    "pagination",
+    "empty results",
+    "combined body/keyword/tag/system filters",
+    "parse-status filter",
+    "Markdown HTML escaping",
+    "UUID image decode",
+    "repeated UUID resource navigation",
+    "broken UUID diagnostics",
+    "unsupported binary",
+    "system nodes",
+    "plugin state and restart notice",
+    "disabled filters and panels",
+    "mobile no horizontal overflow"
+  ],
+  "screenshots": [
+    "resources-markdown.png",
+    "resources-mobile.png",
+    "broken-reference.png",
+    "empty-results.png",
+    "unsupported-resource.png",
+    "organizations.png",
+    "plugins-enabled.png",
+    "plugins-disabled.png"
+  ]
+}

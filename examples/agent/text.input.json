@@ -1,0 +1,8 @@
+{
+  "messages": [
+    { "role": "system", "content": "Summarize only the synthetic material provided by the user." },
+    { "role": "user", "content": "Synthetic material: files have stable UUID identities, explicit versions, and recoverable deletion. Summarize in one short sentence." }
+  ],
+  "maxTokens": 256,
+  "reasoning": "off"
+}

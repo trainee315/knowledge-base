@@ -1,0 +1,75 @@
+{
+  "verifiedAt": "2026-11-11T03:24:21.738Z",
+  "targetVersion": "0.0.2",
+  "state": "implementation-complete-awaiting-user-acceptance",
+  "published": false,
+  "productionSourceFrozen": true,
+  "baselineRelease": "v0.0.1",
+  "typecheck": {
+    "exitCode": 0,
+    "log": "final-typecheck.log"
+  },
+  "test": {
+    "exitCode": 0,
+    "total": 59,
+    "passed": 59,
+    "failed": 0,
+    "durationMs": 9213.4707,
+    "baselineRegressionTests": 34,
+    "log": "final-test.log"
+  },
+  "build": {
+    "exitCode": 0,
+    "log": "final-build.log"
+  },
+  "independentHttpTests": {
+    "total": 13,
+    "passed": 13,
+    "log": "mock-http.tap"
+  },
+  "browser": {
+    "passed": true,
+    "resources": 33,
+    "pluginCards": 9,
+    "evidence": "browser/browser-result.json"
+  },
+  "ppc": {
+    "passed": 2,
+    "total": 2,
+    "helpVersion": "0.0.2-dev"
+  },
+  "realApi": {
+    "requests": 3,
+    "limit": 5,
+    "campaignClosed": true,
+    "remainingWillNotBeUsed": true,
+    "syntheticOnly": true,
+    "usage": {
+      "inputTokens": 386,
+      "outputTokens": 76,
+      "totalTokens": 462
+    },
+    "secondRelationRequests": 0,
+    "responseBodiesPersisted": false,
+    "reasoningPersisted": false
+  },
+  "secretAudit": {
+    "passed": true,
+    "filesScanned": 310,
+    "exactCredentialMatchCount": 0,
+    "externalRequests": 0,
+    "evidence": "secret-audit.json"
+  },
+  "independentRelationsReview": {
+    "passed": true,
+    "transport": "local mock only",
+    "evidence": "relations-independent-review.log"
+  },
+  "git": {
+    "staged": false,
+    "committed": false,
+    "pushed": false,
+    "tagged": false
+  },
+  "frozenV001EvidenceUntouched": true
+}

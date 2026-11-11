@@ -1,0 +1,35 @@
+{
+  "stage": "relations",
+  "syntheticDataOnly": true,
+  "responseBodiesPersisted": false,
+  "reasoningDisabled": true,
+  "results": {
+    "ok": true,
+    "purpose": "relations",
+    "model": "deepseek-flash",
+    "actualModel": "deepseek-flash",
+    "usage": {
+      "inputTokens": 269,
+      "outputTokens": 63,
+      "totalTokens": 332
+    },
+    "durationMs": 1400,
+    "requestsFirst": 1,
+    "requestsSecond": 0,
+    "covered": 2,
+    "positiveScores": 2,
+    "secretAbsentFromDataAndBackup": true,
+    "httpStatus": 200
+  },
+  "secretScan": {
+    "passed": true,
+    "filesScanned": 281,
+    "excludedDirectories": [
+      ".git",
+      "node_modules"
+    ]
+  },
+  "ok": true,
+  "requestsUsedTotal": 3,
+  "requestLimit": 5
+}

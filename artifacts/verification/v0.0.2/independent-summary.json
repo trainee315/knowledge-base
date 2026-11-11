@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "productionSourceModifiedByVerifier": false,
+  "unresolvedFindings": 0,
+  "frozenBuildByCore": {
+    "typecheckExitCode": 0,
+    "testExitCode": 0,
+    "buildExitCode": 0,
+    "tests": 59,
+    "passed": 59,
+    "legacyTestsIncluded": 34
+  },
+  "independentMockHttpTests": { "tests": 13, "passed": 13, "failed": 0, "evidence": "mock-http.tap" },
+  "browser": { "passed": true, "resources": 33, "plugins": 9, "viewports": ["1440x1100", "390x844"], "evidence": "browser/browser-result.json", "v001EvidenceOverwritten": false },
+  "ppc": { "tests": 2, "passed": 2, "helpForwardedVersion": "0.0.2-dev", "agentCommandsVisible": true, "externalSourceModified": false, "serviceOrPackInvoked": false },
+  "liveSmoke": {
+    "requests": 3,
+    "modelsRequests": 0,
+    "requestsLimit": 5,
+    "campaignClosed": true,
+    "unusedRequestsFrozen": 2,
+    "model": "deepseek-flash",
+    "reasoning": "off",
+    "syntheticInputsOnly": true,
+    "inputTokens": 386,
+    "outputTokens": 76,
+    "totalTokens": 462,
+    "relationFirstRequests": 1,
+    "relationRepeatedRequests": 0,
+    "evidence": ["live-core.json", "live-relations.json"]
+  },
+  "secretAudit": { "passed": true, "filesScannedAtAudit": 310, "exactMatches": 0, "matchingFiles": [], "backupDecoded": true, "cliStdoutAndStderrChecked": true, "externalNetworkRequests": 0, "evidence": "secret-audit.json" },
+  "testProcessesStopped": true,
+  "secretFileRemainsOutsideRepository": true,
+  "commitPushOrTagPerformed": false
+}

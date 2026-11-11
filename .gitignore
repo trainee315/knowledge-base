@@ -10,6 +10,8 @@ dist/
 !.env.example
 *.log
 !artifacts/verification/*.log
+!artifacts/verification/v0.0.2/*.log
+!artifacts/verification/v0.0.2/release/*.log
 coverage/
 .preview/
 *.backup.json

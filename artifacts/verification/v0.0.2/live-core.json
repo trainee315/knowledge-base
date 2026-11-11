@@ -1,0 +1,41 @@
+{
+  "stage": "core",
+  "syntheticDataOnly": true,
+  "responseBodiesPersisted": false,
+  "reasoningDisabled": true,
+  "results": {
+    "text": {
+      "ok": true,
+      "purpose": "text",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 13,
+        "outputTokens": 3,
+        "totalTokens": 16
+      },
+      "durationMs": 683
+    },
+    "object": {
+      "ok": true,
+      "purpose": "object",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 104,
+        "outputTokens": 10,
+        "totalTokens": 114
+      },
+      "durationMs": 430
+    }
+  },
+  "secretScan": {
+    "passed": true,
+    "filesScanned": 272,
+    "excludedDirectories": [
+      ".git",
+      "node_modules"
+    ]
+  },
+  "ok": true,
+  "requestsUsedTotal": 2,
+  "requestLimit": 5
+}

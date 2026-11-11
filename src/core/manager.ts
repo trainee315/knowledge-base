@@ -169,7 +169,15 @@ export class CoreManager implements CoreApi {
   private async validateReferences(references: ResourceReference[]): Promise<void> { validateReferenceShape(references); for (const ref of references) { if (ref.kind === 'resource') await this.getResource(ref.id); else await this.getOrganization(ref.id); } }
   private async assertNotReferenced(kind: ResourceReference['kind'], id: string): Promise<void> {
     const incoming: string[] = [];
-    for (const item of [...await this.allMetas(), ...await this.listOrganizations()]) if (item.id !== id && item.references.some(ref => ref.kind === kind && ref.id === id)) incoming.push(item.id);
+    // 身份由kind与UUID共同确定；跨类型同UUID仍是外部入站引用。
+    const sources = [
+      ...(await this.allMetas()).map(item => ({ kind: 'resource' as const, item })),
+      ...(await this.listOrganizations()).map(item => ({ kind: 'organization' as const, item })),
+    ];
+    for (const source of sources) {
+      const self = source.kind === kind && source.item.id === id;
+      if (!self && source.item.references.some(ref => ref.kind === kind && ref.id === id)) incoming.push(source.item.id);
+    }
     assert(incoming.length === 0, 'REFERENCED', '对象仍被引用，必须先迁移或清理关联', { incoming });
   }
   private checkVersion(actual: number, expected?: number): void { if (expected !== undefined) assert(actual === expected, 'VERSION_CONFLICT', '输入版本已过期', { actual, expected }); }
