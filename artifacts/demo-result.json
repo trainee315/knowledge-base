@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "dataDir": "C:\\Users\\mamar\\AppData\\Local\\Temp\\knowledge-base-demo-rKDlDB\\演示知识库",
+  "checkValid": true,
+  "resources": 4,
+  "tagMatched": 1,
+  "unsupported": 1,
+  "pendingCandidates": 3,
+  "resolvedCandidates": 2,
+  "guideReferenceStatus": "valid",
+  "previewPageStatus": 200,
+  "generatedWithoutService": true,
+  "verificationPreviewStopped": true
+}

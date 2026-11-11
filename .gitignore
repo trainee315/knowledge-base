@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.codex/
+.data/
+.runtime/
+.writer.lock
+*.tmp
+.env
+.env.*
+!.env.example
+*.log
+!artifacts/verification/*.log
+coverage/
+.preview/
+*.backup.json
+*.secrets.json

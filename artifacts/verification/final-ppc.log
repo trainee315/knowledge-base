@@ -1,0 +1,10 @@
+✔ knowledge forwards Chinese/space arguments, JSON, stderr and exit code without shell evaluation (373.3226ms)
+✔ knowledge missing build returns structured error without contacting PPC backend (107.8395ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 586.375

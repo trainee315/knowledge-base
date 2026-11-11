@@ -1,0 +1,246 @@
+[
+  {
+    "name": "scheduler failed task blocks same-day retry",
+    "observed": {
+      "first": {
+        "triggered": true,
+        "now": "2026-11-11T04:00:00+08:00",
+        "processed": 1,
+        "completed": 0,
+        "failed": 1,
+        "calls": 0,
+        "cost": 0,
+        "stopped": "queue-empty",
+        "assignment": "waiting-for-working-codex"
+      },
+      "state": {
+        "config": {
+          "enabled": true,
+          "time": "03:00",
+          "timezone": "Asia/Shanghai",
+          "maxTasks": 100,
+          "maxDurationMs": 60000,
+          "maxCalls": 0,
+          "maxCost": 0
+        },
+        "lastDate": "2026-11-11",
+        "lastRun": "2026-11-11T04:00:00+08:00"
+      },
+      "second": {
+        "triggered": false,
+        "reason": "not-due"
+      }
+    }
+  },
+  {
+    "name": "scheduler timeout blocks same-day retry",
+    "observed": {
+      "first": {
+        "triggered": true,
+        "now": "2026-11-11T04:00:00+08:00",
+        "processed": 1,
+        "completed": 0,
+        "failed": 1,
+        "calls": 0,
+        "cost": 0,
+        "stopped": "queue-empty",
+        "assignment": "waiting-for-working-codex"
+      },
+      "state": {
+        "config": {
+          "enabled": true,
+          "time": "03:00",
+          "timezone": "Asia/Shanghai",
+          "maxTasks": 100,
+          "maxDurationMs": 60000,
+          "maxCalls": 0,
+          "maxCost": 0
+        },
+        "lastDate": "2026-11-11",
+        "lastRun": "2026-11-11T04:00:00+08:00"
+      },
+      "second": {
+        "triggered": false,
+        "reason": "not-due"
+      }
+    }
+  },
+  {
+    "name": "timeout handler overlaps retry and overwrites newer effect",
+    "observed": {
+      "first": {
+        "processed": 1,
+        "completed": 0,
+        "failed": 1,
+        "calls": 0,
+        "cost": 0,
+        "stopped": "queue-empty"
+      },
+      "second": {
+        "processed": 1,
+        "completed": 1,
+        "failed": 0,
+        "calls": 0,
+        "cost": 0,
+        "stopped": "queue-empty"
+      },
+      "beforeLate": {
+        "call": 2
+      },
+      "afterLate": {
+        "call": 1
+      },
+      "task": {
+        "type": "review.late",
+        "entityId": "review",
+        "inputVersion": "1",
+        "processorVersion": "1",
+        "payload": {},
+        "timeoutMs": 100,
+        "id": "423117d4-dfdc-4541-b7c3-ea94560554c8",
+        "key": "3f6d6ed70a85c3d7775b9fa0b101c554042318d3d0e0ad5080d6cedd7a0ed43a",
+        "status": "completed",
+        "attempts": 1,
+        "createdAt": "2026-11-10T13:22:17.290Z",
+        "updatedAt": "2026-11-10T13:22:17.453Z",
+        "result": {
+          "call": 2
+        }
+      }
+    }
+  },
+  {
+    "name": "provider switched during score changes recorded identity",
+    "observed": {
+      "tagId": "36e86ed7-acb7-4fd1-9a98-c70eb3492df7",
+      "tagRevision": 1,
+      "provider": {
+        "id": "review-new",
+        "version": "2",
+        "kind": "heuristic"
+      },
+      "scores": [
+        {
+          "keyword": "topic",
+          "score": 0.9,
+          "reason": "old-provider"
+        }
+      ],
+      "at": "2026-11-10T13:22:18.184Z"
+    }
+  },
+  {
+    "name": "stale provider candidate remains visible and can be accepted",
+    "observed": {
+      "originalProvider": {
+        "id": "offline-lexical",
+        "version": "1",
+        "kind": "heuristic"
+      },
+      "currentProvider": {
+        "id": "review-new",
+        "version": "2",
+        "kind": "heuristic"
+      },
+      "visibleOld": false,
+      "submitted": {
+        "rejected": "Error: STALE_INPUT: 候选处理器已升级"
+      }
+    }
+  },
+  {
+    "name": "invalid argument types are silently accepted/coerced",
+    "observed": {
+      "configured": {
+        "config": {
+          "enabled": true,
+          "time": "03:00",
+          "timezone": "Asia/Shanghai",
+          "maxTasks": 100,
+          "maxDurationMs": 60000,
+          "maxCalls": 0,
+          "maxCost": 0
+        }
+      },
+      "fractional": {
+        "processed": 2,
+        "completed": 2,
+        "failed": 0,
+        "calls": 0,
+        "cost": 0,
+        "stopped": "task-budget"
+      },
+      "query": {
+        "items": [],
+        "total": 0,
+        "offset": 0,
+        "limit": 50
+      }
+    }
+  },
+  {
+    "name": "manual rejection/acceptance and stale tag/resource input",
+    "observed": {
+      "rejected": {
+        "applied": true,
+        "decision": {
+          "resourceId": "66ca2a0d-c7fe-440c-95db-e23c0d5c8aba",
+          "tagId": "c77eddbb-81a9-4018-b056-4778329462fe",
+          "accepted": false,
+          "source": "manual",
+          "reason": "manual no",
+          "contentVersion": 1,
+          "tagRevision": 1,
+          "at": "2026-11-10T13:22:18.544Z"
+        }
+      },
+      "protectedRejection": {
+        "applied": false,
+        "decision": {
+          "resourceId": "66ca2a0d-c7fe-440c-95db-e23c0d5c8aba",
+          "tagId": "c77eddbb-81a9-4018-b056-4778329462fe",
+          "accepted": false,
+          "source": "manual",
+          "reason": "manual no",
+          "contentVersion": 1,
+          "tagRevision": 1,
+          "at": "2026-11-10T13:22:18.544Z"
+        },
+        "review": "人工决定持续有效；自动结果只构成复核建议"
+      },
+      "protectedAcceptance": {
+        "applied": false,
+        "decision": {
+          "resourceId": "66ca2a0d-c7fe-440c-95db-e23c0d5c8aba",
+          "tagId": "c77eddbb-81a9-4018-b056-4778329462fe",
+          "accepted": true,
+          "source": "manual",
+          "reason": "manual yes",
+          "contentVersion": 1,
+          "tagRevision": 1,
+          "at": "2026-11-10T13:22:18.552Z"
+        },
+        "review": "人工决定持续有效；自动结果只构成复核建议"
+      },
+      "staleTag": "Error: STALE_INPUT: 资源内容或标签定义已变化",
+      "staleResource": "Error: STALE_INPUT: 资源内容或标签定义已变化"
+    }
+  },
+  {
+    "name": "system parents/cycles/references update and deletion protection",
+    "observed": {
+      "cycle": "Error: SYSTEM_CYCLE: 节点不能循环引用",
+      "missingParent": "Error: SYSTEM_INVALID: 父节点不存在",
+      "attachedReferences": [
+        {
+          "kind": "resource",
+          "id": "213fbc61-b0b3-47dc-b2e4-d0a8acbbfbb2"
+        }
+      ],
+      "clearedReferences": [],
+      "purgeBlocked": "KnowledgeError: 对象仍被引用，必须先迁移或清理关联",
+      "deleteBlocked": "KnowledgeError: 对象仍被引用，必须先迁移或清理关联",
+      "finalOrganizations": 0
+    }
+  }
+]

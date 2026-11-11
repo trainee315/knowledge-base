@@ -1,0 +1,49 @@
+{
+  "verifiedAt": "2026-11-10T13:48:09.130Z",
+  "runtime": "v24.11.0",
+  "sourceFrozen": true,
+  "typecheck": {
+    "exitCode": 0,
+    "log": "final-typecheck.log"
+  },
+  "test": {
+    "exitCode": 0,
+    "total": 34,
+    "passed": 34,
+    "failed": 0,
+    "log": "final-test.log"
+  },
+  "build": {
+    "exitCode": 0,
+    "log": "final-build.log"
+  },
+  "browser": {
+    "exitCode": 0,
+    "passed": true,
+    "resources": 33,
+    "screenshots": 8,
+    "log": "final-browser.log"
+  },
+  "ppc": {
+    "exitCode": 0,
+    "total": 2,
+    "passed": 2,
+    "log": "final-ppc.log"
+  },
+  "resourcesBenchmark": {
+    "resources": 1000,
+    "importedMs": 21346.4784,
+    "pagedMs": 9.112900000000081,
+    "reindexMs": 13.54689999999755,
+    "checkMs": 909.8322000000007,
+    "coldReadMs": 147.2471000000005,
+    "valid": true,
+    "log": "final-resource-benchmark.log"
+  },
+  "demo": "examples/create-demo.mjs",
+  "independentReviews": [
+    "doc/新增需求/v0.0.1/core-independent-review.md",
+    "doc/新增需求/v0.0.1/business-independent-review.md",
+    "doc/新增需求/v0.0.1/preview-ppc-independent-review.md"
+  ]
+}

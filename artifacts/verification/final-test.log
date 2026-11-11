@@ -1,0 +1,67 @@
+
+> agent-knowledge-base@0.0.1 test
+> npm run build && node --test dist/**/*.test.js
+
+
+> agent-knowledge-base@0.0.1 build
+> npm run build:core && npm run build:web
+
+
+> agent-knowledge-base@0.0.1 build:core
+> tsc -p tsconfig.json
+
+
+> agent-knowledge-base@0.0.1 build:web
+> vite build --config web/vite.config.ts
+
+vite v7.3.8 building client environment for production...
+transforming...
+✓ 32 modules transformed.
+rendering chunks...
+computing gzip size...
+../dist/web/index.html                   0.37 kB │ gzip:  0.30 kB
+../dist/web/assets/index-CZZauCGU.css    8.70 kB │ gzip:  2.72 kB
+../dist/web/assets/index-UyGCTtAH.js   183.79 kB │ gzip: 74.82 kB
+✓ built in 560ms
+✔ CLI has single-object output, UTF8 input, correct exit codes and read-only queries alongside writer (2742.7102ms)
+✔ resource dedup, explicit copy, history, soft delete, references and backup restore (413.1316ms)
+✔ single writer and injected interrupted transaction recovers all files on reopen (50.1654ms)
+✔ concurrent read snapshot never returns mixed multi-file transaction (1201.9139ms)
+✔ DAG preflight detects full cycles/missing/version before loading (0.8671ms)
+✔ host enforces dependency access and meta permissions, refresh failure blocks dependents and reverse stop (189.1823ms)
+✔ backup validates hashes and refuses traversal before writing (15.999ms)
+✔ core remains usable with every business plugin disabled and retains plugin data (206.1647ms)
+✔ stale diagnostic locks cannot produce two OS writers and killed holder releases mutex (971.1365ms)
+✔ restore prevalidates canonical paths and schema before any formal data write (94.0658ms)
+✔ unknown live core schema cannot be read or updated and organization patch cannot change ownership (171.5369ms)
+✔ refresh failure fences cached APIs and commands across restart without loading blocked dependents (220.0779ms)
+✔ restore and ordinary IO reject existing junction ancestors before journal or external writes (97.6213ms)
+✔ future plugin dataVersion prevents load and dependent activation without downgrading persisted version (82.1883ms)
+✔ generic organization type CRUD, enabled policy, use protection, backup and schema validation (315.1122ms)
+✔ UTF8解析、未知格式降级、中英文关键词和离线评分 (21.5408ms)
+✔ 真实导入到候选、标签新增回填、查询组合、人工拒绝保护和过期结果阻断 (1344.5833ms)
+✔ 独立CLI进程自动导入链路与结构化候选提交 (4130.0366ms)
+✔ 评分处理器版本变化重新排队，旧处理器候选不能提交 (451.2594ms)
+✔ Markdown链接及图片登记正式引用，代码示例忽略，移除链接解除保护并诊断坏目标 (949.9989ms)
+✔ 定时模拟时钟与进程重启后的同日去重 (251.0915ms)
+✔ 任务持久化去重、失败重试断点、超时、重试上限及模型预算 (336.7793ms)
+✔ 超时处理器退出前隔离重试，旧异步写不会与新attempt重叠 (645.194ms)
+✔ 调度失败、超时与预算未完成不标当日成功，同日可继续 (619.0118ms)
+✔ 评分进行中切换provider丢弃旧结果，输入类型与整数预算严格校验 (242.4067ms)
+✔ 已知插件未来meta版本拒读拒写，未知分区保留，算法v2与meta v1独立 (426.4977ms)
+✔ 业务默认组织方式首次登记一次，只读零写，删除后重开与恢复不重建 (487.5141ms)
+✔ 通用组织方式CRUD、版本冲突、使用中保护和disabled保留旧组织 (252.1437ms)
+✔ 独立CLI组织方式CRUD、默认业务方式disabled控制和只读并发 (3550.3804ms)
+✔ Markdown escapes HTML, blocks unsafe links and external image requests (6.3372ms)
+✔ Markdown resolves stable UUID image and resource links (0.4413ms)
+✔ real core/plugins preview supports query, content, UUID files, organizations, and denies writes/cross-origin (1244.158ms)
+✔ background preview lifecycle is explicit, idempotent and works with Chinese/space data paths (705.455ms)
+✔ eight CLI processes, case/junction aliases and stale PID records share one canonical preview instance (3386.2967ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9688.2811

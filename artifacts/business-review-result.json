@@ -1,0 +1,273 @@
+[
+  {
+    "name": "scheduler failed task blocks same-day retry",
+    "observed": {
+      "first": {
+        "triggered": true,
+        "now": "2026-11-11T04:00:00+08:00",
+        "complete": false,
+        "processed": 1,
+        "completed": 0,
+        "failed": 1,
+        "calls": 0,
+        "cost": 0,
+        "stopped": "queue-empty",
+        "unfinished": 1,
+        "draining": 0,
+        "assignment": "waiting-for-working-codex"
+      },
+      "state": {
+        "config": {
+          "enabled": true,
+          "time": "03:00",
+          "timezone": "Asia/Shanghai",
+          "maxTasks": 100,
+          "maxDurationMs": 60000,
+          "maxCalls": 0,
+          "maxCost": 0
+        },
+        "lastAttempt": "2026-11-11T04:00:00+08:00",
+        "lastAttemptComplete": false
+      },
+      "second": {
+        "triggered": true,
+        "now": "2026-11-11T04:10:00+08:00",
+        "complete": false,
+        "processed": 1,
+        "completed": 0,
+        "failed": 1,
+        "calls": 0,
+        "cost": 0,
+        "stopped": "queue-empty",
+        "unfinished": 1,
+        "draining": 0,
+        "assignment": "waiting-for-working-codex"
+      }
+    }
+  },
+  {
+    "name": "scheduler timeout blocks same-day retry",
+    "observed": {
+      "first": {
+        "triggered": true,
+        "now": "2026-11-11T04:00:00+08:00",
+        "complete": false,
+        "processed": 1,
+        "completed": 0,
+        "failed": 1,
+        "calls": 0,
+        "cost": 0,
+        "stopped": "attempt-draining",
+        "unfinished": 1,
+        "draining": 1,
+        "assignment": "waiting-for-working-codex"
+      },
+      "state": {
+        "config": {
+          "enabled": true,
+          "time": "03:00",
+          "timezone": "Asia/Shanghai",
+          "maxTasks": 100,
+          "maxDurationMs": 60000,
+          "maxCalls": 0,
+          "maxCost": 0
+        },
+        "lastAttempt": "2026-11-11T04:00:00+08:00",
+        "lastAttemptComplete": false
+      },
+      "second": {
+        "triggered": true,
+        "now": "2026-11-11T04:10:00+08:00",
+        "complete": false,
+        "processed": 1,
+        "completed": 0,
+        "failed": 1,
+        "calls": 0,
+        "cost": 0,
+        "stopped": "attempt-draining",
+        "unfinished": 1,
+        "draining": 1,
+        "assignment": "waiting-for-working-codex"
+      }
+    }
+  },
+  {
+    "name": "timeout handler overlaps retry and overwrites newer effect",
+    "observed": {
+      "first": {
+        "processed": 1,
+        "completed": 0,
+        "failed": 1,
+        "calls": 0,
+        "cost": 0,
+        "stopped": "attempt-draining",
+        "unfinished": 1,
+        "draining": 1
+      },
+      "retryBlocked": "Error: TASK_DRAINING: 超时处理器尚未退出，不能重试",
+      "runBlocked": {
+        "processed": 0,
+        "completed": 0,
+        "failed": 0,
+        "calls": 0,
+        "cost": 0,
+        "stopped": "attempt-draining",
+        "unfinished": 1,
+        "draining": 1
+      },
+      "beforeLate": null,
+      "afterLate": {
+        "call": 1
+      },
+      "afterSettleRetry": {
+        "processed": 1,
+        "completed": 1,
+        "failed": 0,
+        "calls": 0,
+        "cost": 0,
+        "stopped": "queue-empty",
+        "unfinished": 0,
+        "draining": 0
+      },
+      "finalEffect": {
+        "call": 2
+      },
+      "task": {
+        "type": "review.late",
+        "entityId": "review",
+        "inputVersion": "1",
+        "processorVersion": "1",
+        "payload": {},
+        "timeoutMs": 100,
+        "id": "4ffe2bfe-bbc4-4fb7-b72a-c385a64daba8",
+        "key": "3f6d6ed70a85c3d7775b9fa0b101c554042318d3d0e0ad5080d6cedd7a0ed43a",
+        "status": "completed",
+        "attempts": 1,
+        "createdAt": "2026-11-10T13:38:04.413Z",
+        "updatedAt": "2026-11-10T13:38:05.275Z",
+        "result": {
+          "call": 2
+        },
+        "draining": false
+      }
+    }
+  },
+  {
+    "name": "provider switched during score changes recorded identity",
+    "observed": {
+      "rejected": "Error: STALE_PROVIDER: 评分实现已变化，丢弃旧处理器结果",
+      "saved": null
+    }
+  },
+  {
+    "name": "stale provider candidate remains visible and can be accepted",
+    "observed": {
+      "originalProvider": {
+        "id": "offline-lexical",
+        "version": "1",
+        "kind": "heuristic"
+      },
+      "currentProvider": {
+        "id": "review-new",
+        "version": "2",
+        "kind": "heuristic"
+      },
+      "visibleOld": false,
+      "submitted": {
+        "rejected": "Error: STALE_INPUT: 候选处理器已升级"
+      }
+    }
+  },
+  {
+    "name": "invalid argument types are silently accepted/coerced",
+    "observed": {
+      "configured": {
+        "rejected": "Error: INVALID_INPUT: time 必须为非空字符串"
+      },
+      "enabledFalse": {
+        "accepted": {
+          "config": {
+            "enabled": false,
+            "time": "03:00",
+            "timezone": "Asia/Shanghai",
+            "maxTasks": 100,
+            "maxDurationMs": 60000,
+            "maxCalls": 0,
+            "maxCost": 0
+          }
+        }
+      },
+      "fractional": {
+        "rejected": "Error: INVALID_INPUT: 任务数、毫秒、调用数必须为整数，费用必须为有限非负数"
+      },
+      "query": {
+        "rejected": "Error: INVALID_INPUT: 必须为非空字符串或字符串数组"
+      }
+    }
+  },
+  {
+    "name": "manual rejection/acceptance and stale tag/resource input",
+    "observed": {
+      "rejected": {
+        "applied": true,
+        "decision": {
+          "resourceId": "9d0cc439-85a0-4861-aeb0-0d03a0a194a8",
+          "tagId": "d4f947d9-b039-4759-950f-6dc49b3e3ac1",
+          "accepted": false,
+          "source": "manual",
+          "reason": "manual no",
+          "contentVersion": 1,
+          "tagRevision": 1,
+          "at": "2026-11-10T13:38:06.474Z"
+        }
+      },
+      "protectedRejection": {
+        "applied": false,
+        "decision": {
+          "resourceId": "9d0cc439-85a0-4861-aeb0-0d03a0a194a8",
+          "tagId": "d4f947d9-b039-4759-950f-6dc49b3e3ac1",
+          "accepted": false,
+          "source": "manual",
+          "reason": "manual no",
+          "contentVersion": 1,
+          "tagRevision": 1,
+          "at": "2026-11-10T13:38:06.474Z"
+        },
+        "review": "人工决定持续有效；自动结果只构成复核建议"
+      },
+      "protectedAcceptance": {
+        "applied": false,
+        "decision": {
+          "resourceId": "9d0cc439-85a0-4861-aeb0-0d03a0a194a8",
+          "tagId": "d4f947d9-b039-4759-950f-6dc49b3e3ac1",
+          "accepted": true,
+          "source": "manual",
+          "reason": "manual yes",
+          "contentVersion": 1,
+          "tagRevision": 1,
+          "at": "2026-11-10T13:38:06.489Z"
+        },
+        "review": "人工决定持续有效；自动结果只构成复核建议"
+      },
+      "staleTag": "Error: STALE_INPUT: 资源内容或标签定义已变化",
+      "staleResource": "Error: STALE_INPUT: 资源内容或标签定义已变化"
+    }
+  },
+  {
+    "name": "system parents/cycles/references update and deletion protection",
+    "observed": {
+      "cycle": "Error: SYSTEM_CYCLE: 节点不能循环引用",
+      "missingParent": "Error: SYSTEM_INVALID: 父节点不存在",
+      "attachedReferences": [
+        {
+          "kind": "resource",
+          "id": "16bbb12d-3356-4705-9186-08ff9bf8e5cf"
+        }
+      ],
+      "clearedReferences": [],
+      "purgeBlocked": "KnowledgeError: 对象仍被引用，必须先迁移或清理关联",
+      "deleteBlocked": "KnowledgeError: 对象仍被引用，必须先迁移或清理关联",
+      "finalOrganizations": 0
+    }
+  }
+]

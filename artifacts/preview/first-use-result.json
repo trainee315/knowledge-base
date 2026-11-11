@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "nonexistentBefore": true,
+  "emptyApi": true,
+  "emptyBrowser": true,
+  "formalDataCreated": false,
+  "stopped": true
+}

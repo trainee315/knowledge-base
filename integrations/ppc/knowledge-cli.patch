@@ -1,0 +1,140 @@
+diff --git a/cli/README.md b/cli/README.md
+index d2839f1..c0bd2fc 100644
+--- a/cli/README.md
++++ b/cli/README.md
+@@ -1,5 +1,18 @@
+ # PPC 本机 CLI
+ 
++## 独立知识库
++
++`knowledge` 命令直接启动知识库构建后的 CLI，不需要 PPC 后端，不会启停任何 PPC 服务。原有 `note` 工程笔记命令保持独立。
++
++```powershell
++ppc knowledge resource list --data-dir "D:\\资料\\知识库 数据" --json
++ppc knowledge preview start --data-dir "D:\\资料\\知识库 数据" --json
++ppc knowledge preview stop --data-dir "D:\\资料\\知识库 数据" --json
++ppc knowledge --help --knowledge-home "D:\\project\\knowledge-base"
++```
++
++知识库仓库位置优先使用 `--knowledge-home`，其次为 `PPC_KNOWLEDGE_HOME` 环境变量，本机默认 `D:/project/knowledge-base`。先在知识库仓库运行 `npm install`、`npm run build`。转发使用当前 Node (`process.execPath`) 与参数数组启动 `dist/cli/main.js`，支持带空格和中文的路径；工作目录沿用调用者目录，`--data-dir` 等参数由知识库解释。JSON 标准输出、标准错误和退出码直接透传，不额外封装。
++
+ 需要 Windows、Node.js 22.18 或以上版本，以及正在本机运行的 PPC 后端（默认端口 3000）。在仓库根目录可用 `node cli/ppc.mjs` 调用；已配置 PATH 入口的主机可直接使用 `ppc`。
+ 
+ ## Agent 查询
+diff --git a/cli/ppc.mjs b/cli/ppc.mjs
+index c2a203d..9847c80 100644
+--- a/cli/ppc.mjs
++++ b/cli/ppc.mjs
+@@ -1,9 +1,16 @@
+ import { readFile } from 'node:fs/promises'
+ import { CliError, query } from './api.mjs'
+ import { manageService, supervise } from './service.mjs'
++import { forwardKnowledge } from './knowledge.mjs'
+ 
+ const help = `PPC — 个人项目中心
+ 
++独立知识库（无需 PPC 后端，参数与输出直接透传）
++  ppc knowledge <知识库命令与参数> [--knowledge-home <仓库路径>]
++  ppc knowledge resource list --json
++  ppc knowledge preview start --json
++  ppc knowledge preview stop --json
++
+ Agent 只读查询（加 --json 获得结构化结果）
+   ppc project search [关键词] [--page 1] [--page-size 20]
+   ppc project detail <工程ID>
+@@ -128,6 +135,7 @@ async function readTodoInput(options) {
+ }
+ 
+ async function run() {
++  if (args[0] === 'knowledge') return forwardKnowledge(args.slice(1))
+   if (args.length === 1 && args[0] === '__service-supervisor') {
+     await supervise()
+     return
+diff --git a/cli/knowledge.mjs b/cli/knowledge.mjs
+new file mode 100644
+index 0000000..5fd1f36
+--- /dev/null
++++ b/cli/knowledge.mjs
+@@ -0,0 +1,34 @@
++import { spawn } from 'node:child_process'
++import { access } from 'node:fs/promises'
++import { resolve } from 'node:path'
++import { CliError } from './api.mjs'
++
++// 本机默认仓库；其它主机可通过环境变量或命令参数配置。
++const DEFAULT_KNOWLEDGE_HOME = 'D:/project/knowledge-base'
++
++/** 不经 shell 或 PPC 后端，原样转发知识库参数与输出。 */
++export async function forwardKnowledge(args, options = {}) {
++  let home = options.home ?? process.env.PPC_KNOWLEDGE_HOME ?? DEFAULT_KNOWLEDGE_HOME
++  const forwarded = []
++  for (let index = 0; index < args.length; index++) {
++    if (args[index] === '--knowledge-home') {
++      const value = args[++index]
++      if (!value || value.startsWith('--')) throw new CliError('INVALID_ARGUMENT', '请指定知识库仓库路径')
++      home = value
++    } else forwarded.push(args[index])
++  }
++  const entry = resolve(home, 'dist/cli/main.js')
++  try { await access(entry) } catch {
++    throw new CliError('KNOWLEDGE_UNAVAILABLE', '知识库构建入口不存在，请配置 PPC_KNOWLEDGE_HOME 并在知识库运行 npm run build')
++  }
++  return new Promise((done, fail) => {
++    const child = spawn(process.execPath, [entry, ...forwarded], {
++      shell: false, windowsHide: true, stdio: 'inherit', cwd: process.cwd(),
++    })
++    child.once('error', () => fail(new CliError('KNOWLEDGE_UNAVAILABLE', '无法启动知识库 CLI')))
++    child.once('exit', (code, signal) => {
++      process.exitCode = code ?? (signal ? 1 : 0)
++      done(undefined)
++    })
++  })
++}
+diff --git a/cli/knowledge.test.mjs b/cli/knowledge.test.mjs
+new file mode 100644
+index 0000000..e0203d9
+--- /dev/null
++++ b/cli/knowledge.test.mjs
+@@ -0,0 +1,42 @@
++import { test } from 'node:test'
++import assert from 'node:assert/strict'
++import { mkdtemp, mkdir, writeFile, rm } from 'node:fs/promises'
++import { tmpdir } from 'node:os'
++import { join } from 'node:path'
++import { spawn } from 'node:child_process'
++import { fileURLToPath } from 'node:url'
++
++function invoke(args, env = process.env) {
++  return new Promise((done, fail) => {
++    const child = spawn(process.execPath, [fileURLToPath(new URL('./ppc.mjs', import.meta.url)), 'knowledge', ...args], { env, shell: false, windowsHide: true })
++    let stdout = '', stderr = ''
++    child.stdout.on('data', (chunk) => { stdout += chunk })
++    child.stderr.on('data', (chunk) => { stderr += chunk })
++    child.once('error', fail)
++    child.once('close', (code) => done({ code, stdout, stderr }))
++  })
++}
++
++test('knowledge forwards Chinese/space arguments, JSON, stderr and exit code without shell evaluation', async () => {
++  const home = await mkdtemp(join(tmpdir(), '知识库 CLI 中文 空格 '))
++  try {
++    await mkdir(join(home, 'dist', 'cli'), { recursive: true })
++    await writeFile(join(home, 'dist', 'cli', 'main.js'), 'process.stdout.write(JSON.stringify({args:process.argv.slice(2)})+"\\n");process.stderr.write("fixture stderr\\n");process.exitCode=7;')
++    const args = ['resource', 'import', '--file', "D:/中文 路径/a';$(echo surprise)&.md", '--json']
++    const result = await invoke(['--knowledge-home', home, ...args])
++    assert.equal(result.code, 7)
++    assert.deepEqual(JSON.parse(result.stdout), { args })
++    assert.equal(result.stderr, 'fixture stderr\n')
++    const environment = await invoke(['--help'], { ...process.env, PPC_KNOWLEDGE_HOME: home })
++    assert.deepEqual(JSON.parse(environment.stdout), { args: ['--help'] })
++  } finally { await rm(home, { recursive: true, force: true }) }
++})
++
++test('knowledge missing build returns structured error without contacting PPC backend', async () => {
++  const home = await mkdtemp(join(tmpdir(), 'missing-knowledge-'))
++  try {
++    const result = await invoke(['--knowledge-home', home, 'resource', 'list', '--json'])
++    assert.equal(result.code, 1)
++    assert.equal(JSON.parse(result.stdout).error.code, 'KNOWLEDGE_UNAVAILABLE')
++  } finally { await rm(home, { recursive: true, force: true }) }
++})
