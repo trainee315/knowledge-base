@@ -1,6 +1,8 @@
 # Knowledge Base
 
-由工作Agent通过CLI管理的单人本地文件知识库。当前版本 **v0.0.1**（2026-11-11），已完成自动验证和独立复核，按用户指令归档发布；提供资源入库、文件事务、插件管理、知识整理、持久任务和只读预览。[版本归档](./doc/v0.0.1/readme.md) · [文档入口](./doc/readme.md) · [版本历史](./doc/version-history.md)。
+由工作Agent通过CLI管理的单人本地文件知识库。当前版本 **v0.0.2**（2026-11-11），按用户实施计划完成归档发布；提供资源入库、文件事务、知识整理、持久任务、只读预览及通用Agent基础设施。[版本归档](./doc/v0.0.2/readme.md) · [文档入口](./doc/readme.md) · [版本历史](./doc/version-history.md)。
+
+`agent status`、`agent profile list/get`和配置查询不联网；无费用示例为`node examples/agent/generic.mjs`。真实调用需安全配置进程环境DEEPSEEK_API_KEY并显式运行generate或选agent评分，profile不保存密钥，默认关系评分仍离线。缓存只补缺失词对，0分只存coverage；标签定义修改不自动重评，重评需显式逻辑版本或生成语义切换。JSON schema为支持子集，不是完整自主Agent运行时。项目跟踪属于后续0.0.3，不在本版。
 
 要求 Node.js 24+、npm。首次运行：
 
@@ -50,8 +52,8 @@ npm run build
 
 备份路径位于数据目录外，不覆盖已有备份文件；恢复目标必须没有正式业务数据。正式数据位于 `resources`、同级 `metadata`、`organizations`、`organization-types`、`plugins/*/data`、`state`，缓存和索引位于 `cache`。每个写命令独占数据目录写者锁；只读查询可并行，跨文件事务使用重做日志并在下次写会话打开时恢复。数据目录内部拒绝符号链接/junction，数据根自身的别名按realpath统一身份。数据、密钥、构建产物不跟踪进 Git。
 
-整理默认使用离线词汇相关评分，分数只召回候选，最终标签归属由工作 Codex/人工提交。付费模型调用、OCR、复杂格式正文解析、向量检索、远程插件和实际操作系统定时任务尚未实现。`schedule configure/get/tick/run` 保存夜间策略并响应显式调用；如需定时触发，由外部工具调用 `schedule tick`。默认夜间配置 03:00、Asia/Shanghai、100 任务、60 秒、付费调用/费用预算均为 0。
+整理默认使用离线词汇相关评分，分数只召回候选，最终标签归属由工作Codex/人工提交。DeepSeek已支持显式generate或agent评分调用，可能产生费用；自动任务默认模型次数预算0。OCR、复杂格式正文解析、向量检索、远程插件和实际操作系统定时任务尚未实现。`schedule configure/get/tick/run`保存夜间策略并响应显式调用；如需定时触发，由外部工具调用schedule tick。默认03:00/Asia/Shanghai、100任务/60秒，费用参数按声明估算，不代表供应商实时账单硬限。
 
-验证使用 `npm test`、`npm run build`、`npm run test:web`；规模基准使用 `node dist/core/benchmark.js`。已发布能力见 [安装运行](./doc/v0.0.1/running.md)、[公共契约](./doc/v0.0.1/contracts.md)、[验证与局限](./doc/v0.0.1/verification.md)。[开发历史](./doc/新增需求/v0.0.1/readme.md)保留需求和独立复核证据；PPC独立转发不依赖PPC后台，跨仓库接入见 [integrations/ppc](./integrations/ppc/README.md)。
+验证使用 `npm test`、`npm run build`、`npm run test:web`；规模基准使用 `node dist/core/benchmark.js`。当前能力见 [运行说明](./doc/v0.0.2/running.md)、[公共契约](./doc/v0.0.2/contracts.md)、[验证与局限](./doc/v0.0.2/verification.md)。[002开发历史](./doc/新增需求/v0.0.2/readme.md)与 [001归档](./doc/v0.0.1/readme.md)保留原始证据；PPC独立转发不依赖PPC后台，跨仓库接入见 [integrations/ppc](./integrations/ppc/README.md)。
 
-最终冻结验证：typecheck、构建、34/34测试、真实Chrome与PPC2/2测试全部通过。核心六类、业务四类及预览别名问题经交叉独立复核修复并关闭；完整原始日志保存在 `artifacts/verification`。1000资源最终实测导入21.35秒、全部一致性检查通过，属于本机合成基准。
+002发布检查：typecheck、构建、62/62测试、9插件/33资源Chrome、正式CLI/PPC2/2及补丁验证通过。新增同UUID跨kind引用保护回归，真实模型账本沿用已关闭3次，不追加调用。当前发布证据位于 `artifacts/verification/v0.0.2/release`；001的34项冻结验证与1000资源21.35秒合成基准保留为历史，不冒充新性能结果。

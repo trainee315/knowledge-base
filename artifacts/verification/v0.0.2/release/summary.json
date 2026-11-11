@@ -1,0 +1,50 @@
+{
+  "version": "0.0.2",
+  "phase": "release-verification",
+  "implementationCommit": "ca79363b5907c4a5ab1052dd17a76b95ef997e98",
+  "cliVersion": "0.0.2",
+  "typecheck": {
+    "exitCode": 0,
+    "log": "typecheck.log"
+  },
+  "test": {
+    "exitCode": 0,
+    "total": 62,
+    "passed": 62,
+    "failed": 0,
+    "durationMs": 11338.1006,
+    "log": "test.log"
+  },
+  "build": {
+    "exitCode": 0,
+    "log": "build.log"
+  },
+  "crossKind": {
+    "before": "cross-kind-before.json",
+    "after": "cross-kind-after.json",
+    "regressionTests": 3,
+    "networkRequests": 0
+  },
+  "nonpaidEvidence": "nonpaid-summary.json",
+  "independentCleanCheckout": {
+    "noHardlinks": true,
+    "npmCiExitCode": 0,
+    "auditVulnerabilities": 0,
+    "typecheckExitCode": 0,
+    "testsPassed": 62,
+    "crossKindPassed": true,
+    "ppcPatchPassed": true,
+    "packageLockUnchanged": true,
+    "gitClean": true
+  },
+  "realApiCampaign": {
+    "closed": true,
+    "totalRequestsPreviouslyUsed": 3,
+    "inputTokens": 386,
+    "outputTokens": 76,
+    "totalTokens": 462,
+    "newReleaseRequests": 0
+  },
+  "v001ArchiveAndOldEvidenceUntouched": true,
+  "nextVersionCodeNotStarted": true
+}

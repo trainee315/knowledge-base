@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "verifiedAt": "2026-11-11T08:36:03.070Z",
+  "baseline": "72a78f1b2a26c49ae3d6cddd6548dd10eb69d18e",
+  "knowledgeVersion": "0.0.2",
+  "node": "v24.11.0",
+  "git": "git version 2.51.2.windows.1",
+  "patchSha256": "c1b99d969e89aa90d29d0d2f7ddd328ffd46f984f51d618d4312a384f1bc216b",
+  "patchBytes": 6608,
+  "patchFiles": [
+    "cli/README.md",
+    "cli/knowledge.mjs",
+    "cli/knowledge.test.mjs",
+    "cli/ppc.mjs"
+  ],
+  "exportedBaselineFiles": [
+    "cli/README.md",
+    "cli/api.mjs",
+    "cli/ppc.mjs",
+    "cli/service.mjs",
+    "cli/windows.mjs"
+  ],
+  "applyCheck": true,
+  "appliedOnlyToTemporaryDirectory": true,
+  "cliHelp": true,
+  "realKnowledgeHelpForwarding": true,
+  "dedicatedTests": {
+    "total": 2,
+    "passed": 2,
+    "failed": 0
+  },
+  "originalIndexUnchanged": true,
+  "originalFilesUnchanged": true,
+  "originalIndexSha256": "fcb7935c59c591b1bc2cdb7bd31f7431ce824c4d615dee97326e92645691f583",
+  "ppcRemotesAtVerification": [],
+  "ppcCommittedOrPushed": false,
+  "serviceOrPackInvoked": false,
+  "testOutput": "TAP version 13\n# Subtest: knowledge forwards Chinese/space arguments, JSON, stderr and exit code without shell evaluation\nok 1 - knowledge forwards Chinese/space arguments, JSON, stderr and exit code without shell evaluation\n  ---\n  duration_ms: 358.7338\n  type: 'test'\n  ...\n# Subtest: knowledge missing build returns structured error without contacting PPC backend\nok 2 - knowledge missing build returns structured error without contacting PPC backend\n  ---\n  duration_ms: 89.1847\n  type: 'test'\n  ...\n1..2\n# tests 2\n# suites 0\n# pass 2\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 536.9638\n",
+  "temporaryDirectoryRemoved": true
+}
