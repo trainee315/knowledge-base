@@ -1,0 +1,516 @@
+{
+  "ok": true,
+  "data": {
+    "projectId": "b86290fa-f7bd-425d-9999-964c7e0018dc",
+    "items": [
+      {
+        "entry": {
+          "id": "21783132-e098-4abe-b0df-07614658a1dd",
+          "resourceId": "6161e96e-ffbc-4a04-a7f1-6c8adae2d44f",
+          "contentVersion": 1,
+          "contentHash": "4d202943958afb8a7ec791dfa9678d221373a039a53894226652f6607e0fe4a3",
+          "title": "历史补录：标签未知",
+          "role": "state",
+          "projectVersion": "0.0.3",
+          "stage": "confirmed",
+          "recordedAt": "2026-11-11T14:00:00.000Z",
+          "requestId": "demo-history-unknown",
+          "requestFingerprint": "b85e56f6b346d1a95130efc0d42677519e37e65fac5f0bf272845345319df98f",
+          "snapshot": {
+            "tags": {
+              "status": "unknown",
+              "source": "unavailable-history",
+              "items": []
+            },
+            "keywords": [
+              "archivedpin",
+              "bom",
+              "crlf",
+              "cv1",
+              "保留",
+              "全文",
+              "历史",
+              "原",
+              "固定",
+              "尾部",
+              "必须",
+              "正文",
+              "空格",
+              "这个"
+            ],
+            "parseStatus": "parsed",
+            "parserVersion": "2",
+            "keywordProcessorVersion": "1",
+            "filename": "version-1.md",
+            "format": ".md",
+            "originalNameKnown": false,
+            "capturedAt": "2026-11-11T12:34:06.786Z",
+            "sourceMetaRevision": 6
+          }
+        },
+        "matchReasons": [],
+        "replacement": {
+          "replacedBy": []
+        },
+        "text": "﻿# 固定历史全文\r\n\r\narchivedpin：这个cv1正文必须保留原BOM、CRLF与尾部空格。  \r\n"
+      },
+      {
+        "entry": {
+          "id": "11adc557-119c-46a6-bea0-648b109147ec",
+          "resourceId": "6161e96e-ffbc-4a04-a7f1-6c8adae2d44f",
+          "contentVersion": 1,
+          "contentHash": "4d202943958afb8a7ec791dfa9678d221373a039a53894226652f6607e0fe4a3",
+          "title": "pinned-history.md",
+          "role": "state",
+          "projectVersion": "0.0.3",
+          "stage": "confirmed",
+          "recordedAt": "2026-11-11T13:00:00.000Z",
+          "requestId": "demo-history",
+          "requestFingerprint": "18ed11e15c57537efd3276198099b7e75b8b3c39e3aaf39d13200bbff12b065a",
+          "snapshot": {
+            "tags": {
+              "status": "known",
+              "source": "explicit",
+              "items": [
+                {
+                  "id": "b42e4b1f-17b6-416e-9605-012f523cd5b8",
+                  "name": "项目设计",
+                  "aliases": [
+                    "原始设计别名"
+                  ],
+                  "definitionRevision": 1,
+                  "source": "explicit"
+                }
+              ]
+            },
+            "keywords": [
+              "archivedpin",
+              "bom",
+              "crlf",
+              "cv1",
+              "保留",
+              "全文",
+              "历史",
+              "原",
+              "固定",
+              "尾部",
+              "必须",
+              "正文",
+              "空格",
+              "这个"
+            ],
+            "parseStatus": "parsed",
+            "parserVersion": "2",
+            "keywordProcessorVersion": "1",
+            "filename": "pinned-history.md",
+            "format": ".md",
+            "originalNameKnown": true,
+            "capturedAt": "2026-11-11T12:34:05.373Z",
+            "sourceMetaRevision": 3
+          }
+        },
+        "matchReasons": [],
+        "replacement": {
+          "replacedBy": []
+        },
+        "text": "﻿# 固定历史全文\r\n\r\narchivedpin：这个cv1正文必须保留原BOM、CRLF与尾部空格。  \r\n"
+      },
+      {
+        "entry": {
+          "id": "bbebe4e5-44cd-4c67-bfec-e75c656198f5",
+          "resourceId": "29e51504-5a7c-4917-83f6-cb40d9124c37",
+          "contentVersion": 1,
+          "contentHash": "5cc7340adfd4a03f5f203a330b3015d033e7573063f20ab9c2d0ec1e04f77ad3",
+          "title": "verification.txt",
+          "role": "verification",
+          "projectVersion": "0.0.3",
+          "stage": "verified",
+          "recordedAt": "2026-11-11T12:00:00.000Z",
+          "requestId": "demo-verification",
+          "requestFingerprint": "7ce6268bdf47f6eea592998f3aeb00894a974bf2b9bf7eb3863b96597995585f",
+          "snapshot": {
+            "tags": {
+              "status": "known",
+              "source": "explicit",
+              "items": []
+            },
+            "keywords": [
+              "不",
+              "全文",
+              "历史",
+              "取",
+              "只",
+              "库",
+              "演示",
+              "版本",
+              "读",
+              "002",
+              "agent",
+              "empty",
+              "hash",
+              "known",
+              "project",
+              "query",
+              "read",
+              "requestid",
+              "tag",
+              "track",
+              "unknown",
+              "不调",
+              "仓库",
+              "任务",
+              "公开",
+              "凭证",
+              "创建",
+              "区分",
+              "发布",
+              "固定",
+              "导入",
+              "式",
+              "当前",
+              "快照",
+              "或",
+              "排序",
+              "接",
+              "放",
+              "整个",
+              "文件",
+              "显",
+              "普通",
+              "替代",
+              "本地",
+              "本次",
+              "标签",
+              "核验",
+              "清单",
+              "版",
+              "独立",
+              "用",
+              "系统",
+              "聊天",
+              "记录",
+              "资源",
+              "通过",
+              "重",
+              "链",
+              "验证"
+            ],
+            "parseStatus": "parsed",
+            "parserVersion": "2",
+            "keywordProcessorVersion": "1",
+            "filename": "verification.txt",
+            "format": ".txt",
+            "originalNameKnown": true,
+            "capturedAt": "2026-11-11T12:34:04.788Z",
+            "sourceMetaRevision": 3
+          }
+        },
+        "matchReasons": [],
+        "replacement": {
+          "replacedBy": []
+        },
+        "text": "演示库验证清单\n\n只核验本次独立演示库：公开002发布tag/版本、本地文件hash、固定历史全文、requestId重放、版本排序、显式替代、标签快照、known-empty/unknown区分。\n不导入整个仓库、聊天记录或凭证，不调用Agent，不创建系统任务。\n普通资源链接读取当前版；历史全文只通过project-track read/query读取。\n"
+      },
+      {
+        "entry": {
+          "id": "09ee1186-794a-4968-9bc8-9c9424d98488",
+          "resourceId": "0d886edd-2630-487d-bff4-6300496eb390",
+          "contentVersion": 1,
+          "contentHash": "1b84830952c7921b882a21780c70329cf90326e04dc7a715203811ca7d9cd58a",
+          "title": "correction.md",
+          "role": "decision",
+          "projectVersion": "0.0.3",
+          "stage": "confirmed",
+          "recordedAt": "2026-11-11T11:00:00.000Z",
+          "replaces": {
+            "entryIds": [
+              "1120ce07-81e2-4de3-bdaa-ce3ee637be89"
+            ],
+            "scope": "全文默认分页条数",
+            "effect": "默认5条、最多20条；仅修正此范围，不删除其它历史"
+          },
+          "requestId": "demo-correction",
+          "requestFingerprint": "00e24526bb9db01910ab166ced49627c52afae82c8891e179ae9721d648f40c5",
+          "snapshot": {
+            "tags": {
+              "status": "known",
+              "source": "explicit",
+              "items": [
+                {
+                  "id": "b42e4b1f-17b6-416e-9605-012f523cd5b8",
+                  "name": "项目设计",
+                  "aliases": [
+                    "原始设计别名"
+                  ],
+                  "definitionRevision": 1,
+                  "source": "explicit"
+                }
+              ]
+            },
+            "keywords": [
+              "条",
+              "分",
+              "页",
+              "已",
+              "默认",
+              "0.0.3",
+              "20",
+              "5",
+              "replaces",
+              "上限",
+              "不把",
+              "中的",
+              "为",
+              "也不",
+              "修正",
+              "全文",
+              "其它",
+              "内容",
+              "判",
+              "包含",
+              "匹配",
+              "历史",
+              "原文",
+              "发布",
+              "只",
+              "后",
+              "它的",
+              "完整",
+              "宣称",
+              "效果",
+              "数",
+              "早期",
+              "明确",
+              "本",
+              "查询",
+              "正式",
+              "每",
+              "确认",
+              "自动",
+              "范围",
+              "草稿",
+              "记录",
+              "设计",
+              "返回",
+              "错误"
+            ],
+            "parseStatus": "parsed",
+            "parserVersion": "2",
+            "keywordProcessorVersion": "1",
+            "filename": "correction.md",
+            "format": ".md",
+            "originalNameKnown": true,
+            "capturedAt": "2026-11-11T12:34:03.538Z",
+            "sourceMetaRevision": 3
+          }
+        },
+        "matchReasons": [],
+        "replacement": {
+          "replacedBy": []
+        },
+        "text": "# 已确认的分页设计\n\n默认全文查询 5 条，上限 20 条，匹配后分页；每条返回完整原文。\n\n本记录只修正早期草稿中的默认分页条数。它的 replaces 包含明确范围与效果，不把其它历史内容自动判为错误，也不宣称 0.0.3 已正式发布。\n"
+      },
+      {
+        "entry": {
+          "id": "1120ce07-81e2-4de3-bdaa-ce3ee637be89",
+          "resourceId": "a36e9005-8ebd-4760-9ed4-56276e113c1e",
+          "contentVersion": 1,
+          "contentHash": "662e2b1de42d18c73652bf2b3527913e013ac72a211cb673988045a835e6515e",
+          "title": "change.md",
+          "role": "change",
+          "projectVersion": "0.0.3",
+          "stage": "confirmed",
+          "recordedAt": "2026-11-11T10:00:00.000Z",
+          "requestId": "demo-change",
+          "requestFingerprint": "6810dcdfe25aeba3c4419fc0cea70a74801e5c0c9daa2e4fddf986ba51fc2f91",
+          "snapshot": {
+            "tags": {
+              "status": "known",
+              "source": "explicit",
+              "items": [
+                {
+                  "id": "b42e4b1f-17b6-416e-9605-012f523cd5b8",
+                  "name": "项目设计",
+                  "aliases": [
+                    "原始设计别名"
+                  ],
+                  "definitionRevision": 1,
+                  "source": "explicit"
+                }
+              ]
+            },
+            "keywords": [
+              "合成",
+              "替代",
+              "草稿",
+              "10",
+              "decision",
+              "entry",
+              "oldlimitmarker",
+              "不会",
+              "不是",
+              "仍然",
+              "会",
+              "保留",
+              "修正",
+              "全文",
+              "关系",
+              "写成",
+              "删除",
+              "原文",
+              "变更",
+              "合并",
+              "后",
+              "将",
+              "已",
+              "式",
+              "当前",
+              "或",
+              "数",
+              "早期",
+              "明确",
+              "显",
+              "本",
+              "条",
+              "段",
+              "演示",
+              "用于",
+              "续",
+              "自动",
+              "范围",
+              "被",
+              "规范",
+              "这",
+              "错误",
+              "默认"
+            ],
+            "parseStatus": "parsed",
+            "parserVersion": "2",
+            "keywordProcessorVersion": "1",
+            "filename": "change.md",
+            "format": ".md",
+            "originalNameKnown": true,
+            "capturedAt": "2026-11-11T12:34:02.979Z",
+            "sourceMetaRevision": 3
+          }
+        },
+        "matchReasons": [],
+        "replacement": {
+          "replacedBy": [
+            {
+              "entryId": "09ee1186-794a-4968-9bc8-9c9424d98488",
+              "stage": "confirmed",
+              "scope": "全文默认分页条数",
+              "effect": "默认5条、最多20条；仅修正此范围，不删除其它历史"
+            }
+          ]
+        },
+        "text": "# 合成变更草稿（已被显式修正）\n\noldlimitmarker：早期草稿将全文默认条数写成 10。\n\n这是用于演示替代关系的合成错误，不是当前规范。后续 decision entry 会明确替代本段范围；原文仍然保留，不会自动删除或合并。\n"
+      }
+    ],
+    "total": 6,
+    "offset": 0,
+    "limit": 5,
+    "hasMore": true,
+    "baselineEntryId": "03c90319-1f14-436d-ba28-4f1a3cb3d5f3",
+    "baseline": {
+      "entry": {
+        "id": "03c90319-1f14-436d-ba28-4f1a3cb3d5f3",
+        "resourceId": "4b214557-111c-4fc3-981a-ead98f78fa5e",
+        "contentVersion": 1,
+        "contentHash": "93a78df9f6874ba1b115c96984aa777c7dedb41b5ce9670a18492c510eeb74ee",
+        "title": "baseline-0.0.2.md",
+        "role": "baseline",
+        "projectVersion": "0.0.2",
+        "stage": "verified",
+        "recordedAt": "2026-11-11T08:41:25.000Z",
+        "requestId": "demo-002-baseline",
+        "requestFingerprint": "23871b7207c4671c344ab2a9738ccc42881f4dff4afc8b2ad548c79608dbd13c",
+        "snapshot": {
+          "tags": {
+            "status": "known",
+            "source": "explicit",
+            "items": [
+              {
+                "id": "cec1afec-b3d3-434e-865b-c9cd963dfec3",
+                "name": "发布事实",
+                "aliases": [
+                  "release-fact"
+                ],
+                "definitionRevision": 1,
+                "source": "explicit"
+              }
+            ]
+          },
+          "keywords": [
+            "发布",
+            "已",
+            "0.0.2",
+            "002",
+            "knowledge",
+            "本地",
+            "远端",
+            "通用",
+            "003",
+            "agent",
+            "base",
+            "cli",
+            "commit:b8e3fbefa10602461da3477e4db83e0b0dade822",
+            "deepseek",
+            "package.version",
+            "ppc",
+            "tag",
+            "tag:v0.0.2",
+            "不",
+            "不计",
+            "事实",
+            "仓库",
+            "作",
+            "公开",
+            "关系",
+            "分",
+            "只",
+            "基",
+            "存",
+            "当前",
+            "本",
+            "核对",
+            "核验",
+            "演示",
+            "版本",
+            "由",
+            "线",
+            "维护",
+            "缓",
+            "者",
+            "能力",
+            "脚本",
+            "自动",
+            "设计",
+            "访问",
+            "评",
+            "转发",
+            "追踪",
+            "适",
+            "通过",
+            "配",
+            "项目"
+          ],
+          "parseStatus": "parsed",
+          "parserVersion": "2",
+          "keywordProcessorVersion": "1",
+          "filename": "baseline-0.0.2.md",
+          "format": ".md",
+          "originalNameKnown": true,
+          "capturedAt": "2026-11-11T12:34:02.457Z",
+          "sourceMetaRevision": 3
+        }
+      },
+      "matchReasons": [],
+      "replacement": {
+        "replacedBy": []
+      },
+      "text": "# knowledge-base 0.0.2 发布基线\r\n\r\n本地公开 tag：v0.0.2\r\ncommit：b8e3fbefa10602461da3477e4db83e0b0dade822\r\npackage.version：0.0.2\r\n\r\n002已发布通用Agent、DeepSeek适配与关系评分缓存；PPC通过通用knowledge CLI转发。\r\n本脚本只核对本地发布tag和版本，远端发布事实已由仓库维护者核验；不自动访问远端。\r\n003项目追踪是当前演示设计，不计作002已发布能力。\r\n"
+    }
+  }
+}

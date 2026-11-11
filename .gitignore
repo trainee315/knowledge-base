@@ -12,6 +12,7 @@ dist/
 !artifacts/verification/*.log
 !artifacts/verification/v0.0.2/*.log
 !artifacts/verification/v0.0.2/release/*.log
+!artifacts/verification/v0.0.3/*.log
 coverage/
 .preview/
 *.backup.json

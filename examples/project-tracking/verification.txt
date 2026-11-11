@@ -1,0 +1,5 @@
+演示库验证清单
+
+只核验本次独立演示库：公开002发布tag/版本、本地文件hash、固定历史全文、requestId重放、版本排序、显式替代、标签快照、known-empty/unknown区分。
+不导入整个仓库、聊天记录或凭证，不调用Agent，不创建系统任务。
+普通资源链接读取当前版；历史全文只通过project-track read/query读取。

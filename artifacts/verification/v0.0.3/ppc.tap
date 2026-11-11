@@ -1,0 +1,22 @@
+TAP version 13
+# Subtest: knowledge forwards Chinese/space arguments, JSON, stderr and exit code without shell evaluation
+ok 1 - knowledge forwards Chinese/space arguments, JSON, stderr and exit code without shell evaluation
+  ---
+  duration_ms: 353.2492
+  type: 'test'
+  ...
+# Subtest: knowledge missing build returns structured error without contacting PPC backend
+ok 2 - knowledge missing build returns structured error without contacting PPC backend
+  ---
+  duration_ms: 90.2607
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 532.2917

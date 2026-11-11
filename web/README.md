@@ -20,14 +20,18 @@
 
 Markdown 原始 HTML 作为文字显示；脚本协议和任意文件路径不能成为可点击链接。内部链接统一使用 `kb://resource/<uuid>`，图片也通过此协议解析。外链只允许 HTTP(S)，图片仅允许知识库 UUID 引用。核心识别为 PNG/JPEG/GIF 等被动图片格式时可内联，SVG/HTML 等原件始终作为附件下载。内容版本变化而提取尚未完成时展示待解析，不会展示旧版本正文。失效或非法 UUID 引用通过 referenceStatus/diagnostics 显式警示，原始 meta/API 保留机器值。
 
-开发时先按需启动 API 服务，再设置其地址运行 Vite：
+开发时安装依赖后直接启动一个 Vite 进程，无需先 build 或启动 CLI 预览：
 
 ```powershell
-$env:KB_PREVIEW_API = 'http://127.0.0.1:4174'
 npm run dev
+# 可选：显式选择库或端口
+$env:KB_DATA_DIR = 'D:\临时知识库'
+npm run dev -- --port 5184
 ```
 
-Vite 通过同源 `/api` 代理转发到该地址；它的代理默认重写上游 Host。正式预览使用 `dist/web`，不依赖 Vite。
+默认 `http://127.0.0.1:5183`，strictPort 固定端口；占用时报错，不自动换号。Vite 在同一进程、同一监听端口直接运行共享只读 API，源码由配置加载器构建，不依赖预先编译的 dist，也不使用 KB_PREVIEW_API 或4174代理。默认 dataDir 为本仓绝对路径 `.data`，启动日志同时显示 URL 与 dataDir；KB_DATA_DIR 可选其它库。首次目录不存在时显示空库，不创建目录或初始化业务数据。按 Ctrl+C 停止，插件启停后需重启；开发不暴露 `/_control`，监听失败和关闭均释放只读应用。
+
+开发 Host/Origin 仍严格同源，业务只接受 GET/HEAD；原件只通过 `/api/resources/<uuid>/file` 下载，Vite 的静态文件范围限制在页面、依赖和共享 Markdown 渲染器，数据目录禁止直接文件访问。开发样式/HMR 所需策略仅用于页面，原件的附件/sandbox 限制不变。正式预览使用 `dist/web`，仍由 CLI 独立启动/停止、动态选端口和令牌控制，不依赖 Vite。
 
 `web/src/panels.ts` 提供随构建注册的 `registerPreviewPanel({pluginId,title,component})` 扩展点；自定义 Vue 面板接收 `resource` 和对应插件 meta 的 `data`。只有启用插件且资源有相应分区时展示。未知 meta 分区始终能通过完整元数据浏览。
 
@@ -36,12 +40,12 @@ Vite 通过同源 `/api` 代理转发到该地址；它的代理默认重写上�
 ```powershell
 npm run build
 node --test dist/preview/*.test.js
+node --test web/tests/dev.integration.mjs
 npm run test:web
-C:/nvm4w/nodejs/node.exe --test C:/Users/mamar/Desktop/personalProjectCenter/cli/knowledge.test.mjs
 ```
 
-浏览器回归使用 `playwright-core` 启动独立 headless Chrome，默认 Chrome 路径为 `C:/Program Files/Google/Chrome/Application/chrome.exe`，可由 `KB_CHROME_PATH` 覆盖。`PPC_CLI_PATH` 可覆盖 PPC 入口，`KB_BROWSER_EVIDENCE` 可覆盖截图输出路径。
+浏览器回归使用 `playwright-core` 启动独立 headless Chrome，默认 Chrome 路径为 `C:/Program Files/Google/Chrome/Application/chrome.exe`，可由 `KB_CHROME_PATH` 覆盖。默认通过本仓 CLI 创建临时数据，不调用外部 PPC；显式设置 `KB_BROWSER_USE_PPC=1` 可恢复 PPC knowledge 转发回归，`PPC_CLI_PATH` 可覆盖其入口。`KB_BROWSER_EVIDENCE` 可覆盖截图输出路径，版本验证请显式选择对应新证据目录。
 
-回归通过 PPC knowledge 导入 Markdown、TXT、PNG、二进制、创建标签并提交人工归属、编排体系，再通过核心补充到 33 份真实资源。检查开发 Vite 代理、分页、无结果、正文/关键词/标签/体系组合和解析状态筛选、详情、安全 Markdown、UUID 图片解码与重复资源导航、失效引用诊断、无法解析二进制、组织节点、八插件状态、级联停用后的筛选与面板，以及 390px 布局。测试最终停止预览、关闭 Chrome 并清理临时数据。
+回归导入 Markdown、TXT、PNG、二进制、创建标签并提交人工归属、编排体系，再通过核心补充到 33 份真实资源。先验证独立 Vite 单端口页面/API，不为开发启动第二个 API 服务，再检验 CLI 构建页面预览：分页、无结果、正文/关键词/标签/体系组合和解析状态筛选、详情、安全 Markdown、UUID 图片解码与重复资源导航、失效引用诊断、无法解析二进制、组织节点、当前全部插件状态、级联停用后的筛选与面板，以及 390px 布局。测试最终停止自己创建的预览、关闭 Chrome 并清理临时数据；不操作用户现有服务。
 
 截图和结构化结果默认生成在 `artifacts/preview/`。2026-11-10 本机 Chrome 回归已通过；`resources-markdown.png`、`resources-mobile.png`、`broken-reference.png`、`empty-results.png`、`unsupported-resource.png`、`organizations.png`、`plugins-enabled.png`、`plugins-disabled.png` 供视觉复核。浏览器连接插件不可用时，此回归仍可运行，不访问用户既有页签。

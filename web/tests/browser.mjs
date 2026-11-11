@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
+import { createServer as createPortProbe } from 'node:net';
 import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { tmpdir } from 'node:os';
@@ -8,12 +9,15 @@ import { deflateSync } from 'node:zlib';
 import { chromium } from 'playwright-core';
 import { createServer as createViteServer } from 'vite';
 import { openApplication } from '../../dist/index.js';
+import { builtinPlugins } from '../../dist/plugins/index.js';
 
 // 独立浏览器与临时正式数据目录，回归结束后全部进程由本脚本关闭。
 const REPO = fileURLToPath(new URL('../../', import.meta.url));
 const PPC = process.env.PPC_CLI_PATH ?? 'C:/Users/mamar/Desktop/personalProjectCenter/cli/ppc.mjs';
+const USE_PPC = process.env.KB_BROWSER_USE_PPC === '1';
 const CHROME = process.env.KB_CHROME_PATH ?? 'C:/Program Files/Google/Chrome/Application/chrome.exe';
 const evidence = resolve(process.env.KB_BROWSER_EVIDENCE ?? join(REPO, 'artifacts/preview'));
+const EXPECTED_PLUGIN_COUNT = builtinPlugins.length; // 注册表增添业务插件时仍验证所有状态卡片，不固定旧版本数量。
 const root = await mkdtemp(join(tmpdir(), '知识库 浏览器 中文 空格 '));
 const dataDir = join(root, '正式数据 目录');
 let browser;
@@ -41,7 +45,8 @@ function imageFixture() {
 
 function cli(args) {
   return new Promise((done, fail) => {
-    const child = spawn(process.execPath, [PPC, 'knowledge', '--knowledge-home', REPO, ...args, '--data-dir', dataDir, '--json'], { shell: false, windowsHide: true });
+    const entry = USE_PPC ? [PPC, 'knowledge', '--knowledge-home', REPO] : [join(REPO, 'dist/cli/main.js')];
+    const child = spawn(process.execPath, [...entry, ...args, '--data-dir', dataDir, '--json'], { shell: false, windowsHide: true });
     let stdout = '', stderr = '';
     child.stdout.on('data', (chunk) => { stdout += chunk; });
     child.stderr.on('data', (chunk) => { stderr += chunk; });
@@ -65,7 +70,7 @@ try {
   const referenceFile = join(root, '参考资料.txt'); await writeFile(referenceFile, '这份参考资料通过 UUID 链接打开，资源内容更新后身份保持稳定。');
   const reference = await cli(['resource', 'import', '--file', referenceFile]);
   const markdownFile = join(root, '知识库 使用指南.md');
-  await writeFile(markdownFile, `# 让知识形成可复用的线索\n\n这是通过 PPC CLI 导入的真实 Markdown 资源。\n\n## 先收集，再组织\n\n- 原件以 UUID 保存\n- 标签承载明确归属\n- 体系连接成系列的知识\n\n> 评分帮助发现候选，工作 Agent 负责判断归属。\n\n[关联参考资源](kb://resource/${reference.resource.id})\n\n![UUID 图片引用](kb://resource/${image.resource.id})\n\n<script>window.__kb_xss = true</script>\n\n**当前状态：** 首期只读预览验收。`);
+  await writeFile(markdownFile, `# 让知识形成可复用的线索\n\n这是通过 ${USE_PPC ? 'PPC CLI' : '本仓 CLI'} 导入的真实 Markdown 资源。\n\n## 先收集，再组织\n\n- 原件以 UUID 保存\n- 标签承载明确归属\n- 体系连接成系列的知识\n\n> 评分帮助发现候选，工作 Agent 负责判断归属。\n\n[关联参考资源](kb://resource/${reference.resource.id})\n\n![UUID 图片引用](kb://resource/${image.resource.id})\n\n<script>window.__kb_xss = true</script>\n\n**当前状态：** 首期只读预览验收。`);
   const markdown = await cli(['resource', 'import', '--file', markdownFile]);
   const binaryFile = join(root, '无法解析的原件.bin'); await writeFile(binaryFile, Buffer.from([0, 255, 3, 5]));
   await cli(['resource', 'import', '--file', binaryFile]);
@@ -83,15 +88,23 @@ try {
     for (let index = 1; index <= 28; index++) { await writeFile(sample, `分页样本 ${index}`); await writer.manager.importResource(sample, { originalName: `归档笔记 ${String(index).padStart(2, '0')}.txt` }); }
     await writer.plugins.refresh();
   } finally { await writer.close(); }
-  preview = await cli(['preview', 'start']);
   browser = await chromium.launch({ executablePath: CHROME, headless: true });
-  development = await createViteServer({ configFile: join(REPO, 'web/vite.config.ts'), server: { host: '127.0.0.1', port: 0, proxy: { '/api': { target: preview.url, changeOrigin: true } } } });
+  process.env.KB_DATA_DIR = dataDir;
+  // Vite将port:0解释为默认端口，先取得OS空闲端口后再交给strictPort监听。
+  const probe = createPortProbe();
+  await new Promise((done, fail) => { probe.once('error', fail); probe.listen(0, '127.0.0.1', done); });
+  const devPort = probe.address().port;
+  await new Promise((done, fail) => probe.close((error) => error ? fail(error) : done()));
+  development = await createViteServer({ configFile: join(REPO, 'web/vite.config.ts'), server: { host: '127.0.0.1', port: devPort }, cacheDir: join(root, 'vite-cache') });
   await development.listen();
   const devAddress = development.httpServer.address();
   const devPage = await browser.newPage();
   await devPage.goto(`http://127.0.0.1:${devAddress.port}`);
   await devPage.getByText('33 个结果', { exact: true }).waitFor();
+  assert.equal(development.config.server.proxy, undefined);
+  assert.equal((await devPage.request.get(`http://127.0.0.1:${devAddress.port}/api/resources`)).status(), 200);
   await devPage.close(); await development.close(); development = undefined;
+  preview = await cli(['preview', 'start']);
   const page = await browser.newPage({ viewport: { width: 1440, height: 1100 }, deviceScaleFactor: 1 });
   const failures = [];
   page.on('pageerror', (error) => failures.push(error.message));
@@ -109,7 +122,7 @@ try {
   await page.getByRole('textbox', { name: '文件名', exact: true }).fill('');
   await page.getByRole('textbox', { name: '标签', exact: true }).fill('知识管理');
   await page.getByRole('textbox', { name: '关键词', exact: true }).fill('知识');
-  await page.getByRole('textbox', { name: '正文', exact: true }).fill('PPC');
+  await page.getByRole('textbox', { name: '正文', exact: true }).fill(USE_PPC ? 'PPC' : '本仓 CLI');
   await page.getByRole('textbox', { name: '体系', exact: true }).fill('个人知识管理入门');
   await page.getByRole('button', { name: '查询资源' }).click();
   await page.getByText('1 个结果', { exact: true }).waitFor();
@@ -155,7 +168,8 @@ try {
   await page.screenshot({ path: join(evidence, 'organizations.png'), fullPage: true });
   await page.getByRole('button', { name: /插件状态/ }).click();
   await page.getByRole('heading', { name: 'scheduler', exact: true }).waitFor();
-  assert.equal(await page.locator('.plugin-card').count(), 9);
+  await page.getByRole('heading', { name: 'project-tracking', exact: true }).waitFor();
+  assert.equal(await page.locator('.plugin-card').count(), EXPECTED_PLUGIN_COUNT);
   await page.screenshot({ path: join(evidence, 'plugins-enabled.png'), fullPage: true });
   await cli(['preview', 'stop']); preview = undefined;
   await cli(['plugin', 'disable', '--id', 'keywords', '--cascade']);
@@ -173,7 +187,7 @@ try {
   await page.locator('.plugin-card').filter({ has: page.getByRole('heading', { name: 'keywords', exact: true }) }).getByText('disabled', { exact: true }).waitFor();
   await page.screenshot({ path: join(evidence, 'plugins-disabled.png'), fullPage: true });
   assert.deepEqual(failures, []);
-  await writeFile(join(evidence, 'browser-result.json'), JSON.stringify({ passed: true, viewport: '1440x1100 / 390x844', resources: 33, pluginCards: 9, checks: ['PPC import', 'manual tag decision', 'Vite development proxy', 'pagination', 'empty results', 'combined body/keyword/tag/system filters', 'parse-status filter', 'Markdown HTML escaping', 'UUID image decode', 'repeated UUID resource navigation', 'broken UUID diagnostics', 'unsupported binary', 'system nodes', 'plugin state and restart notice', 'disabled filters and panels', 'mobile no horizontal overflow'], screenshots: ['resources-markdown.png', 'resources-mobile.png', 'broken-reference.png', 'empty-results.png', 'unsupported-resource.png', 'organizations.png', 'plugins-enabled.png', 'plugins-disabled.png'] }, null, 2));
+  await writeFile(join(evidence, 'browser-result.json'), JSON.stringify({ passed: true, viewport: '1440x1100 / 390x844', resources: 33, pluginCards: EXPECTED_PLUGIN_COUNT, checks: [USE_PPC ? 'PPC import' : 'local CLI import', 'manual tag decision', 'Vite single-port page/API', 'pagination', 'empty results', 'combined body/keyword/tag/system filters', 'parse-status filter', 'Markdown HTML escaping', 'UUID image decode', 'repeated UUID resource navigation', 'broken UUID diagnostics', 'unsupported binary', 'system nodes', 'plugin state and restart notice', 'disabled filters and panels', 'mobile no horizontal overflow'], screenshots: ['resources-markdown.png', 'resources-mobile.png', 'broken-reference.png', 'empty-results.png', 'unsupported-resource.png', 'organizations.png', 'plugins-enabled.png', 'plugins-disabled.png'] }, null, 2));
   console.log(JSON.stringify({ passed: true, evidence }));
 } finally {
   await development?.close();

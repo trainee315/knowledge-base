@@ -1,0 +1,64 @@
+{
+  "ok": true,
+  "data": {
+    "entry": {
+      "id": "11adc557-119c-46a6-bea0-648b109147ec",
+      "resourceId": "6161e96e-ffbc-4a04-a7f1-6c8adae2d44f",
+      "contentVersion": 1,
+      "contentHash": "4d202943958afb8a7ec791dfa9678d221373a039a53894226652f6607e0fe4a3",
+      "title": "pinned-history.md",
+      "role": "state",
+      "projectVersion": "0.0.3",
+      "stage": "confirmed",
+      "recordedAt": "2026-11-11T13:00:00.000Z",
+      "requestId": "demo-history",
+      "requestFingerprint": "18ed11e15c57537efd3276198099b7e75b8b3c39e3aaf39d13200bbff12b065a",
+      "snapshot": {
+        "tags": {
+          "status": "known",
+          "source": "explicit",
+          "items": [
+            {
+              "id": "b42e4b1f-17b6-416e-9605-012f523cd5b8",
+              "name": "项目设计",
+              "aliases": [
+                "原始设计别名"
+              ],
+              "definitionRevision": 1,
+              "source": "explicit"
+            }
+          ]
+        },
+        "keywords": [
+          "archivedpin",
+          "bom",
+          "crlf",
+          "cv1",
+          "保留",
+          "全文",
+          "历史",
+          "原",
+          "固定",
+          "尾部",
+          "必须",
+          "正文",
+          "空格",
+          "这个"
+        ],
+        "parseStatus": "parsed",
+        "parserVersion": "2",
+        "keywordProcessorVersion": "1",
+        "filename": "pinned-history.md",
+        "format": ".md",
+        "originalNameKnown": true,
+        "capturedAt": "2026-11-11T12:34:05.373Z",
+        "sourceMetaRevision": 3
+      }
+    },
+    "matchReasons": [],
+    "replacement": {
+      "replacedBy": []
+    },
+    "text": "﻿# 固定历史全文\r\n\r\narchivedpin：这个cv1正文必须保留原BOM、CRLF与尾部空格。  \r\n"
+  }
+}

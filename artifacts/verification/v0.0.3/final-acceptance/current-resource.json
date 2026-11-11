@@ -1,0 +1,151 @@
+{
+  "ok": true,
+  "data": {
+    "resource": {
+      "schemaVersion": 1,
+      "id": "6161e96e-ffbc-4a04-a7f1-6c8adae2d44f",
+      "originalName": "pinned-history.md",
+      "extension": "md",
+      "mediaType": "text/markdown",
+      "hash": "ac5686a0b9e6f4d84d8033b9b357130e139604b3382d7e63be4d0635bcc1c56b",
+      "size": 98,
+      "contentVersion": 2,
+      "revision": 6,
+      "createdAt": "2026-11-11T12:34:04.959Z",
+      "updatedAt": "2026-11-11T12:34:05.642Z",
+      "file": "resources/md/6161e96e-ffbc-4a04-a7f1-6c8adae2d44f.md",
+      "references": [],
+      "plugins": {
+        "content": {
+          "schemaVersion": 1,
+          "data": {
+            "status": "parsed",
+            "text": "# 当前版本\n\nCURRENT ONLY：普通资源链接现在显示cv2；项目历史全文仍为cv1。\n",
+            "filename": "pinned-history.md",
+            "format": ".md",
+            "markdownReferences": [],
+            "inputVersion": 2,
+            "processorVersion": "2",
+            "referenceStatus": "none",
+            "diagnostics": []
+          }
+        },
+        "keywords": {
+          "schemaVersion": 1,
+          "data": {
+            "inputVersion": 2,
+            "processorVersion": "1:content-2",
+            "items": [
+              {
+                "value": "current",
+                "count": 1,
+                "weight": 1
+              },
+              {
+                "value": "cv1",
+                "count": 1,
+                "weight": 1
+              },
+              {
+                "value": "cv2",
+                "count": 1,
+                "weight": 1
+              },
+              {
+                "value": "history",
+                "count": 1,
+                "weight": 1
+              },
+              {
+                "value": "only",
+                "count": 1,
+                "weight": 1
+              },
+              {
+                "value": "pinned",
+                "count": 1,
+                "weight": 1
+              },
+              {
+                "value": "为",
+                "count": 1,
+                "weight": 1
+              },
+              {
+                "value": "仍",
+                "count": 1,
+                "weight": 1
+              },
+              {
+                "value": "全文",
+                "count": 1,
+                "weight": 1
+              },
+              {
+                "value": "历史",
+                "count": 1,
+                "weight": 1
+              },
+              {
+                "value": "当前",
+                "count": 1,
+                "weight": 1
+              },
+              {
+                "value": "接",
+                "count": 1,
+                "weight": 1
+              },
+              {
+                "value": "显示",
+                "count": 1,
+                "weight": 1
+              },
+              {
+                "value": "普通",
+                "count": 1,
+                "weight": 1
+              },
+              {
+                "value": "版本",
+                "count": 1,
+                "weight": 1
+              },
+              {
+                "value": "现在",
+                "count": 1,
+                "weight": 1
+              },
+              {
+                "value": "资源",
+                "count": 1,
+                "weight": 1
+              },
+              {
+                "value": "链",
+                "count": 1,
+                "weight": 1
+              },
+              {
+                "value": "项目",
+                "count": 1,
+                "weight": 1
+              }
+            ]
+          }
+        }
+      },
+      "history": [
+        {
+          "contentVersion": 1,
+          "hash": "4d202943958afb8a7ec791dfa9678d221373a039a53894226652f6607e0fe4a3",
+          "file": "resources/history/6161e96e-ffbc-4a04-a7f1-6c8adae2d44f/1.md",
+          "size": 103,
+          "createdAt": "2026-11-11T12:34:05.008Z"
+        }
+      ],
+      "source": "examples/project-tracking/create-demo.mjs"
+    },
+    "content": "# 当前版本\n\nCURRENT ONLY：普通资源链接现在显示cv2；项目历史全文仍为cv1。\n"
+  }
+}

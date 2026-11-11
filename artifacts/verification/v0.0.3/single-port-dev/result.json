@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "development": { "defaultUrl": "http://127.0.0.1:5183", "strictPort": true, "apiProxy": false, "requiresPrebuiltDist": false, "dataSelection": "KB_DATA_DIR or absolute repository .data" },
+  "checks": {
+    "typecheckExit": 0,
+    "buildExit": 0,
+    "previewTestsPassed": 5,
+    "devIntegrationPassed": 1,
+    "samePortPageAndApi": true,
+    "foreignHostAndOriginRejected": true,
+    "businessPostRejected": true,
+    "developmentControlNotExposed": true,
+    "attachmentAndSandboxPreserved": true,
+    "rawFsRawImportEncodedPathsDenied": true,
+    "parenthesesAndBracesInDataDirProtected": true,
+    "strictPortConflictAndCloseOnce": true,
+    "samePortRestart": true,
+    "missingDataDirNotCreated": true,
+    "formalDataUnchanged": true
+  },
+  "browser": { "passed": true, "resources": 33, "pluginCards": 10, "entry": "local CLI", "developmentPort": 64379, "evidence": "browser/browser-result.json" },
+  "commands": ["npm run typecheck", "npm run build", "node --test dist/preview/*.test.js", "node --test web/tests/dev.integration.mjs", "KB_BROWSER_USE_PPC=0 KB_BROWSER_EVIDENCE=artifacts/verification/v0.0.3/single-port-dev/browser node web/tests/browser.mjs"],
+  "externalPpcInvocations": 0,
+  "modelInvocations": 0,
+  "existingServicesStoppedByAuthor": false,
+  "remainingAuthorTestProcesses": 0,
+  "cleanupBlocked": {
+    "reason": "Automatic approval rejected recursive Remove-Item: blocked by policy. No alternative deletion attempted after instruction to stop.",
+    "directories": ["web/.dev-integration-hAxesa", "web/.dev-integration-jJqQvD", "web/.dev-integration-lT1TYs"]
+  },
+  "limitation": "A free test port is probed before Vite listens; strictPort rejects a competing listener instead of choosing another port. API-only lifecycle test disables dependency discovery; full browser regression uses normal Vite dependency loading."
+}

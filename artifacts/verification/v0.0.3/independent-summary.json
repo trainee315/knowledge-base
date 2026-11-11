@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "version": "0.0.3-dev",
+  "productionFindingsPending": 0,
+  "coreFinalSuite": { "passed": 70, "typecheckExit": 0, "buildExit": 0, "owner": "core" },
+  "independent": { "passed": 9, "failed": 0, "durationMs": 5539.5144, "evidence": "independent.tap" },
+  "browser": { "passed": true, "resources": 33, "pluginCards": 10, "screenshots": 8, "evidence": "browser/browser-result.json" },
+  "ppc": { "passed": 2, "failed": 0, "helpVersion": "0.0.3-dev", "sourceModified": false, "serviceManagementCalled": false, "evidence": "ppc.tap" },
+  "demo": {
+    "passed": true,
+    "resources": 6,
+    "entries": 7,
+    "retained": true,
+    "dataDir": "C:/Users/mamar/AppData/Local/Temp/knowledge-base-project-demo-AcROAI/项目演示库",
+    "projectId": "4c1a288a-5f15-4e88-9811-90f1cf033fd0",
+    "pinnedEntryId": "e3e1609c-66d7-49fb-b602-4296447def64",
+    "historicalContentVersion": 1,
+    "currentContentVersion": 2,
+    "servicesStarted": false,
+    "evidence": "demo-ppc.json",
+    "retentionWarning": "System temporary directory may be cleaned; use formal backup for long-term retention."
+  },
+  "externalRequests": 0,
+  "liveLedger": { "closed": true, "requests": 3, "additionalRequests": 0 },
+  "actualCredentialRead": false,
+  "remainingTestProcesses": 0,
+  "oldArchiveAndEvidenceDiffFiles": 0,
+  "sameResourceCrossFormatUpdateSupported": false,
+  "historicalTextChannel": "project-track read/query",
+  "graphCoverage": "repository not indexed; target source fallback after black-box tests",
+  "commands": "independent-commands.md"
+}

@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "helpVersion": "0.0.3-dev",
+  "projectId": "4c1a288a-5f15-4e88-9811-90f1cf033fd0",
+  "dataDir": "C:\\Users\\mamar\\AppData\\Local\\Temp\\knowledge-base-project-demo-AcROAI\\项目演示库",
+  "releaseEvidence": {
+    "tag": "v0.0.2",
+    "commit": "b8e3fbefa10602461da3477e4db83e0b0dade822",
+    "packageVersion": "0.0.2",
+    "localVerificationOnly": true
+  },
+  "entries": 7,
+  "defaultFullTextItems": 5,
+  "baselineContextPresent": true,
+  "version010First": true,
+  "asOf003": 6,
+  "pinnedCv": 1,
+  "pinnedHashVerified": true,
+  "currentResourceCv": 2,
+  "ppcTests": 2,
+  "externalRequests": 0,
+  "liveLedger": {
+    "closed": true,
+    "requests": 3
+  },
+  "demoServicesStarted": false
+}

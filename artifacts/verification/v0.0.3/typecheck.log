@@ -1,0 +1,2 @@
+> agent-knowledge-base@0.0.3-dev typecheck
+> tsc -p tsconfig.json --noEmit

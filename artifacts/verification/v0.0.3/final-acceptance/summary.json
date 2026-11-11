@@ -1,0 +1,42 @@
+{
+  "status": "awaiting-user-acceptance",
+  "version": "0.0.3-dev",
+  "verifiedAt": "2026-11-11T12:34:58.471Z",
+  "checks": {
+    "typecheck": true,
+    "build": true,
+    "unit": {
+      "passed": 70,
+      "failed": 0
+    },
+    "independent": {
+      "passed": 9,
+      "failed": 0,
+      "externalRequests": 0
+    },
+    "devIntegration": {
+      "passed": 1,
+      "failed": 0
+    },
+    "browser": true,
+    "diffCheck": true
+  },
+  "demo": {
+    "dataDir": "C:\\Users\\mamar\\AppData\\Local\\Temp\\knowledge-base-project-demo-wbs3hb\\项目演示库",
+    "projectId": "b86290fa-f7bd-425d-9999-964c7e0018dc",
+    "verification": {
+      "coreCheck": true,
+      "entries": 7,
+      "resources": 6,
+      "asOf003": 6,
+      "version010Before003": true,
+      "requestReplay": true,
+      "pinnedRawText": true,
+      "snapshotOldAlias": true,
+      "knownEmptyAndUnknownDistinct": true
+    }
+  },
+  "published": false,
+  "committed": false,
+  "nextGate": "用户验收0.0.3后归档发布，再开始0.0.4开发"
+}

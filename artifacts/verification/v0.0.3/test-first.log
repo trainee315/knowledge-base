@@ -1,0 +1,127 @@
+> agent-knowledge-base@0.0.3-dev test
+> npm run build && node --test dist/**/*.test.js
+
+
+> agent-knowledge-base@0.0.3-dev build
+> npm run build:core && npm run build:web
+
+
+> agent-knowledge-base@0.0.3-dev build:core
+> tsc -p tsconfig.json
+
+
+> agent-knowledge-base@0.0.3-dev build:web
+> vite build --config web/vite.config.ts
+
+vite v7.3.8 building client environment for production...
+transforming...
+✓ 32 modules transformed.
+rendering chunks...
+computing gzip size...
+../dist/web/index.html                   0.37 kB │ gzip:  0.30 kB
+../dist/web/assets/index-CZZauCGU.css    8.70 kB │ gzip:  2.72 kB
+../dist/web/assets/index-UyGCTtAH.js   183.79 kB │ gzip: 74.82 kB
+✓ built in 503ms
+✔ DeepSeek text maps generic messages and bounded non-thinking options through real HTTP (65.1132ms)
+✔ JSON purpose maps response_format and validates a generic schema outside scoring (9.8415ms)
+✔ blank stop, truncation, invalid JSON and schema mismatch reject once without hidden retries (60.664ms)
+✔ 401, 429 and 5xx have sanitized classifications and exactly one HTTP attempt (33.1817ms)
+✔ transport error causes never escape as credential-bearing errors (0.5388ms)
+✔ profile/status/schema/no-key validation perform no HTTP requests (3.4162ms)
+✔ AbortSignal and timeout cover the active HTTP request (38.0207ms)
+✔ queued cancellation, queue timeout and queue limit never invoke an extra request (45.2878ms)
+✔ a replacement generic provider serves text and object purposes without changing business code (1.4463ms)
+✔ plugin load, read-only configuration and backup keep credentials out of formal data (713.1869ms)
+✔ relation cache normalizes words, stores zero coverage sparsely, and follows explicit scope versions (863.6338ms)
+✔ relation malformed or duplicate batches never persist partial coverage (683.6374ms)
+✔ organizer and scheduled runs with zero model-call budget never reach HTTP (861.194ms)
+✔ semantic identity excludes transport/revision/credential references and in-flight calls retain snapshots (2.3008ms)
+✔ canonical upstream model aliases do not change requested semantic identity (0.3506ms)
+✔ aborted non-cooperative providers retain actual concurrency slots until settled (30.1768ms)
+✔ profile whitelist rejects secrets, nulls, stale revisions and failed persistence without mutation (2.6664ms)
+✔ schema snapshots remain stable and unknown provider exceptions are sanitized (1.3132ms)
+✔ agent CLI inspection is read-only without keys and profiles/backups only persist references (1724.5171ms)
+✔ CLI has single-object output, UTF8 input, correct exit codes and read-only queries alongside writer (2889.6489ms)
+✔ resource dedup, explicit copy, history, soft delete, references and backup restore (656.3666ms)
+✔ same UUID organization references protect resource and all content versions from purge (260.7354ms)
+✔ same UUID resource references protect organization from deletion (178.9679ms)
+✔ true same-kind self references do not block deleting their own entity (235.0169ms)
+✔ single writer and injected interrupted transaction recovers all files on reopen (84.5511ms)
+✔ concurrent read snapshot never returns mixed multi-file transaction (1465.5871ms)
+✔ DAG preflight detects full cycles/missing/version before loading (1.0077ms)
+✔ host enforces dependency access and meta permissions, refresh failure blocks dependents and reverse stop (210.9683ms)
+✔ backup validates hashes and refuses traversal before writing (8.9583ms)
+✔ core remains usable with every business plugin disabled and retains plugin data (232.6281ms)
+✔ stale diagnostic locks cannot produce two OS writers and killed holder releases mutex (820.6057ms)
+✔ restore prevalidates canonical paths and schema before any formal data write (108.0945ms)
+✔ unknown live core schema cannot be read or updated and organization patch cannot change ownership (227.1459ms)
+✔ refresh failure fences cached APIs and commands across restart without loading blocked dependents (271.2413ms)
+✔ restore and ordinary IO reject existing junction ancestors before journal or external writes (116.9032ms)
+✔ future plugin dataVersion prevents load and dependent activation without downgrading persisted version (60.9113ms)
+✔ generic organization type CRUD, enabled policy, use protection, backup and schema validation (348.6345ms)
+✔ UTF8解析、未知格式降级、中英文关键词和离线评分 (19.2195ms)
+✔ 真实导入到候选、标签新增回填、查询组合、人工拒绝保护和过期结果阻断 (2142.9438ms)
+✔ 独立CLI进程自动导入链路与结构化候选提交 (4174.49ms)
+✔ 评分处理器版本变化重新排队，旧处理器候选不能提交 (556.8137ms)
+✔ Markdown链接及图片登记正式引用，代码示例忽略，移除链接解除保护并诊断坏目标 (1211.1146ms)
+✔ 定时模拟时钟与进程重启后的同日去重 (415.7351ms)
+✔ 任务持久化去重、失败重试断点、超时、重试上限及模型预算 (381.7751ms)
+✔ 超时处理器退出前隔离重试，旧异步写不会与新attempt重叠 (673.9388ms)
+✔ 调度失败、超时与预算未完成不标当日成功，同日可继续 (695.4381ms)
+✔ 评分进行中切换provider丢弃旧结果，输入类型与整数预算严格校验 (322.9472ms)
+✔ 已知插件未来meta版本拒读拒写，未知分区保留，算法v2与meta v1独立 (498.9275ms)
+✔ readVersion keeps pinned bytes, BOM/CRLF and history format; fromText is deterministic and readonly (460.2363ms)
+✔ readVersion distinguishes malformed JSON, invalid UTF8 and unsupported original without writes (345.392ms)
+✔ readVersion rejects hash mismatch and future content schema without masking original bytes (334.3407ms)
+✖ 业务默认组织方式首次登记一次，只读零写，删除后重开与恢复不重建 (661.2913ms)
+✔ 通用组织方式CRUD、版本冲突、使用中保护和disabled保留旧组织 (364.2608ms)
+✔ 独立CLI组织方式CRUD、默认业务方式disabled控制和只读并发 (3788.7005ms)
+✔ 项目固定全文/标签别名/关键词快照；旧版本unknown与显式known-empty不混淆 (809.5799ms)
+✔ requestId先于动态默认值解析；并发追加无丢失且同请求只登记一次 (834.4235ms)
+✔ 版本先于日期/全文分页/基线独立去重；asOf替代范围不受标签过滤和未来记录污染 (584.8317ms)
+✔ 项目范围/引用保护/备份恢复/future schema/非法解析及参数拒绝 (685.1448ms)
+✔ 真实CLI只读命令在writer持锁时零写入；参数失败退出2；替代标注使用过滤前全域 (2936.9602ms)
+✔ 归一化词对和0覆盖复用，只补新词，同标签并发请求不重复生成 (781.3477ms)
+✔ 标签定义变动保留旧词对追踪并提示，显式版本或生成语义变化才重评 (928.4665ms)
+✔ 缺失、重复、越界、截断、失败、取消及多批半成品都不污染已有覆盖 (688.3894ms)
+✔ 默认零模型预算阻止自动收费，缓存命中动态估0，显式版本补评不覆盖manual (1947.1061ms)
+✔ v001评分迁移保留provider并把0转coverage，future结构拒绝且备份恢复复用 (722.3544ms)
+✔ prepare在预算前动态估0/淘汰旧任务，预算不足不阻零费用任务，耗时后不派发 (664.7127ms)
+✔ Markdown escapes HTML, blocks unsafe links and external image requests (8.0729ms)
+✔ Markdown resolves stable UUID image and resource links (0.9516ms)
+✔ real core/plugins preview supports query, content, UUID files, organizations, and denies writes/cross-origin (1868.1797ms)
+✔ background preview lifecycle is explicit, idempotent and works with Chinese/space data paths (769.7922ms)
+✔ eight CLI processes, case/junction aliases and stale PID records share one canonical preview instance (3477.2427ms)
+ℹ tests 70
+ℹ suites 0
+ℹ pass 69
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11497.6086
+
+✖ failing tests:
+
+test at dist\plugins\organization-types.test.js:32:1
+✖ 业务默认组织方式首次登记一次，只读零写，删除后重开与恢复不重建 (661.2913ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      'keyword',
+  +   'project-development-tracking',
+      'system',
+      'tag'
+    ]
+  
+      at TestContext.<anonymous> (file:///D:/project/knowledge-base/dist/plugins/organization-types.test.js:43:16)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'keyword', 'project-development-tracking', 'system', 'tag' ],
+    expected: [ 'keyword', 'system', 'tag' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

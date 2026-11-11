@@ -1,0 +1,16 @@
+{
+  "passed": [
+    "requestId replay before dynamic currentVersion; explicit conflict",
+    "numeric version before date; planned baseline explicit; historical/asOf replacement preserved",
+    "parallel append no lost entries; cross-project entry read denied",
+    "registered pin reads exact raw original independently from future current derived meta",
+    "readonly queries while writer holds lock leave all files unchanged",
+    "soft deleted current resource still reads pinned history and cannot purge",
+    "backup/restore preserves immutable pins and references"
+  ],
+  "checks": 7,
+  "invalidParameterExitCode": 2,
+  "invalidParameterCode": "INVALID_ARGUMENT",
+  "networkRequests": 0,
+  "temporaryDirectoryRemoved": true
+}

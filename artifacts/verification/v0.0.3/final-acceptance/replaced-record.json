@@ -1,0 +1,100 @@
+{
+  "ok": true,
+  "data": {
+    "entry": {
+      "id": "1120ce07-81e2-4de3-bdaa-ce3ee637be89",
+      "resourceId": "a36e9005-8ebd-4760-9ed4-56276e113c1e",
+      "contentVersion": 1,
+      "contentHash": "662e2b1de42d18c73652bf2b3527913e013ac72a211cb673988045a835e6515e",
+      "title": "change.md",
+      "role": "change",
+      "projectVersion": "0.0.3",
+      "stage": "confirmed",
+      "recordedAt": "2026-11-11T10:00:00.000Z",
+      "requestId": "demo-change",
+      "requestFingerprint": "6810dcdfe25aeba3c4419fc0cea70a74801e5c0c9daa2e4fddf986ba51fc2f91",
+      "snapshot": {
+        "tags": {
+          "status": "known",
+          "source": "explicit",
+          "items": [
+            {
+              "id": "b42e4b1f-17b6-416e-9605-012f523cd5b8",
+              "name": "项目设计",
+              "aliases": [
+                "原始设计别名"
+              ],
+              "definitionRevision": 1,
+              "source": "explicit"
+            }
+          ]
+        },
+        "keywords": [
+          "合成",
+          "替代",
+          "草稿",
+          "10",
+          "decision",
+          "entry",
+          "oldlimitmarker",
+          "不会",
+          "不是",
+          "仍然",
+          "会",
+          "保留",
+          "修正",
+          "全文",
+          "关系",
+          "写成",
+          "删除",
+          "原文",
+          "变更",
+          "合并",
+          "后",
+          "将",
+          "已",
+          "式",
+          "当前",
+          "或",
+          "数",
+          "早期",
+          "明确",
+          "显",
+          "本",
+          "条",
+          "段",
+          "演示",
+          "用于",
+          "续",
+          "自动",
+          "范围",
+          "被",
+          "规范",
+          "这",
+          "错误",
+          "默认"
+        ],
+        "parseStatus": "parsed",
+        "parserVersion": "2",
+        "keywordProcessorVersion": "1",
+        "filename": "change.md",
+        "format": ".md",
+        "originalNameKnown": true,
+        "capturedAt": "2026-11-11T12:34:02.979Z",
+        "sourceMetaRevision": 3
+      }
+    },
+    "matchReasons": [],
+    "replacement": {
+      "replacedBy": [
+        {
+          "entryId": "09ee1186-794a-4968-9bc8-9c9424d98488",
+          "stage": "confirmed",
+          "scope": "全文默认分页条数",
+          "effect": "默认5条、最多20条；仅修正此范围，不删除其它历史"
+        }
+      ]
+    },
+    "text": "# 合成变更草稿（已被显式修正）\n\noldlimitmarker：早期草稿将全文默认条数写成 10。\n\n这是用于演示替代关系的合成错误，不是当前规范。后续 decision entry 会明确替代本段范围；原文仍然保留，不会自动删除或合并。\n"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "version": "0.0.3-dev",
+  "status": "implementation-and-validation-complete-awaiting-user-acceptance",
+  "branch": "feat/v0.0.3-project-tracking",
+  "publishedBase": "b8e3fbefa10602461da3477e4db83e0b0dade822",
+  "committed": false,
+  "pushed": false,
+  "tagged": false,
+  "serialValidation": [
+    { "command": "npm run typecheck", "exitCode": 0, "log": "typecheck.log" },
+    { "command": "npm test", "exitCode": 0, "tests": 70, "passed": 70, "failed": 0, "durationMs": 11142.454, "log": "test.log" },
+    { "command": "npm run build", "exitCode": 0, "log": "build.log" }
+  ],
+  "suiteComposition": { "existingV002": 62, "contentKeywordHelpers": 3, "projectTracking": 5 },
+  "independentCoreProbe": { "checks": 7, "exitCode": 0, "networkRequests": 0, "result": "core-project-probe.json" },
+  "independentProjectTests": { "command": "node --import ./tests/project-tracking/offline-fetch.mjs --test tests/project-tracking/independent.test.mjs", "tests": 9, "passed": 9, "exitCode": 0, "networkRequests": 0, "log": "independent.tap" },
+  "browser": { "passed": true, "plugins": 10, "resources": 33, "screenshots": 8, "result": "browser/browser-result.json" },
+  "ppc": { "tests": 2, "passed": 2, "helpVersion": "0.0.3-dev", "log": "ppc.tap", "demoResult": "demo-ppc.json" },
+  "preservedDemo": { "resources": 6, "entries": 7, "pinnedContentVersion": 1, "currentContentVersion": 2, "baselineReleaseTag": "v0.0.2", "baselineReleaseCommit": "b8e3fbefa10602461da3477e4db83e0b0dade822", "servicesStartedByDemo": false, "externalRequests": 0 },
+  "closedFindings": [
+    "Project CLI argument errors originally exited 1; plugin-local parsing now exits 2/INVALID_ARGUMENT and original probe passes.",
+    "Legacy organization-type test expected three built-in types; original author included the fourth project type and retained initialization/backup/read-only assertions."
+  ],
+  "firstSuiteAttempt": { "tests": 70, "passed": 69, "failed": 1, "log": "test-first.log" },
+  "newPaidApiCalls": 0,
+  "taskProcessesExited": true,
+  "processCheck": { "method": "Windows CIM Node command-line filter for browser/preview/project demo/independent/core probe", "matchingProcesses": 0 },
+  "deepseekV002CampaignRemainsClosed": true,
+  "v001AndV002ArchiveEvidenceUnchanged": true,
+  "limitations": [
+    "No same-UUID cross-format update; import a new resource for another format.",
+    "No dedicated project UI or automatic document merge/effective-state adjudication.",
+    "Historical tag absence is unknown; existing current metadata cannot reconstruct the past.",
+    "Probe is synthetic correctness coverage, not a performance or full security audit."
+  ]
+}

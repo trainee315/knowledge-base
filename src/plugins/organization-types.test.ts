@@ -32,10 +32,11 @@ test('业务默认组织方式首次登记一次，只读零写，删除后重�
     assert.deepEqual(await fingerprint(data), {}); assert.equal(await fs.stat(data).then(() => true, () => false), false);
     app = await openApplication(data);
     const defaults = await app.manager.listOrganizationTypes();
-    assert.deepEqual(defaults.map(value => value.id).sort(), ['keyword', 'system', 'tag']);
+    assert.deepEqual(defaults.map(value => value.id).sort(), ['keyword', 'project-development-tracking', 'system', 'tag']);
     assert.equal(defaults.find(value => value.id === 'tag')!.handlerPluginId, 'tags');
     assert.equal(defaults.find(value => value.id === 'keyword')!.handlerPluginId, 'keywords');
     assert.equal(defaults.find(value => value.id === 'system')!.handlerPluginId, 'systems');
+    assert.equal(defaults.find(value => value.id === 'project-development-tracking')!.handlerPluginId, 'project-tracking');
     assert.ok(defaults.every(value => value.revision === 1 && value.enabled));
     defaults[defaults.findIndex(value => value.id === 'system')] = await app.manager.updateOrganizationType('system', { name: '自定义体系名称', config: { defaultView: 'tree' }, enabled: false }, 1);
     await app.close(); const before = await fingerprint(data);
@@ -43,15 +44,16 @@ test('业务默认组织方式首次登记一次，只读零写，删除后重�
     app = await openApplication(data); assert.deepEqual(await app.manager.listOrganizationTypes(), defaults);
     await app.manager.deleteOrganizationType('keyword'); await app.close(); app = await openApplication(data);
     await assert.rejects(app.manager.getOrganizationType('keyword'));
-    assert.deepEqual((await app.manager.listOrganizationTypes()).map(value => value.id).sort(), ['system', 'tag']);
+    assert.deepEqual((await app.manager.listOrganizationTypes()).map(value => value.id).sort(), ['project-development-tracking', 'system', 'tag']);
     const backup = path.join(root, 'backup.json'); await app.manager.backup(backup); await app.close();
     const archive = JSON.parse(await fs.readFile(backup, 'utf8')) as { entries: { file: string }[] };
     assert.ok(archive.entries.some(entry => entry.file === 'organization-types/tag.json'));
     assert.ok(archive.entries.some(entry => entry.file === 'organization-types/system.json'));
+    assert.ok(archive.entries.some(entry => entry.file === 'organization-types/project-development-tracking.json'));
     assert.ok(!archive.entries.some(entry => entry.file === 'organization-types/keyword.json'));
     const restoredRoot = path.join(root, 'restored'); const restored = await CoreManager.open(restoredRoot);
-    try { await restored.restore(backup); assert.deepEqual((await restored.listOrganizationTypes()).map(value => value.id).sort(), ['system', 'tag']); } finally { await restored.close(); }
-    app = await openApplication(restoredRoot); assert.deepEqual((await app.manager.listOrganizationTypes()).map(value => value.id).sort(), ['system', 'tag']); assert.equal((await app.manager.check()).valid, true);
+    try { await restored.restore(backup); assert.deepEqual((await restored.listOrganizationTypes()).map(value => value.id).sort(), ['project-development-tracking', 'system', 'tag']); } finally { await restored.close(); }
+    app = await openApplication(restoredRoot); assert.deepEqual((await app.manager.listOrganizationTypes()).map(value => value.id).sort(), ['project-development-tracking', 'system', 'tag']); assert.equal((await app.manager.check()).valid, true);
   } finally { await app.close(); await fs.rm(root, { recursive: true, force: true }); }
 });
 
