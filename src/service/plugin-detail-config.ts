@@ -4,15 +4,18 @@ import type { AgentProfile } from '../agent/types.js';
 import { assert, KnowledgeError } from '../core/errors.js';
 import type { CoreManager } from '../core/manager.js';
 import { DEFAULT_RELATION_CONFIG, type RelationConfig } from '../plugins/relations/index.js';
+import { UUID_PATTERN } from '../core/schema.js';
+import { configureTranscript, transcriptDetail } from '../records/transcript.js';
 
 type Value = string | number | boolean | null;
 export type Values = Record<string, Value>;
-interface Choice { value: string; label: string }
+interface Choice { value: string; label: string; description?: string }
 interface Field {
   key: string;
   label: string;
   type: 'text' | 'number' | 'boolean' | 'select';
   options?: Choice[];
+  description?: string;
 }
 interface Form {
   kind: 'form';
@@ -22,11 +25,18 @@ interface Form {
   configVersion: string;
   key?: string;
   choices?: Choice[];
+  choicesLabel?: string;
   message?: string;
 }
 export type Configuration = Form | { kind: 'none' | 'link' | 'cron'; editable: boolean; message?: string; href?: string };
 
-const FORM_IDS = new Set(['agent', 'relations']);
+const FORM_IDS = new Set(['agent', 'relations', 'project-tracking']);
+// 模式说明与实例字段同源，二进制基础清理在三种模式中始终生效。
+const COMPRESSION_MODES: Choice[] = [
+  { value: 'off', label: '基础清理（off）', description: '保留其余文字，仅剥离二进制和编码载荷。' },
+  { value: 'conservative', label: '保守压缩（conservative）', description: '清理工具包装、成功流水和重复输出，保留其余文字。' },
+  { value: 'aggressive', label: '激进压缩（aggressive）', description: '进一步节选工具材料，保留命令、关键条件和失败诊断，输入更小。' },
+];
 const MODE_OPTIONS = [{ value: 'offline', label: '离线评分' }, { value: 'agent', label: '模型评分' }];
 const AGENT_FIELDS: Field[] = [
   { key: 'model', label: '模型', type: 'text' },
@@ -69,6 +79,24 @@ function agentForm(profiles: AgentProfile[], key: string | undefined, editable: 
 /** 只投影可编辑字段，凭证引用与模型运行资料保留在服务端。 */
 export async function pluginConfiguration(manager: CoreManager, id: string, editable: boolean, key?: string): Promise<Configuration> {
   if (id === 'agent') return agentForm(await savedProfiles(manager), key, editable);
+  if (id === 'project-tracking') {
+    assert(key === undefined || UUID_PATTERN.test(key), 'INVALID_ARGUMENT', 'Session实例标识无效');
+    const instances = await manager.listOrganizations('session-transcript');
+    const selected = instances.find(instance => instance.id === (key ?? instances[0]?.id));
+    if (!selected) {
+      assert(!key, 'NOT_FOUND', 'Session实例不存在');
+      return { kind: 'link', editable: false, href: '#browse?type=session-transcript', message: '请先创建Session转录实例，再配置压缩模式。' };
+    }
+    const instance = transcriptDetail(selected);
+    return {
+      kind: 'form', editable: editable && !instance.status.running, key: selected.id,
+      choicesLabel: 'Session实例', choices: instances.map(item => ({ value: item.id, label: item.name })),
+      fields: [{ key: 'preprocessing', label: 'Session压缩模式', type: 'select', options: COMPRESSION_MODES, description: '各模式均以原始路径替换二进制和编码载荷。作用于所选实例后续新建任务。' }],
+      values: { preprocessing: instance.config.preprocessing ?? 'conservative' },
+      configVersion: version([selected.id, selected.revision]),
+      message: instance.status.running ? '此Session实例正在转录，执行结束后刷新页面即可编辑。' : editable ? '选择Session实例，设置其转录输入压缩模式。' : '编辑需project-tracking与Session转录插件均启用并就绪。',
+    };
+  }
   assert(key === undefined, 'INVALID_ARGUMENT', '此插件没有可选择的配置');
   if (id === 'relations') {
     const config = await manager.pluginStore('relations').read<RelationConfig>('config', DEFAULT_RELATION_CONFIG);
@@ -117,6 +145,11 @@ export async function savePluginConfig(app: ConfigApp, id: string, configuration
     const selected = (await savedProfiles(app.manager)).find(profile => profile.id === configuration.key);
     assert(selected, 'CONFIG_CONFLICT', '模型配置已删除，请刷新后重试');
     await app.plugins.execute('agent profile set', { ...changed, id: selected.id, expectedRevision: selected.revision });
+    return;
+  }
+  if (id === 'project-tracking') {
+    const selected = await app.manager.getOrganization(configuration.key!);
+    await configureTranscript(app.manager, selected, { ...changed, expectedRevision: selected.revision });
     return;
   }
   if (id === 'relations') {

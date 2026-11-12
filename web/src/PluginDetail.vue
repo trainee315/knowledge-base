@@ -210,21 +210,27 @@ function display(value: unknown): string {
         <CronPlans v-else-if="detail.configuration.kind === 'cron'" ref="cron" :editable="detail.configuration.editable" />
         <form v-else class="plugin-form" @submit.prevent="save">
           <label v-if="detail.configuration.choices?.length">
-            配置项
+            {{ detail.configuration.choicesLabel ?? '配置项' }}
             <select :value="detail.configuration.key" :disabled="saving" @change="selectConfig">
               <option v-for="choice in detail.configuration.choices" :key="choice.value" :value="choice.value">{{ choice.label }}</option>
             </select>
           </label>
           <div class="plugin-fields">
-            <label v-for="field in detail.configuration.fields" :key="field.key" :class="{ 'plugin-check': field.type === 'boolean' }">
-              <span>{{ field.label }}</span>
-              <select v-if="field.type === 'select'" v-model="draft[field.key]" :disabled="!detail.configuration.editable || saving">
-                <option v-for="option in field.options" :key="option.value" :value="option.value">{{ option.label }}</option>
-              </select>
-              <input v-else-if="field.type === 'boolean'" v-model="draft[field.key]" type="checkbox" :disabled="!detail.configuration.editable || saving">
-              <input v-else-if="field.type === 'number'" v-model.number="draft[field.key]" type="number" step="any" :disabled="!detail.configuration.editable || saving">
-              <input v-else v-model="draft[field.key]" type="text" :disabled="!detail.configuration.editable || saving">
-            </label>
+            <div v-for="field in detail.configuration.fields" :key="field.key" class="plugin-field">
+              <label :class="{ 'plugin-check': field.type === 'boolean' }">
+                <span>{{ field.label }}</span>
+                <select v-if="field.type === 'select'" v-model="draft[field.key]" :aria-label="field.label" :aria-describedby="field.description ? 'plugin-help-' + field.key : undefined" :disabled="!detail.configuration.editable || saving">
+                  <option v-for="option in field.options" :key="option.value" :value="option.value">{{ option.label }}</option>
+                </select>
+                <input v-else-if="field.type === 'boolean'" v-model="draft[field.key]" type="checkbox" :disabled="!detail.configuration.editable || saving">
+                <input v-else-if="field.type === 'number'" v-model.number="draft[field.key]" type="number" step="any" :disabled="!detail.configuration.editable || saving">
+                <input v-else v-model="draft[field.key]" type="text" :disabled="!detail.configuration.editable || saving">
+              </label>
+              <p v-if="field.description" :id="'plugin-help-' + field.key" class="muted plugin-field-help">{{ field.description }}</p>
+              <ul v-if="field.options?.some(option => option.description)" class="plugin-mode-help">
+                <li v-for="option in field.options" :key="option.value"><strong>{{ option.label }}</strong><span>{{ option.description }}</span></li>
+              </ul>
+            </div>
           </div>
           <p v-if="formError" class="error" role="alert">{{ formError }}<template v-if="conflict">。当前草稿已保留。</template></p>
           <p v-if="notice" class="plugin-notice" role="status">{{ notice }}</p>

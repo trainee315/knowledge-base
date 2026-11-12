@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "checks": [
+    "service CLI dispatch",
+    "single JSON",
+    "scope",
+    "read without index/model",
+    "index build",
+    "BM25",
+    "list",
+    "deletion without rebuild"
+  ],
+  "dataDir": "C:\\Users\\mamar\\AppData\\Local\\Temp\\kb-recall-cli-ycfgkH\\data"
+}

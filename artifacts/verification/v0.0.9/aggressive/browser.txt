@@ -1,0 +1,5 @@
+
+知识库开发页面 http://127.0.0.1:58700
+业务服务 http://127.0.0.1:50887
+dataDir: C:\Users\mamar\AppData\Local\Temp\知识库 浏览器 中文 空格 dSzVPQ\正式数据 目录
+{"passed":true,"evidence":"D:\\project\\knowledge-base\\artifacts\\verification\\v0.0.9\\aggressive\\browser"}

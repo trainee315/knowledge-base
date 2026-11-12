@@ -2,9 +2,9 @@ import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { decode, hash, requireValue } from './common.js';
 
-export const ADAPTER_VERSION = 'codex-rollout-2';
+export const ADAPTER_VERSION = 'codex-rollout-3';
 const QUIET_MS = 600_000; // 没有可靠轮次状态时的静默窗口。
-export interface Message { position: number; fingerprint: string; at: string; role: string; content: string }
+export interface Message { position: number; fingerprint: string; at: string; role: string; content: string; toolCallId?: string }
 export interface Turn { messages: Message[]; complete: boolean; id?: string; completedPosition?: number }
 export interface Session { id: string; title: string; directories: string[]; child: boolean; turns: Turn[]; file: string; ordinalStart?: number; ordinalEnd?: number; historyBase?: number; afterCutoff?: boolean }
 /** 原始私有 DTO 只在适配器内使用；只接受已识别 rollout 事件。 */
@@ -57,7 +57,8 @@ export async function readSession(file: string, cutoff: number): Promise<Session
         requireValue(session, '消息早于 session_meta', 'SOURCE_FORMAT');
         const messagePosition = row.ordinal ?? position;
         requireValue(Number.isSafeInteger(messagePosition) && messagePosition >= 0, '消息位置非法', 'SOURCE_FORMAT');
-        current.messages.push({ position: messagePosition, at: row.timestamp, role, content, fingerprint: hash(JSON.stringify({ position: messagePosition, at: row.timestamp, role, content })) });
+        const toolCallId = typeof p.call_id === 'string' ? p.call_id : undefined;
+        current.messages.push({ position: messagePosition, at: row.timestamp, role, content, fingerprint: hash(JSON.stringify({ position: messagePosition, at: row.timestamp, role, content })), ...(toolCallId ? { toolCallId } : {}) });
         if (!session.title && role === 'user') session.title = content.split('\n')[0].slice(0, 200);
       }
     }

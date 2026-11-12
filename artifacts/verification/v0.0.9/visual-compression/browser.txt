@@ -1,0 +1,1 @@
+{"passed":true,"evidence":"D:\\project\\knowledge-base\\artifacts\\verification\\v0.0.9\\visual-compression\\browser"}

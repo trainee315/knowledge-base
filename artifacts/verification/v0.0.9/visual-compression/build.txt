@@ -1,0 +1,21 @@
+
+> agent-knowledge-base@0.0.5 build
+> npm run build:core && npm run build:web
+
+
+> agent-knowledge-base@0.0.5 build:core
+> tsc -p tsconfig.json
+
+
+> agent-knowledge-base@0.0.5 build:web
+> vite build --config web/vite.config.ts
+
+vite v7.3.8 building client environment for production...
+transforming...
+✓ 46 modules transformed.
+rendering chunks...
+computing gzip size...
+../dist/web/index.html                   0.37 kB │ gzip:  0.30 kB
+../dist/web/assets/index-BcO_9HHJ.css   17.57 kB │ gzip:  4.38 kB
+../dist/web/assets/index-D9kIyZQw.js   235.79 kB │ gzip: 90.11 kB
+✓ built in 762ms

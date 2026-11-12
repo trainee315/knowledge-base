@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-12",
+  "acceptedImplementation": "fcb2357",
+  "integratedMain": "1f2839a697aeba55baca88bdf9c0eb61131d9bda",
+  "build": "passed: npm test includes core and web build",
+  "regression": { "command": "npm test", "passed": 136, "failed": 0 },
+  "typecheck": "passed: npm run typecheck",
+  "cli": { "command": "node tests/recall/cli.mjs", "passed": true, "checks": 8, "evidence": "integration-cli.json" },
+  "conflicts": ["doc/新增需求/readme.md: retained both v0.0.8 and v0.0.9 acceptance entries"],
+  "v009FilesUnchangedAgainstMain": true,
+  "scope": "Local Git integration only; no remote push, release tag, npm publication or PPC operation"
+}

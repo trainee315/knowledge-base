@@ -1,0 +1,856 @@
+{
+  "version": "v0.0.9",
+  "cutoff": "2026-11-12T07:49:41.455Z",
+  "complete": true,
+  "checkValid": true,
+  "characterUnit": "Unicode code points of selected message content; context counted separately in request sizes",
+  "history": [
+    {
+      "feature": "tools",
+      "off": {
+        "label": "tools-off",
+        "before": {
+          "characters": 941653,
+          "bytes": 963746
+        },
+        "after": {
+          "characters": 941653,
+          "bytes": 963746
+        },
+        "removedCharacters": 0,
+        "reductionPercent": 0,
+        "roles": {
+          "user": {
+            "before": {
+              "characters": 60,
+              "bytes": 122
+            },
+            "after": {
+              "characters": 60,
+              "bytes": 122
+            }
+          },
+          "assistant": {
+            "before": {
+              "characters": 1229,
+              "bytes": 2707
+            },
+            "after": {
+              "characters": 1229,
+              "bytes": 2707
+            }
+          },
+          "tool-call": {
+            "before": {
+              "characters": 84815,
+              "bytes": 94823
+            },
+            "after": {
+              "characters": 84815,
+              "bytes": 94823
+            }
+          },
+          "tool-result": {
+            "before": {
+              "characters": 855549,
+              "bytes": 866094
+            },
+            "after": {
+              "characters": 855549,
+              "bytes": 866094
+            }
+          }
+        },
+        "rules": {},
+        "request": {
+          "beforeCharacters": 1003935,
+          "afterCharacters": 1003935,
+          "beforeBytes": 1035932,
+          "afterBytes": 1035932
+        },
+        "usage": {
+          "inputTokens": 595527,
+          "outputTokens": 1096,
+          "totalTokens": 596623
+        },
+        "model": "deepseek-flash",
+        "promptVersion": "2c063e1d61a0c912234b026e249342bf8276aec04645e15719c1e4c965095a4e"
+      },
+      "conservative": {
+        "label": "tools-conservative",
+        "before": {
+          "characters": 941653,
+          "bytes": 963746
+        },
+        "after": {
+          "characters": 190082,
+          "bytes": 212781
+        },
+        "removedCharacters": 751571,
+        "reductionPercent": 79.81400792011495,
+        "roles": {
+          "user": {
+            "before": {
+              "characters": 60,
+              "bytes": 122
+            },
+            "after": {
+              "characters": 60,
+              "bytes": 122
+            }
+          },
+          "assistant": {
+            "before": {
+              "characters": 1229,
+              "bytes": 2707
+            },
+            "after": {
+              "characters": 1229,
+              "bytes": 2707
+            }
+          },
+          "tool-call": {
+            "before": {
+              "characters": 84815,
+              "bytes": 94823
+            },
+            "after": {
+              "characters": 84815,
+              "bytes": 94823
+            }
+          },
+          "tool-result": {
+            "before": {
+              "characters": 855549,
+              "bytes": 866094
+            },
+            "after": {
+              "characters": 103978,
+              "bytes": 115129
+            }
+          }
+        },
+        "rules": {
+          "tool-wrapper": {
+            "hits": 27,
+            "removedCharacters": 10373
+          },
+          "binary-image-reference": {
+            "hits": 3,
+            "removedCharacters": 741198
+          }
+        },
+        "request": {
+          "beforeCharacters": 1003935,
+          "afterCharacters": 248600,
+          "beforeBytes": 1035932,
+          "afterBytes": 281203
+        },
+        "usage": {
+          "inputTokens": 81727,
+          "outputTokens": 1419,
+          "totalTokens": 83146
+        },
+        "model": "deepseek-flash",
+        "promptVersion": "2c063e1d61a0c912234b026e249342bf8276aec04645e15719c1e4c965095a4e"
+      }
+    },
+    {
+      "feature": "corrections",
+      "off": {
+        "label": "corrections-off",
+        "before": {
+          "characters": 299121,
+          "bytes": 337275
+        },
+        "after": {
+          "characters": 299121,
+          "bytes": 337275
+        },
+        "removedCharacters": 0,
+        "reductionPercent": 0,
+        "roles": {
+          "user": {
+            "before": {
+              "characters": 1082,
+              "bytes": 2400
+            },
+            "after": {
+              "characters": 1082,
+              "bytes": 2400
+            }
+          },
+          "assistant": {
+            "before": {
+              "characters": 19500,
+              "bytes": 46301
+            },
+            "after": {
+              "characters": 19500,
+              "bytes": 46301
+            }
+          },
+          "tool-call": {
+            "before": {
+              "characters": 5918,
+              "bytes": 5942
+            },
+            "after": {
+              "characters": 5918,
+              "bytes": 5942
+            }
+          },
+          "tool-result": {
+            "before": {
+              "characters": 272621,
+              "bytes": 282632
+            },
+            "after": {
+              "characters": 272621,
+              "bytes": 282632
+            }
+          }
+        },
+        "rules": {},
+        "request": {
+          "beforeCharacters": 322201,
+          "afterCharacters": 322201,
+          "beforeBytes": 363793,
+          "afterBytes": 363793
+        },
+        "usage": {
+          "inputTokens": 102066,
+          "outputTokens": 1409,
+          "totalTokens": 103475
+        },
+        "model": "deepseek-flash",
+        "promptVersion": "2c063e1d61a0c912234b026e249342bf8276aec04645e15719c1e4c965095a4e"
+      },
+      "conservative": {
+        "label": "corrections-conservative",
+        "before": {
+          "characters": 299121,
+          "bytes": 337275
+        },
+        "after": {
+          "characters": 290624,
+          "bytes": 328898
+        },
+        "removedCharacters": 8497,
+        "reductionPercent": 2.8406564567516153,
+        "roles": {
+          "user": {
+            "before": {
+              "characters": 1082,
+              "bytes": 2400
+            },
+            "after": {
+              "characters": 1082,
+              "bytes": 2400
+            }
+          },
+          "assistant": {
+            "before": {
+              "characters": 19500,
+              "bytes": 46301
+            },
+            "after": {
+              "characters": 19500,
+              "bytes": 46301
+            }
+          },
+          "tool-call": {
+            "before": {
+              "characters": 5918,
+              "bytes": 5942
+            },
+            "after": {
+              "characters": 5918,
+              "bytes": 5942
+            }
+          },
+          "tool-result": {
+            "before": {
+              "characters": 272621,
+              "bytes": 282632
+            },
+            "after": {
+              "characters": 264124,
+              "bytes": 274255
+            }
+          }
+        },
+        "rules": {
+          "tool-wrapper": {
+            "hits": 10,
+            "removedCharacters": 8497
+          }
+        },
+        "request": {
+          "beforeCharacters": 322201,
+          "afterCharacters": 310534,
+          "beforeBytes": 363793,
+          "afterBytes": 352246
+        },
+        "usage": {
+          "inputTokens": 98160,
+          "outputTokens": 2456,
+          "totalTokens": 100616
+        },
+        "model": "deepseek-flash",
+        "promptVersion": "2c063e1d61a0c912234b026e249342bf8276aec04645e15719c1e4c965095a4e"
+      }
+    },
+    {
+      "feature": "verification",
+      "off": {
+        "label": "verification-off",
+        "before": {
+          "characters": 930736,
+          "bytes": 1004380
+        },
+        "after": {
+          "characters": 930736,
+          "bytes": 1004380
+        },
+        "removedCharacters": 0,
+        "reductionPercent": 0,
+        "roles": {
+          "user": {
+            "before": {
+              "characters": 966,
+              "bytes": 1780
+            },
+            "after": {
+              "characters": 966,
+              "bytes": 1780
+            }
+          },
+          "assistant": {
+            "before": {
+              "characters": 10604,
+              "bytes": 25879
+            },
+            "after": {
+              "characters": 10604,
+              "bytes": 25879
+            }
+          },
+          "tool-call": {
+            "before": {
+              "characters": 118213,
+              "bytes": 118581
+            },
+            "after": {
+              "characters": 118213,
+              "bytes": 118581
+            }
+          },
+          "tool-result": {
+            "before": {
+              "characters": 800953,
+              "bytes": 858140
+            },
+            "after": {
+              "characters": 800953,
+              "bytes": 858140
+            }
+          }
+        },
+        "rules": {},
+        "request": {
+          "beforeCharacters": 1024580,
+          "afterCharacters": 1024580,
+          "beforeBytes": 1100112,
+          "afterBytes": 1100112
+        },
+        "usage": {
+          "inputTokens": 603969,
+          "outputTokens": 2505,
+          "totalTokens": 606474
+        },
+        "model": "deepseek-flash",
+        "promptVersion": "2c063e1d61a0c912234b026e249342bf8276aec04645e15719c1e4c965095a4e"
+      },
+      "conservative": {
+        "label": "verification-conservative",
+        "before": {
+          "characters": 930736,
+          "bytes": 1004380
+        },
+        "after": {
+          "characters": 302432,
+          "bytes": 380820
+        },
+        "removedCharacters": 628304,
+        "reductionPercent": 67.50614567396124,
+        "roles": {
+          "user": {
+            "before": {
+              "characters": 966,
+              "bytes": 1780
+            },
+            "after": {
+              "characters": 966,
+              "bytes": 1780
+            }
+          },
+          "assistant": {
+            "before": {
+              "characters": 10604,
+              "bytes": 25879
+            },
+            "after": {
+              "characters": 10604,
+              "bytes": 25879
+            }
+          },
+          "tool-call": {
+            "before": {
+              "characters": 118213,
+              "bytes": 118581
+            },
+            "after": {
+              "characters": 118213,
+              "bytes": 118581
+            }
+          },
+          "tool-result": {
+            "before": {
+              "characters": 800953,
+              "bytes": 858140
+            },
+            "after": {
+              "characters": 172649,
+              "bytes": 234580
+            }
+          }
+        },
+        "rules": {
+          "tool-wrapper": {
+            "hits": 45,
+            "removedCharacters": 23528
+          },
+          "duplicate-tool-result": {
+            "hits": 66,
+            "removedCharacters": 496
+          },
+          "binary-image-reference": {
+            "hits": 2,
+            "removedCharacters": 604072
+          },
+          "successful-test-lines": {
+            "hits": 1,
+            "removedCharacters": 208
+          }
+        },
+        "request": {
+          "beforeCharacters": 1024580,
+          "afterCharacters": 384293,
+          "beforeBytes": 1100112,
+          "afterBytes": 464569
+        },
+        "usage": {
+          "inputTokens": 180472,
+          "outputTokens": 2297,
+          "totalTokens": 182769
+        },
+        "model": "deepseek-flash",
+        "promptVersion": "2c063e1d61a0c912234b026e249342bf8276aec04645e15719c1e4c965095a4e"
+      }
+    }
+  ],
+  "incremental": [
+    {
+      "label": "session-1",
+      "before": {
+        "characters": 166107,
+        "bytes": 213709
+      },
+      "after": {
+        "characters": 158297,
+        "bytes": 206043
+      },
+      "removedCharacters": 7810,
+      "reductionPercent": 4.7017886061394165,
+      "roles": {
+        "user": {
+          "before": {
+            "characters": 2026,
+            "bytes": 2732
+          },
+          "after": {
+            "characters": 2026,
+            "bytes": 2732
+          }
+        },
+        "tool-result": {
+          "before": {
+            "characters": 134825,
+            "bytes": 152740
+          },
+          "after": {
+            "characters": 127015,
+            "bytes": 145074
+          }
+        },
+        "assistant": {
+          "before": {
+            "characters": 12066,
+            "bytes": 28704
+          },
+          "after": {
+            "characters": 12066,
+            "bytes": 28704
+          }
+        },
+        "tool-call": {
+          "before": {
+            "characters": 17190,
+            "bytes": 29533
+          },
+          "after": {
+            "characters": 17190,
+            "bytes": 29533
+          }
+        }
+      },
+      "rules": {
+        "tool-wrapper": {
+          "hits": 12,
+          "removedCharacters": 7810
+        }
+      },
+      "request": {
+        "beforeCharacters": 197099,
+        "afterCharacters": 183168,
+        "beforeBytes": 252453,
+        "afterBytes": 238678
+      },
+      "usage": {
+        "inputTokens": 66860,
+        "outputTokens": 2797,
+        "totalTokens": 69657
+      },
+      "model": "deepseek-flash",
+      "promptVersion": "2c063e1d61a0c912234b026e249342bf8276aec04645e15719c1e4c965095a4e"
+    },
+    {
+      "label": "session-2",
+      "before": {
+        "characters": 893716,
+        "bytes": 1022773
+      },
+      "after": {
+        "characters": 762167,
+        "bytes": 892444
+      },
+      "removedCharacters": 131549,
+      "reductionPercent": 14.719329182872412,
+      "roles": {
+        "user": {
+          "before": {
+            "characters": 904,
+            "bytes": 1796
+          },
+          "after": {
+            "characters": 904,
+            "bytes": 1796
+          }
+        },
+        "assistant": {
+          "before": {
+            "characters": 8427,
+            "bytes": 19817
+          },
+          "after": {
+            "characters": 8427,
+            "bytes": 19817
+          }
+        },
+        "tool-call": {
+          "before": {
+            "characters": 151353,
+            "bytes": 170317
+          },
+          "after": {
+            "characters": 151353,
+            "bytes": 170317
+          }
+        },
+        "tool-result": {
+          "before": {
+            "characters": 733032,
+            "bytes": 830843
+          },
+          "after": {
+            "characters": 601483,
+            "bytes": 700514
+          }
+        }
+      },
+      "rules": {
+        "tool-wrapper": {
+          "hits": 78,
+          "removedCharacters": 58210
+        },
+        "successful-test-lines": {
+          "hits": 1,
+          "removedCharacters": 269
+        },
+        "binary-image-reference": {
+          "hits": 1,
+          "removedCharacters": 73070
+        }
+      },
+      "request": {
+        "beforeCharacters": 1019925,
+        "afterCharacters": 854233,
+        "beforeBytes": 1150278,
+        "afterBytes": 985806
+      },
+      "usage": {
+        "inputTokens": 293428,
+        "outputTokens": 3079,
+        "totalTokens": 296507
+      },
+      "model": "deepseek-flash",
+      "promptVersion": "2c063e1d61a0c912234b026e249342bf8276aec04645e15719c1e4c965095a4e"
+    },
+    {
+      "label": "session-3",
+      "before": {
+        "characters": 815159,
+        "bytes": 882579
+      },
+      "after": {
+        "characters": 704051,
+        "bytes": 775109
+      },
+      "removedCharacters": 111108,
+      "reductionPercent": 13.630224287531634,
+      "roles": {
+        "user": {
+          "before": {
+            "characters": 5359,
+            "bytes": 6643
+          },
+          "after": {
+            "characters": 5359,
+            "bytes": 6643
+          }
+        },
+        "tool-result": {
+          "before": {
+            "characters": 708875,
+            "bytes": 759093
+          },
+          "after": {
+            "characters": 597767,
+            "bytes": 651623
+          }
+        },
+        "assistant": {
+          "before": {
+            "characters": 8276,
+            "bytes": 19207
+          },
+          "after": {
+            "characters": 8276,
+            "bytes": 19207
+          }
+        },
+        "tool-call": {
+          "before": {
+            "characters": 92649,
+            "bytes": 97636
+          },
+          "after": {
+            "characters": 92649,
+            "bytes": 97636
+          }
+        }
+      },
+      "rules": {
+        "tool-wrapper": {
+          "hits": 89,
+          "removedCharacters": 48646
+        },
+        "duplicate-tool-result": {
+          "hits": 40,
+          "removedCharacters": 238
+        },
+        "binary-image-reference": {
+          "hits": 1,
+          "removedCharacters": 62206
+        },
+        "terminal-control": {
+          "hits": 1,
+          "removedCharacters": 18
+        }
+      },
+      "request": {
+        "beforeCharacters": 941853,
+        "afterCharacters": 803605,
+        "beforeBytes": 1010171,
+        "afterBytes": 875561
+      },
+      "usage": {
+        "inputTokens": 278934,
+        "outputTokens": 1440,
+        "totalTokens": 280374
+      },
+      "model": "deepseek-flash",
+      "promptVersion": "2c063e1d61a0c912234b026e249342bf8276aec04645e15719c1e4c965095a4e"
+    }
+  ],
+  "totals": {
+    "beforeCharacters": 1874982,
+    "afterCharacters": 1624515,
+    "beforeBytes": 2119061,
+    "afterBytes": 1873596,
+    "inputTokens": 639222,
+    "outputTokens": 7316,
+    "removedCharacters": 250467,
+    "reductionPercent": 13.358368240335109
+  },
+  "calls": {
+    "total": 16,
+    "history": 13,
+    "incremental": 3,
+    "usage": {
+      "inputTokens": 4558129,
+      "outputTokens": 31199,
+      "totalTokens": 4589328
+    }
+  },
+  "baseline": "81387b56fa498c3897763546f0d5e23a99d3ab52",
+  "status": "implemented-and-verified-awaiting-user-acceptance",
+  "tests": {
+    "typecheck": true,
+    "build": true,
+    "core": {
+      "passed": 111,
+      "total": 111
+    },
+    "independent": {
+      "passed": 10,
+      "total": 10
+    },
+    "browser": true,
+    "transcriptBrowser": true
+  },
+  "historyTotals": {
+    "beforeCharacters": 2171510,
+    "afterCharacters": 783138,
+    "reductionPercent": 63.93578661852813,
+    "offInputTokens": 1301562,
+    "conservativeInputTokens": 360359,
+    "inputTokenReductionPercent": 72.31334350572621
+  },
+  "consistency": {
+    "records": 14,
+    "sessions": 6,
+    "uniqueMessages": 2116,
+    "duplicateMessages": 0,
+    "pending": 0,
+    "originalRecordsRetained": true,
+    "pairedRequestsVerified": 6,
+    "repeat": {
+      "calls": 0,
+      "saved": 0,
+      "remaining": 0,
+      "complete": true
+    }
+  },
+  "liveCalls": {
+    "total": 16,
+    "firstPassSuccessful": 6,
+    "firstPassValidationFailures": 1,
+    "finalHistoricalPairs": 6,
+    "formalIncremental": 3,
+    "usage": {
+      "inputTokens": 4558129,
+      "outputTokens": 31199,
+      "totalTokens": 4589328
+    }
+  },
+  "quality": {
+    "reviewedHistoricalPairs": 3,
+    "reviewedFormalRecords": 3,
+    "initialRegression": "One cleaned summary omitted a development performance constraint and withdrawal of a local-model proposal; original text was retained in input.",
+    "fix": "Strengthened coverage of hard constraints and withdrawn proposals; repeated all three pairs with one shared prompt.",
+    "finalResult": "No obvious additional quality degradation found in the reviewed cleaned summaries.",
+    "checks": [
+      {
+        "sample": "tools",
+        "facts": [
+          "configuration boundary preservation",
+          "128KiB request limit",
+          "88 core and 10 independent checks",
+          "candidate awaiting acceptance",
+          "explicit CLI run budget"
+        ],
+        "result": "retained"
+      },
+      {
+        "sample": "corrections",
+        "facts": [
+          "performance hard constraint",
+          "withdrawal of local model recommendation",
+          "local CLI scope convergence",
+          "memory relation proposals remain proposals",
+          "exact baseline commit"
+        ],
+        "result": "retained in final cleaned output"
+      },
+      {
+        "sample": "verification",
+        "facts": [
+          "release versus candidate distinction",
+          "separate agent infrastructure proposal and implementation",
+          "zero-score cache coverage",
+          "historical three-call usage",
+          "planned repository organization remains advice"
+        ],
+        "result": "retained"
+      },
+      {
+        "sample": "formal-session-1",
+        "facts": [
+          "retrieval features remain requirements",
+          "scope filtering before retrieval",
+          "illustrative token and latency estimates identified",
+          "requirements commit"
+        ],
+        "result": "retained"
+      },
+      {
+        "sample": "formal-session-2",
+        "facts": [
+          "credential incident and repair",
+          "release acceptance and push authorization",
+          "supplement reassigned to v0.0.5",
+          "v0.0.9 remained a plan at source cutoff"
+        ],
+        "result": "retained"
+      },
+      {
+        "sample": "formal-session-3",
+        "facts": [
+          "service architecture decision change",
+          "SQLite and cron ownership",
+          "96 versus 99 regression stages",
+          "development candidates and local merge state"
+        ],
+        "result": "retained"
+      }
+    ],
+    "limits": [
+      "Sample review does not establish corpus-wide semantic accuracy.",
+      "Uncleaned baselines also contain occasional identifier copying errors.",
+      "Image payloads are represented by source references; visual content is not interpreted.",
+      "Compression depends on tool content; unique prose and first-use text are retained."
+    ]
+  }
+}
