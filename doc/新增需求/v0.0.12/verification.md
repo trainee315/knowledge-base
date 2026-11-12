@@ -1,10 +1,10 @@
 # v0.0.12 验证报告
 
-环境：Windows、Node.js 24.11.0、Codex CLI 0.167.2，ChatGPT 订阅登录。基线 31737ef 的 136 项测试全部通过。已同步主线 v0.0.10 的 7aeeb62。
+环境：Windows、Node.js 24.11.0、Codex CLI 0.167.2，ChatGPT 订阅登录。基线 31737ef 的 136 项测试全部通过。已同步主线 v0.0.10 的 7aeeb62，随后同步包含 v0.0.11 的 560c94d。
 
 ## 自动验证
 
-最终类型检查及构建通过；整合后完整测试 146/146，通过 v0.0.10 链路回归 10/10。新增页面、原插件页面及原 Session 页面浏览器回归均通过。证据为 artifacts/verification/v0.0.12 中的 integrated-tests.txt、chains.txt、browser/result.json、plugin-browser.txt 和 transcript-browser.txt。覆盖通用 Agent、DeepSeek 兼容、CLI 参数与配置、实际子进程正常退出/错误/取消/输出上限、严格 JSON、Session 配置及 v0.0.10 全链路。
+最终类型检查及构建通过；整合 v0.0.10 与 v0.0.11 后完整测试 162/162，通过 v0.0.10 链路回归 10/10。新增页面、原插件页面及原 Session 页面浏览器回归均通过。证据为 artifacts/verification/v0.0.12 中的 integrated-tests.txt、chains.txt、browser/result.json、plugin-browser.txt 和 transcript-browser.txt。覆盖通用 Agent、DeepSeek 兼容、CLI 参数与配置、实际子进程正常退出/错误/取消/输出上限、严格 JSON、Session 配置及 v0.0.10 全链路。
 
 第一次整合全量测试暴露超时测试的时序假设：并行负载可能在 CLI 探测阶段就超时，尚未生成 capture 文件。已将该用例限定到生成阶段，登录检测由独立用例覆盖，随后重新验证。未放宽生产超时。
 
@@ -22,4 +22,4 @@
 
 Codex 自带上下文开销、额度窗口与 CLI 升级兼容性仍需在实际使用中观察；maxTokens 是结果接收上限。新增功能没有改变现有正式实例和默认供应商。
 
-最终真实调用：连接测试 10666 tokens，Session 摘要 11436 tokens、6634ms；结果来源为 CLI usage，不代表订阅额度单位。详细数值以 live-session.json 为准。
+真实调用（同步 v0.0.10 后）：连接测试 10664 tokens，Session 摘要 11436 tokens、6634ms；结果来源为 CLI usage，不代表订阅额度单位。详细数值以 live-session.json 为准。同步 v0.0.11 未修改 provider，已重新验证完整自动回归、网页、链路和验收服务登录，不重复消耗模型额度。

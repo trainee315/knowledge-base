@@ -1,0 +1,36 @@
+{
+  "version": "0.0.11",
+  "base": "31737efaef7b51e3d1e0fb2edda37b25bddae833",
+  "full": {
+    "tests": 150,
+    "pass": 150,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "finalSemantic": {
+    "tests": 14,
+    "pass": 14,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "existingBrowser": true,
+  "recallCli": true,
+  "semanticBrowser": {
+    "desktop": "1440x1000",
+    "mobile": "390x844",
+    "checks": [
+      "browse-documents",
+      "original-location",
+      "keyword-to-fragment",
+      "create-and-auto-match",
+      "rematch",
+      "delete-and-reload",
+      "mobile-no-overflow"
+    ],
+    "pageErrors": []
+  },
+  "mainIntegration": "integrated v0.0.10; automated checks passed; pending user verification",
+  "integrationReport": "integration.json"
+}

@@ -2,13 +2,15 @@
 
 [v0.0.12 候选](doc/新增需求/v0.0.12/readme.md)：Agent 接入服务器 Codex CLI 订阅登录，支持模型配置及 Session 选择；独立分支待验收。
 
+v0.0.11 待验证版本提供语义关键词与标签：页面新增标签后后台自动匹配，支持增量更新、失败重试及原文片元浏览。[使用与契约](doc/新增需求/v0.0.11/contracts.md) · [验证记录](doc/新增需求/v0.0.11/verification.md)。
+
 [v0.0.10候选实现](doc/新增需求/v0.0.10/readme.md)：已修复Session压缩与向量片元召回链路，补齐CLI帮助、范围与完成状态、固定版本续读及项目Agent提示词。[验证报告](doc/新增需求/v0.0.10/verification.md) · `npm run demo:agent` 生成隔离接入实例。待用户验收，未正式发布。
 
 开发路线：[项目架构原则](doc/architecture-principles.md) · [v0.0.6 本地服务与 cron](doc/新增需求/v0.0.6/readme.md) · [v0.0.7 插件详情](doc/新增需求/v0.0.7/readme.md) · [v0.0.8 Agent召回候选](doc/新增需求/v0.0.8/readme.md)。下方命令用于当前主分支，发布版本的命令见相应归档。
 
 v0.0.8 独立候选提供本地 `recall` CLI；`npm run demo:recall` 创建合成演示库并打印完整验收命令。[Agent说明](doc/新增需求/v0.0.8/agent-guide.md) · [实测报告与适用限制](doc/新增需求/v0.0.8/verification.md)。已测门槛通过，其中开发负载结论限定为显式 `recall workload` 保护模式；2026-11-12用户验收通过，未正式发布。
 
-当前版本 **v0.0.5**，2026-11-12用户验收通过。新增自由记录、Codex session增量转录、主动执行与周期检查CLI，以及组织实例详情中的可视化配置和草稿预览。[005归档](doc/v0.0.5/readme.md) · [运行说明](doc/v0.0.5/running.md) · [版本历史](doc/version-history.md)。
+最近已发布版本 **v0.0.5**，2026-11-12用户验收通过。新增自由记录、Codex session增量转录、主动执行与周期检查CLI，以及组织实例详情中的可视化配置和草稿预览。[005归档](doc/v0.0.5/readme.md) · [运行说明](doc/v0.0.5/running.md) · [版本历史](doc/version-history.md)。
 
 `note add/list/get` 管理自由记录，`transcript create/list/get/configure/preview/run/tick/records/retry/backfill` 管理会话转录。`node examples/create-records-demo.mjs` 创建独立临时库和合成session，打印可复制验收命令。
 

@@ -32,7 +32,7 @@ export async function browse(app: PreviewApplication, url: URL): Promise<unknown
   const query = normalize(url.searchParams.get('q') ?? '');
   const ids = [...new Set(url.searchParams.getAll('id'))];
   const resources = (await app.manager.listResources()).map(item => item.resource);
-  const organizations = await app.manager.listOrganizations(type);
+  const organizations = (await app.manager.listOrganizations(type)).filter(org => !org.data.semanticDeletedAt);
   const words = (r: typeof resources[number]) => { const data = readPluginMeta<KeywordData>(r, 'keywords'); return data?.inputVersion === r.contentVersion ? data.items.map(item => normalize(item.value)) : []; };
   const tagged = (r: typeof resources[number], id: string) => readPluginMeta<TagData>(r, 'tags')?.decisions.some(d => d.tagId === id && d.accepted) ?? false;
   const refs = (org: typeof organizations[number]) => new Set(org.references.filter(ref => ref.kind === 'resource').map(ref => ref.id));

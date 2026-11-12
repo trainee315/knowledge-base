@@ -37,7 +37,7 @@ export const tagsPlugin: PluginDefinition = {
       }
     }
     const api: TagsApi = {
-      async list() { return context.core.listOrganizations('tag'); },
+      async list() { return (await context.core.listOrganizations('tag')).filter(tag => !tag.data.semanticDeletedAt); },
       async get(idOrName) {
         const value = normalize(idOrName);
         const tag = (await api.list()).find(tag => tag.id === idOrName || [tag.name, ...definition(tag).aliases].some(name => normalize(name) === value));
@@ -52,7 +52,7 @@ export const tagsPlugin: PluginDefinition = {
         const tag = await api.get(id);
         const data = definition(tag);
         await validate(patch.name ?? tag.name, patch.aliases ?? data.aliases, tag.id);
-        return context.core.updateOrganization(tag.id, { name: patch.name ?? tag.name, data: json({ aliases: patch.aliases ?? data.aliases, description: patch.description ?? data.description }) }, tag.revision);
+        return context.core.updateOrganization(tag.id, { name: patch.name ?? tag.name, data: json({ ...tag.data, aliases: patch.aliases ?? data.aliases, description: patch.description ?? data.description }) }, tag.revision);
       },
       async delete(id) {
         const tag = await api.get(id);

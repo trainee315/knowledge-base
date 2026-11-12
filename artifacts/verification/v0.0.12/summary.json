@@ -1,0 +1,27 @@
+{
+  "status": "awaiting-user-acceptance",
+  "baseline": "31737efaef7b51e3d1e0fb2edda37b25bddae833",
+  "mainIntegrated": "560c94d",
+  "branch": "codex/v0.0.12-codex-cli",
+  "tests": {
+    "baseline": 136,
+    "final": 162,
+    "passed": 162,
+    "chains": 10,
+    "codexBrowser": true,
+    "existingPluginBrowser": true,
+    "existingTranscriptBrowser": true
+  },
+  "live": {
+    "model": "gpt-6-astra",
+    "cli": "codex-cli 0.167.2",
+    "frozenModelVerified": true,
+    "sessionElapsedMs": 6634,
+    "usage": {
+      "inputTokens": 11346,
+      "outputTokens": 90,
+      "totalTokens": 11436
+    }
+  },
+  "mainMerged": false
+}

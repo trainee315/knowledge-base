@@ -1,0 +1,14 @@
+{
+  "desktop": "1440x1000",
+  "mobile": "390x844",
+  "checks": [
+    "browse-documents",
+    "original-location",
+    "keyword-to-fragment",
+    "create-and-auto-match",
+    "rematch",
+    "delete-and-reload",
+    "mobile-no-overflow"
+  ],
+  "pageErrors": []
+}

@@ -184,7 +184,7 @@ export const organizerPlugin: PluginDefinition = {
     context.registerCommand('organize submit', async ({ input }) => api.submit(input as unknown as Parameters<OrganizerApi['submit']>[0]));
     context.registerCommand('organize run', async ({ input }) => api.run({ maxTasks: number(input.maxTasks, 20), maxDurationMs: number(input.maxDurationMs, 60_000), maxCalls: number(input.maxCalls, 0), maxCost: number(input.maxCost, 0) }));
     context.registerCommand('organize reconcile', async () => api.reconcile());
-    return { api, async refresh() { await api.run(); } };
+    return { api, async refresh() { if (!await context.store.read('semantic-mode', false)) await api.run(); } };
   },
 };
 export default organizerPlugin;

@@ -1,3 +1,6 @@
+import { semanticResourceQuery } from '../semantic/query.js';
+import { semanticEnabled } from '../semantic/source.js';
+import { semanticCommand } from '../semantic/api.js';
 import { CoreManager } from '../core/manager.js';
 import { KnowledgeError } from '../core/errors.js';
 import { openApplication } from '../index.js';
@@ -15,6 +18,8 @@ function object(input: Record<string, unknown>, key: string, fallback: JsonObjec
 function array(input: Record<string, unknown>, key: string): string[] | undefined { const value = input[key]; if (value === undefined) return undefined; if (typeof value === 'string') return value.split(','); if (!Array.isArray(value) || value.some(item => typeof item !== 'string')) argumentError(`参数 ${key} 必须为字符串数组`); return value; }
 export async function dispatch(dataDir: string, words: string[], input: Record<string, unknown>, stdinBytes?: Buffer): Promise<unknown> {
   const [group, action] = words;
+  if (group === 'semantic') return semanticCommand(dataDir, action, input);
+  if (group === 'organize' && action === 'run' && await semanticEnabled(dataDir)) return semanticCommand(dataDir, 'run', input);
   if (group === 'recall') return recallCommand(dataDir, words, input);
   if (group === 'note') return noteCommand(dataDir, action, input, async () => stdinBytes ?? Buffer.alloc(0));
   if (group === 'transcript') return transcriptCommand(dataDir, action, input);
@@ -69,7 +74,7 @@ export async function dispatch(dataDir: string, words: string[], input: Record<s
     } else if (group === 'backup') result = await manager.backup(string(input, 'file')!);
     else if (group === 'check') { result = await manager.check();  }
     else if (group === 'reindex') result = await manager.reindex();
-    else { const names = plugins.commandNames().sort((a, b) => b.split(' ').length - a.split(' ').length); const name = names.find(candidate => words.slice(0, candidate.split(' ').length).join(' ') === candidate); if (!name) argumentError(`未知命令 ${words.join(' ')}`); result = await plugins.execute(name, input, words.slice(name.split(' ').length)); changed = group === 'tag' && ['create', 'update', 'delete', 'clear', 'decide'].includes(action); }
+    else { const names = plugins.commandNames().sort((a, b) => b.split(' ').length - a.split(' ').length); const name = names.find(candidate => words.slice(0, candidate.split(' ').length).join(' ') === candidate); if (!name) argumentError(`未知命令 ${words.join(' ')}`); result = name === 'organize query' ? await semanticResourceQuery(dataDir, input, value => plugins.execute(name, value, [])) : await plugins.execute(name, input, words.slice(name.split(' ').length)); changed = group === 'tag' && ['create', 'update', 'delete', 'clear', 'decide'].includes(action); }
     if (changed) await plugins.refresh();
     return result;
   } finally { await application.close(); }

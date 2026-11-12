@@ -5,6 +5,7 @@ type Command = { fields: string[]; description: string; behavior: string; exampl
 // CLI 与服务业务入口共用字段白名单，帮助内容与参数校验保持同源。
 const fields: Record<string, Field> = {};
 function define(names: string, type: Field['type'], description: string) { for (const name of names.split(' ')) fields[name] = { type, description }; }
+define('name description view keyword', 'string', '语义标签名称/说明、浏览类型或关键词筛选');
 define('id alias sessionId', 'string', 'id/alias定位转录组织（二选一）；sessionId仅缩小本次源会话范围');
 define('source sourceRoot startDate timezone projectDir focus profile preprocessing from to', 'string', '转录配置；from/to须日期或带时区ISO，profile为Agent模型配置（DeepSeek或服务器Codex CLI）');
 define('maxCalls maxSessions maxInputBytes maxChunkBytes maxDurationMs intervalMinutes expectedRevision expectedCronRevision revision', 'integer', '非负整数；预算字段覆盖本次值，不修改实例配置');
@@ -44,11 +45,19 @@ for (const action of ['status', 'prepare']) register('recall model ' + action, '
 register('recall workload', 'command args cwd', '显式开发负载保护', '运行本机开发命令；日志stderr，不经过shell', { command: 'npm', args: ['run', 'build'] });
 register('recall eval', 'cwd cases modes', '固定用例评价', '按模式运行本机模型', { cases: [], modes: ['bm25'] });
 
+// 语义命令接入主线帮助契约，帮助路径不连接服务或启动匹配。
+for (const action of ['list', 'get']) register('semantic ' + action, 'id view query keyword offset limit', '浏览语义标签及匹配结果', '只读；view为documents/fragments/keywords', action === 'get' ? { id: '<标签UUID>', view: 'fragments' } : {});
+register('semantic create', 'name description', '新增共享标签', '保存后后台匹配；不调用生成模型', { name: '性能优化', description: '游戏渲染与资源加载' });
+register('semantic update', 'id name description', '修改标签含义', '仅重新匹配该标签', { id: '<标签UUID>', description: '游戏性能' });
+for (const action of ['delete', 'retry']) register('semantic ' + action, 'id', action === 'delete' ? '删除标签入口并保留原文' : '重新匹配标签', '写标签状态；历史定义和原文保留', { id: '<标签UUID>' });
+register('semantic retry-all', '', '重试失败的语义任务', '排队；复用成功的编码缓存', {});
+register('semantic run', '', '执行一批语义任务', '写派生结果，可能调用本地编码模型', {});
+
 export const booleanOptions = new Set(['stdin', 'json', 'help', 'copy', 'cascade', 'includeDeleted', 'content', ...Object.keys(fields).filter(key => fields[key].type === 'boolean')]);
 const transport = new Set(['input', 'json', 'help', 'dataDir']);
 /** 在任何业务动作前拒绝未知参数；嵌套字段及值域由所属业务继续核验。 */
 export function validateCommand(words: string[], input: Record<string, unknown>): void {
-  if (!['transcript', 'recall'].includes(words[0])) return;
+  if (!['transcript', 'recall', 'semantic'].includes(words[0])) return;
   const spec = commands[words.join(' ')];
   const invalid = (message: string): never => { throw new KnowledgeError('INVALID_ARGUMENT', message, undefined, 2); };
   if (!spec) invalid('未知命令或多余位置参数：' + words.join(' '));
@@ -57,7 +66,7 @@ export function validateCommand(words: string[], input: Record<string, unknown>)
     if (!spec.fields.includes(key)) invalid(`未知或不适用参数 ${key}；请查看 ${words.join(' ')} --help`);
     const field = fields[key];
     if (value === null && field.nullable) continue;
-    const valid = field.type === 'string' ? typeof value === 'string' && (key === 'focus' || value.trim().length > 0)
+    const valid = field.type === 'string' ? typeof value === 'string' && (['focus', 'description'].includes(key) || value.trim().length > 0)
       : field.type === 'integer' ? (typeof value === 'number' || typeof value === 'string' && /^\d+$/.test(value)) && Number.isSafeInteger(Number(value)) && Number(value) >= 0
       : field.type === 'boolean' ? [true, false, 'true', 'false'].includes(value as any)
       : field.type === 'array' ? Array.isArray(value) : value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -67,10 +76,11 @@ export function validateCommand(words: string[], input: Record<string, unknown>)
 
 export function commandHelp(words: string[]) {
   const name = words.join(' '), spec = commands[name];
-  if (!spec) return { version: '0.0.5', usage: 'cli.bat <command> --input UTF8.json|- --data-dir path --json', commands: Object.keys(commands).filter(key => !name || name === 'help' || key.startsWith(name)), otherCommands: ['resource import/list/get/update/delete/restore/purge/history', 'note add/list/get', 'meta get/set', 'service start/stop/restart/status', 'preview start/stop/status (服务兼容入口)', 'organization create/list/get/update/delete', 'organization-type register/list/get/update/enable/disable/delete', 'plugin list/enable/disable/refresh', 'project-track create/list/get/add/documents/read/query', 'agent status|check|test / profile list|get|set|delete / config get|set / generate text|object', 'backup --file path', 'restore --file path', 'check', 'reindex', 'cron types/create/list/get/update/enable/disable/delete/run/retry/runs', 'content/keyword/tag/relation/system/task/organize/schedule (插件命令)'] };
+  if (!spec) return { version: '0.0.11', usage: 'cli.bat <command> --input UTF8.json|- --data-dir path --json', commands: Object.keys(commands).filter(key => !name || name === 'help' || key.startsWith(name)), otherCommands: ['resource import/list/get/update/delete/restore/purge/history', 'note add/list/get', 'meta get/set', 'service start/stop/restart/status', 'preview start/stop/status (服务兼容入口)', 'organization create/list/get/update/delete', 'organization-type register/list/get/update/enable/disable/delete', 'plugin list/enable/disable/refresh', 'project-track create/list/get/add/documents/read/query', 'agent status|check|test / profile list|get|set|delete / config get|set / generate text|object', 'backup --file path', 'restore --file path', 'check', 'reindex', 'cron types/create/list/get/update/enable/disable/delete/run/retry/runs', 'content/keyword/tag/relation/system/task/organize/schedule (插件命令)'] };
   const helpFields = Object.fromEntries(spec.fields.map(key => [key, { ...fields[key] }]));
+  if (name.startsWith('semantic ') && helpFields.id) helpFields.id.description = '共享标签 UUID；不是资源或片元 ID';
   if (name.startsWith('recall ') && helpFields.id) helpFields.id.description = '资源resourceId或已返回的片元ID；不是组织ID、sessionId或projectId';
   if (name === 'transcript configure') helpFields.alias.description = '修改实例别名；定位必须使用id';
-  const required = name === 'transcript create' ? ['alias', 'startDate'] : name === 'transcript configure' ? ['id'] : name === 'recall configure' ? ['expectedRevision', 'projects'] : name === 'transcript backfill' ? ['id或alias', 'from'] : name.startsWith('transcript ') && !['list', 'tick'].includes(words[1]) ? ['id或alias'] : name === 'recall read' ? ['id', '确定的项目范围'] : [];
+  const required = name === 'semantic create' ? ['name'] : ['semantic get', 'semantic update', 'semantic delete', 'semantic retry'].includes(name) ? ['id'] : name === 'transcript create' ? ['alias', 'startDate'] : name === 'transcript configure' ? ['id'] : name === 'recall configure' ? ['expectedRevision', 'projects'] : name === 'transcript backfill' ? ['id或alias', 'from'] : name.startsWith('transcript ') && !['list', 'tick'].includes(words[1]) ? ['id或alias'] : name === 'recall read' ? ['id', '确定的项目范围'] : [];
   return { command: name, description: spec.description, behavior: spec.behavior, fields: helpFields, required, inputPrecedence: '命令行覆盖JSON；执行预算覆盖实例；retry策略来自冻结任务', example: spec.example, output: '单JSON，退出码0/1/2；检查业务complete/status及warnings。help不连接服务、不运行模型。' };
 }
