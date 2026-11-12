@@ -1,0 +1,46 @@
+{
+  "model": "6cf47aee644c477e707d490c24bb21fe16219d01aaa005f8cb4af39b783dce88",
+  "durationMs": 3089.7695000000003,
+  "first": {
+    "complete": true,
+    "pending": 0,
+    "retryAfterMs": 1000,
+    "encodedTexts": 32,
+    "cacheHits": 0,
+    "comparisons": 2,
+    "publishedResources": 2,
+    "publishedTags": 1
+  },
+  "unchanged": {
+    "complete": true,
+    "pending": 0,
+    "retryAfterMs": 1000,
+    "encodedTexts": 0,
+    "cacheHits": 0,
+    "comparisons": 0,
+    "publishedResources": 0,
+    "publishedTags": 0
+  },
+  "newTag": {
+    "complete": true,
+    "pending": 0,
+    "retryAfterMs": 1000,
+    "encodedTexts": 1,
+    "cacheHits": 0,
+    "comparisons": 2,
+    "publishedResources": 0,
+    "publishedTags": 1,
+    "durationMs": 547.9228000000003
+  },
+  "documents": [
+    {
+      "title": "render.md",
+      "score": 0.5982769628149669,
+      "fragments": 1
+    }
+  ],
+  "keywords": [
+    "ASTC 纹理压缩",
+    "压缩格式"
+  ]
+}

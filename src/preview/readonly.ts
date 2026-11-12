@@ -1,3 +1,4 @@
+import { semanticResourceQuery } from '../semantic/query.js';
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import type { CoreApi, ResourceMeta } from '../contracts/index.js';
 import { browse } from './browse.js';
@@ -60,7 +61,7 @@ export function createReadOnlyHandler(options: HandlerOptions) {
           input[name] = value;
         }
         let data;
-        try { data = await app.plugins.execute('organize query', input, []); }
+        try { data = options.dataDir ? await semanticResourceQuery(options.dataDir, input, value => app.plugins.execute('organize query', value, [])) : await app.plugins.execute('organize query', input, []); }
         catch (error) {
           if (!unavailable(error)) throw error;
           if (['body', 'keywords', 'tags', 'systems'].some((key) => input[key])) throw Object.assign(new Error('当前筛选需要启用相应业务插件'), { code: 'PLUGIN_UNAVAILABLE' });
@@ -83,7 +84,7 @@ export function createReadOnlyHandler(options: HandlerOptions) {
         } catch (error) { if (!unavailable(error)) throw error; }
         previewJson(response, 200, { ok: true, data: { resource, content } }); return true;
       }
-      if (url.pathname === '/api/organizations') { previewJson(response, 200, { ok: true, data: (await app.manager.listOrganizations()).map(org => org.type === 'session-transcript' ? { ...org, data: { schemaVersion: 1 } } : org) }); return true; }
+      if (url.pathname === '/api/organizations') { previewJson(response, 200, { ok: true, data: (await app.manager.listOrganizations()).filter(org => !org.data.semanticDeletedAt).map(org => org.type === 'session-transcript' ? { ...org, data: { schemaVersion: 1 } } : org) }); return true; }
       if (url.pathname === '/api/organization-types') { previewJson(response, 200, { ok: true, data: await app.manager.listOrganizationTypes() }); return true; }
       if (url.pathname === '/api/plugins') {
         const list = await app.plugins.list() as any[];

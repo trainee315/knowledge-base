@@ -35,6 +35,7 @@ export const keywordsPlugin: PluginDefinition = {
       async extract(id) {
         const resource = await context.core.getResource(id);
         const current = await api.get(id);
+        if (current?.inputVersion === resource.contentVersion && current.processorVersion.startsWith('semantic-keywords-')) return current;
         const version = `${PROCESSOR_VERSION}:content-${content.processorVersion}`;
         if (current?.inputVersion === resource.contentVersion && current.processorVersion === version) return current;
         const parsed = await content.extract(id);

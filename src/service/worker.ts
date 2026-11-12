@@ -14,6 +14,7 @@ import { dispatch } from './dispatch.js';
 import { getServicePort, openServiceDatabase, setServicePort } from './database.js';
 import { createCronService } from './cron-service.js';
 import { backupRestore, finishRestore } from './backup.js';
+import { semanticService } from '../semantic/service.js';
 import { handlePluginRoutes } from './plugin-routes.js';
 
 // 命令请求可携带二进制原文；浏览器写 API 自行使用更小限制。
@@ -79,12 +80,13 @@ async function start(): Promise<void> {
   let cron: Awaited<ReturnType<typeof createCronService>> | undefined;
   let server: ReturnType<typeof createServer> | undefined;
   let closing: Promise<void> | undefined;
+  const semantic = semanticService(dataDir, action => queue.run(action));
 
   function close(): Promise<void> {
     stopping = true;
     closing ??= (async () => {
       try {
-        await Promise.allSettled([cron?.stop(), ...inFlight]);
+        await Promise.allSettled([semantic.stop(), cron?.stop(), ...inFlight]);
       } finally {
         try {
           // 备份或恢复的 finally 可能重新启用计时器；请求排空后再次停止。
@@ -148,12 +150,13 @@ async function start(): Promise<void> {
           if (words[0] === 'backup' || words[0] === 'restore') {
             if (inFlight.size > 1 || maintenance) throw new KnowledgeError('SERVICE_BUSY', '有其他请求正在执行，请稍后重试备份或恢复');
             maintenance = true;
-            try { data = await queue.run(() => backupRestore(words[0] as 'backup' | 'restore', input, dataDir, database, scheduler)); }
-            finally { maintenance = false; }
+            try { await semantic.stop(); data = await queue.run(() => backupRestore(words[0] as 'backup' | 'restore', input, dataDir, database, scheduler)); }
+            finally { maintenance = false; if (!stopping) semantic.start(); }
           } else {
             const result = await queue.run(() => scheduler.command(words, input));
             data = result.handled ? result.data : await domainDispatch(words, input, stdinBytes);
           }
+          semantic.wake();
           previewJson(response, 200, { ok: true, data });
         } catch (error) {
           if (error instanceof KnowledgeError && error.code === 'RESTORE_RECOVERY_REQUIRED') {
@@ -170,6 +173,7 @@ async function start(): Promise<void> {
       }
       if (url.pathname.startsWith('/api/')) {
         await queue.run(async () => {
+          if (await semantic.handle(request, response, url, origin)) return;
           if (await handlePluginRoutes(request, response, url, origin, { dataDir, dispatch: domainDispatch, cron: scheduler })) return;
           const app = await openApplication(dataDir, { readOnly: true });
           try {
@@ -227,6 +231,7 @@ async function start(): Promise<void> {
     setServicePort(database, requestedPort);
     await saveServiceState({ ...state, token });
     scheduler.start();
+    semantic.start();
     process.send?.({ ok: true, state });
     for (const signal of ['SIGINT', 'SIGTERM'] as const) process.once(signal, shutdown);
   } catch (error) {

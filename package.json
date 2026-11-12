@@ -1,6 +1,6 @@
 {
   "name": "agent-knowledge-base",
-  "version": "0.0.5",
+  "version": "0.0.11",
   "private": true,
   "type": "module",
   "engines": {
@@ -19,7 +19,8 @@
     "cli": "node dist/cli/main.js",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test:recall": "npm run build:core && node --test dist/recall/recall.test.js && node tests/recall/cli.mjs",
-    "demo:recall": "npm run build:core && node tests/recall/demo.mjs"
+    "demo:recall": "npm run build:core && node tests/recall/demo.mjs",
+    "test:semantic": "npm run build:core && node --test dist/semantic/*.test.js"
   },
   "dependencies": {
     "@huggingface/transformers": "3.8.1",
