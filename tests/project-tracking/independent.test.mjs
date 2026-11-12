@@ -2,10 +2,9 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { spawnSync } from 'node:child_process';
-import { fileURLToPath } from 'node:url';
 import { CoreManager, openApplication } from '../../dist/index.js';
 import { createHarness, digest, getNetworkAttempts, libraryFingerprint } from './helpers.mjs';
+import { preloadEnvironment, serviceCli } from '../service-cli.mjs';
 
 const fields = { role: 'change', projectVersion: '0.0.2', stage: 'verified' };
 const add = (h, projectId, resource, options = {}) => h.project.add({ ...fields, projectId, resourceId: resource.id, title: resource.originalName, ...options });
@@ -192,18 +191,28 @@ test('backup restores pinned recycled history and future project schema fails wi
 
 test('fixed CLI query/read work while writer holds lock and perform no business writes or network', async () => {
   const h = await createHarness();
+  const counter = join(h.root, 'blocked-requests.txt');
+  const env = preloadEnvironment(new URL('../agent/offline-fetch.mjs', import.meta.url), { ...process.env, KB_OFFLINE_COUNTER_FILE: counter });
+  let service;
   try {
     const project = await create(h), body = '\uFEFF CLI full-body \r\n' + '完整页面'.repeat(3000) + ' tail  \r\n';
     const resource = await h.import('cli.txt', body); const saved = await baseline(h, project.id, resource);
+    await h.close();
+    await writeFile(counter, '');
+    service = serviceCli(h.dataDir, ['service', 'start'], { env });
+    await h.open();
     const before = await libraryFingerprint(h.dataDir);
     for (const [operation, input] of [['query', { projectId: project.id }], ['read', { projectId: project.id, entryId: saved.entry.id }]]) {
-      const child = spawnSync(process.execPath, ['--import', new URL('../agent/offline-fetch.mjs', import.meta.url).href, fileURLToPath(new URL('../../dist/cli/main.js', import.meta.url)), 'project-track', operation, '--data-dir', h.dataDir, '--input', '-', '--json'], { input: JSON.stringify(input), encoding: 'utf8', windowsHide: true, timeout: 15000, maxBuffer: 8 * 1024 * 1024 });
-      assert.equal(child.status, 0, child.stdout); const response = JSON.parse(child.stdout); assert.equal(response.ok, true);
-      assert.equal(operation === 'read' ? response.data.text : response.data.items[0].text, body);
-      assert.match(child.stderr, /KB_OFFLINE_REQUEST_COUNT:0/);
+      const result = serviceCli(h.dataDir, ['project-track', operation], { input, env });
+      assert.equal(operation === 'read' ? result.text : result.items[0].text, body);
     }
-    assert.deepEqual(await libraryFingerprint(h.dataDir), before); assert.equal(getNetworkAttempts(), 0);
-  } finally { await h.cleanup(); }
+    assert.deepEqual(await libraryFingerprint(h.dataDir), before);
+    assert.equal(await readFile(counter, 'utf8'), '');
+    assert.equal(getNetworkAttempts(), 0);
+  } finally {
+    try { if (service) serviceCli(h.dataDir, ['service', 'stop'], { env }); }
+    finally { await h.cleanup(); }
+  }
 });
 
 test('calendar-invalid or timezone-free dates and unsafe version integers fail without project writes', async () => {

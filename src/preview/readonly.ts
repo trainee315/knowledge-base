@@ -13,6 +13,7 @@ interface HandlerOptions {
   getOrigin(): string;
   dataDir?: string;
   control?: (request: IncomingMessage, response: ServerResponse, url: URL) => Promise<void>;
+  extension?: (request: IncomingMessage, response: ServerResponse, url: URL, origin: string) => Promise<boolean>;
 }
 // 只向浏览器内联显示被动图片格式，SVG/HTML 等原件统一作为附件下载。
 const INLINE_MEDIA = new Set(['image/png', 'image/jpeg', 'image/gif', 'image/webp', 'image/avif', 'image/bmp']);
@@ -40,12 +41,13 @@ export function createReadOnlyHandler(options: HandlerOptions) {
       const origin = options.getOrigin();
       if (!origin || request.headers.host !== new URL(origin).host || (request.headers.origin && request.headers.origin !== origin)) { previewJson(response, 403, { ok: false, error: { code: 'LOCAL_ONLY', message: '仅允许本地同源访问' } }); return true; }
       const url = new URL(request.url ?? '/', origin);
-      if (options.dataDir && await handleTranscripts(request, response, url, options.dataDir, origin)) return true;
       if (url.pathname === '/_control' || url.pathname.startsWith('/_control/')) {
         if (options.control) await options.control(request, response, url);
         else previewJson(response, 404, { ok: false, error: { code: 'NOT_FOUND', message: '开发服务器不提供控制接口' } });
         return true;
       }
+      if (await options.extension?.(request, response, url, origin)) return true;
+      if (options.dataDir && await handleTranscripts(request, response, url, options.dataDir, origin)) return true;
       if (request.method !== 'GET' && request.method !== 'HEAD') { previewJson(response, 405, { ok: false, error: { code: 'READ_ONLY', message: '预览只支持读取' } }); return true; }
       if (url.pathname.startsWith('/api/browse/') || url.pathname.startsWith('/api/project-tracking/')) { previewJson(response, 200, { ok: true, data: await browse(app, url) }); return true; }
       if (url.pathname === '/api/resources') {

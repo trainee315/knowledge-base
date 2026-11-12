@@ -14,7 +14,9 @@ test('CLI has single-object output, UTF8 input, correct exit codes and read-only
   const dir = await mkdtemp(path.join(os.tmpdir(), 'knowledge-cli-'));
   const dataDir = path.join(dir, '中文 空格');
   try {
-    let result = run(dataDir, ['--json', 'resource', 'list']); assert.equal(result.status, 0); assert.deepEqual(result.data.data, []);
+    let result = run(dataDir, ['--json', 'resource', 'list']); assert.equal(result.status, 1); assert.equal(result.data.error.code, 'SERVICE_OFFLINE');
+    result = run(dataDir, ['service', 'start']); assert.equal(result.status, 0, result.stdout);
+    result = run(dataDir, ['--json', 'resource', 'list']); assert.equal(result.status, 0); assert.deepEqual(result.data.data, []);
     result = run(dataDir, ['resource', 'import']); assert.equal(result.status, 2); assert.equal(result.data.error.code, 'INVALID_ARGUMENT');
     result = run(dataDir, ['resource', 'get', '--id', 'not-a-uuid']); assert.equal(result.status, 1); assert.equal(result.data.error.code, 'INVALID_ID');
     const source = path.join(dir, '中文.md'); await writeFile(source, '# 单一 JSON 输出\n脚本导入');
@@ -22,5 +24,8 @@ test('CLI has single-object output, UTF8 input, correct exit codes and read-only
     const manager = await CoreManager.open(dataDir);
     try { const stateBefore = await readFile(manager.storage.resolve('plugins/tasks/data/queue.json'), 'utf8'); result = run(dataDir, ['resource', 'list']); assert.equal(result.status, 0); assert.equal(result.data.data.length, 1); result = run(dataDir, ['organize', 'query', '--input', '-'], { filename: ['中文'] }); assert.equal(result.status, 0); assert.equal(result.data.data.total, 1); const stateAfter = await readFile(manager.storage.resolve('plugins/tasks/data/queue.json'), 'utf8'); assert.equal(stateAfter, stateBefore); result = run(dataDir, ['resource', 'delete', '--id', id]); assert.equal(result.status, 1); assert.equal(result.data.error.code, 'WRITER_LOCKED'); } finally { await manager.close(); }
     result = run(dataDir, ['resource', 'delete', '--id', id]); assert.equal(result.status, 0); result = run(dataDir, ['resource', 'restore', '--id', id]); assert.equal(result.status, 0);
-  } finally { await rm(dir, { recursive: true, force: true }); }
+  } finally {
+    run(dataDir, ['service', 'stop']);
+    await rm(dir, { recursive: true, force: true });
+  }
 });

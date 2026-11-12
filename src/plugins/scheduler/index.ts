@@ -4,9 +4,9 @@ import type { RunOptions } from '../tasks/index.js';
 import { boolean, manifest, number, required } from '../shared.js';
 
 // 只保存调度配置并响应显式tick，不注册系统任务或唤起独立Agent。
-const DEFAULT_CONFIG: ScheduleConfig = { enabled: true, time: '03:00', timezone: 'Asia/Shanghai', maxTasks: 100, maxDurationMs: 60_000, maxCalls: 0, maxCost: 0 };
+export const DEFAULT_CONFIG: ScheduleConfig = { enabled: true, time: '03:00', timezone: 'Asia/Shanghai', maxTasks: 100, maxDurationMs: 60_000, maxCalls: 0, maxCost: 0 };
 export interface ScheduleConfig extends RunOptions { enabled: boolean; time: string; timezone: string }
-interface ScheduleState { config: ScheduleConfig; lastDate?: string; lastRun?: string; lastAttempt?: string; lastAttemptComplete?: boolean; lastError?: string }
+export interface ScheduleState { config: ScheduleConfig; lastDate?: string; lastRun?: string; lastAttempt?: string; lastAttemptComplete?: boolean; lastError?: string }
 export interface SchedulerApi {
   get(): Promise<ScheduleState>; configure(input: Partial<ScheduleConfig>): Promise<ScheduleState>;
   tick(now?: string): Promise<unknown>; run(now?: string): Promise<unknown>;

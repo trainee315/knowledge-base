@@ -12,6 +12,7 @@ import { CoreManager } from '../core/manager.js';
 import type { AgentApi, AgentResult } from '../agent/types.js';
 import type { Organization } from '../contracts/index.js';
 import { spawnSync } from 'node:child_process';
+import { handleService } from '../service/client.js';
 import { browse } from '../preview/browse.js';
 
 const AT = '2026-01-01T01:00:00Z';
@@ -19,7 +20,15 @@ function rows(id = 's1', complete = true, cwd = 'D:/project/example') {
   const row = (type: string, payload: object) => JSON.stringify({ timestamp: AT, type, payload });
   return [row('session_meta', { id, cwd, source: 'cli' }), row('event_msg', { type: 'task_started' }), row('response_item', { type: 'message', role: 'user', content: [{ type: 'input_text', text: '要求将限制设为 12，先提出计划，不表示实施。' }] }), row('response_item', { type: 'message', role: 'assistant', content: [{ type: 'output_text', text: '纠正：实际设为 8，已执行命令，但测试失败，仍未验证通过。' }] }), ...(complete ? [row('event_msg', { type: 'task_complete' })] : [])].join('\n') + '\n';
 }
-async function fixture(t: { after(fn: () => Promise<unknown>): void }) { const root = await fs.mkdtemp(path.join(os.tmpdir(), 'kb-records-')); t.after(() => fs.rm(root, { recursive: true, force: true })); const sourceRoot = path.join(root, 'source'); await fs.mkdir(sourceRoot); return { root, sourceRoot, data: path.join(root, 'data') }; }
+async function fixture(t: { after(fn: () => Promise<unknown>): void }, withService = false) {
+  const root = await fs.mkdtemp(path.join(os.tmpdir(), 'kb-records-'));
+  const data = path.join(root, 'data');
+  t.after(async () => { if (withService) await handleService(['stop'], data); await fs.rm(root, { recursive: true, force: true }); });
+  const sourceRoot = path.join(root, 'source');
+  await fs.mkdir(sourceRoot);
+  if (withService) await handleService(['start'], data);
+  return { root, sourceRoot, data };
+}
 function fake(counter: { calls: number }, fail = false): Pick<AgentApi, 'generateObject'> { return { async generateObject<T>(input: import('../agent/types.js').GenerateObjectInput): Promise<AgentResult<T>> { counter.calls++; if (fail) throw new Error('SYNTHETIC_FAILURE'); const messages = JSON.parse(input.messages.at(-1)!.content).messages; return { value: { title: '合成转录', sections: [{ heading: '纠正与验证', body: '要求先提出12，实际改为8；测试失败，尚未通过。', evidence: messages.map((item: { position: number }) => item.position) }] } as T, profileId: 'test', profileRevision: 1, provider: { id: 'fake', version: '1' }, model: 'fake', configurationHash: 'test', usage: { inputTokens: 1, outputTokens: 1, totalTokens: 2 }, finishReason: 'stop' }; } }; }
 const noStdin = async () => Buffer.alloc(0);
 
@@ -109,7 +118,7 @@ test('filters, budgets and backfill retain excluded historical material', async 
 });
 
 test('CLI stdin is byte faithful, JSON stdout and invalid arguments exit 2', async t => {
-  const { data } = await fixture(t);
+  const { data } = await fixture(t, true);
   const cli = (args: string[], input?: Buffer) => spawnSync(process.execPath, ['dist/cli/main.js', ...args, '--data-dir', data, '--json'], { input });
   const bytes = Buffer.from('\uFEFF# CLI\r\n body  \r\n');
   const added = cli(['note', 'add', '--stdin'], bytes); assert.equal(added.status, 0, added.stderr.toString()); const result = JSON.parse(added.stdout.toString()); assert.equal(result.ok, true);

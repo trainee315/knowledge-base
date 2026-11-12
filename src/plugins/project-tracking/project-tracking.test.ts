@@ -4,6 +4,7 @@ import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
 import { spawnSync } from 'node:child_process';
+import { handleService } from '../../service/client.js';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { CoreManager } from '../../core/manager.js';
@@ -16,15 +17,17 @@ import type { Organization, ResourceMeta } from '../../contracts/index.js';
 import type { AddProjectEntryInput, ProjectData, ProjectDocument, ProjectQueryResult } from './types.js';
 
 const definitions = [contentPlugin, keywordsPlugin, tagsPlugin, projectTrackingPlugin];
-async function fixture() {
+async function fixture(withService = false) {
   const root = await fs.mkdtemp(path.join(os.tmpdir(), 'kb-project-unit-'));
-  const manager = await CoreManager.open(path.join(root, 'data'));
+  const dataDir = path.join(root, 'data');
+  if (withService) await handleService(['start'], dataDir);
+  const manager = await CoreManager.open(dataDir);
   const plugins = new PluginHost(manager, definitions); await plugins.start();
   const exec = <T = unknown>(name: string, input: object = {}) => plugins.execute(`project-track ${name}`, input as Record<string, unknown>) as Promise<T>;
   const create = (name = '项目甲') => exec<Organization>('create', { name });
   async function resource(name: string, text: string) { const file = path.join(root, name); await fs.writeFile(file, text); return (await manager.importResource(file)).resource; }
   const add = (projectId: string, source: ResourceMeta, patch: Partial<AddProjectEntryInput> = {}) => exec<{ entry: ProjectData['entries'][number]; replayed: boolean }>('add', { projectId, resourceId: source.id, title: '记录', role: 'baseline', stage: 'confirmed', projectVersion: '1.0.0', ...patch });
-  return { root, manager, plugins, exec, create, resource, add, async close() { await plugins.stop(); await manager.close(); await fs.rm(root, { recursive: true, force: true }); } };
+  return { root, manager, plugins, exec, create, resource, add, async close() { await plugins.stop(); await manager.close(); if (withService) await handleService(['stop'], dataDir); await fs.rm(root, { recursive: true, force: true }); } };
 }
 
 test('项目固定全文/标签别名/关键词快照；旧版本unknown与显式known-empty不混淆', async () => {
@@ -115,7 +118,7 @@ test('项目范围/引用保护/备份恢复/future schema/非法解析及参数
 });
 
 test('真实CLI只读命令在writer持锁时零写入；参数失败退出2；替代标注使用过滤前全域', async () => {
-  const f = await fixture();
+  const f = await fixture(true);
   try {
     const project = await f.create(); const source = await f.resource('cli.txt', 'original cli body');
     const tag = await f.plugins.execute('tag create', { name: '仅旧文档', aliases: ['old-only'] }) as Organization;

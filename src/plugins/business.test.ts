@@ -4,6 +4,7 @@ import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
 import { spawnSync } from 'node:child_process';
+import { handleService } from '../service/client.js';
 import { fileURLToPath } from 'node:url';
 import { openApplication } from '../index.js';
 import { CoreManager } from '../core/manager.js';
@@ -98,6 +99,7 @@ test('独立CLI进程自动导入链路与结构化候选提交', async () => {
     assert.equal(output.ok, true); return output.data;
   }
   try {
+    await handleService(['start'], path.join(root, 'data'));
     const filename = path.join(root, 'compression.md'); await fs.writeFile(filename, '# 图像压缩\nPNG compression');
     const imported = run(['resource', 'import'], { file: filename }) as { resource: { id: string } };
     run(['tag', 'create'], { name: 'compression', aliases: ['图像压缩'] });
@@ -118,7 +120,7 @@ test('独立CLI进程自动导入链路与结构化候选提交', async () => {
     assert.equal(fallback.total, 1); assert.equal(fallback.items[0].parseStatus, 'unsupported');
     const missingTag = spawnSync(process.execPath, [cli, 'tag', 'decide', '--data-dir', path.join(root, 'data'), '--input', '-', '--json'], { input: JSON.stringify({ resourceId: imported.resource.id, tagId: '00000000-0000-4000-8000-000000000000', accepted: true, source: 'codex', reason: '无效引用', contentVersion: 1, tagRevision: 1 }), encoding: 'utf8' });
     assert.equal(missingTag.status, 1); assert.equal(JSON.parse(missingTag.stdout).ok, false); assert.match(JSON.parse(missingTag.stdout).error.message, /NOT_FOUND/u);
-  } finally { await fs.rm(root, { recursive: true, force: true }); }
+  } finally { await handleService(['stop'], path.join(root, 'data')); await fs.rm(root, { recursive: true, force: true }); }
 });
 
 test('评分处理器版本变化重新排队，旧处理器候选不能提交', async () => {

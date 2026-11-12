@@ -63,6 +63,8 @@ test('agent CLI inspection is read-only without keys and profiles/backups only p
   const dir = await mkdtemp(path.join(os.tmpdir(), 'kb-agent-config-')); const dataDir = path.join(dir, 'data'); const cli = fileURLToPath(new URL('../cli/main.js', import.meta.url));
   const env = { ...process.env }; delete env.DEEPSEEK_API_KEY;
   try {
+    const started = spawnSync(process.execPath, [cli, 'service', 'start', '--data-dir', dataDir, '--json'], { encoding: 'utf8', env });
+    assert.equal(started.status, 0, started.stdout + started.stderr);
     for (const args of [['status'], ['profile', 'list'], ['profile', 'get'], ['config', 'get']]) { const child = spawnSync(process.execPath, [cli, 'agent', ...args, '--data-dir', dataDir, '--json'], { encoding: 'utf8', env }); assert.equal(child.status, 0, child.stdout); assert.equal(JSON.parse(child.stdout).ok, true); }
     await assert.rejects(readFile(path.join(dataDir, 'state/generation.json')), { code: 'ENOENT' });
     const app = await openApplication(dataDir);
@@ -74,5 +76,8 @@ test('agent CLI inspection is read-only without keys and profiles/backups only p
       const backup = path.join(dir, 'backup.json'); await app.manager.backup(backup); const encoded = JSON.parse(await readFile(backup, 'utf8')); const all = encoded.entries.map((entry: { content: string }) => Buffer.from(entry.content, 'base64').toString('utf8')).join('\n'); assert(!all.includes('forbidden-fixture'));
       const reader = spawnSync(process.execPath, [cli, 'agent', 'status', '--data-dir', dataDir, '--json'], { encoding: 'utf8', env }); assert.equal(reader.status, 0, reader.stdout);
     } finally { await app.close(); }
-  } finally { await rm(dir, { recursive: true, force: true }); }
+  } finally {
+    spawnSync(process.execPath, [cli, 'service', 'stop', '--data-dir', dataDir, '--json'], { encoding: 'utf8', env });
+    await rm(dir, { recursive: true, force: true });
+  }
 });

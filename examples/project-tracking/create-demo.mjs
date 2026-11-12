@@ -5,22 +5,23 @@ import { access, copyFile, mkdir, mkdtemp, readFile, writeFile } from 'node:fs/p
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { preloadEnvironment } from '../../tests/service-cli.mjs';
 
 // 仅读取两个明确的公开发布事实：本地002 tag及该commit的package版本，不扫描仓库内容。
 const REPO = fileURLToPath(new URL('../../', import.meta.url));
 const ENTRY = join(REPO, 'dist/cli/main.js');
 const SAMPLES = fileURLToPath(new URL('./', import.meta.url));
-const FENCE = new URL('../../tests/project-tracking/offline-fetch.mjs', import.meta.url).href;
+const FENCE = new URL('../../tests/project-tracking/offline-fetch.mjs', import.meta.url);
 const PPC = process.env.PPC_CLI_PATH ?? 'C:/Users/mamar/Desktop/personalProjectCenter/cli/ppc.mjs';
 const RELEASE_TAG = 'v0.0.2';
-const COMMAND_TIMEOUT_MS = 60_000; // 单条本地CLI有界退出，不启动服务或后台任务。
-let demoRoot, dataDir;
+const COMMAND_TIMEOUT_MS = 60_000;
+let demoRoot, dataDir, service, offlineEnv;
 const hash = (bytes) => createHash('sha256').update(bytes).digest('hex');
 
 /** 所有正式数据经真实CLI写入；stdin保留JSON及中文路径，外部fetch始终封锁。 */
 async function cli(words, input = {}) {
   return new Promise((done, fail) => {
-    const child = spawn(process.execPath, ['--import', FENCE, ENTRY, ...words, '--input', '-', '--data-dir', dataDir, '--json'], { cwd: REPO, shell: false, windowsHide: true, stdio: ['pipe', 'pipe', 'pipe'] });
+    const child = spawn(process.execPath, [ENTRY, ...words, '--input', '-', '--data-dir', dataDir, '--json'], { cwd: REPO, env: offlineEnv, shell: false, windowsHide: true, stdio: ['pipe', 'pipe', 'pipe'] });
     let stdout = '', stderr = '';
     const timeout = setTimeout(() => { child.kill(); fail(new Error('Local demo command timed out')); }, COMMAND_TIMEOUT_MS);
     child.stdout.setEncoding('utf8'); child.stderr.setEncoding('utf8');
@@ -52,6 +53,10 @@ async function main() {
   assert.equal(releasedPackage.version, '0.0.2'); assert.match(releaseCommit, /^[a-f0-9]{40}$/);
   const releaseDate = execFileSync('git', ['show', '-s', '--format=%cI', releaseCommit], gitOptions).trim();
   demoRoot = await mkdtemp(join(tmpdir(), 'knowledge-base-project-demo-')); dataDir = join(demoRoot, '项目演示库');
+  const counter = join(demoRoot, 'blocked-requests.txt');
+  await writeFile(counter, '');
+  offlineEnv = preloadEnvironment(FENCE, { ...process.env, KB_OFFLINE_COUNTER_FILE: counter, KB_PROJECT_FENCE_SILENT: '0' });
+  service = await cli(['service', 'start']);
   const sources = join(demoRoot, '演示原件'); await mkdir(sources);
   const project = await cli(['project-track', 'create'], { name: 'knowledge-base', description: '以公开002发布事实为首基线的独立项目追踪演示。其余记录均明确标记为合成设计/计划，不等于正式发布。' });
   const releaseTag = await cli(['tag', 'create'], { name: '发布事实', aliases: ['release-fact'] });
@@ -85,6 +90,7 @@ async function main() {
   assert.equal(replaced.total, 1); assert.equal(replaced.items[0].replacement.replacedBy[0].entryId, correction.entry.id); assert.equal(replaced.baselineEntryId, baseline.entry.id);
   const snapshotTags = await cli(['project-track', 'query'], { projectId: project.id, tags: ['原始设计别名'] }); assert.ok(snapshotTags.total >= 3);
   const checked = await cli(['check']); assert.equal(checked.valid, true);
+  assert.equal(await readFile(counter, 'utf8'), '', '演示服务不应访问外部网络');
   const commands = {
     query: command(['project-track', 'query', '--project-id', project.id]),
     asOf: command(['project-track', 'query', '--project-id', project.id, '--as-of-version', '0.0.3']),
@@ -93,9 +99,17 @@ async function main() {
     previewStart: command(['preview', 'start']), previewStop: command(['preview', 'stop']),
     directReadPinned: command(['project-track', 'read', '--project-id', project.id, '--entry-id', pinned.entry.id], false),
   };
-  const manifest = { schemaVersion: 1, demoRoot, dataDir, projectId: project.id, releaseEvidence: { tag: RELEASE_TAG, commit: releaseCommit, packageVersion: releasedPackage.version, localVerificationOnly: true }, entries: { baseline: baseline.entry.id, change: change.entry.id, correction: correction.entry.id, plan: plan.entry.id, verificationKnownEmpty: verification.entry.id, pinnedHistory: pinned.entry.id, historicalTagsUnknown: unknown.entry.id }, historicalPin: { resourceId: historyResource.id, contentVersion: 1, contentHash: pinned.entry.contentHash, currentContentVersion: 2 }, verification: { coreCheck: true, entries: 7, resources: 6, asOf003: 6, version010Before003: true, requestReplay: true, pinnedRawText: true, snapshotOldAlias: true, knownEmptyAndUnknownDistinct: true }, commands, externalRequests: 0, servicesStarted: false, warning: '通用预览/资源UUID链接读取当前版；固定历史全文只使用project-track read/query。同UUID跨格式更新不支持，应另导入新资源。系统临时目录可能后续被清理，长期保留请备份。' };
+  const manifest = { schemaVersion: 1, demoRoot, dataDir, projectId: project.id, releaseEvidence: { tag: RELEASE_TAG, commit: releaseCommit, packageVersion: releasedPackage.version, localVerificationOnly: true }, entries: { baseline: baseline.entry.id, change: change.entry.id, correction: correction.entry.id, plan: plan.entry.id, verificationKnownEmpty: verification.entry.id, pinnedHistory: pinned.entry.id, historicalTagsUnknown: unknown.entry.id }, historicalPin: { resourceId: historyResource.id, contentVersion: 1, contentHash: pinned.entry.contentHash, currentContentVersion: 2 }, verification: { coreCheck: true, entries: 7, resources: 6, asOf003: 6, version010Before003: true, requestReplay: true, pinnedRawText: true, snapshotOldAlias: true, knownEmptyAndUnknownDistinct: true }, commands, externalRequests: 0, serviceRunning: false, warning: '通用预览/资源UUID链接读取当前版；固定历史全文只使用project-track read/query。同UUID跨格式更新不支持，应另导入新资源。系统临时目录可能后续被清理，长期保留请备份。' };
   const manifestFile = join(demoRoot, 'project-demo.json'); await writeFile(manifestFile, JSON.stringify(manifest, null, 2));
-  console.log(JSON.stringify({ ok: true, dataDir, manifestFile, projectId: project.id, releaseCommit, entries: 7, resources: 6, coreCheck: true, pinnedHistoryCv: 1, currentResourceCv: 2, requestReplay: true, externalRequests: 0, servicesStarted: false, commands }, null, 2));
+  return { ok: true, dataDir, manifestFile, projectId: project.id, releaseCommit, entries: 7, resources: 6, coreCheck: true, pinnedHistoryCv: 1, currentResourceCv: 2, requestReplay: true, externalRequests: 0, serviceRunning: false, commands };
 }
 
-main().catch((error) => { console.error(JSON.stringify({ ok: false, code: 'PROJECT_DEMO_FAILED', message: error.message, demoRoot, dataDir })); process.exitCode = 1; });
+try {
+  let result;
+  try { result = await main(); }
+  finally { if (service) await cli(['service', 'stop']); }
+  console.log(JSON.stringify(result, null, 2));
+} catch (error) {
+  console.error(JSON.stringify({ ok: false, code: 'PROJECT_DEMO_FAILED', message: error.message, demoRoot, dataDir }));
+  process.exitCode = 1;
+}

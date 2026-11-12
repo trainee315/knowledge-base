@@ -84,8 +84,10 @@ test('background preview lifecycle is explicit, idempotent and works with Chines
     assert.equal(started.running, true); assert.match(started.url, /^http:\/\/127\.0\.0\.1:\d+$/);
     assert.equal(started.token, undefined);
     assert.equal((await fetch(started.url)).status, 200);
-    assert.deepEqual(await handlePreview(['start'], root), started);
-    assert.deepEqual(await handlePreview(['status'], root), started);
+    const reused = await handlePreview(['start'], root) as { pid: number; url: string };
+    const status = await handlePreview(['status'], root) as { pid: number; url: string };
+    assert.equal(reused.pid, started.pid); assert.equal(reused.url, started.url);
+    assert.equal(status.pid, started.pid); assert.equal(status.url, started.url);
     assert.equal((await handlePreview(['stop'], root) as any).running, false);
     assert.equal((await handlePreview(['status'], root) as any).running, false);
     await assert.rejects(() => handlePreview(['start', '--port', '65536'], root));
@@ -103,8 +105,7 @@ test('eight CLI processes, case/junction aliases and stale PID records share one
   try {
     const writer = await openApplication(dataDir); await writer.close();
     await mkdir(join(dataDir, '.runtime'));
-    await writeFile(join(dataDir, '.runtime', 'preview-start.json'), JSON.stringify({ pid: 2147483647 }));
-    await writeFile(join(dataDir, '.runtime', 'preview.json'), JSON.stringify({ running: true, dataDir: await realpath(dataDir), url: 'http://127.0.0.1:1', port: 1, pid: 2147483647, token: 'stale' }));
+    await writeFile(join(dataDir, '.runtime', 'service.json'), JSON.stringify({ running: true, dataDir: await realpath(dataDir), url: 'http://127.0.0.1:1', port: 1, pid: 2147483647, token: '0'.repeat(64) }));
     await symlink(dataDir, alias, process.platform === 'win32' ? 'junction' : 'dir');
     const states = await Promise.all(Array.from({ length: 8 }, (_, index) => command('start', index % 2 ? alias : dataDir)));
     assert.equal(new Set(states.map((state) => state.pid)).size, 1);

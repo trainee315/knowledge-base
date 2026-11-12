@@ -8,7 +8,7 @@ node examples/project-tracking/create-demo.mjs
 
 脚本只读取该 tag 的 commit、package.version 和提交时间，构造一份带真实发布事实的初始 baseline；其它变更、修正、计划与验证均为明确的合成示例。不会扫描全仓、聊天、笔记或凭证，不访问远端或 Agent，不创建系统任务。
 
-每次在 `os.tmpdir()` 创建独立新库，保留演示数据和原件，不接收已有数据目录。默认不启动任何服务。输出 `project-demo.json` 及 PPC query/read/preview start/stop 命令；`PPC_CLI_PATH` 可覆盖本机 PPC 入口。没有 PPC 时可运行说明文件中的 directReadPinned 命令。
+每次在 `os.tmpdir()` 创建独立新库，生成期间启动本地服务，结束时停止该服务。演示数据和原件会保留。输出 `project-demo.json` 及 PPC query/read/preview start/stop 命令，`PPC_CLI_PATH` 可覆盖本机 PPC 入口。没有 PPC 时可运行清单中的 directReadPinned 命令，查询前先启动该库服务。
 
 演示包含 6 个资源、7 条 entry：002 已发布基线、被明确替代的错误草稿、修正 decision、日期较早但版本更高的 0.0.10 planned、known-empty 标签的验证文档、固定cv1的历史全文、历史补录 tags unknown。最后会更新原件至cv2并修改当前标签别名，再验证 requestId 重放和旧快照仍保持原样。
 

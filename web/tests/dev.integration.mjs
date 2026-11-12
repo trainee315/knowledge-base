@@ -2,11 +2,12 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { request } from 'node:http';
 import { createServer as createPortProbe } from 'node:net';
-import { mkdtemp, writeFile, readFile, readdir, access, rm } from 'node:fs/promises';
+import { mkdtemp, writeFile, readFile, readdir, access, realpath, rm } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createServer, loadConfigFromFile } from 'vite';
 import { openApplication } from '../../dist/index.js';
+import { serviceCli } from '../../tests/service-cli.mjs';
 
 const networkFetch = globalThis.fetch;
 const fetch = (url, options = {}) => networkFetch(url, { signal: AbortSignal.timeout(5000), ...options });
@@ -29,11 +30,17 @@ function rawGet(url, headers) {
   });
 }
 
-test('source-bundled Vite serves page/API on one strict port and releases readonly apps on failure/close', async () => {
+test('Vite proxies the running service on a strict port and leaves its lifecycle independent', async () => {
   // 故意放在仓库内非.data路径，证明不能借Vite默认workspace文件服务旁路下载。
   const root = await mkdtemp(join(REPO, 'web/.dev-integration-'));
   const dataDir = join(root, '中文 (data){a,b}'), missing = join(root, '尚不存在的库');
   const servers = [];
+  const running = new Set();
+  const canonicalRoot = await realpath(root);
+  function start(directory) {
+    serviceCli(directory, ['service', 'start']);
+    running.add(directory);
+  }
   let ordinal = 0;
   async function make(directory, port = 0) {
     if (!port) {
@@ -42,22 +49,17 @@ test('source-bundled Vite serves page/API on one strict port and releases readon
       port = probe.address().port;
       await new Promise((done, fail) => probe.close((error) => error ? fail(error) : done()));
     }
-    const marker = join(root, `closed-${++ordinal}.txt`), configFile = join(root, `vite-${ordinal}.config.ts`);
+    const configFile = join(root, `vite-${++ordinal}.config.ts`);
     const source = `import base from ${JSON.stringify(SOURCE_CONFIG)};
 import {knowledgeApiPlugin} from ${JSON.stringify(join(REPO, 'web/dev-api.ts').replaceAll('\\', '/'))};
-import {openApplication} from ${JSON.stringify(join(REPO, 'src/index.ts').replaceAll('\\', '/'))};
-import {appendFile} from 'node:fs/promises';
-export default {...base, plugins:[base.plugins[0], knowledgeApiPlugin({dataDir:${JSON.stringify(directory)}, open:async (dir,options)=>{
-  if(options?.readOnly!==true) throw new Error('expected readonly');
-  const app=await openApplication(dir,options); return {...app, close:async()=>{await app.close();await appendFile(${JSON.stringify(marker)},'closed\\n');}};
-}})]};`;
+export default {...base, plugins:[base.plugins[0], knowledgeApiPlugin({dataDir:${JSON.stringify(directory)}})]};`;
     await writeFile(configFile, source);
     const loaded = await loadConfigFromFile({ command: 'serve', mode: 'development' }, configFile);
-    assert.ok(loaded.dependencies.some((path) => path.replaceAll('\\', '/').endsWith('src/index.ts')));
+    assert.ok(loaded.dependencies.some((path) => path.replaceAll('\\', '/').endsWith('web/dev-api.ts')));
     assert.equal(loaded.dependencies.some((path) => path.replaceAll('\\', '/').includes('/dist/')), false);
     const server = await createServer({ ...loaded.config, configFile: false, logLevel: 'silent', optimizeDeps: { noDiscovery: true, include: [] }, server: { ...loaded.config.server, port }, cacheDir: join(root, `vite-cache-${ordinal}`) });
     servers.push(server);
-    return { server, marker };
+    return server;
   }
   try {
     const original = Buffer.from('<svg onload="alert(1)">中文</svg>');
@@ -66,15 +68,15 @@ export default {...base, plugins:[base.plugins[0], knowledgeApiPlugin({dataDir:$
     const resource = (await writer.manager.importResource(source)).resource;
     const contentPath = await writer.manager.resolveContentPath(resource.id);
     await writer.close();
+    start(dataDir);
     const before = await snapshot(dataDir);
     const first = await make(dataDir);
     console.log('dev: source config loaded');
-    assert.equal(first.server.config.server.strictPort, true);
-    assert.equal(first.server.config.server.proxy, undefined);
-    assert.equal(first.server.config.fsDenyGlob(join(dataDir, 'metadata', resource.id + '.meta').replaceAll('\\', '/')), true);
-    await first.server.listen();
+    assert.equal(first.config.server.strictPort, true);
+    assert.equal(first.config.fsDenyGlob(join(dataDir, 'metadata', resource.id + '.meta').replaceAll('\\', '/')), true);
+    await first.listen();
     console.log('dev: listening');
-    const port = first.server.httpServer.address().port, origin = `http://127.0.0.1:${port}`;
+    const port = first.httpServer.address().port, origin = `http://127.0.0.1:${port}`;
     assert.equal((await fetch(origin)).status, 200);
     assert.equal((await fetch(origin + '/@vite/client')).status, 200);
     console.log('dev: page and Vite client');
@@ -104,29 +106,31 @@ export default {...base, plugins:[base.plugins[0], knowledgeApiPlugin({dataDir:$
     assert.equal((await fetch(`${origin}/@fs/${encoded}?raw`)).status, 403);
     console.log('dev: API/security/download isolation');
     const conflict = await make(dataDir, port);
-    await assert.rejects(() => conflict.server.listen(), /already in use/);
+    await assert.rejects(() => conflict.listen(), /already in use/);
     console.log('dev: port conflict');
-    assert.equal(await readFile(conflict.marker, 'utf8'), 'closed\n');
-    await conflict.server.close();
-    assert.equal(await readFile(conflict.marker, 'utf8'), 'closed\n');
-    await first.server.close();
-    assert.equal(await readFile(first.marker, 'utf8'), 'closed\n');
+    await conflict.close();
+    await first.close();
+    assert.equal(serviceCli(dataDir, ['service', 'status']).running, true);
     const restarted = await make(dataDir, port);
-    await restarted.server.listen();
+    await restarted.listen();
     assert.equal((await fetch(origin + '/api/resources')).status, 200);
-    await restarted.server.close();
+    await restarted.close();
     assert.deepEqual(await snapshot(dataDir), before);
+    await assert.rejects(make(missing), /service|服务/i);
+    await assert.rejects(access(missing), { code: 'ENOENT' });
+    start(missing);
     const empty = await make(missing);
-    await empty.server.listen();
-    const emptyOrigin = `http://127.0.0.1:${empty.server.httpServer.address().port}`;
+    await empty.listen();
+    const emptyOrigin = `http://127.0.0.1:${empty.httpServer.address().port}`;
     assert.equal((await (await fetch(emptyOrigin + '/api/resources')).json()).data.total, 0);
     assert.equal((await fetch(emptyOrigin)).status, 200);
-    await empty.server.close();
-    await assert.rejects(access(missing), { code: 'ENOENT' });
+    await empty.close();
   } catch (error) { console.error(error); throw error; } finally {
     await Promise.all(servers.map((server) => server.close()));
+    for (const directory of running) serviceCli(directory, ['service', 'stop']);
     const absolute = resolve(root);
     assert.ok(absolute.startsWith(resolve(REPO) + '\\') || absolute.startsWith(resolve(REPO) + '/'));
+    assert.equal(await realpath(absolute), canonicalRoot);
     await rm(absolute, { recursive: true, force: true });
   }
 });
