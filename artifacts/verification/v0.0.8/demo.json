@@ -1,0 +1,13 @@
+{
+  "dataDir": "C:\\Users\\mamar\\AppData\\Local\\Temp\\kb-recall-demo-g8D4Mw\\data",
+  "commands": [
+    "node dist/cli/main.js service start --data-dir \"C:\\Users\\mamar\\AppData\\Local\\Temp\\kb-recall-demo-g8D4Mw\\data\" --json",
+    "node dist/cli/main.js recall scope --input \"C:\\Users\\mamar\\AppData\\Local\\Temp\\kb-recall-demo-g8D4Mw\\scope.json\" --data-dir \"C:\\Users\\mamar\\AppData\\Local\\Temp\\kb-recall-demo-g8D4Mw\\data\" --json",
+    "node dist/cli/main.js recall prepare --input \"C:\\Users\\mamar\\AppData\\Local\\Temp\\kb-recall-demo-g8D4Mw\\request.json\" --data-dir \"C:\\Users\\mamar\\AppData\\Local\\Temp\\kb-recall-demo-g8D4Mw\\data\" --json",
+    "node dist/cli/main.js recall read --input \"C:\\Users\\mamar\\AppData\\Local\\Temp\\kb-recall-demo-g8D4Mw\\read.json\" --data-dir \"C:\\Users\\mamar\\AppData\\Local\\Temp\\kb-recall-demo-g8D4Mw\\data\" --json",
+    "node dist/cli/main.js recall model prepare --data-dir \"C:\\Users\\mamar\\AppData\\Local\\Temp\\kb-recall-demo-g8D4Mw\\data\" --json",
+    "node dist/cli/main.js recall index build --vectors --data-dir \"C:\\Users\\mamar\\AppData\\Local\\Temp\\kb-recall-demo-g8D4Mw\\data\" --json",
+    "node dist/cli/main.js recall eval --input \"C:\\Users\\mamar\\AppData\\Local\\Temp\\kb-recall-demo-g8D4Mw\\suite.json\" --data-dir \"C:\\Users\\mamar\\AppData\\Local\\Temp\\kb-recall-demo-g8D4Mw\\data\" --json",
+    "node dist/cli/main.js service stop --data-dir \"C:\\Users\\mamar\\AppData\\Local\\Temp\\kb-recall-demo-g8D4Mw\\data\" --json"
+  ]
+}

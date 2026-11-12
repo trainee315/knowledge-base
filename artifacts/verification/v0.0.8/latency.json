@@ -1,0 +1,1070 @@
+{
+  "model": {
+    "runtime": "@huggingface/transformers@3.8.1",
+    "embedding": {
+      "id": "Xenova/bge-small-zh-v1.5",
+      "revision": "75c43b069aac4d136ba6bc1122f995fedcfd2781"
+    },
+    "reranker": {
+      "id": "Xenova/bge-reranker-base",
+      "revision": "280bcc27a84e0b898c251e06fddb25171bd9b101"
+    },
+    "dtype": "q8",
+    "pooling": "cls",
+    "normalize": true,
+    "queryPrefix": "为这个句子生成表示以用于检索相关文章：",
+    "maxTokens": 512,
+    "dimensions": 512,
+    "encodingVersion": "bge-cls-pair-v1",
+    "files": {
+      "Xenova/bge-reranker-base/280bcc27a84e0b898c251e06fddb25171bd9b101/config.json": "b6575b9d5be20d6747417c8e20c5a0db1636356e0b6d422d7244c628423c4d4c",
+      "Xenova/bge-reranker-base/280bcc27a84e0b898c251e06fddb25171bd9b101/onnx/model_quantized.onnx": "dd98f3e67837d23210a6b7550c08cced4f61845b940ac45be3565840a10f3244",
+      "Xenova/bge-reranker-base/280bcc27a84e0b898c251e06fddb25171bd9b101/tokenizer.json": "48564c5c7d3fa64d85d95e65414a542385f88b0f128fd8d4163fd7a57f2be05c",
+      "Xenova/bge-reranker-base/280bcc27a84e0b898c251e06fddb25171bd9b101/tokenizer_config.json": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b",
+      "Xenova/bge-small-zh-v1.5/75c43b069aac4d136ba6bc1122f995fedcfd2781/config.json": "d4193ead3a810fd694fa8a31d7fc72fbaebc0668b603e398734bf2f6538ff42f",
+      "Xenova/bge-small-zh-v1.5/75c43b069aac4d136ba6bc1122f995fedcfd2781/onnx/model_quantized.onnx": "15b717c382bcb518ba457b93ea6850ede7f4f1cd8937454aa06972366cd19bcc",
+      "Xenova/bge-small-zh-v1.5/75c43b069aac4d136ba6bc1122f995fedcfd2781/tokenizer.json": "48cea5d44424912a6fd1ea647bf4fe50b55ab8b1e5879c3275f80e339e8fae26",
+      "Xenova/bge-small-zh-v1.5/75c43b069aac4d136ba6bc1122f995fedcfd2781/tokenizer_config.json": "e6f3b96db926a37d4039995fbf5ad17de158dfb8f6343d607e4dbaad18d75f5a"
+    },
+    "fingerprint": "6cf47aee644c477e707d490c24bb21fe16219d01aaa005f8cb4af39b783dce88"
+  },
+  "indexFirst": {
+    "schema": 1,
+    "generation": "7a528931-d6df-4bc7-b410-3baa99c6d71d",
+    "fingerprint": "3d5a068af567f8ee8eca1f909f8e23034e1f81f67c6aa0317e977e36f5b3bf17",
+    "splitter": "markdown-block-1:74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+    "tokenizer": "nfkc-cjk-bigram-1",
+    "model": "6cf47aee644c477e707d490c24bb21fe16219d01aaa005f8cb4af39b783dce88",
+    "builtAt": "2026-11-12T10:46:31.143Z",
+    "records": 31,
+    "fragments": 91,
+    "skipped": [],
+    "usage": {
+      "embeddingTexts": 91,
+      "embeddingTokens": 3442,
+      "rerankPairs": 0,
+      "rerankTokens": 0,
+      "modelCalls": 3,
+      "cacheHits": 0,
+      "generationTokens": 0,
+      "apiCost": 0,
+      "modelPeakRssBytes": 179253248,
+      "modelCpuMs": 1138,
+      "modelFsRead": 744,
+      "modelFsWrite": 0
+    },
+    "truncatedEncodingInputs": 0,
+    "reusedFragments": 91,
+    "durationMs": 1663.1907
+  },
+  "indexCached": {
+    "schema": 1,
+    "generation": "7d548f55-56ff-497d-832d-b91a9da80fa2",
+    "fingerprint": "3d5a068af567f8ee8eca1f909f8e23034e1f81f67c6aa0317e977e36f5b3bf17",
+    "splitter": "markdown-block-1:74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+    "tokenizer": "nfkc-cjk-bigram-1",
+    "model": "6cf47aee644c477e707d490c24bb21fe16219d01aaa005f8cb4af39b783dce88",
+    "builtAt": "2026-11-12T10:46:31.304Z",
+    "records": 31,
+    "fragments": 91,
+    "skipped": [],
+    "usage": {
+      "embeddingTexts": 0,
+      "embeddingTokens": 0,
+      "rerankPairs": 0,
+      "rerankTokens": 0,
+      "modelCalls": 0,
+      "cacheHits": 91,
+      "generationTokens": 0,
+      "apiCost": 0
+    },
+    "truncatedEncodingInputs": 0,
+    "reusedFragments": 91,
+    "durationMs": 154.61670000000004
+  },
+  "rows": [
+    {
+      "mode": "read",
+      "repeat": 0,
+      "durationMs": 31.21239999999989,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "stages": [
+        "scope",
+        "direct-read"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "read",
+      "repeat": 1,
+      "durationMs": 26.126300000000356,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "stages": [
+        "scope",
+        "direct-read"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "read",
+      "repeat": 2,
+      "durationMs": 26.449999999999818,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "stages": [
+        "scope",
+        "direct-read"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "read",
+      "repeat": 3,
+      "durationMs": 29.760399999999663,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "stages": [
+        "scope",
+        "direct-read"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "read",
+      "repeat": 4,
+      "durationMs": 26.21640000000025,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "stages": [
+        "scope",
+        "direct-read"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "list",
+      "repeat": 0,
+      "durationMs": 10.227600000000166,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "stages": [
+        "scope",
+        "metadata-list"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "list",
+      "repeat": 1,
+      "durationMs": 9.877200000000357,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "stages": [
+        "scope",
+        "metadata-list"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "list",
+      "repeat": 2,
+      "durationMs": 12.015800000000127,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "stages": [
+        "scope",
+        "metadata-list"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "list",
+      "repeat": 3,
+      "durationMs": 10.656200000000354,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "stages": [
+        "scope",
+        "metadata-list"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "list",
+      "repeat": 4,
+      "durationMs": 9.537900000000263,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "stages": [
+        "scope",
+        "metadata-list"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "bm25",
+      "repeat": 0,
+      "durationMs": 40.16930000000002,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "stages": [
+        "scope",
+        "bm25"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "bm25",
+      "repeat": 1,
+      "durationMs": 38.06829999999991,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "stages": [
+        "scope",
+        "bm25"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "bm25",
+      "repeat": 2,
+      "durationMs": 41.33650000000034,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "stages": [
+        "scope",
+        "bm25"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "bm25",
+      "repeat": 3,
+      "durationMs": 40.863700000000335,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "stages": [
+        "scope",
+        "bm25"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "bm25",
+      "repeat": 4,
+      "durationMs": 41.039999999999964,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "stages": [
+        "scope",
+        "bm25"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "semantic",
+      "repeat": 0,
+      "durationMs": 400.8166000000001,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 34,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153161728,
+        "modelCpuMs": 343,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "stages": [
+        "scope",
+        "vector"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "semantic",
+      "repeat": 1,
+      "durationMs": 369.0607,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 34,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153092096,
+        "modelCpuMs": 234,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "stages": [
+        "scope",
+        "vector"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "semantic",
+      "repeat": 2,
+      "durationMs": 370.4483,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 34,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 154099712,
+        "modelCpuMs": 234,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "stages": [
+        "scope",
+        "vector"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "semantic",
+      "repeat": 3,
+      "durationMs": 374.7671,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 34,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153423872,
+        "modelCpuMs": 265,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "stages": [
+        "scope",
+        "vector"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "semantic",
+      "repeat": 4,
+      "durationMs": 369.7874999999999,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 34,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153784320,
+        "modelCpuMs": 265,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "stages": [
+        "scope",
+        "vector"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "hybrid",
+      "repeat": 0,
+      "durationMs": 368.27490000000034,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 34,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 152993792,
+        "modelCpuMs": 249,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "stages": [
+        "scope",
+        "bm25",
+        "vector",
+        "rrf"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "hybrid",
+      "repeat": 1,
+      "durationMs": 381.1333000000004,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 34,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153776128,
+        "modelCpuMs": 249,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "stages": [
+        "scope",
+        "bm25",
+        "vector",
+        "rrf"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "hybrid",
+      "repeat": 2,
+      "durationMs": 375.40630000000056,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 34,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 152920064,
+        "modelCpuMs": 249,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "stages": [
+        "scope",
+        "bm25",
+        "vector",
+        "rrf"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "hybrid",
+      "repeat": 3,
+      "durationMs": 366.66010000000006,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 34,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153563136,
+        "modelCpuMs": 217,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "stages": [
+        "scope",
+        "bm25",
+        "vector",
+        "rrf"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "hybrid",
+      "repeat": 4,
+      "durationMs": 372.9468999999999,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 34,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153571328,
+        "modelCpuMs": 233,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "stages": [
+        "scope",
+        "bm25",
+        "vector",
+        "rrf"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "rerank",
+      "repeat": 0,
+      "durationMs": 1742.4838,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 34,
+        "rerankPairs": 5,
+        "rerankTokens": 165,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 899579904,
+        "modelCpuMs": 1624,
+        "modelFsRead": 683,
+        "modelFsWrite": 0
+      },
+      "stages": [
+        "scope",
+        "bm25",
+        "vector",
+        "rrf",
+        "rerank"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "rerank",
+      "repeat": 1,
+      "durationMs": 1777.4314999999988,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 34,
+        "rerankPairs": 5,
+        "rerankTokens": 165,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 919609344,
+        "modelCpuMs": 1545,
+        "modelFsRead": 691,
+        "modelFsWrite": 0
+      },
+      "stages": [
+        "scope",
+        "bm25",
+        "vector",
+        "rrf",
+        "rerank"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "rerank",
+      "repeat": 2,
+      "durationMs": 2005.9287999999997,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 34,
+        "rerankPairs": 5,
+        "rerankTokens": 165,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 900726784,
+        "modelCpuMs": 1825,
+        "modelFsRead": 689,
+        "modelFsWrite": 0
+      },
+      "stages": [
+        "scope",
+        "bm25",
+        "vector",
+        "rrf",
+        "rerank"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "rerank",
+      "repeat": 3,
+      "durationMs": 1858.3436000000002,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 34,
+        "rerankPairs": 5,
+        "rerankTokens": 165,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 900489216,
+        "modelCpuMs": 1671,
+        "modelFsRead": 686,
+        "modelFsWrite": 0
+      },
+      "stages": [
+        "scope",
+        "bm25",
+        "vector",
+        "rrf",
+        "rerank"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "rerank",
+      "repeat": 4,
+      "durationMs": 1749.3384999999998,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 34,
+        "rerankPairs": 5,
+        "rerankTokens": 165,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 900251648,
+        "modelCpuMs": 1530,
+        "modelFsRead": 689,
+        "modelFsWrite": 0
+      },
+      "stages": [
+        "scope",
+        "bm25",
+        "vector",
+        "rrf",
+        "rerank"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "task",
+      "repeat": 0,
+      "durationMs": 1750.0822000000007,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 34,
+        "rerankPairs": 5,
+        "rerankTokens": 165,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 897576960,
+        "modelCpuMs": 1592,
+        "modelFsRead": 684,
+        "modelFsWrite": 0
+      },
+      "stages": [
+        "scope",
+        "registered-entries",
+        "bm25",
+        "vector",
+        "rrf",
+        "rerank",
+        "task-assembly"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "task",
+      "repeat": 1,
+      "durationMs": 1772.6942000000017,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 34,
+        "rerankPairs": 5,
+        "rerankTokens": 165,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 911982592,
+        "modelCpuMs": 1545,
+        "modelFsRead": 678,
+        "modelFsWrite": 0
+      },
+      "stages": [
+        "scope",
+        "registered-entries",
+        "bm25",
+        "vector",
+        "rrf",
+        "rerank",
+        "task-assembly"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "task",
+      "repeat": 2,
+      "durationMs": 1769.7066000000013,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 34,
+        "rerankPairs": 5,
+        "rerankTokens": 165,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 923291648,
+        "modelCpuMs": 1686,
+        "modelFsRead": 693,
+        "modelFsWrite": 0
+      },
+      "stages": [
+        "scope",
+        "registered-entries",
+        "bm25",
+        "vector",
+        "rrf",
+        "rerank",
+        "task-assembly"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "task",
+      "repeat": 3,
+      "durationMs": 1780.4527000000016,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 34,
+        "rerankPairs": 5,
+        "rerankTokens": 165,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 903544832,
+        "modelCpuMs": 1842,
+        "modelFsRead": 689,
+        "modelFsWrite": 0
+      },
+      "stages": [
+        "scope",
+        "registered-entries",
+        "bm25",
+        "vector",
+        "rrf",
+        "rerank",
+        "task-assembly"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "task",
+      "repeat": 4,
+      "durationMs": 1758.7965999999979,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 34,
+        "rerankPairs": 5,
+        "rerankTokens": 165,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 902500352,
+        "modelCpuMs": 1498,
+        "modelFsRead": 694,
+        "modelFsWrite": 0
+      },
+      "stages": [
+        "scope",
+        "registered-entries",
+        "bm25",
+        "vector",
+        "rrf",
+        "rerank",
+        "task-assembly"
+      ],
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ]
+    },
+    {
+      "mode": "scope",
+      "repeat": 0,
+      "durationMs": 25.892299999999523
+    },
+    {
+      "mode": "scope",
+      "repeat": 1,
+      "durationMs": 21.189199999997072
+    },
+    {
+      "mode": "scope",
+      "repeat": 2,
+      "durationMs": 21.0538000000015
+    },
+    {
+      "mode": "scope",
+      "repeat": 3,
+      "durationMs": 21.419099999999162
+    },
+    {
+      "mode": "scope",
+      "repeat": 4,
+      "durationMs": 22.238499999999476
+    }
+  ],
+  "summary": [
+    {
+      "mode": "read",
+      "firstMs": 31.21239999999989,
+      "subsequentMeanMs": 27.13827500000002,
+      "p95Ms": 31.21239999999989
+    },
+    {
+      "mode": "list",
+      "firstMs": 10.227600000000166,
+      "subsequentMeanMs": 10.521775000000275,
+      "p95Ms": 12.015800000000127
+    },
+    {
+      "mode": "bm25",
+      "firstMs": 40.16930000000002,
+      "subsequentMeanMs": 40.32712500000014,
+      "p95Ms": 41.33650000000034
+    },
+    {
+      "mode": "semantic",
+      "firstMs": 400.8166000000001,
+      "subsequentMeanMs": 371.0159,
+      "p95Ms": 400.8166000000001
+    },
+    {
+      "mode": "hybrid",
+      "firstMs": 368.27490000000034,
+      "subsequentMeanMs": 374.03665000000024,
+      "p95Ms": 381.1333000000004
+    },
+    {
+      "mode": "rerank",
+      "firstMs": 1742.4838,
+      "subsequentMeanMs": 1847.7605999999996,
+      "p95Ms": 2005.9287999999997
+    },
+    {
+      "mode": "task",
+      "firstMs": 1750.0822000000007,
+      "subsequentMeanMs": 1770.4125250000006,
+      "p95Ms": 1780.4527000000016
+    },
+    {
+      "mode": "scope",
+      "firstMs": 25.892299999999523,
+      "subsequentMeanMs": 21.475149999999303,
+      "p95Ms": 25.892299999999523
+    }
+  ],
+  "cancellation": "DEVELOPMENT_BUSY",
+  "recovered": true,
+  "limitations": [
+    "每组5次；p95在此样本中等于最大值",
+    "同进程元数据/文件页缓存会变热，每个模型调用仍冷启动子进程",
+    "未清空OS文件页缓存，不代表机器重启后的磁盘冷启动",
+    "不与开发负载并行；负载退化结果见developer-load报告"
+  ]
+}

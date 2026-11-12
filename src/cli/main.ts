@@ -4,6 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { KnowledgeError } from '../core/errors.js';
 import { handleService, callService } from '../service/client.js';
+import { runDevelopmentWorkload } from '../recall/development.js';
 
 // 数据位置与工作目录解耦，便于 PPC 从其他目录调用。
 const DEFAULT_DATA_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../.data');
@@ -24,7 +25,8 @@ async function parse(argv: string[]) {
 async function run(): Promise<unknown> {
   const { words, input, dataDir } = await parse(process.argv.slice(2));
   const [group, action] = words;
-  if (!group || group === 'help' || flag(input, 'help')) return { version: '0.0.5', usage: 'cli.bat <command> [action] --input file|- --data-dir path --json', commands: ['resource import/list/get/update/delete/restore/purge/history', 'note add/list/get', 'transcript create/list/get/configure/preview/run/tick/records/retry/backfill', 'meta get/set', 'organization create/list/get/update/delete', 'organization-type register/list/get/update/enable/disable/delete', 'plugin list/enable/disable/refresh', 'project-track create/list/get/add/documents/read/query', 'agent status / profile list|get|set|delete / config get|set / generate text|object', 'backup --file path', 'restore --file path', 'check', 'reindex', 'service start/stop/restart/status', 'preview start/stop/status (服务兼容入口)', 'cron types/create/list/get/update/enable/disable/delete/run/retry/runs', 'content/keyword/tag/relation/system/task/organize/schedule (插件命令)'] };
+  if (group === 'recall' && action === 'workload') { const result = await runDevelopmentWorkload(input); if (result.exitCode !== 0) process.exitCode = 1; return result; }
+  if (!group || group === 'help' || flag(input, 'help')) return { version: '0.0.5', usage: 'cli.bat <command> [action] --input file|- --data-dir path --json', commands: ['resource import/list/get/update/delete/restore/purge/history', 'note add/list/get', 'transcript create/list/get/configure/preview/run/tick/records/retry/backfill', 'meta get/set', 'organization create/list/get/update/delete', 'organization-type register/list/get/update/enable/disable/delete', 'plugin list/enable/disable/refresh', 'project-track create/list/get/add/documents/read/query', 'agent status / profile list|get|set|delete / config get|set / generate text|object', 'recall configure/scope/prepare/read/list/search/eval', 'recall index status|build / model prepare|status / workload', 'backup --file path', 'restore --file path', 'check', 'reindex', 'service start/stop/restart/status', 'preview start/stop/status (服务兼容入口)', 'cron types/create/list/get/update/enable/disable/delete/run/retry/runs', 'content/keyword/tag/relation/system/task/organize/schedule (插件命令)'] };
   if (group === 'service' || group === 'preview') {
     const state = await handleService([...words.slice(1), ...(input.port !== undefined ? ['--port', String(input.port)] : [])], dataDir);
     return group === 'preview' ? { ...state, notice: 'preview 和 service 共享生命周期，停止会一同停止定时任务' } : state;
@@ -32,6 +34,7 @@ async function run(): Promise<unknown> {
   for (const key of ['file', 'projectDir', 'sourceRoot']) if (typeof input[key] === 'string' && input[key].trim()) input[key] = path.resolve(input[key]);
   if (Array.isArray(input.additionalDirectories)) input.additionalDirectories = input.additionalDirectories.map(value => typeof value === 'string' && value.trim() ? path.resolve(value) : value);
   delete input.dataDir;
+  if (group === 'recall' && input.cwd === undefined) input.cwd = process.cwd();
   let stdinBase64: string | undefined;
   if (group === 'note' && action === 'add' && flag(input, 'stdin') && input.input !== '-') {
     const chunks: Buffer[] = [];

@@ -1,0 +1,285 @@
+{
+  "completeAcceptance": false,
+  "gates": {
+    "retrievalQuality": true,
+    "referencesAndIsolation": true,
+    "agentTasks": true,
+    "latency": true,
+    "modelRss": true,
+    "developmentWorkload": false
+  },
+  "retrieval": [
+    {
+      "mode": "literal",
+      "verified": true,
+      "recallAt5": 0.5,
+      "mrr": 0.25,
+      "ndcgAt5": 0.3154648767857288,
+      "noAnswerFalse": 0,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "conditionCoverage": 0.5,
+      "meanMs": 434.0963769230769
+    },
+    {
+      "mode": "bm25",
+      "verified": true,
+      "recallAt5": 0.9166666666666666,
+      "mrr": 0.9166666666666666,
+      "ndcgAt5": 0.9166666666666666,
+      "noAnswerFalse": 0,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "conditionCoverage": 0.9166666666666666,
+      "meanMs": 42.30013076923017
+    },
+    {
+      "mode": "semantic",
+      "verified": true,
+      "recallAt5": 0.9166666666666666,
+      "mrr": 0.9166666666666666,
+      "ndcgAt5": 0.9166666666666666,
+      "noAnswerFalse": 0,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "conditionCoverage": 0.9166666666666666,
+      "meanMs": 358.9853538461539
+    },
+    {
+      "mode": "hybrid",
+      "verified": true,
+      "recallAt5": 1,
+      "mrr": 0.9583333333333334,
+      "ndcgAt5": 0.9692441461309548,
+      "noAnswerFalse": 0,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "conditionCoverage": 1,
+      "meanMs": 360.9727076923073
+    },
+    {
+      "mode": "hybrid-rerank",
+      "verified": true,
+      "recallAt5": 1,
+      "mrr": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": 0,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "conditionCoverage": 1,
+      "meanMs": 1584.0583615384614
+    },
+    {
+      "mode": "task",
+      "verified": true,
+      "recallAt5": 1,
+      "mrr": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": 0,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "conditionCoverage": 1,
+      "meanMs": 1593.1338230769238
+    }
+  ],
+  "tasks": [
+    {
+      "mode": "literal",
+      "samples": 6,
+      "completedWithEvidence": 2,
+      "historyMedianQueries": 3,
+      "missedQueries": 0,
+      "unnecessaryQueries": 0,
+      "repeatedQueries": 0,
+      "historicalTaskFailures": 2,
+      "agentUsage": {
+        "inputTokens": 5809,
+        "outputTokens": 781,
+        "calls": 17
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      }
+    },
+    {
+      "mode": "bm25",
+      "samples": 6,
+      "completedWithEvidence": 6,
+      "historyMedianQueries": 1,
+      "missedQueries": 0,
+      "unnecessaryQueries": 0,
+      "repeatedQueries": 0,
+      "historicalTaskFailures": 0,
+      "agentUsage": {
+        "inputTokens": 5836,
+        "outputTokens": 858,
+        "calls": 10
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      }
+    },
+    {
+      "mode": "semantic",
+      "samples": 6,
+      "completedWithEvidence": 6,
+      "historyMedianQueries": 1,
+      "missedQueries": 0,
+      "unnecessaryQueries": 0,
+      "repeatedQueries": 0,
+      "historicalTaskFailures": 0,
+      "agentUsage": {
+        "inputTokens": 13938,
+        "outputTokens": 862,
+        "calls": 10
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 4,
+        "embeddingTokens": 165,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 4,
+        "generationTokens": 0,
+        "apiCost": 0
+      }
+    },
+    {
+      "mode": "hybrid",
+      "samples": 6,
+      "completedWithEvidence": 6,
+      "historyMedianQueries": 1,
+      "missedQueries": 0,
+      "unnecessaryQueries": 0,
+      "repeatedQueries": 0,
+      "historicalTaskFailures": 0,
+      "agentUsage": {
+        "inputTokens": 14049,
+        "outputTokens": 847,
+        "calls": 10
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 4,
+        "embeddingTokens": 162,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 4,
+        "generationTokens": 0,
+        "apiCost": 0
+      }
+    },
+    {
+      "mode": "hybrid-rerank",
+      "samples": 6,
+      "completedWithEvidence": 6,
+      "historyMedianQueries": 1,
+      "missedQueries": 0,
+      "unnecessaryQueries": 0,
+      "repeatedQueries": 0,
+      "historicalTaskFailures": 0,
+      "agentUsage": {
+        "inputTokens": 19863,
+        "outputTokens": 967,
+        "calls": 11
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 5,
+        "embeddingTokens": 209,
+        "rerankPairs": 54,
+        "rerankTokens": 2413,
+        "modelCalls": 10,
+        "generationTokens": 0,
+        "apiCost": 0
+      }
+    },
+    {
+      "mode": "task",
+      "samples": 6,
+      "completedWithEvidence": 6,
+      "historyMedianQueries": 1,
+      "missedQueries": 0,
+      "unnecessaryQueries": 0,
+      "repeatedQueries": 0,
+      "historicalTaskFailures": 0,
+      "agentUsage": {
+        "inputTokens": 9068,
+        "outputTokens": 854,
+        "calls": 10
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 4,
+        "embeddingTokens": 164,
+        "rerankPairs": 42,
+        "rerankTokens": 1842,
+        "modelCalls": 8,
+        "generationTokens": 0,
+        "apiCost": 0
+      }
+    }
+  ],
+  "modelPeakRssBytes": 922140672,
+  "finalAgentCostUpperUsd": 0.02677170000000001,
+  "finalAgentCalls": 68,
+  "finalAgentCacheHitTokens": 13312,
+  "finalAgentCacheMissTokens": 55251,
+  "workload": [
+    {
+      "mode": "index-cached",
+      "workload": "build",
+      "mean": 0.052175210892953905,
+      "upper95": 0.0899703638869858,
+      "passed": false
+    },
+    {
+      "mode": "index-cached",
+      "workload": "tests",
+      "mean": 0.010360536901325212,
+      "upper95": 0.027729165309337087,
+      "passed": true
+    },
+    {
+      "mode": "index-cold",
+      "workload": "build",
+      "mean": 0.01778948529421972,
+      "upper95": 0.024930469704682438,
+      "passed": true
+    },
+    {
+      "mode": "index-cold",
+      "workload": "tests",
+      "mean": 0.010046102763757937,
+      "upper95": 0.01733851025332454,
+      "passed": true
+    },
+    {
+      "mode": "query",
+      "workload": "build",
+      "mean": 0.018013428683800632,
+      "upper95": 0.023955265049005532,
+      "passed": true
+    },
+    {
+      "mode": "query",
+      "workload": "tests",
+      "mean": 0.01462345503733985,
+      "upper95": 0.022758922759493122,
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "门槛不自动覆盖未测规模和机器",
+    "历史误用以函数测试和证据定位判断，不是通用真伪判定",
+    "全部通过也仍需用户验收；本脚本不执行发布"
+  ]
+}

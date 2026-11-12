@@ -1,0 +1,234 @@
+{
+  "rows": [
+    {
+      "id": "combo-exact",
+      "noAnswer": false,
+      "top": [
+        {
+          "id": "f-085e63e5f7627fd5db5a8dc48600d8cfa17c275f56b2641912c9ae36baa93a07",
+          "expected": true,
+          "score": 0.5612296271050906,
+          "text": "## 约束\n\n连击窗口为300毫秒。仅普通攻击命中后开始计时；闪避和受击必须清空计数。\n\n"
+        },
+        {
+          "id": "f-09de36a31892f0a725f03fbd514dbd14ac985c84a2f46909aa4c863e0bc7d271",
+          "expected": true,
+          "score": 0.548266997279668,
+          "text": "# 连击规范\n\n"
+        },
+        {
+          "id": "f-74986882ff2f861207b18589bff1597122b3c297fe62592fb8b3aab2fbf91342",
+          "expected": true,
+          "score": 0.45298966185832656,
+          "text": "## 来源\n\n项目 alpha，模块 battle。这是合成资料。\n"
+        }
+      ]
+    },
+    {
+      "id": "combo-paraphrase",
+      "noAnswer": false,
+      "top": [
+        {
+          "id": "f-085e63e5f7627fd5db5a8dc48600d8cfa17c275f56b2641912c9ae36baa93a07",
+          "expected": true,
+          "score": 0.6107699803948232,
+          "text": "## 约束\n\n连击窗口为300毫秒。仅普通攻击命中后开始计时；闪避和受击必须清空计数。\n\n"
+        },
+        {
+          "id": "f-09de36a31892f0a725f03fbd514dbd14ac985c84a2f46909aa4c863e0bc7d271",
+          "expected": true,
+          "score": 0.5566201788850692,
+          "text": "# 连击规范\n\n"
+        },
+        {
+          "id": "f-74986882ff2f861207b18589bff1597122b3c297fe62592fb8b3aab2fbf91342",
+          "expected": true,
+          "score": 0.5429874974635213,
+          "text": "## 来源\n\n项目 alpha，模块 battle。这是合成资料。\n"
+        }
+      ]
+    },
+    {
+      "id": "retry-exact",
+      "noAnswer": false,
+      "top": [
+        {
+          "id": "f-00a5f1db7277dc09768c0caf2c03f59eae2fe945a71319270b5823df9ec06438",
+          "expected": true,
+          "score": 0.4699811609061783,
+          "text": "## 约束\n\n只对幂等请求重试，最多3次，间隔200毫秒。鉴权失败不得重试。\n\n"
+        },
+        {
+          "id": "f-ab6feb40a8a331f3ac12160edf8910519c6ceaf9aaeb7762077057eda7d60f4f",
+          "expected": false,
+          "score": 0.2925693953439258,
+          "text": "## 约束\n\n请求总时限为5秒，包含排队时间；取消后禁止继续提交结果。\n\n"
+        },
+        {
+          "id": "f-e1152df8710cd4bd5eee4c11d59fe8a6f543c7d3876aa2cff6769b15ed8c8ac2",
+          "expected": true,
+          "score": 0.2847677916041747,
+          "text": "# 重试规范\n\n"
+        }
+      ]
+    },
+    {
+      "id": "retry-paraphrase",
+      "noAnswer": false,
+      "top": [
+        {
+          "id": "f-00a5f1db7277dc09768c0caf2c03f59eae2fe945a71319270b5823df9ec06438",
+          "expected": true,
+          "score": 0.46762814993811935,
+          "text": "## 约束\n\n只对幂等请求重试，最多3次，间隔200毫秒。鉴权失败不得重试。\n\n"
+        },
+        {
+          "id": "f-c82d4b1b29d1692e84ecda790f7f640d30d250535bf93a1d3bd5518357c0eac1",
+          "expected": false,
+          "score": 0.4401650202853775,
+          "text": "## 约束\n\n使用稳定游标，按时间和ID排序；新记录不能导致下一页重复。删除后游标仍可继续读取。\n\n"
+        },
+        {
+          "id": "f-9221c1a41ca057e92126115eaa060fe54715f49bcc4b76ad105a8461b6f64b78",
+          "expected": true,
+          "score": 0.40327817994285303,
+          "text": "## 来源\n\n项目 alpha，模块 network。这是合成资料。\n"
+        }
+      ]
+    },
+    {
+      "id": "save-exact",
+      "noAnswer": false,
+      "top": [
+        {
+          "id": "f-7428f0147996c1eb8bd96cb91bb04128a89f6cee1d565704e5a97dc2426d1102",
+          "expected": true,
+          "score": 0.4200882854134976,
+          "text": "## 约束\n\n写入临时文件后校验校验和，再原子替换正式存档。磁盘已满时保留旧文件并报错。\n\n"
+        },
+        {
+          "id": "f-5adb1c4b5577a679603b68c7e6904ead4acc9db0006a8254c1e56575c1ea94c9",
+          "expected": false,
+          "score": 0.3915034837002417,
+          "text": "## 约束\n\n迁移前备份旧版本。转换失败必须回滚，不能覆盖原始文件。验证：损坏样本测试通过。\n\n"
+        },
+        {
+          "id": "f-dfa410a1eca08b8893d3769aedd859192a2dd48c7bc0572d46961a61a28f879a",
+          "expected": false,
+          "score": 0.3340059234348184,
+          "text": "## 来源\n\n项目 alpha，模块 storage。这是合成资料。\n"
+        }
+      ]
+    },
+    {
+      "id": "save-paraphrase",
+      "noAnswer": false,
+      "top": [
+        {
+          "id": "f-7428f0147996c1eb8bd96cb91bb04128a89f6cee1d565704e5a97dc2426d1102",
+          "expected": true,
+          "score": 0.547849174863323,
+          "text": "## 约束\n\n写入临时文件后校验校验和，再原子替换正式存档。磁盘已满时保留旧文件并报错。\n\n"
+        },
+        {
+          "id": "f-5adb1c4b5577a679603b68c7e6904ead4acc9db0006a8254c1e56575c1ea94c9",
+          "expected": false,
+          "score": 0.5060251811379994,
+          "text": "## 约束\n\n迁移前备份旧版本。转换失败必须回滚，不能覆盖原始文件。验证：损坏样本测试通过。\n\n"
+        },
+        {
+          "id": "f-6366310ff10e3f1c7e308518909b29a163ccb1f5807dd67d97bf6041aac3f3f8",
+          "expected": false,
+          "score": 0.5003232938091934,
+          "text": "## 约束\n\n密钥仅从环境变量读取，不写入存档。日志不得输出密钥；解密失败保留密文。\n\n"
+        }
+      ]
+    },
+    {
+      "id": "damage-exact",
+      "noAnswer": false,
+      "top": [
+        {
+          "id": "f-26f2286942b448cf441f0a51ae7c0e71c635154f35bb284d73ed8337e8267d75",
+          "expected": true,
+          "score": 0.46018872839105257,
+          "text": "## 约束\n\n先应用护盾再扣生命。无敌状态不扣血，伤害日志必须保留攻击来源。\n\n"
+        },
+        {
+          "id": "f-f4f4ef53a272945634cf4db507b5cde93a1d798b84ba67e63407f8a8c490213a",
+          "expected": true,
+          "score": 0.3515239885480971,
+          "text": "## 来源\n\n项目 alpha，模块 battle。这是合成资料。\n"
+        },
+        {
+          "id": "f-09de36a31892f0a725f03fbd514dbd14ac985c84a2f46909aa4c863e0bc7d271",
+          "expected": false,
+          "score": 0.33104755890932486,
+          "text": "# 连击规范\n\n"
+        }
+      ]
+    },
+    {
+      "id": "damage-paraphrase",
+      "noAnswer": false,
+      "top": [
+        {
+          "id": "f-26f2286942b448cf441f0a51ae7c0e71c635154f35bb284d73ed8337e8267d75",
+          "expected": true,
+          "score": 0.5419601331155646,
+          "text": "## 约束\n\n先应用护盾再扣生命。无敌状态不扣血，伤害日志必须保留攻击来源。\n\n"
+        },
+        {
+          "id": "f-085e63e5f7627fd5db5a8dc48600d8cfa17c275f56b2641912c9ae36baa93a07",
+          "expected": false,
+          "score": 0.42179404139813587,
+          "text": "## 约束\n\n连击窗口为300毫秒。仅普通攻击命中后开始计时；闪避和受击必须清空计数。\n\n"
+        },
+        {
+          "id": "f-69e1aaf99bfc1309ad53b2a9fdd116fae41ced231957cea37d00f1fcf433c562",
+          "expected": false,
+          "score": 0.4091954901555996,
+          "text": "## 约束\n\n计划：缓存全部战斗帧。验证：内存测试失败，尚未实施。后续决定只保存最近60帧；回滚后重新校验随机数状态。\n\n"
+        }
+      ]
+    },
+    {
+      "id": "alpha-no-answer",
+      "noAnswer": true,
+      "top": [
+        {
+          "id": "f-a8be651dbad40fd82023a65cde72b109a491aa6fdc9ef848bdade877c028f609",
+          "expected": false,
+          "score": 0.3750091670133912,
+          "text": "# 回滚规范\n\n"
+        },
+        {
+          "id": "f-09de36a31892f0a725f03fbd514dbd14ac985c84a2f46909aa4c863e0bc7d271",
+          "expected": false,
+          "score": 0.36195990454823956,
+          "text": "# 连击规范\n\n"
+        },
+        {
+          "id": "f-74986882ff2f861207b18589bff1597122b3c297fe62592fb8b3aab2fbf91342",
+          "expected": false,
+          "score": 0.3527032752261018,
+          "text": "## 来源\n\n项目 alpha，模块 battle。这是合成资料。\n"
+        }
+      ]
+    }
+  ],
+  "usage": {
+    "embeddingTexts": 9,
+    "embeddingTokens": 270,
+    "rerankPairs": 0,
+    "rerankTokens": 0,
+    "modelCalls": 1,
+    "cacheHits": 0,
+    "generationTokens": 0,
+    "apiCost": 0,
+    "modelPeakRssBytes": 159657984,
+    "modelCpuMs": 421,
+    "modelFsRead": 246,
+    "modelFsWrite": 0
+  }
+}

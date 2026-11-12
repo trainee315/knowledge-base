@@ -1,0 +1,14 @@
+export interface Project { id: string; aliases: string[]; directories: string[]; modules: string[]; entries: string[] }
+export interface Mapping { projectId: string; modules: string[]; sourcePaths?: string[] }
+/** 正式范围身份独立于可重建索引及记录正文。 */
+export interface RecallConfig { revision: number; projects: Project[]; resources: Record<string, Mapping>; organizations: Record<string, Mapping>; chunking?: { targetChars: number; maxBlockChars: number }; ranking?: { semanticMinScore: number; rrfK: number; bm25TitleWeight: number } }
+export interface ScopeInput { projectId?: string; projectIds?: string[]; crossProject?: boolean; modules?: string[]; organizationIds?: string[]; sourcePaths?: string[]; recordType?: string; sessionId?: string; time?: { field: 'sourceTime' | 'recordedAt'; from?: string; to?: string } }
+export interface Scope extends Omit<ScopeInput, 'projectId'> { projectIds: string[] }
+export interface RecordInfo { resourceId: string; contentVersion: number; contentHash: string; title: string; projectId?: string; modules: string[]; organizationIds: string[]; tagIds: string[]; sourcePaths: string[]; recordType: string; sessionId?: string; sourceFrom?: string; sourceTo?: string; recordedAt: string }
+export interface SourceRecord extends RecordInfo { text: string }
+/** 偏移始终针对未归一化的固定版本原文，end 为 UTF-16 排他边界。 */
+export interface Fragment extends RecordInfo { id: string; ordinal: number; start: number; end: number; startLine: number; endLine: number; headings: string[]; text: string; previous?: string; next?: string; continued: boolean }
+export interface Hit extends Fragment { score?: number; ranks?: Record<string, number>; methods: string[]; need?: string; read: { id: string; version: number; scope: Scope; offset: number } }
+export interface Request { mode?: 'auto' | 'read' | 'list' | 'question' | 'task'; id?: string; version?: number; query?: string; task?: string; needs?: string[]; scope?: ScopeInput; contextProjectId?: string; cwd?: string; retrievalMode?: 'lexical' | 'semantic' | 'hybrid'; rerank?: boolean; budgetTokens?: number; maxBytes?: number; maxFragments?: number; candidates?: number; neighbors?: number; section?: string; offset?: number; limit?: number; sort?: 'recordedAt' | 'title'; direction?: 'asc' | 'desc'; debug?: boolean }
+export interface Usage { embeddingTexts: number; embeddingTokens: number; rerankPairs: number; rerankTokens: number; modelCalls: number; cacheHits: number; generationTokens: number; apiCost: number; modelPeakRssBytes?: number; modelCpuMs?: number; modelFsRead?: number; modelFsWrite?: number }
+export interface ModelLock { runtime: string; embedding: { id: string; revision: string }; reranker: { id: string; revision: string }; dtype: 'q8'; pooling: 'cls'; normalize: true; queryPrefix: string; maxTokens: 512; dimensions: 512; encodingVersion: 'bge-cls-pair-v1'; fingerprint: string; files: Record<string, string> }

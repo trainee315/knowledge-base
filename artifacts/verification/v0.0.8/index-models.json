@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "generation": "0aa9151d-8c2f-49e1-807a-dbefe2abc815",
+  "fingerprint": "3d5a068af567f8ee8eca1f909f8e23034e1f81f67c6aa0317e977e36f5b3bf17",
+  "splitter": "markdown-block-1:74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+  "tokenizer": "nfkc-cjk-bigram-1",
+  "model": "6cf47aee644c477e707d490c24bb21fe16219d01aaa005f8cb4af39b783dce88",
+  "builtAt": "2026-11-12T10:16:31.576Z",
+  "records": 31,
+  "fragments": 91,
+  "skipped": [],
+  "usage": {
+    "embeddingTexts": 0,
+    "embeddingTokens": 0,
+    "rerankPairs": 0,
+    "rerankTokens": 0,
+    "modelCalls": 0,
+    "cacheHits": 91,
+    "generationTokens": 0,
+    "apiCost": 0
+  },
+  "truncatedEncodingInputs": 0,
+  "reusedFragments": 91,
+  "durationMs": 403.4133
+}

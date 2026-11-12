@@ -1,0 +1,41 @@
+{
+  "baseCommit": "81387b56fa498c3897763546f0d5e23a99d3ab52",
+  "branch": "codex/v0.0.8-recall",
+  "node": "v24.11.0",
+  "changesCommitted": false,
+  "checks": {
+    "regressionTests": 116,
+    "cliChecks": 8,
+    "fullBuild": "passed",
+    "regressionFailures": 0,
+    "typecheck": "passed"
+  },
+  "files": {
+    "src/recall/development.ts": "429a9977eca80bca9c0ffc314113096a09ab6e09a2a504e9ba72091f03dde588",
+    "src/recall/evaluate.ts": "faf2494d466ac396075bfd60a7e628e15923737f347b797383b52ba3ecee6674",
+    "src/recall/fragments.ts": "d8ff7c59198eae56c58961845f22c9c75a29452f38c79380847e08f836913e02",
+    "src/recall/index.ts": "a63b24e05a40843885930b4b5ebc011a4f81a0341971edc8f9cbbbeb8369dacd",
+    "src/recall/model-worker.ts": "60a824a874cf3dab707e09587ed88fc2e1dd8d581d8cb1e998fb6cf2b20a5950",
+    "src/recall/models.ts": "a454e58e8668d75769b95503e946d77749ca5827e4185e647eb576ccd5617217",
+    "src/recall/recall.test.ts": "5f1801df0ebacc82b81fa48f03ee1d6b2c8efa557c19905e9a294ec7e1008ddb",
+    "src/recall/recall.ts": "16f0917616ff3aef4434bd549549d788c4ad56caaab22f13cb38cb3a32cae5b7",
+    "src/recall/scope.ts": "0729bba45a43747ca4e925f62ed07efe8cfd009ced39fc5ed8e342a73cb9fcd5",
+    "src/recall/types.ts": "f3ba6648a520b78dd82d141ee3111b1d5dbe4f6c450e2b6ccbcc726ede50dd91",
+    "tests/recall/agent.mjs": "4dfa35136438492909a94e4a8b07f1e2d331d5488f8a986db802a2af13e0a53a",
+    "tests/recall/baseline.mjs": "b53aa5b6e5ee954d5a0bffc4aeb319bd8a586d576c2038cc61f8dc6297a3c28b",
+    "tests/recall/benchmark.mjs": "3a7e0ba383337d138ebd939537752f5bfaaf2f1a72f6ac6c43cf805bfb78c34c",
+    "tests/recall/cli.mjs": "af47082faf736d9c7b0bb1a59b9ac18760cd936d465ec53d25da8160a81b40a0",
+    "tests/recall/demo.mjs": "cb8fcdc1671884661bb825ebcca0644833c295e562633e3421ea6f362f4a1e85",
+    "tests/recall/evaluate.mjs": "56fadff67d6d9f08b83de724c17305283adab1408037edbdeb66a792d3b8482a",
+    "tests/recall/fixture.mjs": "3d21655bc5569191c1e3aa4cb9c120d198adad16dedb7794b4093630cdd5d203",
+    "tests/recall/load-worker.mjs": "4c0f2c2beeebfb9ac2f76f3657687c408a0d934fe02eb2e901f18255518b444b",
+    "tests/recall/performance.mjs": "6852131737658f17e55fe450e628087f246d3c24ec9d6ffbc363ee8144a2896e",
+    "tests/recall/report.mjs": "f0bc3a49334076f1a5e61277f609649aa6ff0add2f36ed1e1a964543b65572d2",
+    "tests/recall/tune.mjs": "871310ac99243b1bfa29eb8853f6feb470f9265458daba65debc0eb120e84eb7",
+    "src/cli/main.ts": "e650b48fb05a54372a4ab0c08cec468c20591b6a86da1aae8ea496cbc766b442",
+    "src/service/dispatch.ts": "e609148cef7bd5831ef09f2b28c9533bdf6d0a749ba0b10f484d422e06d28c95",
+    "package.json": "f259a6d7d98814c6d285c9a3cce0a9e49f76802329141455aa158cf37c5def77",
+    "package-lock.json": "b35325dc799e495c9d29bfc3b72d2ce2f8764951c870562fa7d5b518d1a0db63",
+    "doc/新增需求/v0.0.8/thresholds.json": "8d710d9044616aecea7c07667370486a03bb05b0373890e67643cdeec7bad804"
+  }
+}

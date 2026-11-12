@@ -1,0 +1,891 @@
+{
+  "calls": 68,
+  "costUpperUsd": 0.026927100000000013,
+  "attempts": [
+    {
+      "ordinal": 1,
+      "startedAt": "2026-11-12T09:45:10.062Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 288,
+        "outputTokens": 33,
+        "cacheHitTokens": 0,
+        "cacheMissTokens": 288
+      },
+      "costUpperUsd": 0.000126
+    },
+    {
+      "ordinal": 2,
+      "startedAt": "2026-11-12T09:45:11.944Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 347,
+        "outputTokens": 27,
+        "cacheHitTokens": 128,
+        "cacheMissTokens": 219
+      },
+      "costUpperUsd": 0.0001365
+    },
+    {
+      "ordinal": 3,
+      "startedAt": "2026-11-12T09:45:13.314Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 400,
+        "outputTokens": 19,
+        "cacheHitTokens": 256,
+        "cacheMissTokens": 144
+      },
+      "costUpperUsd": 0.0001428
+    },
+    {
+      "ordinal": 4,
+      "startedAt": "2026-11-12T09:45:14.938Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 445,
+        "outputTokens": 207,
+        "cacheHitTokens": 256,
+        "cacheMissTokens": 189
+      },
+      "costUpperUsd": 0.00038189999999999996
+    },
+    {
+      "ordinal": 5,
+      "startedAt": "2026-11-12T09:45:16.010Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 288,
+        "outputTokens": 33,
+        "cacheHitTokens": 128,
+        "cacheMissTokens": 160
+      },
+      "costUpperUsd": 0.000126
+    },
+    {
+      "ordinal": 6,
+      "startedAt": "2026-11-12T09:45:17.203Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 1459,
+        "outputTokens": 243,
+        "cacheHitTokens": 256,
+        "cacheMissTokens": 1203
+      },
+      "costUpperUsd": 0.0007293
+    },
+    {
+      "ordinal": 7,
+      "startedAt": "2026-11-12T09:45:19.070Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 288,
+        "outputTokens": 33,
+        "cacheHitTokens": 128,
+        "cacheMissTokens": 160
+      },
+      "costUpperUsd": 0.000126
+    },
+    {
+      "ordinal": 8,
+      "startedAt": "2026-11-12T09:45:20.821Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 3058,
+        "outputTokens": 232,
+        "cacheHitTokens": 256,
+        "cacheMissTokens": 2802
+      },
+      "costUpperUsd": 0.0011958
+    },
+    {
+      "ordinal": 9,
+      "startedAt": "2026-11-12T09:45:22.282Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 288,
+        "outputTokens": 35,
+        "cacheHitTokens": 128,
+        "cacheMissTokens": 160
+      },
+      "costUpperUsd": 0.00012839999999999998
+    },
+    {
+      "ordinal": 10,
+      "startedAt": "2026-11-12T09:45:23.690Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 3093,
+        "outputTokens": 234,
+        "cacheHitTokens": 256,
+        "cacheMissTokens": 2837
+      },
+      "costUpperUsd": 0.0012087
+    },
+    {
+      "ordinal": 11,
+      "startedAt": "2026-11-12T09:45:24.880Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 288,
+        "outputTokens": 35,
+        "cacheHitTokens": 128,
+        "cacheMissTokens": 160
+      },
+      "costUpperUsd": 0.00012839999999999998
+    },
+    {
+      "ordinal": 12,
+      "startedAt": "2026-11-12T09:45:28.513Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 3026,
+        "outputTokens": 61,
+        "cacheHitTokens": 256,
+        "cacheMissTokens": 2770
+      },
+      "costUpperUsd": 0.000981
+    },
+    {
+      "ordinal": 13,
+      "startedAt": "2026-11-12T09:45:31.694Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 5882,
+        "outputTokens": 249,
+        "cacheHitTokens": 3072,
+        "cacheMissTokens": 2810
+      },
+      "costUpperUsd": 0.0020634
+    },
+    {
+      "ordinal": 14,
+      "startedAt": "2026-11-12T09:45:33.425Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 288,
+        "outputTokens": 33,
+        "cacheHitTokens": 128,
+        "cacheMissTokens": 160
+      },
+      "costUpperUsd": 0.000126
+    },
+    {
+      "ordinal": 15,
+      "startedAt": "2026-11-12T09:45:37.266Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 1997,
+        "outputTokens": 245,
+        "cacheHitTokens": 256,
+        "cacheMissTokens": 1741
+      },
+      "costUpperUsd": 0.0008931
+    },
+    {
+      "ordinal": 16,
+      "startedAt": "2026-11-12T09:45:38.883Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 270,
+        "outputTokens": 36,
+        "cacheHitTokens": 0,
+        "cacheMissTokens": 270
+      },
+      "costUpperUsd": 0.00012419999999999998
+    },
+    {
+      "ordinal": 17,
+      "startedAt": "2026-11-12T09:45:40.044Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 332,
+        "outputTokens": 24,
+        "cacheHitTokens": 128,
+        "cacheMissTokens": 204
+      },
+      "costUpperUsd": 0.00012839999999999998
+    },
+    {
+      "ordinal": 18,
+      "startedAt": "2026-11-12T09:45:41.175Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 382,
+        "outputTokens": 25,
+        "cacheHitTokens": 128,
+        "cacheMissTokens": 254
+      },
+      "costUpperUsd": 0.0001446
+    },
+    {
+      "ordinal": 19,
+      "startedAt": "2026-11-12T09:45:43.355Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 433,
+        "outputTokens": 51,
+        "cacheHitTokens": 256,
+        "cacheMissTokens": 177
+      },
+      "costUpperUsd": 0.00019109999999999998
+    },
+    {
+      "ordinal": 20,
+      "startedAt": "2026-11-12T09:45:44.210Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 270,
+        "outputTokens": 36,
+        "cacheHitTokens": 128,
+        "cacheMissTokens": 142
+      },
+      "costUpperUsd": 0.00012419999999999998
+    },
+    {
+      "ordinal": 21,
+      "startedAt": "2026-11-12T09:45:45.309Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 1051,
+        "outputTokens": 92,
+        "cacheHitTokens": 256,
+        "cacheMissTokens": 795
+      },
+      "costUpperUsd": 0.0004257
+    },
+    {
+      "ordinal": 22,
+      "startedAt": "2026-11-12T09:45:46.220Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 270,
+        "outputTokens": 37,
+        "cacheHitTokens": 128,
+        "cacheMissTokens": 142
+      },
+      "costUpperUsd": 0.0001254
+    },
+    {
+      "ordinal": 23,
+      "startedAt": "2026-11-12T09:45:47.724Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 3124,
+        "outputTokens": 93,
+        "cacheHitTokens": 256,
+        "cacheMissTokens": 2868
+      },
+      "costUpperUsd": 0.0010488
+    },
+    {
+      "ordinal": 24,
+      "startedAt": "2026-11-12T09:45:49.070Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 270,
+        "outputTokens": 36,
+        "cacheHitTokens": 128,
+        "cacheMissTokens": 142
+      },
+      "costUpperUsd": 0.00012419999999999998
+    },
+    {
+      "ordinal": 25,
+      "startedAt": "2026-11-12T09:45:50.531Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 3138,
+        "outputTokens": 92,
+        "cacheHitTokens": 256,
+        "cacheMissTokens": 2882
+      },
+      "costUpperUsd": 0.0010517999999999999
+    },
+    {
+      "ordinal": 26,
+      "startedAt": "2026-11-12T09:45:51.577Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 270,
+        "outputTokens": 36,
+        "cacheHitTokens": 128,
+        "cacheMissTokens": 142
+      },
+      "costUpperUsd": 0.00012419999999999998
+    },
+    {
+      "ordinal": 27,
+      "startedAt": "2026-11-12T09:45:54.601Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 3088,
+        "outputTokens": 92,
+        "cacheHitTokens": 256,
+        "cacheMissTokens": 2832
+      },
+      "costUpperUsd": 0.0010368
+    },
+    {
+      "ordinal": 28,
+      "startedAt": "2026-11-12T09:45:55.705Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 270,
+        "outputTokens": 36,
+        "cacheHitTokens": 128,
+        "cacheMissTokens": 142
+      },
+      "costUpperUsd": 0.00012419999999999998
+    },
+    {
+      "ordinal": 29,
+      "startedAt": "2026-11-12T09:45:59.025Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 1521,
+        "outputTokens": 87,
+        "cacheHitTokens": 256,
+        "cacheMissTokens": 1265
+      },
+      "costUpperUsd": 0.0005607
+    },
+    {
+      "ordinal": 30,
+      "startedAt": "2026-11-12T09:45:59.816Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25,
+        "cacheHitTokens": 0,
+        "cacheMissTokens": 237
+      },
+      "costUpperUsd": 0.00010109999999999999
+    },
+    {
+      "ordinal": 31,
+      "startedAt": "2026-11-12T09:46:00.540Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25,
+        "cacheHitTokens": 0,
+        "cacheMissTokens": 237
+      },
+      "costUpperUsd": 0.00010109999999999999
+    },
+    {
+      "ordinal": 32,
+      "startedAt": "2026-11-12T09:46:01.670Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25,
+        "cacheHitTokens": 0,
+        "cacheMissTokens": 237
+      },
+      "costUpperUsd": 0.00010109999999999999
+    },
+    {
+      "ordinal": 33,
+      "startedAt": "2026-11-12T09:46:02.768Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25,
+        "cacheHitTokens": 0,
+        "cacheMissTokens": 237
+      },
+      "costUpperUsd": 0.00010109999999999999
+    },
+    {
+      "ordinal": 34,
+      "startedAt": "2026-11-12T09:46:03.644Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25,
+        "cacheHitTokens": 0,
+        "cacheMissTokens": 237
+      },
+      "costUpperUsd": 0.00010109999999999999
+    },
+    {
+      "ordinal": 35,
+      "startedAt": "2026-11-12T09:46:04.644Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25,
+        "cacheHitTokens": 0,
+        "cacheMissTokens": 237
+      },
+      "costUpperUsd": 0.00010109999999999999
+    },
+    {
+      "ordinal": 36,
+      "startedAt": "2026-11-12T09:46:05.046Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 288,
+        "outputTokens": 35,
+        "cacheHitTokens": 128,
+        "cacheMissTokens": 160
+      },
+      "costUpperUsd": 0.00012839999999999998
+    },
+    {
+      "ordinal": 37,
+      "startedAt": "2026-11-12T09:46:06.672Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 349,
+        "outputTokens": 26,
+        "cacheHitTokens": 128,
+        "cacheMissTokens": 221
+      },
+      "costUpperUsd": 0.0001359
+    },
+    {
+      "ordinal": 38,
+      "startedAt": "2026-11-12T09:46:08.045Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 401,
+        "outputTokens": 214,
+        "cacheHitTokens": 256,
+        "cacheMissTokens": 145
+      },
+      "costUpperUsd": 0.0003771
+    },
+    {
+      "ordinal": 39,
+      "startedAt": "2026-11-12T09:46:09.579Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 288,
+        "outputTokens": 35,
+        "cacheHitTokens": 128,
+        "cacheMissTokens": 160
+      },
+      "costUpperUsd": 0.00012839999999999998
+    },
+    {
+      "ordinal": 40,
+      "startedAt": "2026-11-12T09:46:10.838Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 1071,
+        "outputTokens": 230,
+        "cacheHitTokens": 256,
+        "cacheMissTokens": 815
+      },
+      "costUpperUsd": 0.0005972999999999999
+    },
+    {
+      "ordinal": 41,
+      "startedAt": "2026-11-12T09:46:11.913Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 288,
+        "outputTokens": 33,
+        "cacheHitTokens": 128,
+        "cacheMissTokens": 160
+      },
+      "costUpperUsd": 0.000126
+    },
+    {
+      "ordinal": 42,
+      "startedAt": "2026-11-12T09:46:13.652Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 3050,
+        "outputTokens": 232,
+        "cacheHitTokens": 256,
+        "cacheMissTokens": 2794
+      },
+      "costUpperUsd": 0.0011934
+    },
+    {
+      "ordinal": 43,
+      "startedAt": "2026-11-12T09:46:15.095Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 288,
+        "outputTokens": 35,
+        "cacheHitTokens": 128,
+        "cacheMissTokens": 160
+      },
+      "costUpperUsd": 0.00012839999999999998
+    },
+    {
+      "ordinal": 44,
+      "startedAt": "2026-11-12T09:46:16.508Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 3090,
+        "outputTokens": 245,
+        "cacheHitTokens": 256,
+        "cacheMissTokens": 2834
+      },
+      "costUpperUsd": 0.001221
+    },
+    {
+      "ordinal": 45,
+      "startedAt": "2026-11-12T09:46:18.070Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 288,
+        "outputTokens": 33,
+        "cacheHitTokens": 128,
+        "cacheMissTokens": 160
+      },
+      "costUpperUsd": 0.000126
+    },
+    {
+      "ordinal": 46,
+      "startedAt": "2026-11-12T09:46:21.316Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 3095,
+        "outputTokens": 259,
+        "cacheHitTokens": 256,
+        "cacheMissTokens": 2839
+      },
+      "costUpperUsd": 0.0012393
+    },
+    {
+      "ordinal": 47,
+      "startedAt": "2026-11-12T09:46:23.013Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 288,
+        "outputTokens": 35,
+        "cacheHitTokens": 128,
+        "cacheMissTokens": 160
+      },
+      "costUpperUsd": 0.00012839999999999998
+    },
+    {
+      "ordinal": 48,
+      "startedAt": "2026-11-12T09:46:26.162Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 2422,
+        "outputTokens": 222,
+        "cacheHitTokens": 256,
+        "cacheMissTokens": 2166
+      },
+      "costUpperUsd": 0.000993
+    },
+    {
+      "ordinal": 49,
+      "startedAt": "2026-11-12T09:46:27.495Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 270,
+        "outputTokens": 36,
+        "cacheHitTokens": 128,
+        "cacheMissTokens": 142
+      },
+      "costUpperUsd": 0.00012419999999999998
+    },
+    {
+      "ordinal": 50,
+      "startedAt": "2026-11-12T09:46:28.698Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 332,
+        "outputTokens": 24,
+        "cacheHitTokens": 128,
+        "cacheMissTokens": 204
+      },
+      "costUpperUsd": 0.00012839999999999998
+    },
+    {
+      "ordinal": 51,
+      "startedAt": "2026-11-12T09:46:29.916Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 382,
+        "outputTokens": 25,
+        "cacheHitTokens": 128,
+        "cacheMissTokens": 254
+      },
+      "costUpperUsd": 0.0001446
+    },
+    {
+      "ordinal": 52,
+      "startedAt": "2026-11-12T09:46:31.337Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 433,
+        "outputTokens": 41,
+        "cacheHitTokens": 256,
+        "cacheMissTokens": 177
+      },
+      "costUpperUsd": 0.0001791
+    },
+    {
+      "ordinal": 53,
+      "startedAt": "2026-11-12T09:46:32.384Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 270,
+        "outputTokens": 36,
+        "cacheHitTokens": 128,
+        "cacheMissTokens": 142
+      },
+      "costUpperUsd": 0.00012419999999999998
+    },
+    {
+      "ordinal": 54,
+      "startedAt": "2026-11-12T09:46:33.374Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 1048,
+        "outputTokens": 92,
+        "cacheHitTokens": 256,
+        "cacheMissTokens": 792
+      },
+      "costUpperUsd": 0.00042479999999999997
+    },
+    {
+      "ordinal": 55,
+      "startedAt": "2026-11-12T09:46:34.327Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 270,
+        "outputTokens": 37,
+        "cacheHitTokens": 128,
+        "cacheMissTokens": 142
+      },
+      "costUpperUsd": 0.0001254
+    },
+    {
+      "ordinal": 56,
+      "startedAt": "2026-11-12T09:46:35.994Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 3123,
+        "outputTokens": 93,
+        "cacheHitTokens": 256,
+        "cacheMissTokens": 2867
+      },
+      "costUpperUsd": 0.0010485
+    },
+    {
+      "ordinal": 57,
+      "startedAt": "2026-11-12T09:46:37.297Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 270,
+        "outputTokens": 36,
+        "cacheHitTokens": 128,
+        "cacheMissTokens": 142
+      },
+      "costUpperUsd": 0.00012419999999999998
+    },
+    {
+      "ordinal": 58,
+      "startedAt": "2026-11-12T09:46:38.594Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 3137,
+        "outputTokens": 92,
+        "cacheHitTokens": 256,
+        "cacheMissTokens": 2881
+      },
+      "costUpperUsd": 0.0010515
+    },
+    {
+      "ordinal": 59,
+      "startedAt": "2026-11-12T09:46:39.480Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 270,
+        "outputTokens": 37,
+        "cacheHitTokens": 128,
+        "cacheMissTokens": 142
+      },
+      "costUpperUsd": 0.0001254
+    },
+    {
+      "ordinal": 60,
+      "startedAt": "2026-11-12T09:46:42.807Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 3141,
+        "outputTokens": 113,
+        "cacheHitTokens": 256,
+        "cacheMissTokens": 2885
+      },
+      "costUpperUsd": 0.0010779
+    },
+    {
+      "ordinal": 61,
+      "startedAt": "2026-11-12T09:46:43.855Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 270,
+        "outputTokens": 36,
+        "cacheHitTokens": 128,
+        "cacheMissTokens": 142
+      },
+      "costUpperUsd": 0.00012419999999999998
+    },
+    {
+      "ordinal": 62,
+      "startedAt": "2026-11-12T09:46:47.011Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 1523,
+        "outputTokens": 87,
+        "cacheHitTokens": 256,
+        "cacheMissTokens": 1267
+      },
+      "costUpperUsd": 0.0005612999999999999
+    },
+    {
+      "ordinal": 63,
+      "startedAt": "2026-11-12T09:46:48.038Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25,
+        "cacheHitTokens": 0,
+        "cacheMissTokens": 237
+      },
+      "costUpperUsd": 0.00010109999999999999
+    },
+    {
+      "ordinal": 64,
+      "startedAt": "2026-11-12T09:46:49.168Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25,
+        "cacheHitTokens": 0,
+        "cacheMissTokens": 237
+      },
+      "costUpperUsd": 0.00010109999999999999
+    },
+    {
+      "ordinal": 65,
+      "startedAt": "2026-11-12T09:46:50.395Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25,
+        "cacheHitTokens": 0,
+        "cacheMissTokens": 237
+      },
+      "costUpperUsd": 0.00010109999999999999
+    },
+    {
+      "ordinal": 66,
+      "startedAt": "2026-11-12T09:46:51.317Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25,
+        "cacheHitTokens": 0,
+        "cacheMissTokens": 237
+      },
+      "costUpperUsd": 0.00010109999999999999
+    },
+    {
+      "ordinal": 67,
+      "startedAt": "2026-11-12T09:46:52.393Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25,
+        "cacheHitTokens": 0,
+        "cacheMissTokens": 237
+      },
+      "costUpperUsd": 0.00010109999999999999
+    },
+    {
+      "ordinal": 68,
+      "startedAt": "2026-11-12T09:46:53.196Z",
+      "status": "200",
+      "model": "deepseek-flash",
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25,
+        "cacheHitTokens": 0,
+        "cacheMissTokens": 237
+      },
+      "costUpperUsd": 0.00010109999999999999
+    }
+  ],
+  "closed": true
+}

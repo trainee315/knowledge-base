@@ -1,0 +1,951 @@
+{
+  "complete": true,
+  "syntheticOnly": true,
+  "model": "deepseek-flash",
+  "rows": [
+    {
+      "task": "combo",
+      "mode": "literal",
+      "repeat": 0,
+      "calls": 4,
+      "queries": 3,
+      "repeatedQueries": 0,
+      "success": false,
+      "evidenceCorrect": false,
+      "usage": {
+        "inputTokens": 1476,
+        "outputTokens": 232
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 5480.3464,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "combo",
+      "mode": "bm25",
+      "repeat": 0,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 1362,
+        "outputTokens": 267
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 2353.8364,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "combo",
+      "mode": "semantic",
+      "repeat": 0,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 3354,
+        "outputTokens": 269
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 42,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 3171.2811999999994,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "combo",
+      "mode": "hybrid",
+      "repeat": 0,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 3379,
+        "outputTokens": 272
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 42,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 2989.8891999999996,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "combo",
+      "mode": "hybrid-rerank",
+      "repeat": 0,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 3384,
+        "outputTokens": 292
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 39,
+        "rerankPairs": 12,
+        "rerankTokens": 487,
+        "modelCalls": 2,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 4793.356900000001,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "combo",
+      "mode": "task",
+      "repeat": 0,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 2716,
+        "outputTokens": 268
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 42,
+        "rerankPairs": 12,
+        "rerankTokens": 511,
+        "modelCalls": 2,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 4707.3439,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "history",
+      "mode": "literal",
+      "repeat": 0,
+      "calls": 4,
+      "queries": 3,
+      "repeatedQueries": 0,
+      "success": false,
+      "evidenceCorrect": false,
+      "usage": {
+        "inputTokens": 1412,
+        "outputTokens": 119
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 4910.766199999998,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "history",
+      "mode": "bm25",
+      "repeat": 0,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 1319,
+        "outputTokens": 150
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 1932.7128999999986,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "history",
+      "mode": "semantic",
+      "repeat": 0,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 3386,
+        "outputTokens": 128
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 42,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 3454.237099999995,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "history",
+      "mode": "hybrid",
+      "repeat": 0,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 3416,
+        "outputTokens": 130
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 42,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 2709.2957000000024,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "history",
+      "mode": "hybrid-rerank",
+      "repeat": 0,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 3417,
+        "outputTokens": 130
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 42,
+        "rerankPairs": 9,
+        "rerankTokens": 440,
+        "modelCalls": 2,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 4196.832499999997,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "history",
+      "mode": "task",
+      "repeat": 0,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 1793,
+        "outputTokens": 121
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 41,
+        "rerankPairs": 9,
+        "rerankTokens": 404,
+        "modelCalls": 2,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 3773.909999999996,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "self-contained",
+      "mode": "literal",
+      "repeat": 0,
+      "calls": 1,
+      "queries": 0,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 917.1838999999964,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "self-contained",
+      "mode": "bm25",
+      "repeat": 0,
+      "calls": 1,
+      "queries": 0,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 840.0724999999948,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "self-contained",
+      "mode": "semantic",
+      "repeat": 0,
+      "calls": 1,
+      "queries": 0,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 656.0112000000008,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "self-contained",
+      "mode": "hybrid",
+      "repeat": 0,
+      "calls": 1,
+      "queries": 0,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 472.6900000000023,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "self-contained",
+      "mode": "hybrid-rerank",
+      "repeat": 0,
+      "calls": 1,
+      "queries": 0,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 999.5856000000058,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "self-contained",
+      "mode": "task",
+      "repeat": 0,
+      "calls": 1,
+      "queries": 0,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 877.7184999999954,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "combo",
+      "mode": "literal",
+      "repeat": 1,
+      "calls": 3,
+      "queries": 2,
+      "repeatedQueries": 0,
+      "success": false,
+      "evidenceCorrect": false,
+      "usage": {
+        "inputTokens": 1035,
+        "outputTokens": 261
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 4169.891000000003,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "combo",
+      "mode": "bm25",
+      "repeat": 1,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 1360,
+        "outputTokens": 263
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 3172.1807999999946,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "combo",
+      "mode": "semantic",
+      "repeat": 1,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 3336,
+        "outputTokens": 287
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 39,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 2557.472099999999,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "combo",
+      "mode": "hybrid",
+      "repeat": 1,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 3362,
+        "outputTokens": 265
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 36,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 3061.0094000000026,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "combo",
+      "mode": "hybrid-rerank",
+      "repeat": 1,
+      "calls": 3,
+      "queries": 2,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 9172,
+        "outputTokens": 365
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 2,
+        "embeddingTokens": 86,
+        "rerankPairs": 24,
+        "rerankTokens": 1046,
+        "modelCalls": 4,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 8008.248800000001,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "combo",
+      "mode": "task",
+      "repeat": 1,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 2286,
+        "outputTokens": 291
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 39,
+        "rerankPairs": 12,
+        "rerankTokens": 487,
+        "modelCalls": 2,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 4653.886500000008,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "history",
+      "mode": "literal",
+      "repeat": 1,
+      "calls": 4,
+      "queries": 3,
+      "repeatedQueries": 0,
+      "success": false,
+      "evidenceCorrect": false,
+      "usage": {
+        "inputTokens": 1412,
+        "outputTokens": 119
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 5251.185700000002,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "history",
+      "mode": "bm25",
+      "repeat": 1,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 1321,
+        "outputTokens": 128
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 2151.007700000002,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "history",
+      "mode": "semantic",
+      "repeat": 1,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 3388,
+        "outputTokens": 128
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 42,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 2665.0929000000033,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "history",
+      "mode": "hybrid",
+      "repeat": 1,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 3418,
+        "outputTokens": 130
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 42,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 2861.64469999999,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "history",
+      "mode": "hybrid-rerank",
+      "repeat": 1,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 3416,
+        "outputTokens": 130
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 42,
+        "rerankPairs": 9,
+        "rerankTokens": 440,
+        "modelCalls": 2,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 4080.837400000004,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "history",
+      "mode": "task",
+      "repeat": 1,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 1799,
+        "outputTokens": 124
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 42,
+        "rerankPairs": 9,
+        "rerankTokens": 440,
+        "modelCalls": 2,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 3970.1111999999994,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "self-contained",
+      "mode": "literal",
+      "repeat": 1,
+      "calls": 1,
+      "queries": 0,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 833.5166999999929,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "self-contained",
+      "mode": "bm25",
+      "repeat": 1,
+      "calls": 1,
+      "queries": 0,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 821.7580999999918,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "self-contained",
+      "mode": "semantic",
+      "repeat": 1,
+      "calls": 1,
+      "queries": 0,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 916.9983999999968,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "self-contained",
+      "mode": "hybrid",
+      "repeat": 1,
+      "calls": 1,
+      "queries": 0,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 857.7322000000131,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "self-contained",
+      "mode": "hybrid-rerank",
+      "repeat": 1,
+      "calls": 1,
+      "queries": 0,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 611.5065999999933,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "self-contained",
+      "mode": "task",
+      "repeat": 1,
+      "calls": 1,
+      "queries": 0,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25
+      },
+      "retrievalUsage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "durationMs": 910.6702000000078,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    }
+  ],
+  "costUpperUsd": 0.02677170000000001,
+  "pricingSource": "https://api-docs.deepseek.com/quick_start/pricing/",
+  "limitations": [
+    "36个小型函数任务；不代表复杂真实仓库任务",
+    "每个模式2次，不把波动当作确定收益",
+    "代码在隔离JS上下文实际执行测试；没有模型判分",
+    "费用是峰时非缓存上界，不是实际账单"
+  ]
+}

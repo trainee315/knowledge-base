@@ -1,0 +1,3741 @@
+{
+  "kind": "retrieval-only",
+  "snapshot": "3d5a068af567f8ee8eca1f909f8e23034e1f81f67c6aa0317e977e36f5b3bf17",
+  "casesHash": "0d6602073b282809457684d838b75b9babcbd7fc45c83785b08d1aa2aecd7d71",
+  "sampleCount": 13,
+  "rows": [
+    {
+      "caseId": "timeout-exact",
+      "mode": "literal",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 0.5,
+      "ndcgAt5": 0.6309297535714575,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2955,
+      "durationMs": 417.2021,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [],
+      "evidence": [
+        {
+          "resourceId": "69ddade6-c9be-47ee-b57f-916bde771cad",
+          "start": 0,
+          "end": 8,
+          "relevant": false
+        },
+        {
+          "resourceId": "69ddade6-c9be-47ee-b57f-916bde771cad",
+          "start": 8,
+          "end": 45,
+          "relevant": true
+        },
+        {
+          "resourceId": "69ddade6-c9be-47ee-b57f-916bde771cad",
+          "start": 45,
+          "end": 80,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "timeout-exact",
+      "mode": "bm25",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1815,
+      "durationMs": 38.89070000000004,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "69ddade6-c9be-47ee-b57f-916bde771cad",
+          "start": 8,
+          "end": 45,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "caseId": "timeout-exact",
+      "mode": "semantic",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1893,
+      "durationMs": 348.3906999999999,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153366528,
+        "modelCpuMs": 217,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "69ddade6-c9be-47ee-b57f-916bde771cad",
+          "start": 8,
+          "end": 45,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "caseId": "timeout-exact",
+      "mode": "hybrid",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1951,
+      "durationMs": 346.5199,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153407488,
+        "modelCpuMs": 296,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "69ddade6-c9be-47ee-b57f-916bde771cad",
+          "start": 8,
+          "end": 45,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "caseId": "timeout-exact",
+      "mode": "hybrid-rerank",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1983,
+      "durationMs": 1605.1163999999999,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 1,
+        "rerankTokens": 33,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 921853952,
+        "modelCpuMs": 1280,
+        "modelFsRead": 689,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "69ddade6-c9be-47ee-b57f-916bde771cad",
+          "start": 8,
+          "end": 45,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "caseId": "timeout-exact",
+      "mode": "task",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2125,
+      "durationMs": 1630.1398,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 1,
+        "rerankTokens": 33,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 921169920,
+        "modelCpuMs": 1530,
+        "modelFsRead": 678,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "69ddade6-c9be-47ee-b57f-916bde771cad",
+          "start": 8,
+          "end": 45,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "caseId": "timeout-paraphrase",
+      "mode": "literal",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 0,
+      "reciprocalRank": 0,
+      "ndcgAt5": 0,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 0,
+      "duplicateRatio": 0,
+      "resultBytes": 173,
+      "durationMs": 442.46990000000005,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [],
+      "evidence": []
+    },
+    {
+      "caseId": "timeout-paraphrase",
+      "mode": "bm25",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1880,
+      "durationMs": 42.151199999999335,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "69ddade6-c9be-47ee-b57f-916bde771cad",
+          "start": 8,
+          "end": 45,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "caseId": "timeout-paraphrase",
+      "mode": "semantic",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1968,
+      "durationMs": 352.78360000000066,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 36,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153571328,
+        "modelCpuMs": 233,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "69ddade6-c9be-47ee-b57f-916bde771cad",
+          "start": 8,
+          "end": 45,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "caseId": "timeout-paraphrase",
+      "mode": "hybrid",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2017,
+      "durationMs": 344.72070000000076,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 36,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153804800,
+        "modelCpuMs": 233,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "69ddade6-c9be-47ee-b57f-916bde771cad",
+          "start": 8,
+          "end": 45,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "caseId": "timeout-paraphrase",
+      "mode": "hybrid-rerank",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2050,
+      "durationMs": 1593.9178000000002,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 36,
+        "rerankPairs": 1,
+        "rerankTokens": 38,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 914595840,
+        "modelCpuMs": 1483,
+        "modelFsRead": 689,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "69ddade6-c9be-47ee-b57f-916bde771cad",
+          "start": 8,
+          "end": 45,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "caseId": "timeout-paraphrase",
+      "mode": "task",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2126,
+      "durationMs": 1617.7337000000007,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 36,
+        "rerankPairs": 1,
+        "rerankTokens": 38,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 902377472,
+        "modelCpuMs": 1295,
+        "modelFsRead": 697,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "69ddade6-c9be-47ee-b57f-916bde771cad",
+          "start": 8,
+          "end": 45,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "caseId": "migration-exact",
+      "mode": "literal",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 0.5,
+      "ndcgAt5": 0.6309297535714575,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2996,
+      "durationMs": 466.96450000000004,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [],
+      "evidence": [
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12",
+          "start": 0,
+          "end": 8,
+          "relevant": false
+        },
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12",
+          "start": 8,
+          "end": 56,
+          "relevant": true
+        },
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12",
+          "start": 56,
+          "end": 91,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "migration-exact",
+      "mode": "bm25",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1857,
+      "durationMs": 40.455299999999625,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12",
+          "start": 8,
+          "end": 56,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "caseId": "migration-exact",
+      "mode": "semantic",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 3822,
+      "durationMs": 355.71090000000004,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 26,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153927680,
+        "modelCpuMs": 296,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12",
+          "start": 8,
+          "end": 56,
+          "relevant": true
+        },
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12",
+          "start": 56,
+          "end": 91,
+          "relevant": false
+        },
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12",
+          "start": 0,
+          "end": 8,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "migration-exact",
+      "mode": "hybrid",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 3871,
+      "durationMs": 348.67239999999947,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 26,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 154066944,
+        "modelCpuMs": 249,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12",
+          "start": 8,
+          "end": 56,
+          "relevant": true
+        },
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12",
+          "start": 56,
+          "end": 91,
+          "relevant": false
+        },
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12",
+          "start": 0,
+          "end": 8,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "migration-exact",
+      "mode": "hybrid-rerank",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 3906,
+      "durationMs": 1640.2592000000004,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 26,
+        "rerankPairs": 3,
+        "rerankTokens": 84,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 901922816,
+        "modelCpuMs": 1576,
+        "modelFsRead": 697,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12",
+          "start": 8,
+          "end": 56,
+          "relevant": true
+        },
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12",
+          "start": 0,
+          "end": 8,
+          "relevant": false
+        },
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12",
+          "start": 56,
+          "end": 91,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "migration-exact",
+      "mode": "task",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2138,
+      "durationMs": 1645.8377999999993,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 26,
+        "rerankPairs": 3,
+        "rerankTokens": 84,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 921288704,
+        "modelCpuMs": 1467,
+        "modelFsRead": 688,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12",
+          "start": 8,
+          "end": 56,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "caseId": "migration-paraphrase",
+      "mode": "literal",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 0,
+      "reciprocalRank": 0,
+      "ndcgAt5": 0,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 0,
+      "duplicateRatio": 0,
+      "resultBytes": 173,
+      "durationMs": 425.2073999999993,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [],
+      "evidence": []
+    },
+    {
+      "caseId": "migration-paraphrase",
+      "mode": "bm25",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1918,
+      "durationMs": 45.029099999999744,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12",
+          "start": 8,
+          "end": 56,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "caseId": "migration-paraphrase",
+      "mode": "semantic",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0.19999999999999996,
+      "resultBytes": 6250,
+      "durationMs": 389.0195999999996,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 36,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153722880,
+        "modelCpuMs": 281,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12",
+          "start": 8,
+          "end": 56,
+          "relevant": true
+        },
+        {
+          "resourceId": "6d9da508-ec98-4ab1-a5dd-8911e85e84b3",
+          "start": 8,
+          "end": 54,
+          "relevant": false
+        },
+        {
+          "resourceId": "6d9da508-ec98-4ab1-a5dd-8911e85e84b3",
+          "start": 54,
+          "end": 89,
+          "relevant": false
+        },
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12",
+          "start": 56,
+          "end": 91,
+          "relevant": false
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61",
+          "start": 8,
+          "end": 52,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "migration-paraphrase",
+      "mode": "hybrid",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0.19999999999999996,
+      "resultBytes": 6299,
+      "durationMs": 389.8012999999992,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 36,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153616384,
+        "modelCpuMs": 233,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12",
+          "start": 8,
+          "end": 56,
+          "relevant": true
+        },
+        {
+          "resourceId": "6d9da508-ec98-4ab1-a5dd-8911e85e84b3",
+          "start": 8,
+          "end": 54,
+          "relevant": false
+        },
+        {
+          "resourceId": "6d9da508-ec98-4ab1-a5dd-8911e85e84b3",
+          "start": 54,
+          "end": 89,
+          "relevant": false
+        },
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12",
+          "start": 56,
+          "end": 91,
+          "relevant": false
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61",
+          "start": 8,
+          "end": 52,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "migration-paraphrase",
+      "mode": "hybrid-rerank",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0.4,
+      "resultBytes": 6217,
+      "durationMs": 1794.5475000000006,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 36,
+        "rerankPairs": 7,
+        "rerankTokens": 249,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 900431872,
+        "modelCpuMs": 1639,
+        "modelFsRead": 690,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12",
+          "start": 8,
+          "end": 56,
+          "relevant": true
+        },
+        {
+          "resourceId": "6d9da508-ec98-4ab1-a5dd-8911e85e84b3",
+          "start": 8,
+          "end": 54,
+          "relevant": false
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61",
+          "start": 52,
+          "end": 87,
+          "relevant": false
+        },
+        {
+          "resourceId": "6d9da508-ec98-4ab1-a5dd-8911e85e84b3",
+          "start": 54,
+          "end": 89,
+          "relevant": false
+        },
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12",
+          "start": 56,
+          "end": 91,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "migration-paraphrase",
+      "mode": "task",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 4351,
+      "durationMs": 1745.7300000000032,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 36,
+        "rerankPairs": 7,
+        "rerankTokens": 249,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 901857280,
+        "modelCpuMs": 1779,
+        "modelFsRead": 689,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12",
+          "start": 8,
+          "end": 56,
+          "relevant": true
+        },
+        {
+          "resourceId": "6d9da508-ec98-4ab1-a5dd-8911e85e84b3",
+          "start": 8,
+          "end": 54,
+          "relevant": false
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61",
+          "start": 8,
+          "end": 52,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "cooldown-exact",
+      "mode": "literal",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 0.5,
+      "ndcgAt5": 0.6309297535714575,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2977,
+      "durationMs": 456.4853000000003,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [],
+      "evidence": [
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd",
+          "start": 0,
+          "end": 8,
+          "relevant": false
+        },
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd",
+          "start": 8,
+          "end": 54,
+          "relevant": true
+        },
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd",
+          "start": 54,
+          "end": 88,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "cooldown-exact",
+      "mode": "bm25",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1840,
+      "durationMs": 41.22400000000198,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd",
+          "start": 8,
+          "end": 54,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "caseId": "cooldown-exact",
+      "mode": "semantic",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 0,
+      "reciprocalRank": 0,
+      "ndcgAt5": 0,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 0,
+      "duplicateRatio": 0,
+      "resultBytes": 850,
+      "durationMs": 323.4779000000017,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153477120,
+        "modelCpuMs": 296,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": []
+    },
+    {
+      "caseId": "cooldown-exact",
+      "mode": "hybrid",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1968,
+      "durationMs": 346.97359999999753,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153411584,
+        "modelCpuMs": 233,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd",
+          "start": 8,
+          "end": 54,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "caseId": "cooldown-exact",
+      "mode": "hybrid-rerank",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2010,
+      "durationMs": 1628.5859000000019,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 1,
+        "rerankTokens": 39,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 900562944,
+        "modelCpuMs": 1388,
+        "modelFsRead": 695,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd",
+          "start": 8,
+          "end": 54,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "caseId": "cooldown-exact",
+      "mode": "task",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2135,
+      "durationMs": 1603.6489000000001,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 1,
+        "rerankTokens": 39,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 919961600,
+        "modelCpuMs": 1499,
+        "modelFsRead": 685,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd",
+          "start": 8,
+          "end": 54,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "caseId": "cooldown-paraphrase",
+      "mode": "literal",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 0,
+      "reciprocalRank": 0,
+      "ndcgAt5": 0,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 0,
+      "duplicateRatio": 0,
+      "resultBytes": 173,
+      "durationMs": 424.4995999999992,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [],
+      "evidence": []
+    },
+    {
+      "caseId": "cooldown-paraphrase",
+      "mode": "bm25",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1907,
+      "durationMs": 42.92920000000231,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd",
+          "start": 8,
+          "end": 54,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "caseId": "cooldown-paraphrase",
+      "mode": "semantic",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 6138,
+      "durationMs": 380.33940000000075,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 36,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 152944640,
+        "modelCpuMs": 265,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd",
+          "start": 8,
+          "end": 54,
+          "relevant": true
+        },
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd",
+          "start": 0,
+          "end": 8,
+          "relevant": false
+        },
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd",
+          "start": 54,
+          "end": 88,
+          "relevant": false
+        },
+        {
+          "resourceId": "3e626358-2b0a-4124-a785-8fc8490a890b",
+          "start": 8,
+          "end": 48,
+          "relevant": false
+        },
+        {
+          "resourceId": "69f9c6e1-31e1-4fb8-8adb-9ca6a100e846",
+          "start": 8,
+          "end": 53,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "cooldown-paraphrase",
+      "mode": "hybrid",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 6188,
+      "durationMs": 377.96050000000105,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 36,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 152915968,
+        "modelCpuMs": 249,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd",
+          "start": 8,
+          "end": 54,
+          "relevant": true
+        },
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd",
+          "start": 0,
+          "end": 8,
+          "relevant": false
+        },
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd",
+          "start": 54,
+          "end": 88,
+          "relevant": false
+        },
+        {
+          "resourceId": "3e626358-2b0a-4124-a785-8fc8490a890b",
+          "start": 8,
+          "end": 48,
+          "relevant": false
+        },
+        {
+          "resourceId": "69f9c6e1-31e1-4fb8-8adb-9ca6a100e846",
+          "start": 8,
+          "end": 53,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "cooldown-paraphrase",
+      "mode": "hybrid-rerank",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 6232,
+      "durationMs": 1772.1515,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 36,
+        "rerankPairs": 6,
+        "rerankTokens": 254,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 900636672,
+        "modelCpuMs": 1545,
+        "modelFsRead": 693,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd",
+          "start": 8,
+          "end": 54,
+          "relevant": true
+        },
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd",
+          "start": 0,
+          "end": 8,
+          "relevant": false
+        },
+        {
+          "resourceId": "3e626358-2b0a-4124-a785-8fc8490a890b",
+          "start": 8,
+          "end": 48,
+          "relevant": false
+        },
+        {
+          "resourceId": "69f9c6e1-31e1-4fb8-8adb-9ca6a100e846",
+          "start": 8,
+          "end": 53,
+          "relevant": false
+        },
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd",
+          "start": 54,
+          "end": 88,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "cooldown-paraphrase",
+      "mode": "task",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 4335,
+      "durationMs": 1762.2684000000008,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 36,
+        "rerankPairs": 6,
+        "rerankTokens": 254,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 897814528,
+        "modelCpuMs": 1749,
+        "modelFsRead": 678,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd",
+          "start": 8,
+          "end": 54,
+          "relevant": true
+        },
+        {
+          "resourceId": "3e626358-2b0a-4124-a785-8fc8490a890b",
+          "start": 8,
+          "end": 48,
+          "relevant": false
+        },
+        {
+          "resourceId": "f08ab593-628d-4fe8-bc30-5d20cb6c5787",
+          "start": 8,
+          "end": 69,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "pagination-exact",
+      "mode": "literal",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 0.5,
+      "ndcgAt5": 0.6309297535714575,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 3001,
+      "durationMs": 444.7001999999993,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [],
+      "evidence": [
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5",
+          "start": 0,
+          "end": 8,
+          "relevant": false
+        },
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5",
+          "start": 8,
+          "end": 58,
+          "relevant": true
+        },
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5",
+          "start": 58,
+          "end": 93,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "pagination-exact",
+      "mode": "bm25",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1855,
+      "durationMs": 43.04019999999946,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5",
+          "start": 8,
+          "end": 58,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "caseId": "pagination-exact",
+      "mode": "semantic",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1933,
+      "durationMs": 348.65690000000177,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153464832,
+        "modelCpuMs": 374,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5",
+          "start": 8,
+          "end": 58,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "caseId": "pagination-exact",
+      "mode": "hybrid",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1990,
+      "durationMs": 352.1135000000031,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153526272,
+        "modelCpuMs": 280,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5",
+          "start": 8,
+          "end": 58,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "caseId": "pagination-exact",
+      "mode": "hybrid-rerank",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2031,
+      "durationMs": 1601.811700000002,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 1,
+        "rerankTokens": 43,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 900734976,
+        "modelCpuMs": 1497,
+        "modelFsRead": 688,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5",
+          "start": 8,
+          "end": 58,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "caseId": "pagination-exact",
+      "mode": "task",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2180,
+      "durationMs": 1602.7344999999987,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 1,
+        "rerankTokens": 43,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 922140672,
+        "modelCpuMs": 1498,
+        "modelFsRead": 695,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5",
+          "start": 8,
+          "end": 58,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "caseId": "pagination-paraphrase",
+      "mode": "literal",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 0,
+      "reciprocalRank": 0,
+      "ndcgAt5": 0,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 0,
+      "duplicateRatio": 0,
+      "resultBytes": 173,
+      "durationMs": 419.7437000000027,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [],
+      "evidence": []
+    },
+    {
+      "caseId": "pagination-paraphrase",
+      "mode": "bm25",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1920,
+      "durationMs": 41.352100000000064,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5",
+          "start": 8,
+          "end": 58,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "caseId": "pagination-paraphrase",
+      "mode": "semantic",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 5971,
+      "durationMs": 357.94300000000294,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 36,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153026560,
+        "modelCpuMs": 218,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5",
+          "start": 8,
+          "end": 58,
+          "relevant": true
+        },
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5",
+          "start": 0,
+          "end": 8,
+          "relevant": false
+        },
+        {
+          "resourceId": "ef2db69a-47ac-42d3-8486-ee3e1bc5b9cf",
+          "start": 8,
+          "end": 48,
+          "relevant": false
+        },
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5",
+          "start": 58,
+          "end": 93,
+          "relevant": false
+        },
+        {
+          "resourceId": "ef2db69a-47ac-42d3-8486-ee3e1bc5b9cf",
+          "start": 0,
+          "end": 8,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "pagination-paraphrase",
+      "mode": "hybrid",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 6020,
+      "durationMs": 356.14070000000356,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 36,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153649152,
+        "modelCpuMs": 265,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5",
+          "start": 8,
+          "end": 58,
+          "relevant": true
+        },
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5",
+          "start": 0,
+          "end": 8,
+          "relevant": false
+        },
+        {
+          "resourceId": "ef2db69a-47ac-42d3-8486-ee3e1bc5b9cf",
+          "start": 8,
+          "end": 48,
+          "relevant": false
+        },
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5",
+          "start": 58,
+          "end": 93,
+          "relevant": false
+        },
+        {
+          "resourceId": "ef2db69a-47ac-42d3-8486-ee3e1bc5b9cf",
+          "start": 0,
+          "end": 8,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "pagination-paraphrase",
+      "mode": "hybrid-rerank",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 6065,
+      "durationMs": 1717.5881999999983,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 36,
+        "rerankPairs": 6,
+        "rerankTokens": 193,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 921120768,
+        "modelCpuMs": 1608,
+        "modelFsRead": 685,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5",
+          "start": 8,
+          "end": 58,
+          "relevant": true
+        },
+        {
+          "resourceId": "ef2db69a-47ac-42d3-8486-ee3e1bc5b9cf",
+          "start": 8,
+          "end": 48,
+          "relevant": false
+        },
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5",
+          "start": 0,
+          "end": 8,
+          "relevant": false
+        },
+        {
+          "resourceId": "ef2db69a-47ac-42d3-8486-ee3e1bc5b9cf",
+          "start": 0,
+          "end": 8,
+          "relevant": false
+        },
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5",
+          "start": 58,
+          "end": 93,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "pagination-paraphrase",
+      "mode": "task",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 3238,
+      "durationMs": 1745.6977000000043,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 36,
+        "rerankPairs": 6,
+        "rerankTokens": 193,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 920223744,
+        "modelCpuMs": 1546,
+        "modelFsRead": 692,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5",
+          "start": 8,
+          "end": 58,
+          "relevant": true
+        },
+        {
+          "resourceId": "ef2db69a-47ac-42d3-8486-ee3e1bc5b9cf",
+          "start": 8,
+          "end": 48,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "encryption-exact",
+      "mode": "literal",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 0.5,
+      "ndcgAt5": 0.6309297535714575,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2987,
+      "durationMs": 446.052300000003,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [],
+      "evidence": [
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61",
+          "start": 0,
+          "end": 8,
+          "relevant": false
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61",
+          "start": 8,
+          "end": 52,
+          "relevant": true
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61",
+          "start": 52,
+          "end": 87,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "encryption-exact",
+      "mode": "bm25",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1841,
+      "durationMs": 43.10199999999895,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61",
+          "start": 8,
+          "end": 52,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "caseId": "encryption-exact",
+      "mode": "semantic",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 4685,
+      "durationMs": 351.59850000000006,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153030656,
+        "modelCpuMs": 218,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61",
+          "start": 8,
+          "end": 52,
+          "relevant": true
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61",
+          "start": 0,
+          "end": 8,
+          "relevant": false
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61",
+          "start": 52,
+          "end": 87,
+          "relevant": false
+        },
+        {
+          "resourceId": "6d9da508-ec98-4ab1-a5dd-8911e85e84b3",
+          "start": 0,
+          "end": 8,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "encryption-exact",
+      "mode": "hybrid",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 4734,
+      "durationMs": 367.9122999999963,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 152711168,
+        "modelCpuMs": 312,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61",
+          "start": 8,
+          "end": 52,
+          "relevant": true
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61",
+          "start": 0,
+          "end": 8,
+          "relevant": false
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61",
+          "start": 52,
+          "end": 87,
+          "relevant": false
+        },
+        {
+          "resourceId": "6d9da508-ec98-4ab1-a5dd-8911e85e84b3",
+          "start": 0,
+          "end": 8,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "encryption-exact",
+      "mode": "hybrid-rerank",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 4784,
+      "durationMs": 1659.7122000000018,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 4,
+        "rerankTokens": 94,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 900136960,
+        "modelCpuMs": 1670,
+        "modelFsRead": 685,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61",
+          "start": 8,
+          "end": 52,
+          "relevant": true
+        },
+        {
+          "resourceId": "6d9da508-ec98-4ab1-a5dd-8911e85e84b3",
+          "start": 0,
+          "end": 8,
+          "relevant": false
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61",
+          "start": 52,
+          "end": 87,
+          "relevant": false
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61",
+          "start": 0,
+          "end": 8,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "encryption-exact",
+      "mode": "task",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2153,
+      "durationMs": 1665.1347000000023,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 4,
+        "rerankTokens": 94,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 903856128,
+        "modelCpuMs": 1405,
+        "modelFsRead": 699,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61",
+          "start": 8,
+          "end": 52,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "caseId": "encryption-paraphrase",
+      "mode": "literal",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 0,
+      "reciprocalRank": 0,
+      "ndcgAt5": 0,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 0,
+      "duplicateRatio": 0,
+      "resultBytes": 173,
+      "durationMs": 422.8035999999993,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [],
+      "evidence": []
+    },
+    {
+      "caseId": "encryption-paraphrase",
+      "mode": "bm25",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 3037,
+      "durationMs": 64.60609999999724,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61",
+          "start": 8,
+          "end": 52,
+          "relevant": true
+        },
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12",
+          "start": 8,
+          "end": 56,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "encryption-paraphrase",
+      "mode": "semantic",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 6175,
+      "durationMs": 389.0075999999972,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 35,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153567232,
+        "modelCpuMs": 218,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61",
+          "start": 8,
+          "end": 52,
+          "relevant": true
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61",
+          "start": 0,
+          "end": 8,
+          "relevant": false
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61",
+          "start": 52,
+          "end": 87,
+          "relevant": false
+        },
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12",
+          "start": 8,
+          "end": 56,
+          "relevant": false
+        },
+        {
+          "resourceId": "6d9da508-ec98-4ab1-a5dd-8911e85e84b3",
+          "start": 8,
+          "end": 54,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "encryption-paraphrase",
+      "mode": "hybrid",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 6241,
+      "durationMs": 377.0350000000035,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 35,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153460736,
+        "modelCpuMs": 280,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61",
+          "start": 8,
+          "end": 52,
+          "relevant": true
+        },
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12",
+          "start": 8,
+          "end": 56,
+          "relevant": false
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61",
+          "start": 0,
+          "end": 8,
+          "relevant": false
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61",
+          "start": 52,
+          "end": 87,
+          "relevant": false
+        },
+        {
+          "resourceId": "6d9da508-ec98-4ab1-a5dd-8911e85e84b3",
+          "start": 8,
+          "end": 54,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "encryption-paraphrase",
+      "mode": "hybrid-rerank",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 6203,
+      "durationMs": 1800.946299999996,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 35,
+        "rerankPairs": 8,
+        "rerankTokens": 267,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 899452928,
+        "modelCpuMs": 1592,
+        "modelFsRead": 683,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61",
+          "start": 8,
+          "end": 52,
+          "relevant": true
+        },
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12",
+          "start": 8,
+          "end": 56,
+          "relevant": false
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61",
+          "start": 0,
+          "end": 8,
+          "relevant": false
+        },
+        {
+          "resourceId": "6d9da508-ec98-4ab1-a5dd-8911e85e84b3",
+          "start": 8,
+          "end": 54,
+          "relevant": false
+        },
+        {
+          "resourceId": "6d9da508-ec98-4ab1-a5dd-8911e85e84b3",
+          "start": 0,
+          "end": 8,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "encryption-paraphrase",
+      "mode": "task",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 3253,
+      "durationMs": 1782.236100000002,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 35,
+        "rerankPairs": 8,
+        "rerankTokens": 267,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 902066176,
+        "modelCpuMs": 1561,
+        "modelFsRead": 688,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61",
+          "start": 8,
+          "end": 52,
+          "relevant": true
+        },
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12",
+          "start": 8,
+          "end": 56,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "rollback-exact",
+      "mode": "literal",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 0.5,
+      "ndcgAt5": 0.6309297535714575,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 3019,
+      "durationMs": 438.5144999999975,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [],
+      "evidence": [
+        {
+          "resourceId": "f08ab593-628d-4fe8-bc30-5d20cb6c5787",
+          "start": 0,
+          "end": 8,
+          "relevant": false
+        },
+        {
+          "resourceId": "f08ab593-628d-4fe8-bc30-5d20cb6c5787",
+          "start": 8,
+          "end": 69,
+          "relevant": true
+        },
+        {
+          "resourceId": "f08ab593-628d-4fe8-bc30-5d20cb6c5787",
+          "start": 69,
+          "end": 103,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "rollback-exact",
+      "mode": "bm25",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1879,
+      "durationMs": 40.806700000001,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f08ab593-628d-4fe8-bc30-5d20cb6c5787",
+          "start": 8,
+          "end": 69,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "caseId": "rollback-exact",
+      "mode": "semantic",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1969,
+      "durationMs": 346.93599999999424,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153325568,
+        "modelCpuMs": 296,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f08ab593-628d-4fe8-bc30-5d20cb6c5787",
+          "start": 8,
+          "end": 69,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "caseId": "rollback-exact",
+      "mode": "hybrid",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2017,
+      "durationMs": 360.4602999999988,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153120768,
+        "modelCpuMs": 312,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f08ab593-628d-4fe8-bc30-5d20cb6c5787",
+          "start": 8,
+          "end": 69,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "caseId": "rollback-exact",
+      "mode": "hybrid-rerank",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2047,
+      "durationMs": 1602.9429000000018,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 1,
+        "rerankTokens": 49,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 901627904,
+        "modelCpuMs": 1435,
+        "modelFsRead": 693,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f08ab593-628d-4fe8-bc30-5d20cb6c5787",
+          "start": 8,
+          "end": 69,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "caseId": "rollback-exact",
+      "mode": "task",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2154,
+      "durationMs": 1778.8718999999983,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 1,
+        "rerankTokens": 49,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 921817088,
+        "modelCpuMs": 1639,
+        "modelFsRead": 684,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f08ab593-628d-4fe8-bc30-5d20cb6c5787",
+          "start": 8,
+          "end": 69,
+          "relevant": true
+        }
+      ]
+    },
+    {
+      "caseId": "rollback-paraphrase",
+      "mode": "literal",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 0,
+      "reciprocalRank": 0,
+      "ndcgAt5": 0,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 0,
+      "duplicateRatio": 0,
+      "resultBytes": 173,
+      "durationMs": 421.6400999999969,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [],
+      "evidence": []
+    },
+    {
+      "caseId": "rollback-paraphrase",
+      "mode": "bm25",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 0,
+      "reciprocalRank": 0,
+      "ndcgAt5": 0,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 0,
+      "duplicateRatio": 0,
+      "resultBytes": 1881,
+      "durationMs": 40.787499999998545,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "3e626358-2b0a-4124-a785-8fc8490a890b",
+          "start": 8,
+          "end": 48,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "rollback-paraphrase",
+      "mode": "semantic",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 6363,
+      "durationMs": 389.72299999999814,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 35,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153997312,
+        "modelCpuMs": 249,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f08ab593-628d-4fe8-bc30-5d20cb6c5787",
+          "start": 8,
+          "end": 69,
+          "relevant": true
+        },
+        {
+          "resourceId": "3e626358-2b0a-4124-a785-8fc8490a890b",
+          "start": 8,
+          "end": 48,
+          "relevant": false
+        },
+        {
+          "resourceId": "f08ab593-628d-4fe8-bc30-5d20cb6c5787",
+          "start": 69,
+          "end": 103,
+          "relevant": false
+        },
+        {
+          "resourceId": "69f9c6e1-31e1-4fb8-8adb-9ca6a100e846",
+          "start": 8,
+          "end": 53,
+          "relevant": false
+        },
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd",
+          "start": 8,
+          "end": 54,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "rollback-paraphrase",
+      "mode": "hybrid",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 0.5,
+      "ndcgAt5": 0.6309297535714575,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 6411,
+      "durationMs": 393.0468999999939,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 35,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 154030080,
+        "modelCpuMs": 280,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "3e626358-2b0a-4124-a785-8fc8490a890b",
+          "start": 8,
+          "end": 48,
+          "relevant": false
+        },
+        {
+          "resourceId": "f08ab593-628d-4fe8-bc30-5d20cb6c5787",
+          "start": 8,
+          "end": 69,
+          "relevant": true
+        },
+        {
+          "resourceId": "f08ab593-628d-4fe8-bc30-5d20cb6c5787",
+          "start": 69,
+          "end": 103,
+          "relevant": false
+        },
+        {
+          "resourceId": "69f9c6e1-31e1-4fb8-8adb-9ca6a100e846",
+          "start": 8,
+          "end": 53,
+          "relevant": false
+        },
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd",
+          "start": 8,
+          "end": 54,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "rollback-paraphrase",
+      "mode": "hybrid-rerank",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0.19999999999999996,
+      "resultBytes": 6137,
+      "durationMs": 1846.249499999998,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 35,
+        "rerankPairs": 9,
+        "rerankTokens": 323,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 920993792,
+        "modelCpuMs": 1716,
+        "modelFsRead": 682,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f08ab593-628d-4fe8-bc30-5d20cb6c5787",
+          "start": 8,
+          "end": 69,
+          "relevant": true
+        },
+        {
+          "resourceId": "3e626358-2b0a-4124-a785-8fc8490a890b",
+          "start": 8,
+          "end": 48,
+          "relevant": false
+        },
+        {
+          "resourceId": "f08ab593-628d-4fe8-bc30-5d20cb6c5787",
+          "start": 0,
+          "end": 8,
+          "relevant": false
+        },
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd",
+          "start": 54,
+          "end": 88,
+          "relevant": false
+        },
+        {
+          "resourceId": "f08ab593-628d-4fe8-bc30-5d20cb6c5787",
+          "start": 69,
+          "end": 103,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "rollback-paraphrase",
+      "mode": "task",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 3234,
+      "durationMs": 1797.9686000000002,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 35,
+        "rerankPairs": 9,
+        "rerankTokens": 323,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 912576512,
+        "modelCpuMs": 1468,
+        "modelFsRead": 691,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f08ab593-628d-4fe8-bc30-5d20cb6c5787",
+          "start": 8,
+          "end": 69,
+          "relevant": true
+        },
+        {
+          "resourceId": "3e626358-2b0a-4124-a785-8fc8490a890b",
+          "start": 8,
+          "end": 48,
+          "relevant": false
+        }
+      ]
+    },
+    {
+      "caseId": "beta-no-answer",
+      "mode": "literal",
+      "split": "acceptance",
+      "answerable": false,
+      "recallAt5": null,
+      "reciprocalRank": 0,
+      "ndcgAt5": null,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": null,
+      "duplicateRatio": 0,
+      "resultBytes": 173,
+      "durationMs": 416.96970000000147,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [],
+      "evidence": []
+    },
+    {
+      "caseId": "beta-no-answer",
+      "mode": "bm25",
+      "split": "acceptance",
+      "answerable": false,
+      "recallAt5": null,
+      "reciprocalRank": 0,
+      "ndcgAt5": null,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": null,
+      "duplicateRatio": 0,
+      "resultBytes": 806,
+      "durationMs": 25.52759999999398,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": []
+    },
+    {
+      "caseId": "beta-no-answer",
+      "mode": "semantic",
+      "split": "acceptance",
+      "answerable": false,
+      "recallAt5": null,
+      "reciprocalRank": 0,
+      "ndcgAt5": null,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": null,
+      "duplicateRatio": 0,
+      "resultBytes": 892,
+      "durationMs": 333.2225000000035,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 32,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 154087424,
+        "modelCpuMs": 265,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": []
+    },
+    {
+      "caseId": "beta-no-answer",
+      "mode": "hybrid",
+      "split": "acceptance",
+      "answerable": false,
+      "recallAt5": null,
+      "reciprocalRank": 0,
+      "ndcgAt5": null,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": null,
+      "duplicateRatio": 0,
+      "resultBytes": 932,
+      "durationMs": 331.28809999999794,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 32,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153296896,
+        "modelCpuMs": 203,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": []
+    },
+    {
+      "caseId": "beta-no-answer",
+      "mode": "hybrid-rerank",
+      "split": "acceptance",
+      "answerable": false,
+      "recallAt5": null,
+      "reciprocalRank": 0,
+      "ndcgAt5": null,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": null,
+      "duplicateRatio": 0,
+      "resultBytes": 931,
+      "durationMs": 328.92959999999584,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 32,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153067520,
+        "modelCpuMs": 265,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": []
+    },
+    {
+      "caseId": "beta-no-answer",
+      "mode": "task",
+      "split": "acceptance",
+      "answerable": false,
+      "recallAt5": null,
+      "reciprocalRank": 0,
+      "ndcgAt5": null,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "requiredCoverage": null,
+      "duplicateRatio": 0,
+      "resultBytes": 1051,
+      "durationMs": 332.7376000000004,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 32,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153374720,
+        "modelCpuMs": 249,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": []
+    }
+  ],
+  "summary": [
+    {
+      "mode": "literal",
+      "verified": true,
+      "recallAt5": 0.5,
+      "mrr": 0.25,
+      "ndcgAt5": 0.3154648767857288,
+      "noAnswerFalse": 0,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "conditionCoverage": 0.5,
+      "meanMs": 434.0963769230769
+    },
+    {
+      "mode": "bm25",
+      "verified": true,
+      "recallAt5": 0.9166666666666666,
+      "mrr": 0.9166666666666666,
+      "ndcgAt5": 0.9166666666666666,
+      "noAnswerFalse": 0,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "conditionCoverage": 0.9166666666666666,
+      "meanMs": 42.30013076923017
+    },
+    {
+      "mode": "semantic",
+      "verified": true,
+      "recallAt5": 0.9166666666666666,
+      "mrr": 0.9166666666666666,
+      "ndcgAt5": 0.9166666666666666,
+      "noAnswerFalse": 0,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "conditionCoverage": 0.9166666666666666,
+      "meanMs": 358.9853538461539
+    },
+    {
+      "mode": "hybrid",
+      "verified": true,
+      "recallAt5": 1,
+      "mrr": 0.9583333333333334,
+      "ndcgAt5": 0.9692441461309548,
+      "noAnswerFalse": 0,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "conditionCoverage": 1,
+      "meanMs": 360.9727076923073
+    },
+    {
+      "mode": "hybrid-rerank",
+      "verified": true,
+      "recallAt5": 1,
+      "mrr": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": 0,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "conditionCoverage": 1,
+      "meanMs": 1584.0583615384614
+    },
+    {
+      "mode": "task",
+      "verified": true,
+      "recallAt5": 1,
+      "mrr": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": 0,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "conditionCoverage": 1,
+      "meanMs": 1593.1338230769238
+    }
+  ],
+  "limitations": [
+    "相关片元必须同时命中目标资源和标注原文条件；仅命中标题不算正确证据",
+    "脚本查询不是工作Agent端到端评价",
+    "本机API费用为0；电力/硬件/工作Agent费用未据此推断"
+  ],
+  "model": {
+    "runtime": "@huggingface/transformers@3.8.1",
+    "embedding": {
+      "id": "Xenova/bge-small-zh-v1.5",
+      "revision": "75c43b069aac4d136ba6bc1122f995fedcfd2781"
+    },
+    "reranker": {
+      "id": "Xenova/bge-reranker-base",
+      "revision": "280bcc27a84e0b898c251e06fddb25171bd9b101"
+    },
+    "dtype": "q8",
+    "pooling": "cls",
+    "normalize": true,
+    "queryPrefix": "为这个句子生成表示以用于检索相关文章：",
+    "maxTokens": 512,
+    "dimensions": 512,
+    "encodingVersion": "bge-cls-pair-v1",
+    "files": {
+      "Xenova/bge-reranker-base/280bcc27a84e0b898c251e06fddb25171bd9b101/config.json": "b6575b9d5be20d6747417c8e20c5a0db1636356e0b6d422d7244c628423c4d4c",
+      "Xenova/bge-reranker-base/280bcc27a84e0b898c251e06fddb25171bd9b101/onnx/model_quantized.onnx": "dd98f3e67837d23210a6b7550c08cced4f61845b940ac45be3565840a10f3244",
+      "Xenova/bge-reranker-base/280bcc27a84e0b898c251e06fddb25171bd9b101/tokenizer.json": "48564c5c7d3fa64d85d95e65414a542385f88b0f128fd8d4163fd7a57f2be05c",
+      "Xenova/bge-reranker-base/280bcc27a84e0b898c251e06fddb25171bd9b101/tokenizer_config.json": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b",
+      "Xenova/bge-small-zh-v1.5/75c43b069aac4d136ba6bc1122f995fedcfd2781/config.json": "d4193ead3a810fd694fa8a31d7fc72fbaebc0668b603e398734bf2f6538ff42f",
+      "Xenova/bge-small-zh-v1.5/75c43b069aac4d136ba6bc1122f995fedcfd2781/onnx/model_quantized.onnx": "15b717c382bcb518ba457b93ea6850ede7f4f1cd8937454aa06972366cd19bcc",
+      "Xenova/bge-small-zh-v1.5/75c43b069aac4d136ba6bc1122f995fedcfd2781/tokenizer.json": "48cea5d44424912a6fd1ea647bf4fe50b55ab8b1e5879c3275f80e339e8fae26",
+      "Xenova/bge-small-zh-v1.5/75c43b069aac4d136ba6bc1122f995fedcfd2781/tokenizer_config.json": "e6f3b96db926a37d4039995fbf5ad17de158dfb8f6343d607e4dbaad18d75f5a"
+    },
+    "fingerprint": "6cf47aee644c477e707d490c24bb21fe16219d01aaa005f8cb4af39b783dce88"
+  }
+}

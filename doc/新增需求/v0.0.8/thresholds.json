@@ -1,0 +1,11 @@
+{
+  "status": "frozen-before-tuning",
+  "frozenOn": "2026-11-12",
+  "baselineFixture": "a134357655d19fc30638f7e36f8f5fc8f8bf0a8840f871a70051e5ad9c4bd99d",
+  "baseline": { "literalAcceptanceRecall": 0.5, "literalNoAnswerFalse": 0, "buildMedianMs": 1969.3812, "coreTestsMedianMs": 3145.4008 },
+  "quality": { "scopeLeaks": 0, "deletedLeaks": 0, "wrongReferences": 0, "directReadModelCalls": 0, "acceptanceRecallAt5Min": 0.75, "acceptanceMrrMin": 0.75, "noAnswerFalse": 0, "conditionCoverageMin": 0.9 },
+  "latency": { "metadataP95Ms": 500, "lexicalP95Ms": 1000, "semanticColdP95Ms": 10000, "rerankedColdP95Ms": 15000, "taskColdP95Ms": 30000 },
+  "resources": { "modelPeakRssBytes": 1610612736, "modelConcurrency": 1, "cpuThreads": 1, "defaultGpu": false, "idleModelProcesses": 0, "workloadSlowdownUpper95Max": 0.03, "minPairs": 5, "maxPairs": 20 },
+  "task": { "successMustNotRegress": true, "medianQueriesMustImprove": true, "wrongHistoricalAssertions": 0 },
+  "rationale": "字面验收召回为0.5，要求至少0.75而不是仅减少返回量。开发负载采用3%非劣界限及配对95%上界；基线构建有明显波动，不能用均值掩盖不确定性。区间不满足则未通过/证据不足，禁止调低标准。成本与总tokens如实比较，不设未经计费验证的节省承诺。"
+}

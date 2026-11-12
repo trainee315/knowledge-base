@@ -1,6 +1,8 @@
 # Knowledge Base
 
-开发路线：[项目架构原则](doc/architecture-principles.md) · [v0.0.6 本地服务与 cron](doc/新增需求/v0.0.6/readme.md) · [v0.0.7 插件详情](doc/新增需求/v0.0.7/readme.md)。下方命令用于当前主分支，发布版本的命令见相应归档。
+开发路线：[项目架构原则](doc/architecture-principles.md) · [v0.0.6 本地服务与 cron](doc/新增需求/v0.0.6/readme.md) · [v0.0.7 插件详情](doc/新增需求/v0.0.7/readme.md) · [v0.0.8 Agent召回候选](doc/新增需求/v0.0.8/readme.md)。下方命令用于当前主分支，发布版本的命令见相应归档。
+
+v0.0.8 独立候选提供本地 `recall` CLI；`npm run demo:recall` 创建合成演示库并打印完整验收命令。[Agent说明](doc/新增需求/v0.0.8/agent-guide.md) · [实测报告与适用限制](doc/新增需求/v0.0.8/verification.md)。已测门槛通过，其中开发负载结论限定为显式 `recall workload` 保护模式；2026-11-12用户验收通过，未正式发布。
 
 当前版本 **v0.0.5**，2026-11-12用户验收通过。新增自由记录、Codex session增量转录、主动执行与周期检查CLI，以及组织实例详情中的可视化配置和草稿预览。[005归档](doc/v0.0.5/readme.md) · [运行说明](doc/v0.0.5/running.md) · [版本历史](doc/version-history.md)。
 

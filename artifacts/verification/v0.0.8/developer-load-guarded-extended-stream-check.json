@@ -1,0 +1,291 @@
+{
+  "complete": false,
+  "guarded": true,
+  "rows": [
+    {
+      "mode": "index-cached",
+      "workload": "build",
+      "repeat": 0,
+      "idle": {
+        "durationMs": 2125.2295999999997
+      },
+      "loaded": {
+        "durationMs": 2083.8073,
+        "stats": {
+          "mode": "index-cached",
+          "runs": 0,
+          "deferred": 10,
+          "durationMs": 2223.9101,
+          "stats": []
+        }
+      },
+      "slowdown": -0.01949074114156879
+    },
+    {
+      "mode": "index-cached",
+      "workload": "build",
+      "repeat": 1,
+      "loaded": {
+        "durationMs": 2108.2245000000003,
+        "stats": {
+          "mode": "index-cached",
+          "runs": 0,
+          "deferred": 10,
+          "durationMs": 2230.8069,
+          "stats": []
+        }
+      },
+      "idle": {
+        "durationMs": 2029.0419999999995
+      },
+      "slowdown": 0.0390245741586428
+    },
+    {
+      "mode": "index-cached",
+      "workload": "build",
+      "repeat": 2,
+      "idle": {
+        "durationMs": 2044.2862999999998
+      },
+      "loaded": {
+        "durationMs": 2099.4143000000004,
+        "stats": {
+          "mode": "index-cached",
+          "runs": 0,
+          "deferred": 10,
+          "durationMs": 2221.6281,
+          "stats": []
+        }
+      },
+      "slowdown": 0.026966868583916392
+    },
+    {
+      "mode": "index-cached",
+      "workload": "build",
+      "repeat": 3,
+      "loaded": {
+        "durationMs": 2061.7392,
+        "stats": {
+          "mode": "index-cached",
+          "runs": 0,
+          "deferred": 10,
+          "durationMs": 2210.0139000000004,
+          "stats": []
+        }
+      },
+      "idle": {
+        "durationMs": 2052.6220999999987
+      },
+      "slowdown": 0.00444168461403649
+    },
+    {
+      "mode": "index-cached",
+      "workload": "build",
+      "repeat": 4,
+      "idle": {
+        "durationMs": 2079.8716999999997
+      },
+      "loaded": {
+        "durationMs": 2069.9271999999983,
+        "stats": {
+          "mode": "index-cached",
+          "runs": 0,
+          "deferred": 10,
+          "durationMs": 2224.7212,
+          "stats": []
+        }
+      },
+      "slowdown": -0.0047813045391220665
+    },
+    {
+      "mode": "index-cached",
+      "workload": "build",
+      "repeat": 5,
+      "loaded": {
+        "durationMs": 2114.358,
+        "stats": {
+          "mode": "index-cached",
+          "runs": 0,
+          "deferred": 10,
+          "durationMs": 2224.8181,
+          "stats": []
+        }
+      },
+      "idle": {
+        "durationMs": 2050.8495999999977
+      },
+      "slowdown": 0.030966873436259146
+    },
+    {
+      "mode": "index-cached",
+      "workload": "build",
+      "repeat": 6,
+      "idle": {
+        "durationMs": 2063.5777000000016
+      },
+      "loaded": {
+        "durationMs": 2061.932100000002,
+        "stats": {
+          "mode": "index-cached",
+          "runs": 0,
+          "deferred": 10,
+          "durationMs": 2219.38,
+          "stats": []
+        }
+      },
+      "slowdown": -0.0007974499821352676
+    },
+    {
+      "mode": "index-cached",
+      "workload": "build",
+      "repeat": 7,
+      "loaded": {
+        "durationMs": 2049.4658000000018,
+        "stats": {
+          "mode": "index-cached",
+          "runs": 0,
+          "deferred": 10,
+          "durationMs": 2233.958,
+          "stats": []
+        }
+      },
+      "idle": {
+        "durationMs": 2077.9590000000026
+      },
+      "slowdown": -0.013712108852966143
+    },
+    {
+      "mode": "index-cached",
+      "workload": "build",
+      "repeat": 8,
+      "idle": {
+        "durationMs": 2027.2475999999951
+      },
+      "loaded": {
+        "durationMs": 2079.1154000000024,
+        "stats": {
+          "mode": "index-cached",
+          "runs": 0,
+          "deferred": 10,
+          "durationMs": 2228.8458,
+          "stats": []
+        }
+      },
+      "slowdown": 0.02558533057333867
+    },
+    {
+      "mode": "index-cached",
+      "workload": "build",
+      "repeat": 9,
+      "loaded": {
+        "durationMs": 2100.9588000000003,
+        "stats": {
+          "mode": "index-cached",
+          "runs": 0,
+          "deferred": 10,
+          "durationMs": 2219.0899,
+          "stats": []
+        }
+      },
+      "idle": {
+        "durationMs": 2083.5961000000025
+      },
+      "slowdown": 0.008333044969702996
+    },
+    {
+      "mode": "index-cached",
+      "workload": "build",
+      "repeat": 10,
+      "idle": {
+        "durationMs": 2126.8213000000032
+      },
+      "loaded": {
+        "durationMs": 2152.0683999999965,
+        "stats": {
+          "mode": "index-cached",
+          "runs": 0,
+          "deferred": 10,
+          "durationMs": 2234.8945,
+          "stats": []
+        }
+      },
+      "slowdown": 0.011870813970122018
+    },
+    {
+      "mode": "index-cached",
+      "workload": "build",
+      "repeat": 11,
+      "loaded": {
+        "durationMs": 2052.9759,
+        "stats": {
+          "mode": "index-cached",
+          "runs": 0,
+          "deferred": 10,
+          "durationMs": 2230.8277000000003,
+          "stats": []
+        }
+      },
+      "idle": {
+        "durationMs": 2060.9095
+      },
+      "slowdown": -0.003849562535375939
+    },
+    {
+      "mode": "index-cached",
+      "workload": "build",
+      "repeat": 12,
+      "idle": {
+        "durationMs": 2087.0289000000002
+      },
+      "loaded": {
+        "durationMs": 2094.0062000000007,
+        "stats": {
+          "mode": "index-cached",
+          "runs": 0,
+          "deferred": 10,
+          "durationMs": 2244.1967,
+          "stats": []
+        }
+      },
+      "slowdown": 0.0033431736378928267
+    },
+    {
+      "mode": "index-cached",
+      "workload": "build",
+      "repeat": 13,
+      "loaded": {
+        "durationMs": 2111.745500000001,
+        "stats": {
+          "mode": "index-cached",
+          "runs": 0,
+          "deferred": 10,
+          "durationMs": 2224.9755,
+          "stats": []
+        }
+      },
+      "idle": {
+        "durationMs": 2118.0344000000005
+      },
+      "slowdown": -0.002969215230876121
+    },
+    {
+      "mode": "index-cached",
+      "workload": "build",
+      "repeat": 14,
+      "idle": {
+        "durationMs": 2084.5816000000013
+      },
+      "loaded": {
+        "durationMs": 2108.2042999999994,
+        "stats": {
+          "mode": "index-cached",
+          "runs": 0,
+          "deferred": 10,
+          "durationMs": 2261.8777,
+          "stats": []
+        }
+      },
+      "slowdown": 0.011332106164612554
+    }
+  ]
+}

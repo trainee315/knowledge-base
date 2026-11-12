@@ -1,0 +1,251 @@
+{
+  "at": "2026-11-12T09:28:35.925Z",
+  "baseline": "81387b5 + recall scaffolding; existing organizer unchanged",
+  "fixtureSnapshot": "a134357655d19fc30638f7e36f8f5fc8f8bf0a8840f871a70051e5ad9c4bd99d",
+  "dataDir": "C:\\Users\\mamar\\AppData\\Local\\Temp\\kb-recall-baseline-8045DN\\data",
+  "hardware": {
+    "cpu": "13th Gen Intel(R) Core(TM) i7-13700",
+    "logicalCpus": 16,
+    "memoryBytes": 34028814336
+  },
+  "rows": [
+    {
+      "id": "combo-exact",
+      "split": "tune",
+      "expected": 1,
+      "hits": 1,
+      "returned": 1,
+      "durationMs": 831.3130999999994
+    },
+    {
+      "id": "combo-paraphrase",
+      "split": "tune",
+      "expected": 1,
+      "hits": 0,
+      "returned": 0,
+      "durationMs": 753.2633000000005
+    },
+    {
+      "id": "retry-exact",
+      "split": "tune",
+      "expected": 1,
+      "hits": 1,
+      "returned": 1,
+      "durationMs": 611.8289000000004
+    },
+    {
+      "id": "retry-paraphrase",
+      "split": "tune",
+      "expected": 1,
+      "hits": 0,
+      "returned": 0,
+      "durationMs": 595.3554999999997
+    },
+    {
+      "id": "save-exact",
+      "split": "tune",
+      "expected": 1,
+      "hits": 1,
+      "returned": 1,
+      "durationMs": 696.8972000000012
+    },
+    {
+      "id": "save-paraphrase",
+      "split": "tune",
+      "expected": 1,
+      "hits": 0,
+      "returned": 0,
+      "durationMs": 648.795900000001
+    },
+    {
+      "id": "damage-exact",
+      "split": "tune",
+      "expected": 1,
+      "hits": 1,
+      "returned": 1,
+      "durationMs": 605.7790999999997
+    },
+    {
+      "id": "damage-paraphrase",
+      "split": "tune",
+      "expected": 1,
+      "hits": 0,
+      "returned": 0,
+      "durationMs": 627.9520999999986
+    },
+    {
+      "id": "timeout-exact",
+      "split": "acceptance",
+      "expected": 1,
+      "hits": 1,
+      "returned": 1,
+      "durationMs": 631.1072999999997
+    },
+    {
+      "id": "timeout-paraphrase",
+      "split": "acceptance",
+      "expected": 1,
+      "hits": 0,
+      "returned": 0,
+      "durationMs": 672.2356999999993
+    },
+    {
+      "id": "migration-exact",
+      "split": "acceptance",
+      "expected": 1,
+      "hits": 1,
+      "returned": 1,
+      "durationMs": 692.4326000000001
+    },
+    {
+      "id": "migration-paraphrase",
+      "split": "acceptance",
+      "expected": 1,
+      "hits": 0,
+      "returned": 0,
+      "durationMs": 674.0560999999998
+    },
+    {
+      "id": "cooldown-exact",
+      "split": "acceptance",
+      "expected": 1,
+      "hits": 1,
+      "returned": 1,
+      "durationMs": 700.1664000000001
+    },
+    {
+      "id": "cooldown-paraphrase",
+      "split": "acceptance",
+      "expected": 1,
+      "hits": 0,
+      "returned": 0,
+      "durationMs": 773.0572000000029
+    },
+    {
+      "id": "pagination-exact",
+      "split": "acceptance",
+      "expected": 1,
+      "hits": 1,
+      "returned": 1,
+      "durationMs": 636.8788000000022
+    },
+    {
+      "id": "pagination-paraphrase",
+      "split": "acceptance",
+      "expected": 1,
+      "hits": 0,
+      "returned": 0,
+      "durationMs": 633.9218999999975
+    },
+    {
+      "id": "encryption-exact",
+      "split": "acceptance",
+      "expected": 1,
+      "hits": 1,
+      "returned": 1,
+      "durationMs": 477.799500000001
+    },
+    {
+      "id": "encryption-paraphrase",
+      "split": "acceptance",
+      "expected": 1,
+      "hits": 0,
+      "returned": 0,
+      "durationMs": 520.5267999999996
+    },
+    {
+      "id": "rollback-exact",
+      "split": "acceptance",
+      "expected": 1,
+      "hits": 1,
+      "returned": 1,
+      "durationMs": 470.1029000000017
+    },
+    {
+      "id": "rollback-paraphrase",
+      "split": "acceptance",
+      "expected": 1,
+      "hits": 0,
+      "returned": 0,
+      "durationMs": 510.6117000000013
+    },
+    {
+      "id": "alpha-no-answer",
+      "split": "tune",
+      "expected": 0,
+      "hits": 0,
+      "returned": 0,
+      "durationMs": 564.1045999999988
+    },
+    {
+      "id": "beta-no-answer",
+      "split": "acceptance",
+      "expected": 0,
+      "hits": 0,
+      "returned": 0,
+      "durationMs": 476.64589999999953
+    }
+  ],
+  "workloads": [
+    {
+      "repeat": 0,
+      "workload": "build",
+      "durationMs": 2511.6649000000034,
+      "exitCode": 0
+    },
+    {
+      "repeat": 0,
+      "workload": "tests",
+      "durationMs": 3137.1571000000004,
+      "exitCode": 0
+    },
+    {
+      "repeat": 1,
+      "workload": "build",
+      "durationMs": 1971.9159,
+      "exitCode": 0
+    },
+    {
+      "repeat": 1,
+      "workload": "tests",
+      "durationMs": 3145.400800000003,
+      "exitCode": 0
+    },
+    {
+      "repeat": 2,
+      "workload": "build",
+      "durationMs": 1969.3811999999962,
+      "exitCode": 0
+    },
+    {
+      "repeat": 2,
+      "workload": "tests",
+      "durationMs": 3155.6457999999984,
+      "exitCode": 0
+    },
+    {
+      "repeat": 3,
+      "workload": "build",
+      "durationMs": 1921.6751000000004,
+      "exitCode": 0
+    },
+    {
+      "repeat": 3,
+      "workload": "tests",
+      "durationMs": 3331.4841000000015,
+      "exitCode": 0
+    },
+    {
+      "repeat": 4,
+      "workload": "build",
+      "durationMs": 1935.3151999999973,
+      "exitCode": 0
+    },
+    {
+      "repeat": 4,
+      "workload": "tests",
+      "durationMs": 3096.1276,
+      "exitCode": 0
+    }
+  ]
+}

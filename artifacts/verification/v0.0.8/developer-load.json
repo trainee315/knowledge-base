@@ -1,0 +1,1877 @@
+{
+  "complete": true,
+  "rows": [
+    {
+      "mode": "index-cached",
+      "workload": "build",
+      "repeat": 0,
+      "idle": {
+        "durationMs": 2078.0193999999997
+      },
+      "loaded": {
+        "durationMs": 2181.9084000000003,
+        "stats": {
+          "mode": "index-cached",
+          "runs": 6,
+          "durationMs": 2489.9772,
+          "stats": [
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            }
+          ]
+        }
+      },
+      "slowdown": 0.04999423970729078
+    },
+    {
+      "mode": "index-cached",
+      "workload": "build",
+      "repeat": 1,
+      "loaded": {
+        "durationMs": 2184.0685999999996,
+        "stats": {
+          "mode": "index-cached",
+          "runs": 6,
+          "durationMs": 2472.5694,
+          "stats": [
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            }
+          ]
+        }
+      },
+      "idle": {
+        "durationMs": 1962.0467000000008
+      },
+      "slowdown": 0.11315831575262636
+    },
+    {
+      "mode": "index-cached",
+      "workload": "build",
+      "repeat": 2,
+      "idle": {
+        "durationMs": 1969.1581999999999
+      },
+      "loaded": {
+        "durationMs": 2226.4875999999986,
+        "stats": {
+          "mode": "index-cached",
+          "runs": 6,
+          "durationMs": 2505.3694,
+          "stats": [
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            }
+          ]
+        }
+      },
+      "slowdown": 0.13067990169606425
+    },
+    {
+      "mode": "index-cached",
+      "workload": "build",
+      "repeat": 3,
+      "loaded": {
+        "durationMs": 2181.1437000000005,
+        "stats": {
+          "mode": "index-cached",
+          "runs": 6,
+          "durationMs": 2472.4654,
+          "stats": [
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            }
+          ]
+        }
+      },
+      "idle": {
+        "durationMs": 1935.1222000000016
+      },
+      "slowdown": 0.12713486517802264
+    },
+    {
+      "mode": "index-cached",
+      "workload": "build",
+      "repeat": 4,
+      "idle": {
+        "durationMs": 1965.2876999999971
+      },
+      "loaded": {
+        "durationMs": 2200.933499999999,
+        "stats": {
+          "mode": "index-cached",
+          "runs": 6,
+          "durationMs": 2553.8478,
+          "stats": [
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            }
+          ]
+        }
+      },
+      "slowdown": 0.11990397131168251
+    },
+    {
+      "mode": "index-cached",
+      "workload": "tests",
+      "repeat": 0,
+      "idle": {
+        "durationMs": 3237.1484999999993
+      },
+      "loaded": {
+        "durationMs": 3246.640599999999,
+        "stats": {
+          "mode": "index-cached",
+          "runs": 8,
+          "durationMs": 3276.1229,
+          "stats": [
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            }
+          ]
+        }
+      },
+      "slowdown": 0.002932241137531877
+    },
+    {
+      "mode": "index-cached",
+      "workload": "tests",
+      "repeat": 1,
+      "loaded": {
+        "durationMs": 3344.8766000000032,
+        "stats": {
+          "mode": "index-cached",
+          "runs": 9,
+          "durationMs": 3624.0453,
+          "stats": [
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            }
+          ]
+        }
+      },
+      "idle": {
+        "durationMs": 3000.335300000006
+      },
+      "slowdown": 0.11483426535694075
+    },
+    {
+      "mode": "index-cached",
+      "workload": "tests",
+      "repeat": 2,
+      "idle": {
+        "durationMs": 3020.585299999999
+      },
+      "loaded": {
+        "durationMs": 3343.1175000000003,
+        "stats": {
+          "mode": "index-cached",
+          "runs": 9,
+          "durationMs": 3647.7978000000003,
+          "stats": [
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            }
+          ]
+        }
+      },
+      "slowdown": 0.10677804728772311
+    },
+    {
+      "mode": "index-cached",
+      "workload": "tests",
+      "repeat": 3,
+      "loaded": {
+        "durationMs": 3509.3559000000023,
+        "stats": {
+          "mode": "index-cached",
+          "runs": 8,
+          "durationMs": 3673.3898,
+          "stats": [
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            }
+          ]
+        }
+      },
+      "idle": {
+        "durationMs": 3307.3405000000057
+      },
+      "slowdown": 0.06108091985085795
+    },
+    {
+      "mode": "index-cached",
+      "workload": "tests",
+      "repeat": 4,
+      "idle": {
+        "durationMs": 3028.1564999999973
+      },
+      "loaded": {
+        "durationMs": 3164.584400000007,
+        "stats": {
+          "mode": "index-cached",
+          "runs": 8,
+          "durationMs": 3316.9291,
+          "stats": [
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            },
+            {
+              "embeddingTexts": 0,
+              "embeddingTokens": 0,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 0,
+              "cacheHits": 91,
+              "generationTokens": 0,
+              "apiCost": 0
+            }
+          ]
+        }
+      },
+      "slowdown": 0.045053120603248065
+    },
+    {
+      "mode": "index-cold",
+      "workload": "build",
+      "repeat": 0,
+      "idle": {
+        "durationMs": 2026.012999999999
+      },
+      "loaded": {
+        "durationMs": 2373.624499999998,
+        "stats": {
+          "mode": "index-cold",
+          "runs": 1,
+          "durationMs": 2374.3848,
+          "stats": [
+            {
+              "embeddingTexts": 91,
+              "embeddingTokens": 3442,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 3,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 181768192,
+              "modelCpuMs": 1670,
+              "modelFsRead": 744,
+              "modelFsWrite": 0
+            }
+          ]
+        }
+      },
+      "slowdown": 0.17157417055073143
+    },
+    {
+      "mode": "index-cold",
+      "workload": "build",
+      "repeat": 1,
+      "loaded": {
+        "durationMs": 2363.9168999999965,
+        "stats": {
+          "mode": "index-cold",
+          "runs": 2,
+          "durationMs": 4322.919199999999,
+          "stats": [
+            {
+              "embeddingTexts": 91,
+              "embeddingTokens": 3442,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 3,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 179154944,
+              "modelCpuMs": 1372,
+              "modelFsRead": 744,
+              "modelFsWrite": 0
+            },
+            {
+              "embeddingTexts": 91,
+              "embeddingTokens": 3442,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 3,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 181293056,
+              "modelCpuMs": 1264,
+              "modelFsRead": 744,
+              "modelFsWrite": 0
+            }
+          ]
+        }
+      },
+      "idle": {
+        "durationMs": 1958.991200000004
+      },
+      "slowdown": 0.20670113270544133
+    },
+    {
+      "mode": "index-cold",
+      "workload": "build",
+      "repeat": 2,
+      "idle": {
+        "durationMs": 1970.3074000000051
+      },
+      "loaded": {
+        "durationMs": 2406.050199999998,
+        "stats": {
+          "mode": "index-cold",
+          "runs": 1,
+          "durationMs": 2445.4088,
+          "stats": [
+            {
+              "embeddingTexts": 91,
+              "embeddingTokens": 3442,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 3,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 178876416,
+              "modelCpuMs": 1543,
+              "modelFsRead": 744,
+              "modelFsWrite": 0
+            }
+          ]
+        }
+      },
+      "slowdown": 0.22115472945997738
+    },
+    {
+      "mode": "index-cold",
+      "workload": "build",
+      "repeat": 3,
+      "loaded": {
+        "durationMs": 2375.9861999999994,
+        "stats": {
+          "mode": "index-cold",
+          "runs": 2,
+          "durationMs": 4270.0809,
+          "stats": [
+            {
+              "embeddingTexts": 91,
+              "embeddingTokens": 3442,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 3,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 180289536,
+              "modelCpuMs": 1606,
+              "modelFsRead": 744,
+              "modelFsWrite": 0
+            },
+            {
+              "embeddingTexts": 91,
+              "embeddingTokens": 3442,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 3,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 179294208,
+              "modelCpuMs": 1233,
+              "modelFsRead": 744,
+              "modelFsWrite": 0
+            }
+          ]
+        }
+      },
+      "idle": {
+        "durationMs": 1937.990300000005
+      },
+      "slowdown": 0.22600520755960085
+    },
+    {
+      "mode": "index-cold",
+      "workload": "build",
+      "repeat": 4,
+      "idle": {
+        "durationMs": 2196.45689999999
+      },
+      "loaded": {
+        "durationMs": 2898.2574000000022,
+        "stats": {
+          "mode": "index-cold",
+          "runs": 2,
+          "durationMs": 4949.1548,
+          "stats": [
+            {
+              "embeddingTexts": 91,
+              "embeddingTokens": 3442,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 3,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 179535872,
+              "modelCpuMs": 1653,
+              "modelFsRead": 744,
+              "modelFsWrite": 0
+            },
+            {
+              "embeddingTexts": 91,
+              "embeddingTokens": 3442,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 3,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 179687424,
+              "modelCpuMs": 1372,
+              "modelFsRead": 744,
+              "modelFsWrite": 0
+            }
+          ]
+        }
+      },
+      "slowdown": 0.31951480586758385
+    },
+    {
+      "mode": "index-cold",
+      "workload": "tests",
+      "repeat": 0,
+      "idle": {
+        "durationMs": 3223.4737000000023
+      },
+      "loaded": {
+        "durationMs": 3584.2065000000002,
+        "stats": {
+          "mode": "index-cold",
+          "runs": 2,
+          "durationMs": 4490.7237,
+          "stats": [
+            {
+              "embeddingTexts": 91,
+              "embeddingTokens": 3442,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 3,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 178438144,
+              "modelCpuMs": 1513,
+              "modelFsRead": 744,
+              "modelFsWrite": 0
+            },
+            {
+              "embeddingTexts": 91,
+              "embeddingTokens": 3442,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 3,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 178413568,
+              "modelCpuMs": 1560,
+              "modelFsRead": 744,
+              "modelFsWrite": 0
+            }
+          ]
+        }
+      },
+      "slowdown": 0.11190809467438734
+    },
+    {
+      "mode": "index-cold",
+      "workload": "tests",
+      "repeat": 1,
+      "loaded": {
+        "durationMs": 3405.371199999994,
+        "stats": {
+          "mode": "index-cold",
+          "runs": 2,
+          "durationMs": 4463.5232000000005,
+          "stats": [
+            {
+              "embeddingTexts": 91,
+              "embeddingTokens": 3442,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 3,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 179658752,
+              "modelCpuMs": 1436,
+              "modelFsRead": 744,
+              "modelFsWrite": 0
+            },
+            {
+              "embeddingTexts": 91,
+              "embeddingTokens": 3442,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 3,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 178479104,
+              "modelCpuMs": 1324,
+              "modelFsRead": 744,
+              "modelFsWrite": 0
+            }
+          ]
+        }
+      },
+      "idle": {
+        "durationMs": 3116.507300000012
+      },
+      "slowdown": 0.09268834377509116
+    },
+    {
+      "mode": "index-cold",
+      "workload": "tests",
+      "repeat": 2,
+      "idle": {
+        "durationMs": 3068.3910999999935
+      },
+      "loaded": {
+        "durationMs": 3394.0685999999987,
+        "stats": {
+          "mode": "index-cold",
+          "runs": 2,
+          "durationMs": 4255.6851,
+          "stats": [
+            {
+              "embeddingTexts": 91,
+              "embeddingTokens": 3442,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 3,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 184397824,
+              "modelCpuMs": 1325,
+              "modelFsRead": 744,
+              "modelFsWrite": 0
+            },
+            {
+              "embeddingTexts": 91,
+              "embeddingTokens": 3442,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 3,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 183480320,
+              "modelCpuMs": 1435,
+              "modelFsRead": 744,
+              "modelFsWrite": 0
+            }
+          ]
+        }
+      },
+      "slowdown": 0.1061395009260735
+    },
+    {
+      "mode": "index-cold",
+      "workload": "tests",
+      "repeat": 3,
+      "loaded": {
+        "durationMs": 4051.3377000000037,
+        "stats": {
+          "mode": "index-cold",
+          "runs": 2,
+          "durationMs": 4926.5052,
+          "stats": [
+            {
+              "embeddingTexts": 91,
+              "embeddingTokens": 3442,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 3,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 177483776,
+              "modelCpuMs": 1639,
+              "modelFsRead": 744,
+              "modelFsWrite": 0
+            },
+            {
+              "embeddingTexts": 91,
+              "embeddingTokens": 3442,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 3,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 178372608,
+              "modelCpuMs": 1294,
+              "modelFsRead": 744,
+              "modelFsWrite": 0
+            }
+          ]
+        }
+      },
+      "idle": {
+        "durationMs": 2979.6584000000003
+      },
+      "slowdown": 0.3596651549050063
+    },
+    {
+      "mode": "index-cold",
+      "workload": "tests",
+      "repeat": 4,
+      "idle": {
+        "durationMs": 2988.8989
+      },
+      "loaded": {
+        "durationMs": 3471.813599999994,
+        "stats": {
+          "mode": "index-cold",
+          "runs": 2,
+          "durationMs": 4370.2976,
+          "stats": [
+            {
+              "embeddingTexts": 91,
+              "embeddingTokens": 3442,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 3,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 180510720,
+              "modelCpuMs": 1357,
+              "modelFsRead": 744,
+              "modelFsWrite": 0
+            },
+            {
+              "embeddingTexts": 91,
+              "embeddingTokens": 3442,
+              "rerankPairs": 0,
+              "rerankTokens": 0,
+              "modelCalls": 3,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 183558144,
+              "modelCpuMs": 1326,
+              "modelFsRead": 744,
+              "modelFsWrite": 0
+            }
+          ]
+        }
+      },
+      "slowdown": 0.16156943281018776
+    },
+    {
+      "mode": "query",
+      "workload": "build",
+      "repeat": 0,
+      "idle": {
+        "durationMs": 1994.4956999999995
+      },
+      "loaded": {
+        "durationMs": 2821.4236999999994,
+        "stats": {
+          "mode": "query",
+          "runs": 2,
+          "durationMs": 4510.2969,
+          "stats": [
+            {
+              "embeddingTexts": 1,
+              "embeddingTokens": 34,
+              "rerankPairs": 5,
+              "rerankTokens": 165,
+              "modelCalls": 2,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 920555520,
+              "modelCpuMs": 2186,
+              "modelFsRead": 688,
+              "modelFsWrite": 0
+            },
+            {
+              "embeddingTexts": 1,
+              "embeddingTokens": 34,
+              "rerankPairs": 5,
+              "rerankTokens": 165,
+              "modelCalls": 2,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 921382912,
+              "modelCpuMs": 1843,
+              "modelFsRead": 695,
+              "modelFsWrite": 0
+            }
+          ]
+        }
+      },
+      "slowdown": 0.4146050553029521
+    },
+    {
+      "mode": "query",
+      "workload": "build",
+      "repeat": 1,
+      "loaded": {
+        "durationMs": 2579.902999999991,
+        "stats": {
+          "mode": "query",
+          "runs": 2,
+          "durationMs": 4207.6476999999995,
+          "stats": [
+            {
+              "embeddingTexts": 1,
+              "embeddingTokens": 34,
+              "rerankPairs": 5,
+              "rerankTokens": 165,
+              "modelCalls": 2,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 915869696,
+              "modelCpuMs": 2248,
+              "modelFsRead": 699,
+              "modelFsWrite": 0
+            },
+            {
+              "embeddingTexts": 1,
+              "embeddingTokens": 34,
+              "rerankPairs": 5,
+              "rerankTokens": 165,
+              "modelCalls": 2,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 899338240,
+              "modelCpuMs": 1576,
+              "modelFsRead": 680,
+              "modelFsWrite": 0
+            }
+          ]
+        }
+      },
+      "idle": {
+        "durationMs": 2053.4677000000083
+      },
+      "slowdown": 0.25636405189133527
+    },
+    {
+      "mode": "query",
+      "workload": "build",
+      "repeat": 2,
+      "idle": {
+        "durationMs": 2009.576299999986
+      },
+      "loaded": {
+        "durationMs": 2465.313599999994,
+        "stats": {
+          "mode": "query",
+          "runs": 2,
+          "durationMs": 4068.8552000000004,
+          "stats": [
+            {
+              "embeddingTexts": 1,
+              "embeddingTokens": 34,
+              "rerankPairs": 5,
+              "rerankTokens": 165,
+              "modelCalls": 2,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 920940544,
+              "modelCpuMs": 2013,
+              "modelFsRead": 686,
+              "modelFsWrite": 0
+            },
+            {
+              "embeddingTexts": 1,
+              "embeddingTokens": 34,
+              "rerankPairs": 5,
+              "rerankTokens": 165,
+              "modelCalls": 2,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 897904640,
+              "modelCpuMs": 1686,
+              "modelFsRead": 689,
+              "modelFsWrite": 0
+            }
+          ]
+        }
+      },
+      "slowdown": 0.2267827800317963
+    },
+    {
+      "mode": "query",
+      "workload": "build",
+      "repeat": 3,
+      "loaded": {
+        "durationMs": 2468.720399999991,
+        "stats": {
+          "mode": "query",
+          "runs": 2,
+          "durationMs": 4157.7318,
+          "stats": [
+            {
+              "embeddingTexts": 1,
+              "embeddingTokens": 34,
+              "rerankPairs": 5,
+              "rerankTokens": 165,
+              "modelCalls": 2,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 921780224,
+              "modelCpuMs": 2092,
+              "modelFsRead": 689,
+              "modelFsWrite": 0
+            },
+            {
+              "embeddingTexts": 1,
+              "embeddingTokens": 34,
+              "rerankPairs": 5,
+              "rerankTokens": 165,
+              "modelCalls": 2,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 897175552,
+              "modelCpuMs": 1685,
+              "modelFsRead": 694,
+              "modelFsWrite": 0
+            }
+          ]
+        }
+      },
+      "idle": {
+        "durationMs": 2005.6156999999948
+      },
+      "slowdown": 0.23090400618622864
+    },
+    {
+      "mode": "query",
+      "workload": "build",
+      "repeat": 4,
+      "idle": {
+        "durationMs": 2105.2974000000104
+      },
+      "loaded": {
+        "durationMs": 2491.0500000000175,
+        "stats": {
+          "mode": "query",
+          "runs": 2,
+          "durationMs": 4103.4144,
+          "stats": [
+            {
+              "embeddingTexts": 1,
+              "embeddingTokens": 34,
+              "rerankPairs": 5,
+              "rerankTokens": 165,
+              "modelCalls": 2,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 899284992,
+              "modelCpuMs": 2076,
+              "modelFsRead": 699,
+              "modelFsWrite": 0
+            },
+            {
+              "embeddingTexts": 1,
+              "embeddingTokens": 34,
+              "rerankPairs": 5,
+              "rerankTokens": 165,
+              "modelCalls": 2,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 910716928,
+              "modelCpuMs": 1794,
+              "modelFsRead": 688,
+              "modelFsWrite": 0
+            }
+          ]
+        }
+      },
+      "slowdown": 0.1832295047721073
+    },
+    {
+      "mode": "query",
+      "workload": "tests",
+      "repeat": 0,
+      "idle": {
+        "durationMs": 3058.7793999999994
+      },
+      "loaded": {
+        "durationMs": 3708.132099999988,
+        "stats": {
+          "mode": "query",
+          "runs": 2,
+          "durationMs": 4159.2356,
+          "stats": [
+            {
+              "embeddingTexts": 1,
+              "embeddingTokens": 34,
+              "rerankPairs": 5,
+              "rerankTokens": 165,
+              "modelCalls": 2,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 901185536,
+              "modelCpuMs": 1826,
+              "modelFsRead": 689,
+              "modelFsWrite": 0
+            },
+            {
+              "embeddingTexts": 1,
+              "embeddingTokens": 34,
+              "rerankPairs": 5,
+              "rerankTokens": 165,
+              "modelCalls": 2,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 912261120,
+              "modelCpuMs": 2139,
+              "modelFsRead": 705,
+              "modelFsWrite": 0
+            }
+          ]
+        }
+      },
+      "slowdown": 0.21229144540465672
+    },
+    {
+      "mode": "query",
+      "workload": "tests",
+      "repeat": 1,
+      "loaded": {
+        "durationMs": 3650.287400000001,
+        "stats": {
+          "mode": "query",
+          "runs": 2,
+          "durationMs": 4218.7144,
+          "stats": [
+            {
+              "embeddingTexts": 1,
+              "embeddingTokens": 34,
+              "rerankPairs": 5,
+              "rerankTokens": 165,
+              "modelCalls": 2,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 897826816,
+              "modelCpuMs": 1796,
+              "modelFsRead": 682,
+              "modelFsWrite": 0
+            },
+            {
+              "embeddingTexts": 1,
+              "embeddingTokens": 34,
+              "rerankPairs": 5,
+              "rerankTokens": 165,
+              "modelCalls": 2,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 922382336,
+              "modelCpuMs": 2014,
+              "modelFsRead": 690,
+              "modelFsWrite": 0
+            }
+          ]
+        }
+      },
+      "idle": {
+        "durationMs": 3116.140700000018
+      },
+      "slowdown": 0.17141289544466964
+    },
+    {
+      "mode": "query",
+      "workload": "tests",
+      "repeat": 2,
+      "idle": {
+        "durationMs": 3072.8389000000025
+      },
+      "loaded": {
+        "durationMs": 3870.759300000005,
+        "stats": {
+          "mode": "query",
+          "runs": 2,
+          "durationMs": 4564.851500000001,
+          "stats": [
+            {
+              "embeddingTexts": 1,
+              "embeddingTokens": 34,
+              "rerankPairs": 5,
+              "rerankTokens": 165,
+              "modelCalls": 2,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 920170496,
+              "modelCpuMs": 1951,
+              "modelFsRead": 684,
+              "modelFsWrite": 0
+            },
+            {
+              "embeddingTexts": 1,
+              "embeddingTokens": 34,
+              "rerankPairs": 5,
+              "rerankTokens": 165,
+              "modelCalls": 2,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 918183936,
+              "modelCpuMs": 1999,
+              "modelFsRead": 683,
+              "modelFsWrite": 0
+            }
+          ]
+        }
+      },
+      "slowdown": 0.25966880333362163
+    },
+    {
+      "mode": "query",
+      "workload": "tests",
+      "repeat": 3,
+      "loaded": {
+        "durationMs": 3824.9171000000206,
+        "stats": {
+          "mode": "query",
+          "runs": 2,
+          "durationMs": 4408.1381,
+          "stats": [
+            {
+              "embeddingTexts": 1,
+              "embeddingTokens": 34,
+              "rerankPairs": 5,
+              "rerankTokens": 165,
+              "modelCalls": 2,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 900882432,
+              "modelCpuMs": 2202,
+              "modelFsRead": 690,
+              "modelFsWrite": 0
+            },
+            {
+              "embeddingTexts": 1,
+              "embeddingTokens": 34,
+              "rerankPairs": 5,
+              "rerankTokens": 165,
+              "modelCalls": 2,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 874450944,
+              "modelCpuMs": 1888,
+              "modelFsRead": 697,
+              "modelFsWrite": 0
+            }
+          ]
+        }
+      },
+      "idle": {
+        "durationMs": 3166.2727000000014
+      },
+      "slowdown": 0.20801884815544125
+    },
+    {
+      "mode": "query",
+      "workload": "tests",
+      "repeat": 4,
+      "idle": {
+        "durationMs": 3243.647499999992
+      },
+      "loaded": {
+        "durationMs": 3535.536699999997,
+        "stats": {
+          "mode": "query",
+          "runs": 2,
+          "durationMs": 3971.5721,
+          "stats": [
+            {
+              "embeddingTexts": 1,
+              "embeddingTokens": 34,
+              "rerankPairs": 5,
+              "rerankTokens": 165,
+              "modelCalls": 2,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 911167488,
+              "modelCpuMs": 1731,
+              "modelFsRead": 679,
+              "modelFsWrite": 0
+            },
+            {
+              "embeddingTexts": 1,
+              "embeddingTokens": 34,
+              "rerankPairs": 5,
+              "rerankTokens": 165,
+              "modelCalls": 2,
+              "cacheHits": 0,
+              "generationTokens": 0,
+              "apiCost": 0,
+              "modelPeakRssBytes": 920956928,
+              "modelCpuMs": 1968,
+              "modelFsRead": 689,
+              "modelFsWrite": 0
+            }
+          ]
+        }
+      },
+      "slowdown": 0.08998795337656329
+    }
+  ],
+  "summary": [
+    {
+      "mode": "index-cached",
+      "workload": "build",
+      "mean": 0.1081742587291373,
+      "upper95": 0.13984486633739773,
+      "passed": false
+    },
+    {
+      "mode": "index-cached",
+      "workload": "tests",
+      "mean": 0.06613571884726036,
+      "upper95": 0.110057127971743,
+      "passed": false
+    },
+    {
+      "mode": "index-cold",
+      "workload": "build",
+      "mean": 0.22899000922866697,
+      "upper95": 0.28134007862994986,
+      "passed": false
+    },
+    {
+      "mode": "index-cold",
+      "workload": "tests",
+      "mean": 0.1663941054181492,
+      "upper95": 0.272362074460094,
+      "passed": false
+    },
+    {
+      "mode": "query",
+      "workload": "build",
+      "mean": 0.26237707963688395,
+      "upper95": 0.3472983626624276,
+      "passed": false
+    },
+    {
+      "mode": "query",
+      "workload": "tests",
+      "mean": 0.1882759891429905,
+      "upper95": 0.24859380436753029,
+      "passed": false
+    }
+  ],
+  "limitations": [
+    "冷编码只清除合成库派生向量缓存，原文/模型文件保持不变",
+    "fsRead/fsWrite在Windows可能不可用，0不能解释为无I/O",
+    "GPU未启用，未进行GPU利用率归因",
+    "五对测试不足以排除全部环境噪声"
+  ]
+}

@@ -1,0 +1,627 @@
+{
+  "complete": true,
+  "syntheticOnly": true,
+  "model": "deepseek-flash",
+  "rows": [
+    {
+      "task": "combo",
+      "mode": "literal",
+      "repeat": 0,
+      "calls": 4,
+      "queries": 3,
+      "repeatedQueries": 0,
+      "success": false,
+      "evidenceCorrect": false,
+      "usage": {
+        "inputTokens": 1480,
+        "outputTokens": 286
+      },
+      "durationMs": 5947.472900000001,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "combo",
+      "mode": "bm25",
+      "repeat": 0,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 1747,
+        "outputTokens": 276
+      },
+      "durationMs": 3059.3466000000008,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "combo",
+      "mode": "semantic",
+      "repeat": 0,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 3346,
+        "outputTokens": 265
+      },
+      "durationMs": 3211.284600000001,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "combo",
+      "mode": "hybrid",
+      "repeat": 0,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 3381,
+        "outputTokens": 269
+      },
+      "durationMs": 2597.978500000001,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "combo",
+      "mode": "hybrid-rerank",
+      "repeat": 0,
+      "calls": 3,
+      "queries": 2,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 9196,
+        "outputTokens": 345
+      },
+      "durationMs": 8544.090400000001,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "combo",
+      "mode": "task",
+      "repeat": 0,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 2285,
+        "outputTokens": 278
+      },
+      "durationMs": 5457.391199999998,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "history",
+      "mode": "literal",
+      "repeat": 0,
+      "calls": 4,
+      "queries": 3,
+      "repeatedQueries": 0,
+      "success": false,
+      "evidenceCorrect": false,
+      "usage": {
+        "inputTokens": 1417,
+        "outputTokens": 136
+      },
+      "durationMs": 5326.436399999999,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "history",
+      "mode": "bm25",
+      "repeat": 0,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 1321,
+        "outputTokens": 128
+      },
+      "durationMs": 2009.9180000000051,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "history",
+      "mode": "semantic",
+      "repeat": 0,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 3394,
+        "outputTokens": 130
+      },
+      "durationMs": 2849.323200000006,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "history",
+      "mode": "hybrid",
+      "repeat": 0,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 3408,
+        "outputTokens": 128
+      },
+      "durationMs": 2506.1964000000007,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "history",
+      "mode": "hybrid-rerank",
+      "repeat": 0,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 3358,
+        "outputTokens": 128
+      },
+      "durationMs": 4127.309399999998,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "history",
+      "mode": "task",
+      "repeat": 0,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 1791,
+        "outputTokens": 123
+      },
+      "durationMs": 4110.337200000002,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "self-contained",
+      "mode": "literal",
+      "repeat": 0,
+      "calls": 1,
+      "queries": 0,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25
+      },
+      "durationMs": 723.8580000000002,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "self-contained",
+      "mode": "bm25",
+      "repeat": 0,
+      "calls": 1,
+      "queries": 0,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25
+      },
+      "durationMs": 1129.2776999999987,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "self-contained",
+      "mode": "semantic",
+      "repeat": 0,
+      "calls": 1,
+      "queries": 0,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25
+      },
+      "durationMs": 1097.3246999999974,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "self-contained",
+      "mode": "hybrid",
+      "repeat": 0,
+      "calls": 1,
+      "queries": 0,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25
+      },
+      "durationMs": 875.7771999999968,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "self-contained",
+      "mode": "hybrid-rerank",
+      "repeat": 0,
+      "calls": 1,
+      "queries": 0,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25
+      },
+      "durationMs": 999.8712999999989,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "self-contained",
+      "mode": "task",
+      "repeat": 0,
+      "calls": 1,
+      "queries": 0,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25
+      },
+      "durationMs": 400.512999999999,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "combo",
+      "mode": "literal",
+      "repeat": 1,
+      "calls": 3,
+      "queries": 2,
+      "repeatedQueries": 0,
+      "success": false,
+      "evidenceCorrect": false,
+      "usage": {
+        "inputTokens": 1038,
+        "outputTokens": 275
+      },
+      "durationMs": 4533.020400000001,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "combo",
+      "mode": "bm25",
+      "repeat": 1,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 1359,
+        "outputTokens": 265
+      },
+      "durationMs": 2333.599200000004,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "combo",
+      "mode": "semantic",
+      "repeat": 1,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 3338,
+        "outputTokens": 265
+      },
+      "durationMs": 3181.5305999999982,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "combo",
+      "mode": "hybrid",
+      "repeat": 1,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 3378,
+        "outputTokens": 280
+      },
+      "durationMs": 2973.817200000005,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "combo",
+      "mode": "hybrid-rerank",
+      "repeat": 1,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 3383,
+        "outputTokens": 292
+      },
+      "durationMs": 4942.758799999996,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "combo",
+      "mode": "task",
+      "repeat": 1,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 2710,
+        "outputTokens": 257
+      },
+      "durationMs": 4481.683799999999,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "history",
+      "mode": "literal",
+      "repeat": 1,
+      "calls": 4,
+      "queries": 3,
+      "repeatedQueries": 0,
+      "success": false,
+      "evidenceCorrect": false,
+      "usage": {
+        "inputTokens": 1417,
+        "outputTokens": 126
+      },
+      "durationMs": 4888.5552000000025,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "history",
+      "mode": "bm25",
+      "repeat": 1,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 1318,
+        "outputTokens": 128
+      },
+      "durationMs": 1942.1752000000124,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "history",
+      "mode": "semantic",
+      "repeat": 1,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 3393,
+        "outputTokens": 130
+      },
+      "durationMs": 2970.5717000000004,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "history",
+      "mode": "hybrid",
+      "repeat": 1,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 3407,
+        "outputTokens": 128
+      },
+      "durationMs": 2182.259699999995,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "history",
+      "mode": "hybrid-rerank",
+      "repeat": 1,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 3411,
+        "outputTokens": 150
+      },
+      "durationMs": 4374.622199999998,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "history",
+      "mode": "task",
+      "repeat": 1,
+      "calls": 2,
+      "queries": 1,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 1793,
+        "outputTokens": 123
+      },
+      "durationMs": 4182.690499999997,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "self-contained",
+      "mode": "literal",
+      "repeat": 1,
+      "calls": 1,
+      "queries": 0,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25
+      },
+      "durationMs": 1129.3408000000054,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "self-contained",
+      "mode": "bm25",
+      "repeat": 1,
+      "calls": 1,
+      "queries": 0,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25
+      },
+      "durationMs": 1225.9890000000014,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "self-contained",
+      "mode": "semantic",
+      "repeat": 1,
+      "calls": 1,
+      "queries": 0,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25
+      },
+      "durationMs": 921.4275000000052,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "self-contained",
+      "mode": "hybrid",
+      "repeat": 1,
+      "calls": 1,
+      "queries": 0,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25
+      },
+      "durationMs": 1075.4370999999956,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "self-contained",
+      "mode": "hybrid-rerank",
+      "repeat": 1,
+      "calls": 1,
+      "queries": 0,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25
+      },
+      "durationMs": 802.0807999999961,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    },
+    {
+      "task": "self-contained",
+      "mode": "task",
+      "repeat": 1,
+      "calls": 1,
+      "queries": 0,
+      "repeatedQueries": 0,
+      "success": true,
+      "evidenceCorrect": true,
+      "usage": {
+        "inputTokens": 237,
+        "outputTokens": 25
+      },
+      "durationMs": 655.2504999999946,
+      "missedQuery": false,
+      "unnecessaryQueries": 0
+    }
+  ],
+  "costUpperUsd": 0.026927100000000013,
+  "pricingSource": "https://api-docs.deepseek.com/quick_start/pricing/",
+  "limitations": [
+    "36个小型函数任务；不代表复杂真实仓库任务",
+    "每个模式2次，不把波动当作确定收益",
+    "代码在隔离JS上下文实际执行测试；没有模型判分",
+    "费用是峰时非缓存上界，不是实际账单"
+  ]
+}

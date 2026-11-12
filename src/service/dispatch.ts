@@ -3,6 +3,7 @@ import { KnowledgeError } from '../core/errors.js';
 import { openApplication } from '../index.js';
 import { noteCommand } from '../records/note.js';
 import { transcriptCommand } from '../records/transcript.js';
+import { recallCommand } from '../recall/recall.js';
 import type { JsonObject, ResourceReference, ResourceQuery, OrganizationTypePatch } from '../contracts/index.js';
 
 function argumentError(message: string): never { throw new KnowledgeError('INVALID_ARGUMENT', message, undefined, 2); }
@@ -14,6 +15,7 @@ function object(input: Record<string, unknown>, key: string, fallback: JsonObjec
 function array(input: Record<string, unknown>, key: string): string[] | undefined { const value = input[key]; if (value === undefined) return undefined; if (typeof value === 'string') return value.split(','); if (!Array.isArray(value) || value.some(item => typeof item !== 'string')) argumentError(`参数 ${key} 必须为字符串数组`); return value; }
 export async function dispatch(dataDir: string, words: string[], input: Record<string, unknown>, stdinBytes?: Buffer): Promise<unknown> {
   const [group, action] = words;
+  if (group === 'recall') return recallCommand(dataDir, words, input);
   if (group === 'note') return noteCommand(dataDir, action, input, async () => stdinBytes ?? Buffer.alloc(0));
   if (group === 'transcript') return transcriptCommand(dataDir, action, input);
   // 恢复先于插件初始化，避免初始化数据使目标目录不再为空。

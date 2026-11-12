@@ -1,0 +1,158 @@
+{
+  "complete": false,
+  "guarded": true,
+  "rows": [
+    {
+      "mode": "index-cached",
+      "workload": "build",
+      "repeat": 0,
+      "idle": {
+        "durationMs": 2061.0806
+      },
+      "loaded": {
+        "durationMs": 2057.4884999999995,
+        "stats": {
+          "mode": "index-cached",
+          "runs": 0,
+          "deferred": 10,
+          "durationMs": 2225.8454,
+          "stats": []
+        }
+      },
+      "slowdown": -0.0017428236430929722
+    },
+    {
+      "mode": "index-cached",
+      "workload": "build",
+      "repeat": 1,
+      "loaded": {
+        "durationMs": 2075.0252,
+        "stats": {
+          "mode": "index-cached",
+          "runs": 0,
+          "deferred": 10,
+          "durationMs": 2220.8982,
+          "stats": []
+        }
+      },
+      "idle": {
+        "durationMs": 2074.3572999999997
+      },
+      "slowdown": 0.00032197924629495667
+    },
+    {
+      "mode": "index-cached",
+      "workload": "build",
+      "repeat": 2,
+      "idle": {
+        "durationMs": 2098.9592999999986
+      },
+      "loaded": {
+        "durationMs": 2081.4591,
+        "stats": {
+          "mode": "index-cached",
+          "runs": 0,
+          "deferred": 10,
+          "durationMs": 2222.1292,
+          "stats": []
+        }
+      },
+      "slowdown": -0.00833756042816014
+    },
+    {
+      "mode": "index-cached",
+      "workload": "build",
+      "repeat": 3,
+      "loaded": {
+        "durationMs": 2094.8469000000005,
+        "stats": {
+          "mode": "index-cached",
+          "runs": 0,
+          "deferred": 10,
+          "durationMs": 2229.2842,
+          "stats": []
+        }
+      },
+      "idle": {
+        "durationMs": 2066.141499999998
+      },
+      "slowdown": 0.013893240129005058
+    },
+    {
+      "mode": "index-cached",
+      "workload": "build",
+      "repeat": 4,
+      "idle": {
+        "durationMs": 2074.746800000001
+      },
+      "loaded": {
+        "durationMs": 2117.0841,
+        "stats": {
+          "mode": "index-cached",
+          "runs": 0,
+          "deferred": 10,
+          "durationMs": 2226.0024,
+          "stats": []
+        }
+      },
+      "slowdown": 0.02040600809698767
+    },
+    {
+      "mode": "index-cached",
+      "workload": "build",
+      "repeat": 5,
+      "loaded": {
+        "durationMs": 2080.739099999999,
+        "stats": {
+          "mode": "index-cached",
+          "runs": 0,
+          "deferred": 10,
+          "durationMs": 2232.1724,
+          "stats": []
+        }
+      },
+      "idle": {
+        "durationMs": 2085.2102000000014
+      },
+      "slowdown": -0.002144196302129364
+    },
+    {
+      "mode": "index-cached",
+      "workload": "build",
+      "repeat": 6,
+      "idle": {
+        "durationMs": 2114.0980999999992
+      },
+      "loaded": {
+        "durationMs": 2098.114099999999,
+        "stats": {
+          "mode": "index-cached",
+          "runs": 0,
+          "deferred": 10,
+          "durationMs": 2224.184,
+          "stats": []
+        }
+      },
+      "slowdown": -0.007560670907372002
+    },
+    {
+      "mode": "index-cached",
+      "workload": "build",
+      "repeat": 7,
+      "loaded": {
+        "durationMs": 2094.6204,
+        "stats": {
+          "mode": "index-cached",
+          "runs": 0,
+          "deferred": 10,
+          "durationMs": 2244.6663999999996,
+          "stats": []
+        }
+      },
+      "idle": {
+        "durationMs": 2094.518600000003
+      },
+      "slowdown": 0.000048603053702578336
+    }
+  ]
+}

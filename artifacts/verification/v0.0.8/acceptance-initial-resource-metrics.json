@@ -1,0 +1,3168 @@
+{
+  "kind": "retrieval-only",
+  "snapshot": "3d5a068af567f8ee8eca1f909f8e23034e1f81f67c6aa0317e977e36f5b3bf17",
+  "casesHash": "0d6602073b282809457684d838b75b9babcbd7fc45c83785b08d1aa2aecd7d71",
+  "sampleCount": 13,
+  "rows": [
+    {
+      "caseId": "timeout-exact",
+      "mode": "literal",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2922,
+      "durationMs": 529.6418000000001,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [],
+      "evidence": [
+        {
+          "resourceId": "69ddade6-c9be-47ee-b57f-916bde771cad"
+        },
+        {
+          "resourceId": "69ddade6-c9be-47ee-b57f-916bde771cad"
+        },
+        {
+          "resourceId": "69ddade6-c9be-47ee-b57f-916bde771cad"
+        }
+      ]
+    },
+    {
+      "caseId": "timeout-exact",
+      "mode": "bm25",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1803,
+      "durationMs": 50.057599999999866,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "69ddade6-c9be-47ee-b57f-916bde771cad"
+        }
+      ]
+    },
+    {
+      "caseId": "timeout-exact",
+      "mode": "semantic",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1893,
+      "durationMs": 415.422,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153337856,
+        "modelCpuMs": 405,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "69ddade6-c9be-47ee-b57f-916bde771cad"
+        }
+      ]
+    },
+    {
+      "caseId": "timeout-exact",
+      "mode": "hybrid",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1939,
+      "durationMs": 401.71630000000005,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 152879104,
+        "modelCpuMs": 250,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "69ddade6-c9be-47ee-b57f-916bde771cad"
+        }
+      ]
+    },
+    {
+      "caseId": "timeout-exact",
+      "mode": "hybrid-rerank",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1971,
+      "durationMs": 2365.0113,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 1,
+        "rerankTokens": 33,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 921178112,
+        "modelCpuMs": 1967,
+        "modelFsRead": 691,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "69ddade6-c9be-47ee-b57f-916bde771cad"
+        }
+      ]
+    },
+    {
+      "caseId": "timeout-exact",
+      "mode": "task",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2113,
+      "durationMs": 2600.6540999999997,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 1,
+        "rerankTokens": 33,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 916725760,
+        "modelCpuMs": 2264,
+        "modelFsRead": 705,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "69ddade6-c9be-47ee-b57f-916bde771cad"
+        }
+      ]
+    },
+    {
+      "caseId": "timeout-paraphrase",
+      "mode": "literal",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 0,
+      "reciprocalRank": 0,
+      "ndcgAt5": 0,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 0,
+      "duplicateRatio": 0,
+      "resultBytes": 173,
+      "durationMs": 643.6345999999994,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [],
+      "evidence": []
+    },
+    {
+      "caseId": "timeout-paraphrase",
+      "mode": "bm25",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1869,
+      "durationMs": 61.202800000000025,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "69ddade6-c9be-47ee-b57f-916bde771cad"
+        }
+      ]
+    },
+    {
+      "caseId": "timeout-paraphrase",
+      "mode": "semantic",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1959,
+      "durationMs": 433.8208999999997,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 36,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 152858624,
+        "modelCpuMs": 233,
+        "modelFsRead": 246,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "69ddade6-c9be-47ee-b57f-916bde771cad"
+        }
+      ]
+    },
+    {
+      "caseId": "timeout-paraphrase",
+      "mode": "hybrid",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2006,
+      "durationMs": 450.1296999999995,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 36,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153116672,
+        "modelCpuMs": 374,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "69ddade6-c9be-47ee-b57f-916bde771cad"
+        }
+      ]
+    },
+    {
+      "caseId": "timeout-paraphrase",
+      "mode": "hybrid-rerank",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2047,
+      "durationMs": 2288.5239,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 36,
+        "rerankPairs": 1,
+        "rerankTokens": 38,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 866598912,
+        "modelCpuMs": 2061,
+        "modelFsRead": 699,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "69ddade6-c9be-47ee-b57f-916bde771cad"
+        }
+      ]
+    },
+    {
+      "caseId": "timeout-paraphrase",
+      "mode": "task",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2115,
+      "durationMs": 2310.3855000000003,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 36,
+        "rerankPairs": 1,
+        "rerankTokens": 38,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 902672384,
+        "modelCpuMs": 2014,
+        "modelFsRead": 694,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "69ddade6-c9be-47ee-b57f-916bde771cad"
+        }
+      ]
+    },
+    {
+      "caseId": "migration-exact",
+      "mode": "literal",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2963,
+      "durationMs": 582.4040000000005,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [],
+      "evidence": [
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12"
+        },
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12"
+        },
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12"
+        }
+      ]
+    },
+    {
+      "caseId": "migration-exact",
+      "mode": "bm25",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1845,
+      "durationMs": 56.180099999999584,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12"
+        }
+      ]
+    },
+    {
+      "caseId": "migration-exact",
+      "mode": "semantic",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 3789,
+      "durationMs": 648.7230999999992,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 26,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 152924160,
+        "modelCpuMs": 265,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12"
+        },
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12"
+        },
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12"
+        }
+      ]
+    },
+    {
+      "caseId": "migration-exact",
+      "mode": "hybrid",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 3836,
+      "durationMs": 540.4235000000008,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 26,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153317376,
+        "modelCpuMs": 265,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12"
+        },
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12"
+        },
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12"
+        }
+      ]
+    },
+    {
+      "caseId": "migration-exact",
+      "mode": "hybrid-rerank",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 3873,
+      "durationMs": 2418.744200000001,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 26,
+        "rerankPairs": 3,
+        "rerankTokens": 84,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 920207360,
+        "modelCpuMs": 2061,
+        "modelFsRead": 692,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12"
+        },
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12"
+        },
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12"
+        }
+      ]
+    },
+    {
+      "caseId": "migration-exact",
+      "mode": "task",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2135,
+      "durationMs": 2694.473600000001,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 26,
+        "rerankPairs": 3,
+        "rerankTokens": 84,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 921772032,
+        "modelCpuMs": 2327,
+        "modelFsRead": 694,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12"
+        }
+      ]
+    },
+    {
+      "caseId": "migration-paraphrase",
+      "mode": "literal",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 0,
+      "reciprocalRank": 0,
+      "ndcgAt5": 0,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 0,
+      "duplicateRatio": 0,
+      "resultBytes": 173,
+      "durationMs": 595.5688999999984,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [],
+      "evidence": []
+    },
+    {
+      "caseId": "migration-paraphrase",
+      "mode": "bm25",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1906,
+      "durationMs": 58.64930000000095,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12"
+        }
+      ]
+    },
+    {
+      "caseId": "migration-paraphrase",
+      "mode": "semantic",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0.19999999999999996,
+      "resultBytes": 6195,
+      "durationMs": 483.4923999999992,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 36,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153333760,
+        "modelCpuMs": 234,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12"
+        },
+        {
+          "resourceId": "6d9da508-ec98-4ab1-a5dd-8911e85e84b3"
+        },
+        {
+          "resourceId": "6d9da508-ec98-4ab1-a5dd-8911e85e84b3"
+        },
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12"
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61"
+        }
+      ]
+    },
+    {
+      "caseId": "migration-paraphrase",
+      "mode": "hybrid",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0.19999999999999996,
+      "resultBytes": 6244,
+      "durationMs": 440.1661000000022,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 36,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153436160,
+        "modelCpuMs": 311,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12"
+        },
+        {
+          "resourceId": "6d9da508-ec98-4ab1-a5dd-8911e85e84b3"
+        },
+        {
+          "resourceId": "6d9da508-ec98-4ab1-a5dd-8911e85e84b3"
+        },
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12"
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61"
+        }
+      ]
+    },
+    {
+      "caseId": "migration-paraphrase",
+      "mode": "hybrid-rerank",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0.4,
+      "resultBytes": 6153,
+      "durationMs": 2547.8572999999997,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 36,
+        "rerankPairs": 7,
+        "rerankTokens": 249,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 911794176,
+        "modelCpuMs": 2327,
+        "modelFsRead": 697,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12"
+        },
+        {
+          "resourceId": "6d9da508-ec98-4ab1-a5dd-8911e85e84b3"
+        },
+        {
+          "resourceId": "6d9da508-ec98-4ab1-a5dd-8911e85e84b3"
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61"
+        },
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12"
+        }
+      ]
+    },
+    {
+      "caseId": "migration-paraphrase",
+      "mode": "task",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 4315,
+      "durationMs": 2629.678500000002,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 36,
+        "rerankPairs": 7,
+        "rerankTokens": 249,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 921014272,
+        "modelCpuMs": 2170,
+        "modelFsRead": 688,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12"
+        },
+        {
+          "resourceId": "6d9da508-ec98-4ab1-a5dd-8911e85e84b3"
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61"
+        }
+      ]
+    },
+    {
+      "caseId": "cooldown-exact",
+      "mode": "literal",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2944,
+      "durationMs": 585.6411999999982,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [],
+      "evidence": [
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd"
+        },
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd"
+        },
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd"
+        }
+      ]
+    },
+    {
+      "caseId": "cooldown-exact",
+      "mode": "bm25",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1829,
+      "durationMs": 52.786299999999756,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd"
+        }
+      ]
+    },
+    {
+      "caseId": "cooldown-exact",
+      "mode": "semantic",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 0,
+      "reciprocalRank": 0,
+      "ndcgAt5": 0,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 0,
+      "duplicateRatio": 0,
+      "resultBytes": 851,
+      "durationMs": 374.83750000000146,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 152920064,
+        "modelCpuMs": 343,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": []
+    },
+    {
+      "caseId": "cooldown-exact",
+      "mode": "hybrid",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1957,
+      "durationMs": 428.52600000000166,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153214976,
+        "modelCpuMs": 343,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd"
+        }
+      ]
+    },
+    {
+      "caseId": "cooldown-exact",
+      "mode": "hybrid-rerank",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1981,
+      "durationMs": 2509.6106,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 1,
+        "rerankTokens": 39,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 920178688,
+        "modelCpuMs": 2154,
+        "modelFsRead": 697,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd"
+        }
+      ]
+    },
+    {
+      "caseId": "cooldown-exact",
+      "mode": "task",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2132,
+      "durationMs": 2228.0073000000048,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 1,
+        "rerankTokens": 39,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 902000640,
+        "modelCpuMs": 1826,
+        "modelFsRead": 689,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd"
+        }
+      ]
+    },
+    {
+      "caseId": "cooldown-paraphrase",
+      "mode": "literal",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 0,
+      "reciprocalRank": 0,
+      "ndcgAt5": 0,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 0,
+      "duplicateRatio": 0,
+      "resultBytes": 173,
+      "durationMs": 559.3280000000013,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [],
+      "evidence": []
+    },
+    {
+      "caseId": "cooldown-paraphrase",
+      "mode": "bm25",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1895,
+      "durationMs": 51.21379999999772,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd"
+        }
+      ]
+    },
+    {
+      "caseId": "cooldown-paraphrase",
+      "mode": "semantic",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 6084,
+      "durationMs": 455.15699999999924,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 36,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153059328,
+        "modelCpuMs": 249,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd"
+        },
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd"
+        },
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd"
+        },
+        {
+          "resourceId": "3e626358-2b0a-4124-a785-8fc8490a890b"
+        },
+        {
+          "resourceId": "69f9c6e1-31e1-4fb8-8adb-9ca6a100e846"
+        }
+      ]
+    },
+    {
+      "caseId": "cooldown-paraphrase",
+      "mode": "hybrid",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 6134,
+      "durationMs": 450.8345000000045,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 36,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153186304,
+        "modelCpuMs": 374,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd"
+        },
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd"
+        },
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd"
+        },
+        {
+          "resourceId": "3e626358-2b0a-4124-a785-8fc8490a890b"
+        },
+        {
+          "resourceId": "69f9c6e1-31e1-4fb8-8adb-9ca6a100e846"
+        }
+      ]
+    },
+    {
+      "caseId": "cooldown-paraphrase",
+      "mode": "hybrid-rerank",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 6175,
+      "durationMs": 2447.3551000000007,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 36,
+        "rerankPairs": 6,
+        "rerankTokens": 254,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 911495168,
+        "modelCpuMs": 1967,
+        "modelFsRead": 689,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd"
+        },
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd"
+        },
+        {
+          "resourceId": "3e626358-2b0a-4124-a785-8fc8490a890b"
+        },
+        {
+          "resourceId": "69f9c6e1-31e1-4fb8-8adb-9ca6a100e846"
+        },
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd"
+        }
+      ]
+    },
+    {
+      "caseId": "cooldown-paraphrase",
+      "mode": "task",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 4302,
+      "durationMs": 2755.555800000002,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 36,
+        "rerankPairs": 6,
+        "rerankTokens": 254,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 911826944,
+        "modelCpuMs": 2405,
+        "modelFsRead": 693,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd"
+        },
+        {
+          "resourceId": "3e626358-2b0a-4124-a785-8fc8490a890b"
+        },
+        {
+          "resourceId": "f08ab593-628d-4fe8-bc30-5d20cb6c5787"
+        }
+      ]
+    },
+    {
+      "caseId": "pagination-exact",
+      "mode": "literal",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2968,
+      "durationMs": 676.9239999999991,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [],
+      "evidence": [
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5"
+        },
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5"
+        },
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5"
+        }
+      ]
+    },
+    {
+      "caseId": "pagination-exact",
+      "mode": "bm25",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1843,
+      "durationMs": 61.83550000000105,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5"
+        }
+      ]
+    },
+    {
+      "caseId": "pagination-exact",
+      "mode": "semantic",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1931,
+      "durationMs": 483.18189999999595,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153411584,
+        "modelCpuMs": 327,
+        "modelFsRead": 246,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5"
+        }
+      ]
+    },
+    {
+      "caseId": "pagination-exact",
+      "mode": "hybrid",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1979,
+      "durationMs": 458.8116999999984,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153047040,
+        "modelCpuMs": 311,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5"
+        }
+      ]
+    },
+    {
+      "caseId": "pagination-exact",
+      "mode": "hybrid-rerank",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2020,
+      "durationMs": 2411.9563000000053,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 1,
+        "rerankTokens": 43,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 901124096,
+        "modelCpuMs": 1999,
+        "modelFsRead": 689,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5"
+        }
+      ]
+    },
+    {
+      "caseId": "pagination-exact",
+      "mode": "task",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2177,
+      "durationMs": 2391.4064,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 1,
+        "rerankTokens": 43,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 920326144,
+        "modelCpuMs": 1998,
+        "modelFsRead": 689,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5"
+        }
+      ]
+    },
+    {
+      "caseId": "pagination-paraphrase",
+      "mode": "literal",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 0,
+      "reciprocalRank": 0,
+      "ndcgAt5": 0,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 0,
+      "duplicateRatio": 0,
+      "resultBytes": 173,
+      "durationMs": 566.6169999999984,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [],
+      "evidence": []
+    },
+    {
+      "caseId": "pagination-paraphrase",
+      "mode": "bm25",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1910,
+      "durationMs": 49.550900000002,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5"
+        }
+      ]
+    },
+    {
+      "caseId": "pagination-paraphrase",
+      "mode": "semantic",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 5916,
+      "durationMs": 426.4054000000033,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 36,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 152973312,
+        "modelCpuMs": 327,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5"
+        },
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5"
+        },
+        {
+          "resourceId": "ef2db69a-47ac-42d3-8486-ee3e1bc5b9cf"
+        },
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5"
+        },
+        {
+          "resourceId": "ef2db69a-47ac-42d3-8486-ee3e1bc5b9cf"
+        }
+      ]
+    },
+    {
+      "caseId": "pagination-paraphrase",
+      "mode": "hybrid",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 5963,
+      "durationMs": 422.9804000000004,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 36,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153923584,
+        "modelCpuMs": 249,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5"
+        },
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5"
+        },
+        {
+          "resourceId": "ef2db69a-47ac-42d3-8486-ee3e1bc5b9cf"
+        },
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5"
+        },
+        {
+          "resourceId": "ef2db69a-47ac-42d3-8486-ee3e1bc5b9cf"
+        }
+      ]
+    },
+    {
+      "caseId": "pagination-paraphrase",
+      "mode": "hybrid-rerank",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 5995,
+      "durationMs": 2290.7522000000026,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 36,
+        "rerankPairs": 6,
+        "rerankTokens": 193,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 899678208,
+        "modelCpuMs": 1811,
+        "modelFsRead": 694,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5"
+        },
+        {
+          "resourceId": "ef2db69a-47ac-42d3-8486-ee3e1bc5b9cf"
+        },
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5"
+        },
+        {
+          "resourceId": "ef2db69a-47ac-42d3-8486-ee3e1bc5b9cf"
+        },
+        {
+          "resourceId": "ef2db69a-47ac-42d3-8486-ee3e1bc5b9cf"
+        }
+      ]
+    },
+    {
+      "caseId": "pagination-paraphrase",
+      "mode": "task",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 3216,
+      "durationMs": 2180.597099999999,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 36,
+        "rerankPairs": 6,
+        "rerankTokens": 193,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 914030592,
+        "modelCpuMs": 1905,
+        "modelFsRead": 690,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "cd0a97e2-01c0-4f52-8319-7826165264a5"
+        },
+        {
+          "resourceId": "ef2db69a-47ac-42d3-8486-ee3e1bc5b9cf"
+        }
+      ]
+    },
+    {
+      "caseId": "encryption-exact",
+      "mode": "literal",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2954,
+      "durationMs": 597.6300999999949,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [],
+      "evidence": [
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61"
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61"
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61"
+        }
+      ]
+    },
+    {
+      "caseId": "encryption-exact",
+      "mode": "bm25",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1830,
+      "durationMs": 51.19170000000304,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61"
+        }
+      ]
+    },
+    {
+      "caseId": "encryption-exact",
+      "mode": "semantic",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 4642,
+      "durationMs": 392.16820000000007,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153350144,
+        "modelCpuMs": 280,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61"
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61"
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61"
+        },
+        {
+          "resourceId": "6d9da508-ec98-4ab1-a5dd-8911e85e84b3"
+        }
+      ]
+    },
+    {
+      "caseId": "encryption-exact",
+      "mode": "hybrid",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 4689,
+      "durationMs": 392.49639999999636,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153366528,
+        "modelCpuMs": 234,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61"
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61"
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61"
+        },
+        {
+          "resourceId": "6d9da508-ec98-4ab1-a5dd-8911e85e84b3"
+        }
+      ]
+    },
+    {
+      "caseId": "encryption-exact",
+      "mode": "hybrid-rerank",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 4741,
+      "durationMs": 1800.017899999999,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 4,
+        "rerankTokens": 94,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 898224128,
+        "modelCpuMs": 1530,
+        "modelFsRead": 691,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61"
+        },
+        {
+          "resourceId": "6d9da508-ec98-4ab1-a5dd-8911e85e84b3"
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61"
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61"
+        }
+      ]
+    },
+    {
+      "caseId": "encryption-exact",
+      "mode": "task",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2138,
+      "durationMs": 2073.472099999999,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 4,
+        "rerankTokens": 94,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 916303872,
+        "modelCpuMs": 1936,
+        "modelFsRead": 674,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61"
+        }
+      ]
+    },
+    {
+      "caseId": "encryption-paraphrase",
+      "mode": "literal",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 0,
+      "reciprocalRank": 0,
+      "ndcgAt5": 0,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 0,
+      "duplicateRatio": 0,
+      "resultBytes": 173,
+      "durationMs": 517.8205999999991,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [],
+      "evidence": []
+    },
+    {
+      "caseId": "encryption-paraphrase",
+      "mode": "bm25",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 3014,
+      "durationMs": 70.37320000000182,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61"
+        },
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12"
+        }
+      ]
+    },
+    {
+      "caseId": "encryption-paraphrase",
+      "mode": "semantic",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 6119,
+      "durationMs": 438.4916999999987,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 35,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 152961024,
+        "modelCpuMs": 296,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61"
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61"
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61"
+        },
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12"
+        },
+        {
+          "resourceId": "6d9da508-ec98-4ab1-a5dd-8911e85e84b3"
+        }
+      ]
+    },
+    {
+      "caseId": "encryption-paraphrase",
+      "mode": "hybrid",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 6186,
+      "durationMs": 434.061099999999,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 35,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 152956928,
+        "modelCpuMs": 296,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61"
+        },
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12"
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61"
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61"
+        },
+        {
+          "resourceId": "6d9da508-ec98-4ab1-a5dd-8911e85e84b3"
+        }
+      ]
+    },
+    {
+      "caseId": "encryption-paraphrase",
+      "mode": "hybrid-rerank",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 6141,
+      "durationMs": 2048.877099999998,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 35,
+        "rerankPairs": 8,
+        "rerankTokens": 267,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 900460544,
+        "modelCpuMs": 2046,
+        "modelFsRead": 699,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61"
+        },
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12"
+        },
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61"
+        },
+        {
+          "resourceId": "6d9da508-ec98-4ab1-a5dd-8911e85e84b3"
+        },
+        {
+          "resourceId": "6d9da508-ec98-4ab1-a5dd-8911e85e84b3"
+        }
+      ]
+    },
+    {
+      "caseId": "encryption-paraphrase",
+      "mode": "task",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 3229,
+      "durationMs": 1902.5121,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 35,
+        "rerankPairs": 8,
+        "rerankTokens": 267,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 919494656,
+        "modelCpuMs": 1733,
+        "modelFsRead": 684,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "e44b4c3e-0831-4cf1-81df-cf1d78e19f61"
+        },
+        {
+          "resourceId": "6a41a8cd-fb42-4ca8-a56f-381bd9333e12"
+        }
+      ]
+    },
+    {
+      "caseId": "rollback-exact",
+      "mode": "literal",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2986,
+      "durationMs": 572.8937000000005,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [],
+      "evidence": [
+        {
+          "resourceId": "f08ab593-628d-4fe8-bc30-5d20cb6c5787"
+        },
+        {
+          "resourceId": "f08ab593-628d-4fe8-bc30-5d20cb6c5787"
+        },
+        {
+          "resourceId": "f08ab593-628d-4fe8-bc30-5d20cb6c5787"
+        }
+      ]
+    },
+    {
+      "caseId": "rollback-exact",
+      "mode": "bm25",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1869,
+      "durationMs": 42.78779999999824,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f08ab593-628d-4fe8-bc30-5d20cb6c5787"
+        }
+      ]
+    },
+    {
+      "caseId": "rollback-exact",
+      "mode": "semantic",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 1957,
+      "durationMs": 394.2853000000032,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153767936,
+        "modelCpuMs": 327,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f08ab593-628d-4fe8-bc30-5d20cb6c5787"
+        }
+      ]
+    },
+    {
+      "caseId": "rollback-exact",
+      "mode": "hybrid",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2007,
+      "durationMs": 369.63389999999345,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153812992,
+        "modelCpuMs": 264,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f08ab593-628d-4fe8-bc30-5d20cb6c5787"
+        }
+      ]
+    },
+    {
+      "caseId": "rollback-exact",
+      "mode": "hybrid-rerank",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2044,
+      "durationMs": 1718.2571000000025,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 1,
+        "rerankTokens": 49,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 898404352,
+        "modelCpuMs": 1435,
+        "modelFsRead": 688,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f08ab593-628d-4fe8-bc30-5d20cb6c5787"
+        }
+      ]
+    },
+    {
+      "caseId": "rollback-exact",
+      "mode": "task",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 2144,
+      "durationMs": 1818.272100000002,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 25,
+        "rerankPairs": 1,
+        "rerankTokens": 49,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 899182592,
+        "modelCpuMs": 1576,
+        "modelFsRead": 686,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f08ab593-628d-4fe8-bc30-5d20cb6c5787"
+        }
+      ]
+    },
+    {
+      "caseId": "rollback-paraphrase",
+      "mode": "literal",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 0,
+      "reciprocalRank": 0,
+      "ndcgAt5": 0,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 0,
+      "duplicateRatio": 0,
+      "resultBytes": 173,
+      "durationMs": 419.99010000001,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [],
+      "evidence": []
+    },
+    {
+      "caseId": "rollback-paraphrase",
+      "mode": "bm25",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 0,
+      "reciprocalRank": 0,
+      "ndcgAt5": 0,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 0,
+      "duplicateRatio": 0,
+      "resultBytes": 1869,
+      "durationMs": 38.61139999999432,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "3e626358-2b0a-4124-a785-8fc8490a890b"
+        }
+      ]
+    },
+    {
+      "caseId": "rollback-paraphrase",
+      "mode": "semantic",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 6309,
+      "durationMs": 393.33080000001064,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 35,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153296896,
+        "modelCpuMs": 218,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f08ab593-628d-4fe8-bc30-5d20cb6c5787"
+        },
+        {
+          "resourceId": "3e626358-2b0a-4124-a785-8fc8490a890b"
+        },
+        {
+          "resourceId": "f08ab593-628d-4fe8-bc30-5d20cb6c5787"
+        },
+        {
+          "resourceId": "69f9c6e1-31e1-4fb8-8adb-9ca6a100e846"
+        },
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd"
+        }
+      ]
+    },
+    {
+      "caseId": "rollback-paraphrase",
+      "mode": "hybrid",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 0.5,
+      "ndcgAt5": 0.6309297535714575,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 6354,
+      "durationMs": 420.33920000000217,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 35,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 152915968,
+        "modelCpuMs": 249,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "3e626358-2b0a-4124-a785-8fc8490a890b"
+        },
+        {
+          "resourceId": "f08ab593-628d-4fe8-bc30-5d20cb6c5787"
+        },
+        {
+          "resourceId": "f08ab593-628d-4fe8-bc30-5d20cb6c5787"
+        },
+        {
+          "resourceId": "69f9c6e1-31e1-4fb8-8adb-9ca6a100e846"
+        },
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd"
+        }
+      ]
+    },
+    {
+      "caseId": "rollback-paraphrase",
+      "mode": "hybrid-rerank",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0.19999999999999996,
+      "resultBytes": 6078,
+      "durationMs": 1863.8478000000032,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 35,
+        "rerankPairs": 9,
+        "rerankTokens": 323,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 900931584,
+        "modelCpuMs": 1702,
+        "modelFsRead": 695,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f08ab593-628d-4fe8-bc30-5d20cb6c5787"
+        },
+        {
+          "resourceId": "3e626358-2b0a-4124-a785-8fc8490a890b"
+        },
+        {
+          "resourceId": "f08ab593-628d-4fe8-bc30-5d20cb6c5787"
+        },
+        {
+          "resourceId": "69f9c6e1-31e1-4fb8-8adb-9ca6a100e846"
+        },
+        {
+          "resourceId": "f4ff4e57-49f5-43d7-981c-11515a7326bd"
+        }
+      ]
+    },
+    {
+      "caseId": "rollback-paraphrase",
+      "mode": "task",
+      "split": "acceptance",
+      "answerable": true,
+      "recallAt5": 1,
+      "reciprocalRank": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": 1,
+      "duplicateRatio": 0,
+      "resultBytes": 3211,
+      "durationMs": 1872.9231,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 35,
+        "rerankPairs": 9,
+        "rerankTokens": 323,
+        "modelCalls": 2,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 902680576,
+        "modelCpuMs": 1718,
+        "modelFsRead": 691,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": [
+        {
+          "resourceId": "f08ab593-628d-4fe8-bc30-5d20cb6c5787"
+        },
+        {
+          "resourceId": "3e626358-2b0a-4124-a785-8fc8490a890b"
+        }
+      ]
+    },
+    {
+      "caseId": "beta-no-answer",
+      "mode": "literal",
+      "split": "acceptance",
+      "answerable": false,
+      "recallAt5": null,
+      "reciprocalRank": 0,
+      "ndcgAt5": null,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": null,
+      "duplicateRatio": 0,
+      "resultBytes": 173,
+      "durationMs": 393.4103999999934,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [],
+      "evidence": []
+    },
+    {
+      "caseId": "beta-no-answer",
+      "mode": "bm25",
+      "split": "acceptance",
+      "answerable": false,
+      "recallAt5": null,
+      "reciprocalRank": 0,
+      "ndcgAt5": null,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": null,
+      "duplicateRatio": 0,
+      "resultBytes": 805,
+      "durationMs": 24.351500000004307,
+      "usage": {
+        "embeddingTexts": 0,
+        "embeddingTokens": 0,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 0,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": []
+    },
+    {
+      "caseId": "beta-no-answer",
+      "mode": "semantic",
+      "split": "acceptance",
+      "answerable": false,
+      "recallAt5": null,
+      "reciprocalRank": 0,
+      "ndcgAt5": null,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": null,
+      "duplicateRatio": 0,
+      "resultBytes": 893,
+      "durationMs": 331.9823999999935,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 32,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 152514560,
+        "modelCpuMs": 249,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": []
+    },
+    {
+      "caseId": "beta-no-answer",
+      "mode": "hybrid",
+      "split": "acceptance",
+      "answerable": false,
+      "recallAt5": null,
+      "reciprocalRank": 0,
+      "ndcgAt5": null,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": null,
+      "duplicateRatio": 0,
+      "resultBytes": 931,
+      "durationMs": 333.19659999999567,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 32,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153350144,
+        "modelCpuMs": 218,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": []
+    },
+    {
+      "caseId": "beta-no-answer",
+      "mode": "hybrid-rerank",
+      "split": "acceptance",
+      "answerable": false,
+      "recallAt5": null,
+      "reciprocalRank": 0,
+      "ndcgAt5": null,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": null,
+      "duplicateRatio": 0,
+      "resultBytes": 933,
+      "durationMs": 328.7017000000051,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 32,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 153546752,
+        "modelCpuMs": 218,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": []
+    },
+    {
+      "caseId": "beta-no-answer",
+      "mode": "task",
+      "split": "acceptance",
+      "answerable": false,
+      "recallAt5": null,
+      "reciprocalRank": 0,
+      "ndcgAt5": null,
+      "noAnswerFalse": false,
+      "scopeLeaks": 0,
+      "requiredCoverage": null,
+      "duplicateRatio": 0,
+      "resultBytes": 1041,
+      "durationMs": 329.6270999999979,
+      "usage": {
+        "embeddingTexts": 1,
+        "embeddingTokens": 32,
+        "rerankPairs": 0,
+        "rerankTokens": 0,
+        "modelCalls": 1,
+        "cacheHits": 0,
+        "generationTokens": 0,
+        "apiCost": 0,
+        "modelPeakRssBytes": 152752128,
+        "modelCpuMs": 312,
+        "modelFsRead": 245,
+        "modelFsWrite": 0
+      },
+      "verified": true,
+      "warnings": [
+        "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+      ],
+      "evidence": []
+    }
+  ],
+  "summary": [
+    {
+      "mode": "literal",
+      "verified": true,
+      "recallAt5": 0.5,
+      "mrr": 0.5,
+      "ndcgAt5": 0.5,
+      "noAnswerFalse": 0,
+      "scopeLeaks": 0,
+      "meanMs": 557.0387999999995
+    },
+    {
+      "mode": "bm25",
+      "verified": true,
+      "recallAt5": 0.9166666666666666,
+      "mrr": 0.9166666666666666,
+      "ndcgAt5": 0.9166666666666666,
+      "noAnswerFalse": 0,
+      "scopeLeaks": 0,
+      "meanMs": 51.44553076923098
+    },
+    {
+      "mode": "semantic",
+      "verified": true,
+      "recallAt5": 0.9166666666666666,
+      "mrr": 0.9166666666666666,
+      "ndcgAt5": 0.9166666666666666,
+      "noAnswerFalse": 0,
+      "scopeLeaks": 0,
+      "meanMs": 436.2537384615388
+    },
+    {
+      "mode": "hybrid",
+      "verified": true,
+      "recallAt5": 1,
+      "mrr": 0.9583333333333334,
+      "ndcgAt5": 0.9692441461309548,
+      "noAnswerFalse": 0,
+      "scopeLeaks": 0,
+      "meanMs": 426.4088769230765
+    },
+    {
+      "mode": "hybrid-rerank",
+      "verified": true,
+      "recallAt5": 1,
+      "mrr": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": 0,
+      "scopeLeaks": 0,
+      "meanMs": 2079.9625000000015
+    },
+    {
+      "mode": "task",
+      "verified": true,
+      "recallAt5": 1,
+      "mrr": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": 0,
+      "scopeLeaks": 0,
+      "meanMs": 2137.504984615385
+    }
+  ],
+  "limitations": [
+    "资源级相关性标注，条件完整性另按原文子串衡量",
+    "脚本查询不是工作Agent端到端评价",
+    "本机API费用为0；电力/硬件/工作Agent费用未据此推断"
+  ],
+  "model": {
+    "runtime": "@huggingface/transformers@3.8.1",
+    "embedding": {
+      "id": "Xenova/bge-small-zh-v1.5",
+      "revision": "75c43b069aac4d136ba6bc1122f995fedcfd2781"
+    },
+    "reranker": {
+      "id": "Xenova/bge-reranker-base",
+      "revision": "280bcc27a84e0b898c251e06fddb25171bd9b101"
+    },
+    "dtype": "q8",
+    "pooling": "cls",
+    "normalize": true,
+    "queryPrefix": "为这个句子生成表示以用于检索相关文章：",
+    "files": {
+      "Xenova/bge-reranker-base/280bcc27a84e0b898c251e06fddb25171bd9b101/config.json": "b6575b9d5be20d6747417c8e20c5a0db1636356e0b6d422d7244c628423c4d4c",
+      "Xenova/bge-reranker-base/280bcc27a84e0b898c251e06fddb25171bd9b101/onnx/model_quantized.onnx": "dd98f3e67837d23210a6b7550c08cced4f61845b940ac45be3565840a10f3244",
+      "Xenova/bge-reranker-base/280bcc27a84e0b898c251e06fddb25171bd9b101/tokenizer.json": "48564c5c7d3fa64d85d95e65414a542385f88b0f128fd8d4163fd7a57f2be05c",
+      "Xenova/bge-reranker-base/280bcc27a84e0b898c251e06fddb25171bd9b101/tokenizer_config.json": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b",
+      "Xenova/bge-small-zh-v1.5/75c43b069aac4d136ba6bc1122f995fedcfd2781/config.json": "d4193ead3a810fd694fa8a31d7fc72fbaebc0668b603e398734bf2f6538ff42f",
+      "Xenova/bge-small-zh-v1.5/75c43b069aac4d136ba6bc1122f995fedcfd2781/onnx/model_quantized.onnx": "15b717c382bcb518ba457b93ea6850ede7f4f1cd8937454aa06972366cd19bcc",
+      "Xenova/bge-small-zh-v1.5/75c43b069aac4d136ba6bc1122f995fedcfd2781/tokenizer.json": "48cea5d44424912a6fd1ea647bf4fe50b55ab8b1e5879c3275f80e339e8fae26",
+      "Xenova/bge-small-zh-v1.5/75c43b069aac4d136ba6bc1122f995fedcfd2781/tokenizer_config.json": "e6f3b96db926a37d4039995fbf5ad17de158dfb8f6343d607e4dbaad18d75f5a"
+    },
+    "fingerprint": "93336da84cca70806ef511cb2febd988ce91803e48a89625c7ce7c1bbbc7ea62"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "variant": "stream-check",
+  "completePairsBeforeInterruption": 11,
+  "interruptedPair": { "mode": "index-cached", "workload": "build", "repeat": 11 },
+  "error": "Harness stdin write EPIPE while sending stop to load worker; unhandled stream error masked the child's exit diagnostic",
+  "action": "Preserved every completed pair. Added stdin error handling and explicit child-exit failure propagation, then resumed the unfinished pair with --resume.",
+  "limitation": "No valid complete timing pair was recorded for the interrupted attempt; its underlying child exit reason was not captured. This is not counted as a successful measurement.",
+  "secondInterruption": { "completePairs": 15, "repeat": 15, "error": "Unexpected end of JSON input in developmentBusy while reading the newly created lease file", "resolution": "Publish the fully written lease by atomic rename; added concurrent polling regression. Start a separate stream-atomic variant; incomplete stream-check pairs are preserved and not used as passing evidence." },
+  "thirdInterruption": { "variant": "stream-atomic", "completePairs": 8, "error": "Concurrent polling regression detected Windows EPERM while the lease file was being deleted", "resolution": "Stopped the task-owned measurement processes. Treat transient EPERM/EBUSY conservatively as busy and recheck on the next poll. All 17 recall regressions passed before starting the separate stream-atomic-v2 campaign." }
+}

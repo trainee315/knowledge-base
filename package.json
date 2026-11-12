@@ -17,9 +17,12 @@
     "test": "npm run build && node --test dist/**/*.test.js",
     "test:web": "node web/tests/browser.mjs",
     "cli": "node dist/cli/main.js",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test:recall": "npm run build:core && node --test dist/recall/recall.test.js && node tests/recall/cli.mjs",
+    "demo:recall": "npm run build:core && node tests/recall/demo.mjs"
   },
   "dependencies": {
+    "@huggingface/transformers": "3.8.1",
     "cron-parser": "5.10.4",
     "markdown-it": "^15.0.3",
     "vue": "^3.5.24"

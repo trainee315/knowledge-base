@@ -22,3 +22,7 @@ coverage/
 artifacts/session-curation/
 artifacts/verification/v0.0.4/real-library/
 web/.dev-integration-*/
+
+# 召回私有材料/运行凭证只能本机保留；公开评价只含合成数据。
+.recall-local/
+artifacts/verification/v0.0.8/private/
