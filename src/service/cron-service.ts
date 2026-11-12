@@ -12,6 +12,7 @@ import { object, scheduleOf } from '../plugins/cron/plan.js';
 import { CronStore, type Job, type PlanConfig } from '../plugins/cron/store.js';
 import { ORGANIZE, TRANSCRIBE, taskParams, taskType, taskTypes, type Dispatch } from '../plugins/cron/tasks.js';
 import { DEFAULT_CONFIG } from '../plugins/scheduler/index.js';
+import { transcriptDetail } from '../records/transcript.js';
 
 const POLL_MS = 1_000; // 等候到期计划，精度为分钟。
 const BODY_LIMIT = 128 * 1024; // 浏览器计划配置请求上限。
@@ -246,6 +247,7 @@ export async function createCronService({ dataDir, db, dispatch }: { dataDir: st
     if (group === 'transcript') {
       if (action === 'create' || action === 'configure') return handled(await transcriptConfig(action, input));
       if (action === 'get') return handled(legacy.project(await dispatch(words, input) as Organization));
+      if (action === 'status') return handled(transcriptDetail(legacy.project(await dispatch(['transcript', 'get'], input) as Organization)));
       if (action === 'list') return handled((await dispatch(words, input) as Organization[]).map(org => legacy.project(org)));
       if (action === 'tick') {
         const outcomes = await tick(Date.now(), TRANSCRIBE);
@@ -254,8 +256,9 @@ export async function createCronService({ dataDir, db, dispatch }: { dataDir: st
         return handled({ results });
       }
       if (action && ['run', 'retry', 'backfill'].includes(action)) {
-        const organization = await dispatch(['transcript', 'get'], input) as Organization;
-        return handled(await withTarget(transcriptKey(organization.id), () => dispatch(words, { ...input, id: organization.id })));
+        const organization = await dispatch(['transcript', 'get'], { ...(input.id !== undefined ? { id: input.id } : {}), ...(input.alias !== undefined ? { alias: input.alias } : {}) }) as Organization;
+        const { alias: _alias, ...execution } = input;
+        return handled(await withTarget(transcriptKey(organization.id), () => dispatch(words, { ...execution, id: organization.id })));
       }
     }
     return { handled: false };

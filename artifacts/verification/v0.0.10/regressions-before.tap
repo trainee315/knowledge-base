@@ -1,0 +1,111 @@
+TAP version 13
+# Subtest: CLI resolves aliases once for run, retry and backfill
+not ok 1 - CLI resolves aliases once for run, retry and backfill
+  ---
+  duration_ms: 1366.5822
+  type: 'test'
+  location: 'D:\\project\\knowledge-base\\tests\\chains\\chain.test.mjs:41:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"exit":2,"ok":false,"error":{"code":"INVALID_ARGUMENT","message":"id/alias 必须二选一；改名请用 id 定位"}}
+
+    2 !== 0
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 2
+  operator: 'strictEqual'
+  stack: |-
+    Object.run (file:///D:/project/knowledge-base/tests/chains/chain.test.mjs:24:82)
+    TestContext.<anonymous> (file:///D:/project/knowledge-base/tests/chains/chain.test.mjs:43:56)
+    async Test.run (node:internal/test_runner/test:1113:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+  ...
+# Subtest: CLI preview applies execution budgets and rejects unknown options
+not ok 2 - CLI preview applies execution budgets and rejects unknown options
+  ---
+  duration_ms: 1398.991
+  type: 'test'
+  location: 'D:\\project\\knowledge-base\\tests\\chains\\chain.test.mjs:46:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+
+    2 !== 1
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 2
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///D:/project/knowledge-base/tests/chains/chain.test.mjs:48:10)
+    async Test.run (node:internal/test_runner/test:1113:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:788:7)
+  ...
+# Subtest: CLI continuation reads every fragment once
+not ok 3 - CLI continuation reads every fragment once
+  ---
+  duration_ms: 2153.766
+  type: 'test'
+  location: 'D:\\project\\knowledge-base\\tests\\chains\\chain.test.mjs:52:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+
+      [
+        0,
+    -   1,
+    -   2,
+    -   3,
+    -   4,
+        5
+      ]
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: 0
+    1: 1
+    2: 2
+    3: 3
+    4: 4
+    5: 5
+  actual:
+    0: 0
+    1: 5
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///D:/project/knowledge-base/tests/chains/chain.test.mjs:63:10)
+    async Test.run (node:internal/test_runner/test:1113:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:788:7)
+  ...
+# Subtest: CLI indexes mixed-language identifiers and Chinese boundaries
+not ok 4 - CLI indexes mixed-language identifiers and Chinese boundaries
+  ---
+  duration_ms: 2060.9392
+  type: 'test'
+  location: 'D:\\project\\knowledge-base\\tests\\chains\\chain.test.mjs:66:1'
+  failureType: 'testCodeFailure'
+  error: 'CHAIN_PROBE_8192'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: 0
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///D:/project/knowledge-base/tests/chains/chain.test.mjs:72:12)
+    async Test.run (node:internal/test_runner/test:1113:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:788:7)
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 0
+# fail 4
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7072.2345

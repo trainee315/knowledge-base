@@ -26,7 +26,8 @@ export async function openIndex(dataDir: string) {
 export async function indexStatus(dataDir: string) {
   const active = await pointer(dataDir); const current = await snapshot(dataDir);
   let exists = false; if (active) { try { exists = (await fs.stat(await safeDirectory(dataDir, `cache/recall/${active.generation}.sqlite`))).isFile(); } catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; } }
-  return { ready: !!active && exists, stale: !!active && active.fingerprint !== current.fingerprint, ...(active ? { generation: active.generation, builtAt: active.builtAt, fragments: active.fragments, vectors: !!active.model } : {}), unknownScopeRecords: current.records.filter(r => !r.projectId).length };
+  const tokenizerCompatible = !active || active.tokenizer === TOKENIZER_VERSION;
+  return { ready: !!active && exists && tokenizerCompatible, stale: !!active && (active.fingerprint !== current.fingerprint || !tokenizerCompatible), tokenizerCompatible, expectedTokenizer: TOKENIZER_VERSION, ...(active ? { generation: active.generation, tokenizer: active.tokenizer, builtAt: active.builtAt, fragments: active.fragments, vectors: !!active.model } : {}), unknownScopeRecords: current.records.filter(r => !r.projectId).length };
 }
 const encodedText = (f: Fragment) => [f.title, f.headings.join(' / '), f.text].join('\n');
 const cacheKey = (lock: ModelLock, text: string) => hash(JSON.stringify([lock.fingerprint, 'document', text]));
@@ -84,7 +85,7 @@ export async function buildIndex(dataDir: string, vectors: boolean, rebuild: boo
       const target = await safeDirectory(dataDir, 'cache/recall/' + name);
       try { await fs.unlink(target); } catch (error) { if (!['EPERM', 'EBUSY', 'ENOENT'].includes((error as NodeJS.ErrnoException).code ?? '')) throw error; }
     }
-    return { ...active, reusedFragments, truncatedEncodingInputs: truncated, durationMs: performance.now() - started };
+    return { ...active, reusedFragments, vectors: !!lock, warnings: !lock && old?.active.model ? ['VECTOR_INDEX_REMOVED:本次显式全文构建未发布向量；需要向量时build --vectors'] : [], truncatedEncodingInputs: truncated, durationMs: performance.now() - started };
   });
 }
 

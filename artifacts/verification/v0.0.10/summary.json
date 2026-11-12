@@ -1,0 +1,226 @@
+{
+  "measuredGatesPassed": true,
+  "userAcceptance": "pending",
+  "released": false,
+  "mcpImplemented": false,
+  "at": "2026-11-12T12:17:39.323Z",
+  "baseCommit": "31737efaef7b51e3d1e0fb2edda37b25bddae833",
+  "sourceHashes": {
+    "package.json": "a6b9c3262abdbc10c0e7ff5acf9f3a744af0a27ccb32d35c9d46d5a4a4a66bd4",
+    "package-lock.json": "b35325dc799e495c9d29bfc3b72d2ce2f8764951c870562fa7d5b518d1a0db63",
+    "src/cli/main.ts": "a760d6cffadde3d9d98889152d1761d3e71f1967aa84cc3256c4b8c0b6496d5c",
+    "src/cli/contract.ts": "ba47400f7342b44c7adb048880ff2e54529189da57c7721a479cfe6fa26d6a57",
+    "src/records/transcript.ts": "9e2ac452de63be288546bc2311b49c648ee76b46cf9823877be6f61a32e9a34d",
+    "src/service/cron-service.ts": "88c5dfc48cc49a39b2723b445a7ed796f5ca28434fb227d04362a9fef3c9ea8c",
+    "src/recall/fragments.ts": "dda7ace3c7b11db86e9a9f4dbf075b5fc70397ed3acbb50580312ca7e7dc08ed",
+    "src/recall/index.ts": "d067361b60fe296b28cefcd41af92ee68ed135919049794904517dbc40c05c95",
+    "src/recall/recall.ts": "732f357ceb16cb889c8345cd8589858b84bdce05ec200254b002e2bea7e9e395",
+    "src/recall/types.ts": "4dde3d0544e7ed703b258ca9fd9d519b39d4db9b2643fff79e6758b830749837",
+    "src/recall/recall.test.ts": "7db9b2cea053540cebdb31294ea68e33967a7f4fb96db0aaa3c00dc5fd1389ba",
+    "tests/chains/chain.test.mjs": "cbe877f49e1092182a30623b0d7778d06218e4bf3240c5e161e1fb081875d639",
+    "tests/chains/offline-model.mjs": "a8ef9dabec966cdb1bcb48c7b7bb574d9187fe416a6281e85e90fc606bcd9cd1",
+    "tests/chains/live.mjs": "65756a70316b4d225cdb828f1f8e9d905cf2011bda46d67b2f1926c46510b901",
+    "tests/chains/live-ledger.mjs": "0dde44f8f5ed3d7695e9b2c7d6cdedc5cd9caf90228b1f64332c6a6dec73367c",
+    "tests/chains/agent.mjs": "e853d3eda4b5dad7a14f575db907bf34d81c2ae4ae2be649394e2779c058ff1a",
+    "tests/chains/final-recall.mjs": "26fa96cf4762ea51fc3c538ee462dde88235c33cdec95523c56a10860d6c8d3d",
+    "examples/agent/project-integration.mjs": "aed91afb92181bbd7128c61595195351080b461458b7d67d65df3a4a5eaf5712",
+    "examples/agent/offline-provider.mjs": "4d626afc4e15a9bf82147554f05245fe37f4ce09152070f501fb36ec9321141b",
+    "doc/新增需求/v0.0.10/agent-project-prompt.md": "74cafd1758877ec18fbe8372ef4903c7740367ec27351da5c2af300d9831de29"
+  },
+  "counts": {
+    "baseline": {
+      "total": 136,
+      "passed": 136
+    },
+    "final": {
+      "total": 149,
+      "passed": 149
+    },
+    "final-cli": {
+      "total": 10,
+      "passed": 10
+    }
+  },
+  "realAgentCases": [
+    {
+      "name": "继续历史任务",
+      "passed": true
+    },
+    {
+      "name": "精确ID读取",
+      "passed": true
+    },
+    {
+      "name": "无答案",
+      "passed": true
+    },
+    {
+      "name": "续读",
+      "passed": true
+    },
+    {
+      "name": "指定session压缩",
+      "passed": true
+    },
+    {
+      "name": "部分失败恢复",
+      "passed": true
+    }
+  ],
+  "frozenRecallCases": 13,
+  "retrieval": [
+    {
+      "mode": "literal",
+      "verified": true,
+      "recallAt5": 0.5,
+      "mrr": 0.25,
+      "ndcgAt5": 0.3154648767857288,
+      "noAnswerFalse": 0,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "conditionCoverage": 0.5,
+      "meanMs": 918.3981230769225
+    },
+    {
+      "mode": "bm25",
+      "verified": true,
+      "recallAt5": 1,
+      "mrr": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": 0,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "conditionCoverage": 1,
+      "meanMs": 58.24994615384674
+    },
+    {
+      "mode": "semantic",
+      "verified": true,
+      "recallAt5": 0.9166666666666666,
+      "mrr": 0.9166666666666666,
+      "ndcgAt5": 0.9166666666666666,
+      "noAnswerFalse": 0,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "conditionCoverage": 0.9166666666666666,
+      "meanMs": 467.9494538461535
+    },
+    {
+      "mode": "hybrid",
+      "verified": true,
+      "recallAt5": 1,
+      "mrr": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": 0,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "conditionCoverage": 1,
+      "meanMs": 441.9605384615384
+    },
+    {
+      "mode": "hybrid-rerank",
+      "verified": true,
+      "recallAt5": 1,
+      "mrr": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": 0,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "conditionCoverage": 1,
+      "meanMs": 2073.197699999998
+    },
+    {
+      "mode": "task",
+      "verified": true,
+      "recallAt5": 1,
+      "mrr": 1,
+      "ndcgAt5": 1,
+      "noAnswerFalse": 0,
+      "scopeLeaks": 0,
+      "referenceFailures": 0,
+      "conditionCoverage": 1,
+      "meanMs": 2490.83586153846
+    }
+  ],
+  "latency": [
+    {
+      "mode": "literal",
+      "p95Ms": 3205.8557999999903
+    },
+    {
+      "mode": "bm25",
+      "p95Ms": 114.3173999999999
+    },
+    {
+      "mode": "semantic",
+      "p95Ms": 1219.788499999995
+    },
+    {
+      "mode": "hybrid",
+      "p95Ms": 1047.9058000000077
+    },
+    {
+      "mode": "hybrid-rerank",
+      "p95Ms": 3400.739499999996
+    },
+    {
+      "mode": "task",
+      "p95Ms": 8686.555899999992
+    },
+    {
+      "mode": "scope",
+      "p95Ms": 81.3926999999967
+    },
+    {
+      "mode": "read",
+      "p95Ms": 69.37110000000393
+    },
+    {
+      "mode": "list",
+      "p95Ms": 26.059799999988172
+    }
+  ],
+  "peakModelRssBytes": 923062272,
+  "migration": {
+    "embeddingTexts": 0,
+    "embeddingTokens": 0,
+    "rerankPairs": 0,
+    "rerankTokens": 0,
+    "modelCalls": 0,
+    "cacheHits": 107,
+    "generationTokens": 0,
+    "apiCost": 0
+  },
+  "model": {
+    "ready": true,
+    "identity": "6cf47aee644c477e707d490c24bb21fe16219d01aaa005f8cb4af39b783dce88",
+    "embedding": {
+      "id": "Xenova/bge-small-zh-v1.5",
+      "revision": "75c43b069aac4d136ba6bc1122f995fedcfd2781"
+    },
+    "reranker": {
+      "id": "Xenova/bge-reranker-base",
+      "revision": "280bcc27a84e0b898c251e06fddb25171bd9b101"
+    },
+    "runtime": "@huggingface/transformers@3.8.1"
+  },
+  "cloud": {
+    "calls": 26,
+    "inputTokens": 72045,
+    "outputTokens": 3887,
+    "totalTokens": 75932,
+    "limit": 32,
+    "budgetChange": {
+      "from": 24,
+      "to": 32,
+      "reason": "真实Agent调试：字段纠正、帮助/scope工具协议及finish空字段兼容；只续跑未完成场景"
+    },
+    "monetaryCost": "未查询账单/未换算货币费用"
+  },
+  "limitations": [
+    "合成数据与每类一个Agent任务，不代表任意长会话完整性",
+    "本轮未重复开发负载配对非劣试验；3%结论仍限定既有显式workload保护",
+    "全量149项之后仅修改CLI传输参数校验，最终10项CLI链路另行复测通过",
+    "真实Agent调试失败及预算追加保留在账本和agent-before-*记录中"
+  ]
+}

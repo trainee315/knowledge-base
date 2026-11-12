@@ -1,0 +1,192 @@
+{
+  "syntheticOnly": true,
+  "modelSelectedCommands": true,
+  "cases": [
+    {
+      "name": "继续历史任务",
+      "task": "继续连击工作：调查最新窗口与验证状态。只读范围{\"projectId\":\"chain-project\",\"sessionId\":\"chain-live-session\"}，使用semantic实际向量查询，不要编造当前测试通过。",
+      "trace": [
+        {
+          "decision": {
+            "action": "cli",
+            "command": "recall scope",
+            "inputJson": "{\"projectId\":\"chain-project\"}",
+            "answer": ""
+          },
+          "usage": {
+            "inputTokens": 1471,
+            "outputTokens": 29,
+            "totalTokens": 1500
+          },
+          "actualModel": "deepseek-flash"
+        }
+      ],
+      "passed": false
+    }
+  ],
+  "failures": [
+    "AssertionError [ERR_ASSERTION]: recall scope"
+  ],
+  "cwd": "D:\\project\\knowledge-base\\.recall-local\\v0.0.10\\campaign-9iAL7n\\Agent 项目 with spaces",
+  "promptHash": "db1f73a062dcf080b9c053905df0bd9c0f473f6bf33ddcf1eca0f9e5e4c1dfb2",
+  "partialFailureSeed": {
+    "exit": 1,
+    "ok": false,
+    "error": {
+      "code": "TRANSCRIPT_FAILED",
+      "message": "{\"failures\":[{\"sessionId\":\"recover-a\",\"taskId\":\"a834389b75776268ee9bc929502460e241767983b69993c5429f10f7c049a6fb\",\"message\":\"KnowledgeError: Agent服务暂不可用\"}]}",
+      "details": {
+        "calls": 2,
+        "saved": 1,
+        "remaining": 1,
+        "organizationRemaining": 1,
+        "deferred": 0,
+        "complete": false,
+        "skips": [],
+        "records": [
+          {
+            "resourceId": "5643b791-a4a2-481e-9a90-9a86393b73c1",
+            "sessionId": "recover-b",
+            "taskId": "2d2c2b2e211702d5ca7fafed9c8144fff3db23cb001cfdee23c7b08729b155ca",
+            "cutoff": "2026-11-12T11:58:52.730Z"
+          }
+        ],
+        "stopReason": "failed",
+        "scope": {
+          "organizationId": "9e22cbb5-f9fb-499e-8530-eddd0e94b425",
+          "sessionId": null,
+          "frozenTasksOnly": true
+        },
+        "cutoff": null,
+        "effective": {
+          "maxCalls": 2,
+          "maxSessions": 10,
+          "maxInputBytes": 200000,
+          "maxDurationMs": 120000
+        },
+        "processedTasks": [
+          {
+            "id": "a834389b75776268ee9bc929502460e241767983b69993c5429f10f7c049a6fb",
+            "sessionId": "recover-a",
+            "cutoff": "2026-11-12T11:58:52.329Z"
+          },
+          {
+            "id": "2d2c2b2e211702d5ca7fafed9c8144fff3db23cb001cfdee23c7b08729b155ca",
+            "sessionId": "recover-b",
+            "cutoff": "2026-11-12T11:58:52.730Z"
+          }
+        ],
+        "nextAction": "retry",
+        "failures": [
+          {
+            "sessionId": "recover-a",
+            "taskId": "a834389b75776268ee9bc929502460e241767983b69993c5429f10f7c049a6fb",
+            "message": "KnowledgeError: Agent服务暂不可用"
+          }
+        ]
+      }
+    }
+  },
+  "ledger": {
+    "syntheticOnly": true,
+    "maximumCalls": 24,
+    "attempts": [
+      {
+        "ordinal": 1,
+        "at": "2026-11-12T11:49:37.507Z",
+        "model": "deepseek-flash",
+        "requestBytes": 3205,
+        "requestHash": "bcd8bb5ab2df0bddcaf102b31ce07fcf5e2d72ff5ef9462ad580455e668eebb2",
+        "status": 200,
+        "usage": {
+          "prompt_tokens": 724,
+          "completion_tokens": 168,
+          "total_tokens": 892,
+          "prompt_tokens_details": {
+            "cached_tokens": 256
+          },
+          "prompt_cache_hit_tokens": 256,
+          "prompt_cache_miss_tokens": 468
+        },
+        "actualModel": "deepseek-flash"
+      },
+      {
+        "ordinal": 2,
+        "at": "2026-11-12T11:49:45.070Z",
+        "model": "deepseek-flash",
+        "requestBytes": 3705,
+        "requestHash": "e6c1edbbfbe6cbb40d32ef64dffc5b9acdd340a8ceccf17059c9225f990da445",
+        "status": 200,
+        "usage": {
+          "prompt_tokens": 896,
+          "completion_tokens": 167,
+          "total_tokens": 1063,
+          "prompt_tokens_details": {
+            "cached_tokens": 256
+          },
+          "prompt_cache_hit_tokens": 256,
+          "prompt_cache_miss_tokens": 640
+        },
+        "actualModel": "deepseek-flash"
+      },
+      {
+        "ordinal": 3,
+        "at": "2026-11-12T11:58:04.313Z",
+        "model": "deepseek-flash",
+        "requestBytes": 6196,
+        "requestHash": "b55e64013f2b7060d233247ed02b892a0e7cb082afc45956bcf12894ac3b441e",
+        "status": 200,
+        "usage": {
+          "prompt_tokens": 1357,
+          "completion_tokens": 73,
+          "total_tokens": 1430,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "prompt_cache_hit_tokens": 0,
+          "prompt_cache_miss_tokens": 1357
+        },
+        "actualModel": "deepseek-flash"
+      },
+      {
+        "ordinal": 4,
+        "at": "2026-11-12T11:58:05.611Z",
+        "model": "deepseek-flash",
+        "requestBytes": 6748,
+        "requestHash": "81d295525aac8a87d67bcfe1dbb45afd0618b9d13984f4165c57bec7e6b06696",
+        "status": 200,
+        "usage": {
+          "prompt_tokens": 1475,
+          "completion_tokens": 22,
+          "total_tokens": 1497,
+          "prompt_tokens_details": {
+            "cached_tokens": 1280
+          },
+          "prompt_cache_hit_tokens": 1280,
+          "prompt_cache_miss_tokens": 195
+        },
+        "actualModel": "deepseek-flash"
+      },
+      {
+        "ordinal": 5,
+        "at": "2026-11-12T11:58:55.323Z",
+        "model": "deepseek-flash",
+        "requestBytes": 6659,
+        "requestHash": "15e4999095233cc0f7af5bbbae05d021b7c9a178fcb2f9001d5994b4ee5463dc",
+        "status": 200,
+        "usage": {
+          "prompt_tokens": 1471,
+          "completion_tokens": 29,
+          "total_tokens": 1500,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "prompt_cache_hit_tokens": 0,
+          "prompt_cache_miss_tokens": 1471
+        },
+        "actualModel": "deepseek-flash"
+      }
+    ]
+  },
+  "passed": false
+}
