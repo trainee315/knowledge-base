@@ -1,0 +1,111 @@
+{
+  "passed": true,
+  "source": "synthetic-only",
+  "readiness": {
+    "state": "ready",
+    "version": "codex-cli 0.167.2"
+  },
+  "connection": {
+    "profileId": "codex-live",
+    "profileRevision": 1,
+    "provider": {
+      "id": "codex-cli",
+      "version": "1.0.0"
+    },
+    "model": "gpt-6-astra",
+    "configurationHash": "a5c9c4aca3c596d864836812ad97b89edaa1bfe27aa45b5eb32e063c41f48b8d",
+    "value": {
+      "ok": true
+    },
+    "usage": {
+      "inputTokens": 10649,
+      "outputTokens": 15,
+      "totalTokens": 10664
+    },
+    "finishReason": "stop",
+    "elapsedMs": 6388
+  },
+  "run": {
+    "calls": 1,
+    "saved": 1,
+    "remaining": 0,
+    "organizationRemaining": 0,
+    "deferred": 0,
+    "complete": true,
+    "skips": [],
+    "records": [
+      {
+        "resourceId": "a8a6df45-3a60-4031-ab68-fcaebe14fbff",
+        "sessionId": "codex-live-fixture",
+        "taskId": "b87968e0d8ebf0df931bf59244afadbaadb87deadc63ca2905da028644d37e2d",
+        "cutoff": "2026-11-12T12:34:49.807Z"
+      }
+    ],
+    "stopReason": "complete",
+    "scope": {
+      "organizationId": "536faf6b-b47f-4080-9a51-185d2f751ab2",
+      "sessionId": null,
+      "frozenTasksOnly": true
+    },
+    "cutoff": null,
+    "effective": {
+      "maxCalls": 1,
+      "maxSessions": 10,
+      "maxInputBytes": 200000,
+      "maxDurationMs": 120000
+    },
+    "processedTasks": [
+      {
+        "id": "b87968e0d8ebf0df931bf59244afadbaadb87deadc63ca2905da028644d37e2d",
+        "sessionId": "codex-live-fixture",
+        "cutoff": "2026-11-12T12:34:49.807Z"
+      }
+    ],
+    "nextAction": "records",
+    "failures": []
+  },
+  "idempotent": {
+    "calls": 0,
+    "saved": 0,
+    "remaining": 0,
+    "organizationRemaining": 0,
+    "deferred": 0,
+    "complete": true,
+    "skips": [
+      {
+        "sessionId": "codex-live-fixture",
+        "reason": "no-new-content"
+      }
+    ],
+    "records": [],
+    "stopReason": "complete",
+    "scope": {
+      "organizationId": "536faf6b-b47f-4080-9a51-185d2f751ab2",
+      "sessionId": null,
+      "projectDir": "C:\\Users\\mamar\\AppData\\Local\\Temp\\kb-codex-live-Ql6laI",
+      "from": "2025-12-31T16:00:00.000Z"
+    },
+    "cutoff": "2026-11-12T12:34:57.075Z",
+    "effective": {
+      "maxCalls": 1,
+      "maxSessions": 10,
+      "maxInputBytes": 200000,
+      "maxChunkBytes": 40000,
+      "maxDurationMs": 120000,
+      "preprocessing": "conservative"
+    },
+    "processedTasks": [],
+    "nextAction": "records",
+    "failures": []
+  },
+  "requestedModel": "gpt-6-astra",
+  "actualModelReported": false,
+  "frozenModelVerified": true,
+  "summary": "## 要求与执行结果\n\n要求新增 /health 健康检查接口，监听端口 4317，不增加数据库依赖。助手报告已实现并验证 HTTP 200，端口为 4317，未新增数据库依赖；尚未部署。\n",
+  "usage": {
+    "inputTokens": 11346,
+    "outputTokens": 90,
+    "totalTokens": 11436
+  },
+  "elapsedMs": 6634
+}

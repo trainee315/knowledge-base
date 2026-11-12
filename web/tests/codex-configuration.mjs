@@ -1,0 +1,71 @@
+import assert from 'node:assert/strict';
+import { mkdtemp, mkdir, writeFile, rm } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join, resolve } from 'node:path';
+import { chromium } from 'playwright-core';
+import { serviceCli } from '../../tests/service-cli.mjs';
+
+const root = await mkdtemp(join(tmpdir(), 'kb-codex-browser-'));
+const dataDir = join(root, 'data'), sourceRoot = join(root, 'sessions');
+const evidence = resolve('artifacts/verification/v0.0.12/browser');
+await mkdir(evidence, {recursive:true}); await mkdir(sourceRoot);
+// 测试服务使用确定不存在的 CLI，验证本机诊断和失败提示，不发起模型请求。
+const previous = process.env.KB_CODEX_CLI_PATH;
+process.env.KB_CODEX_CLI_PATH = join(root, 'missing-codex.exe');
+const cli = (words, input) => serviceCli(dataDir, words, {input});
+let browser;
+try {
+  const started = cli(['service','start']);
+  const instance = cli(['transcript','create'], { alias:'Codex 验收实例', sourceRoot, startDate:'2026-01-01' });
+  browser = await chromium.launch({executablePath: process.env.KB_CHROME_PATH ?? 'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true});
+  const page = await browser.newPage({viewport:{width:1440,height:1050}});
+  const errors=[]; page.on('pageerror',e=>errors.push(e.message));
+  await page.goto(started.url+'#plugins?id=agent&view=config');
+  await page.getByRole('button',{name:'新增 Codex 配置',exact:true}).click();
+  await page.getByLabel('新配置 ID').fill('codex-session');
+  await page.getByLabel('新模型 ID').fill('fixture-model');
+  await page.getByRole('button',{name:'创建配置',exact:true}).click();
+  await page.waitForFunction(()=>location.hash.includes('configKey=codex-session'));
+  await page.getByLabel('调用方式',{exact:true}).waitFor();
+  assert.equal(await page.getByLabel('调用方式',{exact:true}).inputValue(),'codex-cli');
+  assert.equal(await page.getByLabel('模型',{exact:true}).inputValue(),'fixture-model');
+  assert.equal(await page.getByLabel('温度',{exact:true}).count(),0);
+  await page.getByLabel('模型',{exact:true}).fill('fixture-model-two');
+  await page.getByLabel('Codex 推理强度',{exact:true}).selectOption('medium');
+  await page.getByRole('button',{name:'保存配置',exact:true}).click();
+  await page.getByText('配置已保存',{exact:true}).waitFor();
+  await page.reload();
+  await page.getByRole('button',{name:'检查登录状态',exact:true}).click();
+  await page.getByText('服务器未安装 CLI',{exact:true}).waitFor();
+  await page.getByRole('button',{name:'测试连接（消耗额度）',exact:true}).click();
+  await page.getByText('服务器未找到 Codex CLI，请安装或设置 KB_CODEX_CLI_PATH',{exact:true}).waitFor();
+  await page.screenshot({path:join(evidence,'agent-config.png'),fullPage:true});
+  const profile = cli(['agent','profile','get'],{id:'codex-session'});
+  assert.equal(profile.model,'fixture-model-two');assert.equal(profile.reasoningEffort,'medium');assert.equal(profile.credentialEnv,'');
+  assert.equal(cli(['agent','profile','get'],{id:'deepseek-default'}).providerId,'deepseek');
+  await page.goto(started.url+'#plugins?id=project-tracking&view=config&configKey='+instance.id);
+  await page.getByLabel('摘要模型配置',{exact:true}).selectOption('codex-session');
+  await page.getByRole('button',{name:'保存配置',exact:true}).click();
+  await page.getByText('配置已保存',{exact:true}).waitFor();
+  assert.equal(cli(['transcript','get'],{id:instance.id}).data.config.profile,'codex-session');
+  await page.reload();
+  await page.getByLabel('摘要模型配置',{exact:true}).waitFor();
+  assert.equal(await page.getByLabel('摘要模型配置',{exact:true}).inputValue(),'codex-session');
+  await page.screenshot({path:join(evidence,'session-profile.png'),fullPage:true});
+  await page.setViewportSize({width:390,height:844});
+  await page.goto(started.url+'#plugins?id=agent&view=config&configKey=codex-session');
+  await page.getByLabel('模型',{exact:true}).waitFor();
+  assert(await page.evaluate(()=>document.documentElement.scrollWidth <= window.innerWidth));
+  await page.screenshot({path:join(evidence,'agent-mobile.png'),fullPage:true});
+  // 同源限制和显式 POST 约束。
+  assert.equal((await fetch(started.url+'/api/plugins/agent/test')).status,405);
+  const response=await fetch(started.url+'/api/plugins/agent/check',{method:'POST',headers:{Origin:'https://example.test','Content-Type':'application/json'},body:'{}'});
+  assert.equal(response.status,403);
+  assert.deepEqual(errors,[]);
+  await writeFile(join(evidence,'result.json'),JSON.stringify({passed:true,modelCalls:0,checks:['create-profile','model-and-effort-persist','deepseek-preserved','login-diagnostic','connection-error','session-selection','mobile','same-origin','post-only']},null,2));
+} finally {
+  await browser?.close();
+  cli(['service','stop']);
+  if(previous===undefined) delete process.env.KB_CODEX_CLI_PATH; else process.env.KB_CODEX_CLI_PATH=previous;
+  await rm(root,{recursive:true,force:true});
+}

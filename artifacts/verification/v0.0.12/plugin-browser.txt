@@ -1,0 +1,1 @@
+{"passed":true,"evidence":"C:\\Users\\mamar\\AppData\\Local\\Temp\\kb-plugin-detail-evidence-PWnzNk"}

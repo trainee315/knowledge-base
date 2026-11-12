@@ -3,7 +3,7 @@ import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { openApplication } from '../index.js';
 import type { CoreManager } from '../core/manager.js';
-import { AgentService, DeepSeekProvider, defaultProfiles } from '../agent/index.js';
+import { AgentService, createDefaultProviders, defaultProfiles } from '../agent/index.js';
 import type { AgentApi, AgentJsonSchema, AgentProfile, AgentResult } from '../agent/types.js';
 import type { JsonObject, Organization } from '../contracts/index.js';
 import { configuration, directoryMatches, discoveryChanged, filterMatches, startTime, type Config } from './config.js';
@@ -35,7 +35,7 @@ interface Summary { title: string; sections: { heading: string; body: string; ev
 const SCHEMA: AgentJsonSchema = { type: 'object', additionalProperties: false, required: ['title', 'sections'], properties: { title: { type: 'string', minLength: 1 }, sections: { type: 'array', minItems: 1, items: { type: 'object', additionalProperties: false, required: ['heading', 'body', 'evidence'], properties: { heading: { type: 'string', minLength: 1 }, body: { type: 'string', minLength: 1 }, evidence: { type: 'array', minItems: 1, items: { type: 'integer', minimum: 0 } } } } } } };
 interface Entry { resourceId: string; sessionId: string; messages: { position: number; fingerprint: string }[]; previousResourceId?: string; backfill: boolean; at: string }
 /** 冻结输入和模型结果用于恢复；成功后清除原文，只保留正式覆盖范围。 */
-interface Task { id: string; sessionId: string; messages: Message[]; context: Message[]; config: Config; cutoff: string; backfill: boolean; status: 'pending' | 'failed' | 'success'; error?: string; result?: AgentResult<Summary>; prepared?: PreparedInput; processing?: { adapterVersion: string; processorVersion: string; promptVersion: string } }
+interface Task { id: string; sessionId: string; messages: Message[]; context: Message[]; config: Config; cutoff: string; backfill: boolean; status: 'pending' | 'failed' | 'success'; agentProfile?: AgentProfile; elapsedMs?: number; error?: string; result?: AgentResult<Summary>; prepared?: PreparedInput; processing?: { adapterVersion: string; processorVersion: string; promptVersion: string } }
 /** 组织数据是配置、独立任务及成功消息覆盖的唯一权威。 */
 interface State { schemaVersion: 1; config: Config; effectiveFrom?: string; entries: Entry[]; tasks: Task[]; skips: { sessionId: string; reason: string }[]; lease?: { token: string; expires: number }; lastAttempt?: string; nextDue?: number }
 interface Candidate { sessionId: string; messages: Message[]; context: Message[]; bytes: number; cleaning: CleaningReport; request: { before: Size; after: Size } }
@@ -291,14 +291,14 @@ async function execute(dataDir: string, id: string, action: string, input: Recor
             const credentialEnv = snapshot.profiles.find(profile => profile.id === snapshot.config.profile)?.credentialEnv;
             const known = credentialEnv && process.env[credentialEnv] ? [process.env[credentialEnv]!] : [];
             const prepared = prepareTranscriptInput(snapshot.config.focus, candidate.context, messages, snapshot.config.preprocessing, known);
-            s.tasks.push({ id: hash(JSON.stringify({ sessionId: candidate.sessionId, messages: messages.map(m => m.fingerprint) })), sessionId: candidate.sessionId, messages, context: candidate.context, config: snapshot.config, cutoff: frozen.cutoff, backfill: action === 'backfill', status: 'pending', prepared });
+            s.tasks.push({ id: hash(JSON.stringify({ sessionId: candidate.sessionId, messages: messages.map(m => m.fingerprint) })), sessionId: candidate.sessionId, messages, context: candidate.context, config: snapshot.config, agentProfile: snapshot.profiles.find(profile => profile.id === snapshot.config.profile), cutoff: frozen.cutoff, backfill: action === 'backfill', status: 'pending', prepared });
           }
         }
       }
       await app.manager.updateOrganization(id, { data: json(s) }, org.revision);
     });
-    service = injected ? undefined : new AgentService({ providers: [new DeepSeekProvider()], profiles: snapshot.profiles, saveProfiles: async () => { throw new Error('只读模型配置'); } });
-    const generator = injected ?? service!;
+    service = injected ? undefined : new AgentService({ providers: createDefaultProviders(), profiles: snapshot.profiles, saveProfiles: async () => { throw new Error('只读模型配置'); } });
+    // 每个任务保留入队时的非秘密模型配置，重试不会跟随 profile 后续编辑。
     const reader = await openApplication(dataDir, { readOnly: true });
     let tasks: Task[];
     try { tasks = state(await reader.manager.getOrganization(id)).tasks.filter(task => task.status !== 'success' && (!input.sessionId || task.sessionId === input.sessionId)); } finally { await reader.close(); }
@@ -336,10 +336,21 @@ async function execute(dataDir: string, id: string, action: string, input: Recor
           requireValue(!task.prepared?.requestFingerprint || task.prepared.requestFingerprint === hash(JSON.stringify({ prompt, schema, text: inputText })), '冻结请求指纹不一致', 'TRANSCRIPT_INPUT_CHANGED');
           const sanitizedInput = task.prepared ? { text: inputText } : redactCredentials(inputText, credentialEnv && process.env[credentialEnv] ? [process.env[credentialEnv]!] : []);
           calls++;
-          task.result = await generator.generateObject<Summary>({ profile: task.config.profile, messages: [{ role: 'system', content: prompt }, { role: 'user', content: sanitizedInput.text }], schema, timeoutMs: Math.max(1, Math.min(300_000, snapshot.config.maxDurationMs - (Date.now() - started))) });
+          if (!task.agentProfile) {
+            task.agentProfile = snapshot.profiles.find(profile => profile.id === task.config.profile);
+            if (!injected) requireValue(task.agentProfile, '任务模型配置不存在', 'AGENT_PROFILE_NOT_FOUND');
+            await edit(dataDir, id, async (app, org, s) => { check(s); s.tasks.find(item => item.id === task.id)!.agentProfile = task.agentProfile; await app.manager.updateOrganization(id, { data: json(s) }, org.revision); });
+          }
+          if (!injected) {
+            service?.stop();
+            service = new AgentService({ providers: createDefaultProviders(), profiles: [task.agentProfile!], maxConcurrent: 1 });
+          }
+          const generationStarted = Date.now();
+          task.result = await (injected ?? service!).generateObject<Summary>({ profile: task.config.profile, messages: [{ role: 'system', content: prompt }, { role: 'user', content: sanitizedInput.text }], schema, timeoutMs: Math.max(1, Math.min(task.agentProfile?.timeoutMs ?? 300_000, snapshot.config.maxDurationMs - (Date.now() - started))) });
+          task.elapsedMs = Date.now() - generationStarted;
           validateSummary(task.result, task.messages);
           sanitizeSummary(task.result);
-          await edit(dataDir, id, async (app, org, s) => { check(s); const stored = s.tasks.find(item => item.id === task.id)!; stored.result = task.result; stored.processing = task.processing; await app.manager.updateOrganization(id, { data: json(s) }, org.revision); });
+          await edit(dataDir, id, async (app, org, s) => { check(s); const stored = s.tasks.find(item => item.id === task.id)!; stored.result = task.result; stored.elapsedMs = task.elapsedMs; stored.processing = task.processing; await app.manager.updateOrganization(id, { data: json(s) }, org.revision); });
         }
         validateSummary(task.result, task.messages);
         sanitizeSummary(task.result);
@@ -354,7 +365,7 @@ async function execute(dataDir: string, id: string, action: string, input: Recor
           current.messages = []; current.context = []; delete current.result; delete current.prepared;
           const result = task.result!; const body = result.value.sections.map(section => `## ${section.heading}\n\n${section.body}`).join('\n\n') + '\n';
           const preprocessing = task.prepared ? { ...task.prepared, text: undefined, prompt: undefined, schema: undefined } : undefined;
-          await app.manager.appendRecord({ id: resourceId, title: result.value.title, content: Buffer.from(body), source: `codex-session:${task.sessionId}`, plugins: { transcripts: { schemaVersion: 1, data: json({ ...entry, sourceFrom: task.messages[0].at, sourceTo: task.messages.at(-1)!.at, cutoff: task.cutoff, contentFingerprint: hash(JSON.stringify(entry.messages)), ...(task.processing ?? { adapterVersion: ADAPTER_VERSION, processorVersion: 'legacy-result', promptVersion: 'unknown-legacy' }), redactionVersion: REDACTION_VERSION, preprocessing, usage: result.usage, model: { profileId: result.profileId, model: result.model, actualModel: result.actualModel ?? result.model, configurationHash: result.configurationHash }, evidence: result.value.sections.map(section => section.evidence) }) } }, organization: org });
+          await app.manager.appendRecord({ id: resourceId, title: result.value.title, content: Buffer.from(body), source: `codex-session:${task.sessionId}`, plugins: { transcripts: { schemaVersion: 1, data: json({ ...entry, sourceFrom: task.messages[0].at, sourceTo: task.messages.at(-1)!.at, cutoff: task.cutoff, contentFingerprint: hash(JSON.stringify(entry.messages)), ...(task.processing ?? { adapterVersion: ADAPTER_VERSION, processorVersion: 'legacy-result', promptVersion: 'unknown-legacy' }), redactionVersion: REDACTION_VERSION, preprocessing, usage: result.usage, elapsedMs: task.elapsedMs, model: { providerId: result.provider.id, profileId: result.profileId, model: result.model, ...(result.actualModel ? { actualModel: result.actualModel } : {}), configurationHash: result.configurationHash }, evidence: result.value.sections.map(section => section.evidence) }) } }, organization: org });
           records.push({ resourceId, sessionId: task.sessionId, taskId: task.id, cutoff: task.cutoff });
         });
         saved++;

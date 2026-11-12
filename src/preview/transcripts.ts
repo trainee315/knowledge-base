@@ -40,8 +40,8 @@ export async function handleTranscripts(request: IncomingMessage, response: Serv
         requireValue(app.plugins.list().some(plugin => plugin.manifest.id === 'transcripts' && plugin.ready), '转录插件不可用', 'PLUGIN_UNAVAILABLE');
         let data;
         if (url.pathname === '/api/transcripts/profiles') {
-          const status = await app.plugins.execute('agent status', {}) as { profiles: { identity: { profileId: string; model: string }; credentialConfigured: boolean }[] };
-          data = status.profiles.map(profile => ({ id: profile.identity.profileId, model: profile.identity.model, credentialConfigured: profile.credentialConfigured }));
+          const status = await app.plugins.execute('agent status', {}) as { profiles: { identity: { profileId: string; model: string; provider: { id: string } }; credentialConfigured: boolean }[] };
+          data = status.profiles.map(profile => ({ id: profile.identity.profileId, model: profile.identity.model, providerId: profile.identity.provider.id, credentialConfigured: profile.credentialConfigured }));
         } else if (url.pathname === '/api/transcripts/defaults') {
           const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Shanghai', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
           data = configuration({ alias: '新实例', startDate: today });

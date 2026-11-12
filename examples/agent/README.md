@@ -18,3 +18,7 @@ JSON 输出需要模式请求和提示词共同要求 json；返回内容还会�
 默认完全离线，摘要由 `offline-provider.mjs` 原样转录合成材料；不读取私人 session，不下载模型，不发生云端费用。普通调查使用 lexical；真实向量验证见 [v0.0.10 报告](../../doc/新增需求/v0.0.10/verification.md)。示例库放在 `.recall-local/v0.0.10/demo-*`，不会覆盖现有业务项目。
 
 正式接入请替换项目路径、数据目录、profile 和授权预算，先读取并合并召回映射。完整规则见 [项目提示词](../../doc/新增需求/v0.0.10/agent-project-prompt.md) 和 [CLI 契约](../../doc/新增需求/v0.0.10/contracts.md)。上方通用 Agent API 示例仍可独立运行。
+
+## Codex CLI 独立验收库（v0.0.12）
+
+构建后设置 `KB_CODEX_DEMO_MODEL` 为账号可用模型 ID，执行 `node examples/agent/codex-demo.mjs`。脚本创建合成 Session 与 codex-session profile，检查服务器登录并打印页面地址，不发起推理。详见 [验收步骤](../../doc/新增需求/v0.0.12/acceptance.md)。

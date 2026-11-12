@@ -4,12 +4,12 @@ export interface AgentMessage { role: 'system' | 'user' | 'assistant'; content: 
 /** Profile只保存非秘密配置；凭证为环境变量引用，绝不序列化密钥。 */
 export interface AgentProfile {
   id: string; revision: number; providerId: string; model: string; credentialEnv: string;
-  timeoutMs: number; maxTokens: number; temperature: number; reasoning: 'off' | 'on';
+  timeoutMs: number; maxTokens: number; temperature: number; reasoning: 'off' | 'on'; reasoningEffort?: 'low' | 'medium' | 'high';
 }
 export interface AgentProfileInput {
   id: string; providerId?: string; model?: string; credentialEnv?: string;
   timeoutMs?: number; maxTokens?: number; temperature?: number; reasoning?: 'off' | 'on';
-  expectedRevision?: number;
+  expectedRevision?: number; reasoningEffort?: 'low' | 'medium' | 'high';
 }
 export interface AgentUsage { inputTokens: number; outputTokens: number; totalTokens: number }
 export interface AgentIdentity {
@@ -34,7 +34,7 @@ export interface AgentJsonSchema {
 export interface GenerateObjectInput extends GenerateTextInput { schema: AgentJsonSchema }
 export interface AgentStatus {
   providers: { id: string; version: string }[];
-  profiles: { identity: AgentIdentity; credentialConfigured: boolean; credentialEnv: string }[];
+  profiles: { identity: AgentIdentity; credentialConfigured: boolean; credentialEnv: string; authentication?: 'api-key' | 'codex-login'; readiness?: 'unchecked' }[];
   active: number; queued: number; requests: number; completed: number; failed: number;
 }
 export interface AgentApi {
@@ -49,11 +49,11 @@ export interface AgentApi {
 }
 /** 适配器只接收通用请求，DeepSeek DTO不越过此边界。 */
 export interface AgentProviderRequest {
-  profile: AgentProfile; messages: AgentMessage[]; output: 'text' | 'object';
+  profile: AgentProfile; messages: AgentMessage[]; output: 'text' | 'object'; schema?: AgentJsonSchema;
   maxTokens: number; temperature: number; reasoning: 'off' | 'on';
 }
 export interface AgentProviderResponse {
-  text: string; model: string; usage: AgentUsage;
+  text: string; model: string; modelReported?: boolean; usage: AgentUsage;
   finishReason: 'stop' | 'length' | 'content-filter' | 'unknown'; requestId?: string;
 }
 export interface AgentProvider {

@@ -1,0 +1,183 @@
+
+> agent-knowledge-base@0.0.5 test
+> npm run build && node --test dist/**/*.test.js
+
+
+> agent-knowledge-base@0.0.5 build
+> npm run build:core && npm run build:web
+
+
+> agent-knowledge-base@0.0.5 build:core
+> tsc -p tsconfig.json
+
+
+> agent-knowledge-base@0.0.5 build:web
+> vite build --config web/vite.config.ts
+
+vite v7.3.8 building client environment for production...
+transforming...
+✓ 46 modules transformed.
+rendering chunks...
+computing gzip size...
+../dist/web/index.html                   0.37 kB │ gzip:  0.30 kB
+../dist/web/assets/index-YzsFHX5a.css   17.57 kB │ gzip:  4.38 kB
+../dist/web/assets/index-BqR67tMD.js   238.95 kB │ gzip: 91.31 kB
+✓ built in 798ms
+✔ Codex subscription configuration has no fake credentials; changes affect identity (4.0264ms)
+✔ Codex sends chosen model/schema over isolated exec; JSONL and Unicode round-trip (2255.6374ms)
+✔ Codex checks fail closed without inference or raw diagnostics (2842.9425ms)
+✔ Codex handles bad output, process failure, limits and output acceptance budget (4068.514ms)
+✔ Codex cancellation kills the actual process and cleans isolated working files (1899.9635ms)
+✔ Codex process output is bounded (1357.8434ms)
+✔ DeepSeek text maps generic messages and bounded non-thinking options through real HTTP (60.5427ms)
+✔ JSON purpose maps response_format and validates a generic schema outside scoring (10.4809ms)
+✔ blank stop, truncation, invalid JSON and schema mismatch reject once without hidden retries (66.1219ms)
+✔ 401, 429 and 5xx have sanitized classifications and exactly one HTTP attempt (32.2847ms)
+✔ transport error causes never escape as credential-bearing errors (1.034ms)
+✔ profile/status/schema/no-key validation perform no HTTP requests (2.1146ms)
+✔ AbortSignal and timeout cover the active HTTP request (27.9817ms)
+✔ queued cancellation, queue timeout and queue limit never invoke an extra request (43.4652ms)
+✔ a replacement generic provider serves text and object purposes without changing business code (1.2983ms)
+✔ plugin load, read-only configuration and backup keep credentials out of formal data (1079.8016ms)
+✔ relation cache normalizes words, stores zero coverage sparsely, and follows explicit scope versions (1857.8547ms)
+✔ relation malformed or duplicate batches never persist partial coverage (1815.6494ms)
+✔ organizer and scheduled runs with zero model-call budget never reach HTTP (2935.9735ms)
+✔ semantic identity excludes transport/revision/credential references and in-flight calls retain snapshots (2.3956ms)
+✔ canonical upstream model aliases do not change requested semantic identity (0.4147ms)
+✔ aborted non-cooperative providers retain actual concurrency slots until settled (37.8126ms)
+✔ profile whitelist rejects secrets, nulls, stale revisions and failed persistence without mutation (4.5232ms)
+✔ schema snapshots remain stable and unknown provider exceptions are sanitized (1.9006ms)
+✔ agent CLI inspection is read-only without keys and profiles/backups only persist references (5518.6429ms)
+✔ CLI has single-object output, UTF8 input, correct exit codes and read-only queries alongside writer (8516.3968ms)
+✔ resource dedup, explicit copy, history, soft delete, references and backup restore (634.6498ms)
+✔ same UUID organization references protect resource and all content versions from purge (423.9116ms)
+✔ same UUID resource references protect organization from deletion (383.1402ms)
+✔ true same-kind self references do not block deleting their own entity (456.3415ms)
+✔ single writer and injected interrupted transaction recovers all files on reopen (171.5879ms)
+✔ concurrent read snapshot never returns mixed multi-file transaction (2570.2125ms)
+✔ DAG preflight detects full cycles/missing/version before loading (2.8344ms)
+✔ host enforces dependency access and meta permissions, refresh failure blocks dependents and reverse stop (638.0729ms)
+✔ backup validates hashes and refuses traversal before writing (48.5766ms)
+✔ core remains usable with every business plugin disabled and retains plugin data (620.7715ms)
+✔ stale diagnostic locks cannot produce two OS writers and killed holder releases mutex (1805.7477ms)
+✔ restore prevalidates canonical paths and schema before any formal data write (212.1356ms)
+✔ unknown live core schema cannot be read or updated and organization patch cannot change ownership (450.5272ms)
+✔ refresh failure fences cached APIs and commands across restart without loading blocked dependents (514.7664ms)
+✔ restore and ordinary IO reject existing junction ancestors before journal or external writes (303.7758ms)
+✔ future plugin dataVersion prevents load and dependent activation without downgrading persisted version (151.9004ms)
+✔ generic organization type CRUD, enabled policy, use protection, backup and schema validation (1200.8062ms)
+✔ UTF8解析、未知格式降级、中英文关键词和离线评分 (17.4521ms)
+✔ 真实导入到候选、标签新增回填、查询组合、人工拒绝保护和过期结果阻断 (3960.2706ms)
+✔ 独立CLI进程自动导入链路与结构化候选提交 (10832.8835ms)
+✔ 评分处理器版本变化重新排队，旧处理器候选不能提交 (1342.1364ms)
+✔ Markdown链接及图片登记正式引用，代码示例忽略，移除链接解除保护并诊断坏目标 (2266.3095ms)
+✔ 定时模拟时钟与进程重启后的同日去重 (719.5636ms)
+✔ 任务持久化去重、失败重试断点、超时、重试上限及模型预算 (656.6255ms)
+✔ 超时处理器退出前隔离重试，旧异步写不会与新attempt重叠 (778.5306ms)
+✔ 调度失败、超时与预算未完成不标当日成功，同日可继续 (1312.7509ms)
+✔ 评分进行中切换provider丢弃旧结果，输入类型与整数预算严格校验 (709.877ms)
+✔ 已知插件未来meta版本拒读拒写，未知分区保留，算法v2与meta v1独立 (988.3223ms)
+✔ readVersion keeps pinned bytes, BOM/CRLF and history format; fromText is deterministic and readonly (479.8097ms)
+✔ readVersion distinguishes malformed JSON, invalid UTF8 and unsupported original without writes (610.3535ms)
+✔ readVersion rejects hash mismatch and future content schema without masking original bytes (624.5311ms)
+(node:74916) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ claims coalesce missed occurrences and recover interrupted runs without replay (46.7982ms)
+✔ legacy interval migration, expression compatibility, and plugin disable use one authority (3132.0689ms)
+✔ 业务默认组织方式首次登记一次，只读零写，删除后重开与恢复不重建 (1868.5846ms)
+✔ 通用组织方式CRUD、版本冲突、使用中保护和disabled保留旧组织 (547.5836ms)
+✔ 独立CLI组织方式CRUD、默认业务方式disabled控制和只读并发 (9537.0159ms)
+✔ 项目固定全文/标签别名/关键词快照；旧版本unknown与显式known-empty不混淆 (1419.8785ms)
+✔ requestId先于动态默认值解析；并发追加无丢失且同请求只登记一次 (1407.3793ms)
+✔ 版本先于日期/全文分页/基线独立去重；asOf替代范围不受标签过滤和未来记录污染 (1376.2097ms)
+✔ 项目范围/引用保护/备份恢复/future schema/非法解析及参数拒绝 (2066.7619ms)
+✔ 真实CLI只读命令在writer持锁时零写入；参数失败退出2；替代标注使用过滤前全域 (7676.6833ms)
+✔ 归一化词对和0覆盖复用，只补新词，同标签并发请求不重复生成 (1654.3681ms)
+✔ 标签定义变动保留旧词对追踪并提示，显式版本或生成语义变化才重评 (1735.8912ms)
+✔ 缺失、重复、越界、截断、失败、取消及多批半成品都不污染已有覆盖 (2212.6569ms)
+✔ 默认零模型预算阻止自动收费，缓存命中动态估0，显式版本补评不覆盖manual (5511.4335ms)
+✔ v001评分迁移保留provider并把0转coverage，future结构拒绝且备份恢复复用 (1864.6803ms)
+✔ prepare在预算前动态估0/淘汰旧任务，预算不足不阻零费用任务，耗时后不派发 (1092.2989ms)
+✔ organization browser reads accepted tags, exact current keywords, recursive systems and pinned history without writes (7246.7381ms)
+✔ unavailable business views report plugin errors and stale keyword metadata is excluded (2946.9777ms)
+✔ Markdown escapes HTML, blocks unsafe links and external image requests (10.2501ms)
+✔ Markdown resolves stable UUID image and resource links (2.5144ms)
+✔ real core/plugins preview supports query, content, UUID files, organizations, and denies writes/cross-origin (3928.9092ms)
+✔ background preview lifecycle is explicit, idempotent and works with Chinese/space data paths (2806.0744ms)
+✔ eight CLI processes, case/junction aliases and stale PID records share one canonical preview instance (7251.0065ms)
+✔ draft preview and HTTP configuration share CLI state without model calls, support revision conflicts (2011.0525ms)
+✔ ordinary configuration keeps discovery boundary, scope changes preserve tasks and coverage (4060.2147ms)
+✔ configuration HTTP enforces same origin, body limits, errors and active lease, never exposes task material (2383.4287ms)
+(node:44984) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ scope identity: ambiguity, context intersection and directory segment boundaries (5.4027ms)
+✔ fixed original offsets preserve BOM CRLF, emoji and deterministic fragment identities (2363.1949ms)
+✔ direct reading needs no index or model and respects project scope (3813.2915ms)
+✔ scoped BM25 cannot let other projects occupy top K; lexical never invokes reranking (4160.9007ms)
+✔ deletion applies before rebuild; restore and metadata mapping changes reuse stable fragments (2734.0678ms)
+✔ notes remain pinned to original version after underlying resource update (1649.4253ms)
+✔ full response budget, metadata listing and registered task entries are bounded (1465.645ms)
+✔ source time never substitutes recordedAt and uses explicit half-open boundaries (1253.1914ms)
+✔ missing model is explicit, hybrid degrades and index is not rebuilt by queries (1309.7034ms)
+✔ invalid filters and FTS syntax cannot widen query or execute arbitrary expressions (1356.5244ms)
+✔ development workload explicitly defers expensive recall without disabling direct reads (2245.998ms)
+✔ split configuration versions identities and fixed read continuation advances (1294.7531ms)
+✔ exact titles return bounded ambiguity candidates without model calls (1102.1417ms)
+✔ scope summary cache follows source revisions and cannot leak caller mutations (989.8578ms)
+✔ missing derived generation recovers only through explicit rebuild (1036.5525ms)
+✔ invalid model manifest degrades hybrid explicitly while lexical remains independent (879.6271ms)
+✔ development lease publication remains valid during concurrent polling (658.2965ms)
+✔ all modes strip media, data URLs and long encoding while preserving short semantic values (19.9872ms)
+✔ payload removal handles nested and truncated results and never invents ambiguous paths (3.4884ms)
+✔ aggressive mode reduces file dumps and orchestration while retaining spoken facts and failure evidence (97.609ms)
+✔ source call association preserves existing fingerprints (19.4004ms)
+✔ mixed command and patch scripts retain conditions inside literal patches (1.651ms)
+✔ preprocessing preserves conversation, commands, provenance and Unicode character counts (8.0042ms)
+✔ recognized wrappers and complete successful test streams compact with diagnostic fallback (4.3405ms)
+✔ terminal formatting and duplicates preserve statuses and stay within an input segment (3.2149ms)
+✔ image encoding becomes only a source path and preserves original provenance (1.2388ms)
+✔ long single-line tool output is preserved with linear formatting cleanup (31.6333ms)
+✔ preview exposes cleaning, fixed run cutoff and configuration changes preserve successful progress (3332.6989ms)
+✔ frozen prepared input survives retries and legacy pending tasks retain original format (8364.516ms)
+✔ prepared input redacts credentials and cleaned input determines segment budgets (1.3957ms)
+✔ cleaned complete turns fit a budget that rejects raw turns, and preview overrides are read only (1022.9873ms)
+✔ frozen input tampering fails explicitly before a model call (1617.835ms)
+✔ fixed run cutoff defers newer frozen tasks until an explicit retry (1741.102ms)
+✔ frozen system prompt and schema are included in request integrity checks (1272.8652ms)
+✔ legacy pending inputs migrate only payload policy and freeze the sanitized retry material (3765.5391ms)
+✔ cached legacy model results recover without calls and output payloads become source paths (1195.337ms)
+✔ note preserves BOM/CRLF, independent identical submissions, request conflicts and deletion replay (2433.5027ms)
+✔ config validates alias, timezone, budgets and directory segment boundaries (13.6128ms)
+✔ source retains equal timestamps and skips active turns, detects unknown message formats (20.7363ms)
+✔ preview is read only, failure retry, old session append, rename and processor-independent coverage (7980.5887ms)
+✔ model does not hold writer lock; output references validated and no resource on failure (1465.344ms)
+✔ atomic append redo recovery keeps organization and resource consistent (815.6713ms)
+✔ filters, budgets and backfill retain excluded historical material (1294.8091ms)
+✔ CLI stdin is byte faithful, JSON stdout and invalid arguments exit 2 (1758.091ms)
+✔ multiple batches use whole turns, fixed snapshot excludes new messages during model (3264.2578ms)
+✔ zero call budget, tick due dedup and oversized turns never fake successful output (1329.1342ms)
+✔ saved model result resumes without another call and survives backup restore (1339.3341ms)
+✔ explicit note tags and transcript generic organization browsing reuse existing semantics (1185.0614ms)
+✔ malformed source fails explicitly but does not prevent independent session progress (1248.3485ms)
+✔ credential redaction handles historical keys, authorization values and known credentials (2.5011ms)
+✔ formal transcript boundary redacts source and response without changing message provenance (2766.6652ms)
+✔ checkpoint fragments retain global positions and reconstruct a completed turn (23.1385ms)
+✔ child metadata with embedded parent session is excluded before inherited material parsing (6.8166ms)
+✔ historical cutoff excludes a turn completed after that cutoff (43.3132ms)
+(node:13724) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ file restore with a durable journal keeps cron paused until recovery completes (479.3684ms)
+✔ plugin detail exposes safe projections, enforces CAS and remains readable after plugin failure (4552.0211ms)
+✔ project-tracking compression form configures selected session with CAS and zero model calls (3337.9899ms)
+(node:36156) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ service preserves stdin bytes and backs up and restores cron retry history (8600.4397ms)
+✔ production serves built assets but keeps a nested service data directory private (997.6085ms)
+ℹ tests 142
+ℹ suites 0
+ℹ pass 142
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 31168.1735

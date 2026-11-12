@@ -131,8 +131,8 @@ test('project-tracking compression form configures selected session with CAS and
     const get = async () => (await request('?configKey=' + first.id)).data.configuration;
     let config = await get();
     assert.equal(config.key, first.id);
-    assert.deepEqual(config.fields[0].options.map((option: { value: string }) => option.value), ['off', 'conservative', 'aggressive']);
-    assert.ok(config.fields[0].options.every((option: { description: string }) => option.description));
+    assert.deepEqual(config.fields.find((field: { key: string }) => field.key === 'preprocessing').options.map((option: { value: string }) => option.value), ['off', 'conservative', 'aggressive']);
+    assert.ok(config.fields.find((field: { key: string }) => field.key === 'preprocessing').options.every((option: { description: string }) => option.description));
     assert.doesNotMatch(JSON.stringify(config), /PRIVATE_SESSION_BODY|prepared|lease/);
     assert.deepEqual(await readFile(resolve(dataDir, 'state/generation.json')), generation);
     assert.equal((await patch(first.id, config.configVersion, { preprocessing: 'unknown' })).status, 400);

@@ -27,6 +27,34 @@ const notice = ref('');
 const conflict = ref(false);
 const saving = ref(false);
 const comparing = ref(false);
+const checking = ref(false);
+const connection = ref('');
+const creating = ref(false);
+const newProfileId = ref('codex-session');
+const newModel = ref('');
+const visibleFields = computed(() => (detail.value?.configuration.fields ?? []).filter(field => props.id !== 'agent' || (draft.value.providerId === 'codex-cli' ? !['temperature', 'reasoning'].includes(field.key) : field.key !== 'reasoningEffort')));
+watch(() => draft.value.providerId, value => { if (value === 'codex-cli') { draft.value.temperature = 0; draft.value.reasoning = 'off'; } });
+async function inspectAgent(action: 'check' | 'test') {
+  const config = detail.value?.configuration;
+  if (!config?.key || dirty.value || checking.value) return;
+  checking.value = true; connection.value = '';
+  try {
+    const result = await pluginRequest<any>(path.value + '/' + action, { method: 'POST', body: { values: {}, expectedConfigVersion: config.configVersion, configKey: config.key } });
+    const labels: Record<string, string> = { ready: '已就绪', missing: '服务器未安装 CLI', 'not-logged-in': '服务器运行账号未使用 ChatGPT 登录', unsupported: 'CLI 版本或安装布局不受支持', error: '检测失败', 'not-configured': '未配置 API 凭证' };
+    connection.value = action === 'check' ? (labels[result.state] ?? '检测失败') + (result.version ? ' · ' + result.version : '') : '连接测试通过 · ' + result.model + ' · ' + result.elapsedMs + 'ms · ' + result.usage.totalTokens + ' tokens';
+  } catch (error) { connection.value = (error as Error).message; }
+  finally { checking.value = false; }
+}
+async function createCodexProfile() {
+  if (!newProfileId.value.trim() || !newModel.value.trim() || saving.value) return;
+  saving.value = true; formError.value = '';
+  try {
+    const profile = await pluginRequest<{id: string}>(path.value + '/profiles', { method: 'POST', body: { values: { id: newProfileId.value.trim(), model: newModel.value.trim() }, expectedConfigVersion: detail.value?.configuration.configVersion ?? '0'.repeat(64) } });
+    creating.value = false;
+    location.hash = address('config', { configKey: profile.id });
+  } catch (error) { formError.value = (error as Error).message; }
+  finally { saving.value = false; }
+}
 const cron = ref<InstanceType<typeof CronPlans>>();
 
 const path = computed(() => '/api/plugins/' + encodeURIComponent(props.id));
@@ -55,6 +83,7 @@ function dataAddress(id: string, start = 0): string {
   return address('data', { collection: id, ...(start > 0 ? { offset: String(start) } : {}) });
 }
 function accept(value: PluginDetail) {
+  connection.value = '';
   detail.value = value;
   draft.value = { ...value.configuration.values };
   latest.value = undefined;
@@ -70,7 +99,7 @@ function discard() {
   cron.value?.discard();
 }
 function guard(event: Event) {
-  if (saving.value || cron.value?.saving) { event.preventDefault(); return; }
+  if (saving.value || checking.value || cron.value?.saving) { event.preventDefault(); return; }
   if (!dirty.value && !cron.value?.dirty) return;
   if (!window.confirm('配置草稿尚未保存。放弃修改并离开？')) event.preventDefault();
   else discard();
@@ -101,6 +130,7 @@ watch(detailPath, async (url, _previous, cleanup) => {
   detail.value = undefined;
   loadError.value = '';
   notice.value = '';
+  connection.value = '';
   try { accept(await pluginRequest<PluginDetail>(url, { signal: request.signal })); }
   catch (error) { if (!request.signal.aborted) loadError.value = (error as Error).message; }
 }, { immediate: true });
@@ -211,27 +241,41 @@ function display(value: unknown): string {
         <form v-else class="plugin-form" @submit.prevent="save">
           <label v-if="detail.configuration.choices?.length">
             {{ detail.configuration.choicesLabel ?? '配置项' }}
-            <select :value="detail.configuration.key" :disabled="saving" @change="selectConfig">
+            <select :value="detail.configuration.key" :disabled="saving || checking" @change="selectConfig">
               <option v-for="choice in detail.configuration.choices" :key="choice.value" :value="choice.value">{{ choice.label }}</option>
             </select>
           </label>
           <div class="plugin-fields">
-            <div v-for="field in detail.configuration.fields" :key="field.key" class="plugin-field">
+            <div v-for="field in visibleFields" :key="field.key" class="plugin-field">
               <label :class="{ 'plugin-check': field.type === 'boolean' }">
                 <span>{{ field.label }}</span>
-                <select v-if="field.type === 'select'" v-model="draft[field.key]" :aria-label="field.label" :aria-describedby="field.description ? 'plugin-help-' + field.key : undefined" :disabled="!detail.configuration.editable || saving">
+                <select v-if="field.type === 'select'" v-model="draft[field.key]" :aria-label="field.label" :aria-describedby="field.description ? 'plugin-help-' + field.key : undefined" :disabled="!detail.configuration.editable || saving || checking">
                   <option v-for="option in field.options" :key="option.value" :value="option.value">{{ option.label }}</option>
                 </select>
                 <input v-else-if="field.type === 'boolean'" v-model="draft[field.key]" type="checkbox" :disabled="!detail.configuration.editable || saving">
                 <input v-else-if="field.type === 'number'" v-model.number="draft[field.key]" type="number" step="any" :disabled="!detail.configuration.editable || saving">
-                <input v-else v-model="draft[field.key]" type="text" :disabled="!detail.configuration.editable || saving">
+                <input v-else v-model="draft[field.key]" :list="field.options?.length ? 'plugin-options-' + field.key : undefined" type="text" :disabled="!detail.configuration.editable || saving">
               </label>
+              <datalist v-if="field.type === 'text' && field.options?.length" :id="'plugin-options-' + field.key"><option v-for="option in field.options.filter(option => !option.providerId || option.providerId === draft.providerId)" :key="option.value" :value="option.value">{{ option.label }}</option></datalist>
               <p v-if="field.description" :id="'plugin-help-' + field.key" class="muted plugin-field-help">{{ field.description }}</p>
               <ul v-if="field.options?.some(option => option.description)" class="plugin-mode-help">
                 <li v-for="option in field.options" :key="option.value"><strong>{{ option.label }}</strong><span>{{ option.description }}</span></li>
               </ul>
             </div>
           </div>
+          <section v-if="id === 'agent' && detail.configuration.editable" class="plugin-agent-tools">
+            <p class="muted">状态检测针对服务器运行账号；编辑配置后请先保存。</p>
+            <button type="button" :disabled="!detail.configuration.key || dirty || saving || checking" @click="inspectAgent('check')">检查登录状态</button>
+            <button type="button" :disabled="!detail.configuration.key || dirty || saving || checking" @click="inspectAgent('test')">测试连接（消耗额度）</button>
+            <p v-if="checking" role="status">正在检测…</p>
+            <p v-if="connection" role="status">{{ connection }}</p>
+            <button type="button" :disabled="dirty || saving || checking" @click="creating = !creating">新增 Codex 配置</button>
+            <div v-if="creating">
+              <label>配置 ID<input v-model="newProfileId" aria-label="新配置 ID" :disabled="saving" /></label>
+              <label>模型 ID<input v-model="newModel" aria-label="新模型 ID" :disabled="saving" placeholder="输入账号可用的模型 ID" /></label>
+              <button type="button" :disabled="saving || !newProfileId.trim() || !newModel.trim()" @click="createCodexProfile">创建配置</button>
+            </div>
+          </section>
           <p v-if="formError" class="error" role="alert">{{ formError }}<template v-if="conflict">。当前草稿已保留。</template></p>
           <p v-if="notice" class="plugin-notice" role="status">{{ notice }}</p>
           <div v-if="conflict" class="plugin-compare">
@@ -246,8 +290,8 @@ function display(value: unknown): string {
             </template>
           </div>
           <div v-if="detail.configuration.editable" class="plugin-actions">
-            <button type="button" :disabled="!dirty || saving" @click="discard">取消修改</button>
-            <button class="primary" type="submit" :disabled="!dirty || saving || conflict">{{ saving ? '保存中…' : '保存配置' }}</button>
+            <button type="button" :disabled="!dirty || saving || checking" @click="discard">取消修改</button>
+            <button class="primary" type="submit" :disabled="!dirty || saving || checking || conflict">{{ saving ? '保存中…' : '保存配置' }}</button>
           </div>
         </form>
       </section>

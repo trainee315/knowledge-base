@@ -7,7 +7,7 @@ const fields: Record<string, Field> = {};
 function define(names: string, type: Field['type'], description: string) { for (const name of names.split(' ')) fields[name] = { type, description }; }
 define('name description view keyword', 'string', '语义标签名称/说明、浏览类型或关键词筛选');
 define('id alias sessionId', 'string', 'id/alias定位转录组织（二选一）；sessionId仅缩小本次源会话范围');
-define('source sourceRoot startDate timezone projectDir focus profile preprocessing from to', 'string', '转录配置；from/to须日期或带时区ISO，profile为云端压缩配置');
+define('source sourceRoot startDate timezone projectDir focus profile preprocessing from to', 'string', '转录配置；from/to须日期或带时区ISO，profile为Agent模型配置（DeepSeek或服务器Codex CLI）');
 define('maxCalls maxSessions maxInputBytes maxChunkBytes maxDurationMs intervalMinutes expectedRevision expectedCronRevision revision', 'integer', '非负整数；预算字段覆盖本次值，不修改实例配置');
 define('enabled includeSubdirectories vectors rebuild rerank debug crossProject', 'boolean', 'true或false；JSON布尔或命令行显式值');
 define('include exclude scope resources organizations chunking ranking', 'object', '通过UTF8 JSON对象传入，作用范围不会自动扩大');
@@ -25,6 +25,7 @@ const budgets = 'maxCalls maxSessions maxInputBytes maxDurationMs';
 const query = 'mode id version query task needs scope contextProjectId cwd retrievalMode rerank budgetTokens maxBytes maxFragments candidates neighbors section offset endOffset limit sort direction debug projectId snapshotFingerprint contentHash splitter';
 const commands: Record<string, Command> = {};
 function register(name: string, names: string, description: string, behavior: string, example: Record<string, unknown>) { commands[name] = { fields: names.split(' ').filter(Boolean), description, behavior, example }; }
+for (const action of ['check', 'test']) register('agent ' + action, 'profile', action === 'check' ? '检查服务器模型认证就绪状态' : '测试已保存模型的结构化生成', action === 'check' ? '本机检测，不调用模型' : '显式调用所选模型，消耗额度，不自动回退', { profile: 'codex-session' });
 register('transcript create', config, '创建转录实例', '写配置；零模型调用', { alias: '项目记录', startDate: '2026-11-12', projectDir: 'D:/project/example', maxCalls: 0 });
 register('transcript configure', 'id expectedRevision expectedCronRevision ' + config, '更新实例配置', '写配置；发现范围变化建立新边界', { id: '<组织UUID>', expectedRevision: 1, preprocessing: 'conservative' });
 for (const action of ['get', 'status', 'records']) register('transcript ' + action, 'id alias', action === 'status' ? '精简运行状态，不含冻结原文' : '读取转录实例或记录', '只读；零模型调用', { id: '<组织UUID>' });
@@ -75,7 +76,7 @@ export function validateCommand(words: string[], input: Record<string, unknown>)
 
 export function commandHelp(words: string[]) {
   const name = words.join(' '), spec = commands[name];
-  if (!spec) return { version: '0.0.11', usage: 'cli.bat <command> --input UTF8.json|- --data-dir path --json', commands: Object.keys(commands).filter(key => !name || name === 'help' || key.startsWith(name)), otherCommands: ['resource import/list/get/update/delete/restore/purge/history', 'note add/list/get', 'meta get/set', 'service start/stop/restart/status', 'preview start/stop/status (服务兼容入口)', 'organization create/list/get/update/delete', 'organization-type register/list/get/update/enable/disable/delete', 'plugin list/enable/disable/refresh', 'project-track create/list/get/add/documents/read/query', 'agent status / profile list|get|set|delete / config get|set / generate text|object', 'backup --file path', 'restore --file path', 'check', 'reindex', 'cron types/create/list/get/update/enable/disable/delete/run/retry/runs', 'content/keyword/tag/relation/system/task/organize/schedule (插件命令)'] };
+  if (!spec) return { version: '0.0.11', usage: 'cli.bat <command> --input UTF8.json|- --data-dir path --json', commands: Object.keys(commands).filter(key => !name || name === 'help' || key.startsWith(name)), otherCommands: ['resource import/list/get/update/delete/restore/purge/history', 'note add/list/get', 'meta get/set', 'service start/stop/restart/status', 'preview start/stop/status (服务兼容入口)', 'organization create/list/get/update/delete', 'organization-type register/list/get/update/enable/disable/delete', 'plugin list/enable/disable/refresh', 'project-track create/list/get/add/documents/read/query', 'agent status|check|test / profile list|get|set|delete / config get|set / generate text|object', 'backup --file path', 'restore --file path', 'check', 'reindex', 'cron types/create/list/get/update/enable/disable/delete/run/retry/runs', 'content/keyword/tag/relation/system/task/organize/schedule (插件命令)'] };
   const helpFields = Object.fromEntries(spec.fields.map(key => [key, { ...fields[key] }]));
   if (name.startsWith('semantic ') && helpFields.id) helpFields.id.description = '共享标签 UUID；不是资源或片元 ID';
   if (name.startsWith('recall ') && helpFields.id) helpFields.id.description = '资源resourceId或已返回的片元ID；不是组织ID、sessionId或projectId';
