@@ -5,6 +5,7 @@ import type { CoreApi, CoreEvent, JsonObject, Organization, OrganizationType, Or
 import { FileStorage, type StorageMutation } from './storage.js';
 import { assert, KnowledgeError } from './errors.js';
 import { validateFormalPath, validateResource, validateOrganization, validateOrganizationType, validateReferenceShape } from './schema.js';
+import { acquireQueuedWriter } from './writer-queue.js';
 
 const SCHEMA_VERSION = 1; // 首期正式数据结构版本。
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i; // 拒绝资源标识中夹带文件路径。
@@ -12,6 +13,7 @@ const json = (value: unknown) => JSON.stringify(value, null, 2) + '\n';
 const digest = (value: Buffer) => createHash('sha256').update(value).digest('hex');
 const now = () => new Date().toISOString();
 const normalize = (value: string) => value.normalize('NFKC').toLocaleLowerCase().trim();
+const SERVICE_RESTORE_MARKER = 'plugins/service/data/restore-pending.json';
 
 /** 核心正式数据入口，禁止插件绕过此处修改资源及组织。 */
 export class CoreManager implements CoreApi {
@@ -21,9 +23,18 @@ export class CoreManager implements CoreApi {
   private metasCache?: Map<string, ResourceMeta>;
   private organizationsCache?: Map<string, Organization>;
   private organizationHandlers = new Set<string>();
+  private releaseQueuedWriter?: () => void;
   constructor(public readonly dataDir: string, options: { readOnly?: boolean; failAfterWrites?: number } = {}) { this.storage = new FileStorage(path.resolve(dataDir), options.readOnly, options.failAfterWrites); }
-  static async open(dataDir: string, options: { readOnly?: boolean; failAfterWrites?: number } = {}): Promise<CoreManager> { const manager = new CoreManager(path.resolve(dataDir), options); await manager.storage.init(); return manager; }
-  async close(): Promise<void> { await this.serial; await this.storage.close(); }
+  static async open(dataDir: string, options: { readOnly?: boolean; failAfterWrites?: number } = {}): Promise<CoreManager> {
+    const manager = new CoreManager(path.resolve(dataDir), options);
+    if (!options.readOnly) manager.releaseQueuedWriter = await acquireQueuedWriter();
+    try { await manager.storage.init(); return manager; }
+    catch (error) { manager.releaseQueuedWriter?.(); throw error; }
+  }
+  async close(): Promise<void> {
+    try { await this.serial; await this.storage.close(); }
+    finally { this.releaseQueuedWriter?.(); this.releaseQueuedWriter = undefined; }
+  }
   setOrganizationHandlers(pluginIds: string[]): void { this.organizationHandlers = new Set(pluginIds); }
   private validateId(id: string): void { assert(UUID.test(id), 'INVALID_ID', '资源/组织标识必须为 UUID', { id }); }
   private async allMetas(): Promise<ResourceMeta[]> {
@@ -155,11 +166,18 @@ export class CoreManager implements CoreApi {
     return values.filter(item => !type || item.type === type).sort((a, b) => a.name.localeCompare(b.name));
   }); }
   async getOrganization(id: string): Promise<Organization> { this.validateId(id); return this.storage.snapshot(async () => { const file = `organizations/${id}.json`; const value = await this.storage.readJson<unknown>(file, null); assert(value, 'NOT_FOUND', '组织不存在', { id }); validateOrganization(value, file); return value; }); }
-  async createOrganization(input: { type: string; name: string; data?: JsonObject; references?: ResourceReference[]; pluginId?: string; id?: string }): Promise<Organization> {
-    return this.mutate(async () => { assert(input.type && input.name, 'INVALID_INPUT', '组织需要 type 和 name'); if (input.type === 'session-transcript') assert(!(await this.listOrganizations(input.type)).some(item => normalize(item.name) === normalize(input.name)), 'ALIAS_CONFLICT', '转录别名已存在'); const organizationType = (await this.listOrganizationTypes()).find(item => item.id === input.type); assert(!organizationType || organizationType.enabled, 'ORGANIZATION_TYPE_DISABLED', '组织方式已停用，不能新增组织实例', { type: input.type }); const id = input.id ?? randomUUID(); this.validateId(id); assert(!(await this.listOrganizations()).some(item => item.id === id), 'ALREADY_EXISTS', '组织已存在'); await this.validateReferences(input.references ?? []); const timestamp = now(); const organization: Organization = { schemaVersion: 1, id, type: input.type, name: input.name, revision: 1, createdAt: timestamp, updatedAt: timestamp, references: input.references ?? [], data: input.data ?? {}, ...(input.pluginId ? { pluginId: input.pluginId } : {}) }; await this.commit([{ file: `organizations/${id}.json`, value: json(organization) }], { type: 'organization.created', entityId: id, revision: 1 }); return organization; });
+  private organizationScheduleWrites(organization: Organization, operation?: JsonObject): StorageMutation[] {
+    const writes: StorageMutation[] = [{ file: `organizations/${organization.id}.json`, value: json(organization) }];
+    if (!operation) return writes;
+    assert(organization.type === 'session-transcript' && organization.pluginId === 'transcripts', 'INVALID_CRON_CONFIG', '只能为转录实例保存周期变更');
+    writes.push({ file: `plugins/cron/data/intent-${organization.id}.json`, value: json({ ...operation, target: organization.id }) });
+    return writes;
   }
-  async updateOrganization(id: string, patch: { name?: string; data?: JsonObject; references?: ResourceReference[] }, expectedRevision?: number): Promise<Organization> {
-    return this.mutate(async () => { const organization = await this.getOrganization(id); this.checkVersion(organization.revision, expectedRevision); if (patch.references) await this.validateReferences(patch.references); if (patch.name !== undefined) { assert(typeof patch.name === 'string' && patch.name.trim(), 'INVALID_INPUT', '组织名称不能为空'); if (organization.type === 'session-transcript') assert(!(await this.listOrganizations(organization.type)).some(item => item.id !== id && normalize(item.name) === normalize(patch.name!)), 'ALIAS_CONFLICT', '转录别名已存在'); organization.name = patch.name; } if (patch.data !== undefined) organization.data = patch.data; if (patch.references !== undefined) organization.references = patch.references; organization.revision++; organization.updatedAt = now(); await this.commit([{ file: `organizations/${id}.json`, value: json(organization) }], { type: 'organization.updated', entityId: id, revision: organization.revision }); return organization; });
+  async createOrganization(input: { type: string; name: string; data?: JsonObject; references?: ResourceReference[]; pluginId?: string; id?: string }, scheduleOperation?: JsonObject): Promise<Organization> {
+    return this.mutate(async () => { assert(input.type && input.name, 'INVALID_INPUT', '组织需要 type 和 name'); if (input.type === 'session-transcript') assert(!(await this.listOrganizations(input.type)).some(item => normalize(item.name) === normalize(input.name)), 'ALIAS_CONFLICT', '转录别名已存在'); const organizationType = (await this.listOrganizationTypes()).find(item => item.id === input.type); assert(!organizationType || organizationType.enabled, 'ORGANIZATION_TYPE_DISABLED', '组织方式已停用，不能新增组织实例', { type: input.type }); const id = input.id ?? randomUUID(); this.validateId(id); assert(!(await this.listOrganizations()).some(item => item.id === id), 'ALREADY_EXISTS', '组织已存在'); await this.validateReferences(input.references ?? []); const timestamp = now(); const organization: Organization = { schemaVersion: 1, id, type: input.type, name: input.name, revision: 1, createdAt: timestamp, updatedAt: timestamp, references: input.references ?? [], data: input.data ?? {}, ...(input.pluginId ? { pluginId: input.pluginId } : {}) }; await this.commit(this.organizationScheduleWrites(organization, scheduleOperation), { type: 'organization.created', entityId: id, revision: 1 }); return organization; });
+  }
+  async updateOrganization(id: string, patch: { name?: string; data?: JsonObject; references?: ResourceReference[] }, expectedRevision?: number, scheduleOperation?: JsonObject): Promise<Organization> {
+    return this.mutate(async () => { const organization = await this.getOrganization(id); this.checkVersion(organization.revision, expectedRevision); if (patch.references) await this.validateReferences(patch.references); if (patch.name !== undefined) { assert(typeof patch.name === 'string' && patch.name.trim(), 'INVALID_INPUT', '组织名称不能为空'); if (organization.type === 'session-transcript') assert(!(await this.listOrganizations(organization.type)).some(item => item.id !== id && normalize(item.name) === normalize(patch.name!)), 'ALIAS_CONFLICT', '转录别名已存在'); organization.name = patch.name; } if (patch.data !== undefined) organization.data = patch.data; if (patch.references !== undefined) organization.references = patch.references; organization.revision++; organization.updatedAt = now(); await this.commit(this.organizationScheduleWrites(organization, scheduleOperation), { type: 'organization.updated', entityId: id, revision: organization.revision }); return organization; });
   }
   async deleteOrganization(id: string): Promise<void> { return this.mutate(async () => { const organization = await this.getOrganization(id); await this.assertNotReferenced('organization', id); await this.commit([{ file: `organizations/${id}.json`, value: null }], { type: 'organization.deleted', entityId: id, revision: organization.revision }); }); }
   async listOrganizationTypes(): Promise<OrganizationType[]> {
@@ -229,7 +247,7 @@ export class CoreManager implements CoreApi {
     const absolute = path.resolve(target); assert(!absolute.startsWith(this.dataDir + path.sep), 'INVALID_BACKUP_PATH', '备份文件不能放入数据目录内部');
     return this.storage.snapshot(async () => { const files = [...await this.storage.files('resources'), ...await this.storage.files('metadata'), ...await this.storage.files('organizations'), ...await this.storage.files('organization-types'), ...await this.storage.files('plugins'), ...await this.storage.files('state')].filter(file => !file.endsWith('.tmp')); files.forEach(validateFormalPath); const entries = await Promise.all(files.map(async file => { const bytes = await this.storage.readBytes(file); return { file, hash: digest(bytes), content: bytes.toString('base64') }; })); const backup = { schemaVersion: 1, createdAt: now(), entries }; await fs.mkdir(path.dirname(absolute), { recursive: true }); await fs.writeFile(absolute, json(backup), { flag: 'wx' }); return { file: absolute, files: entries.length }; });
   }
-  async restore(source: string): Promise<{ files: number }> {
+  async restore(source: string, serviceRestore?: JsonObject): Promise<{ files: number }> {
     const backup = JSON.parse(await fs.readFile(path.resolve(source), 'utf8')) as { schemaVersion: number; entries: { file: string; hash: string; content: string }[] };
     assert(backup.schemaVersion === 1 && Array.isArray(backup.entries), 'INVALID_BACKUP', '备份结构不支持');
     return this.mutate(async () => {
@@ -241,6 +259,7 @@ export class CoreManager implements CoreApi {
         assert(entry && typeof entry === 'object', 'INVALID_BACKUP', '备份条目必须为对象');
         validateFormalPath(entry.file); this.storage.resolve(entry.file);
         const canonical = entry.file.toLowerCase(); assert(!seen.has(canonical), 'INVALID_BACKUP', '备份规范路径重复', { file: entry.file }); seen.add(canonical);
+        assert(canonical !== SERVICE_RESTORE_MARKER, 'INVALID_BACKUP', '备份不得包含服务恢复事务');
         assert(typeof entry.content === 'string' && /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(entry.content), 'INVALID_BACKUP', '备份内容必须为规范base64');
         const value = Buffer.from(entry.content, 'base64'); assert(digest(value) === entry.hash, 'INVALID_BACKUP', '备份校验失败', { file: entry.file });
         if (!entry.file.startsWith('resources/')) {
@@ -260,7 +279,8 @@ export class CoreManager implements CoreApi {
       }
       for (const write of writes) if (write.file.startsWith('resources/')) assert(referencedFiles.has(write.file), 'INVALID_BACKUP', '原件缺少meta引用', { file: write.file });
       for (const item of [...resources, ...organizations]) for (const ref of item.references) assert((ref.kind === 'resource' ? resourceIds : organizationIds).has(ref.id), 'INVALID_BACKUP', '备份含悬空引用', { id: item.id, reference: ref });
-      await this.commit(writes); return { files: writes.length };
+      await this.commit(serviceRestore === undefined ? writes : [...writes, { file: SERVICE_RESTORE_MARKER, value: json(serviceRestore) }]);
+      return { files: writes.length };
     });
   }
 }

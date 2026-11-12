@@ -9,10 +9,11 @@ import { fileURLToPath } from 'node:url';
 const REPO = fileURLToPath(new URL('../', import.meta.url));
 const ENTRY = join(REPO, 'dist', 'cli', 'main.js');
 const SAMPLES = fileURLToPath(new URL('./samples/', import.meta.url));
-const CLI_TIMEOUT_MS = 60_000; // 限制单次演示 CLI 等待时间，不创建常驻服务。
+const CLI_TIMEOUT_MS = 60_000; // 限制单次演示 CLI 等待时间。
 const ORGANIZE_BUDGET = { maxTasks: 100, maxDurationMs: 60_000, maxCalls: 0, maxCost: 0 }; // 仅推进离线演示任务，模型次数与费用预算均为零。
 let demoRoot;
 let dataDir;
+let service;
 
 /** 全部正式数据经真实构建后的 CLI 写入，JSON 通过 stdin 避开 shell 转义。 */
 async function cli(words, input = {}) {
@@ -50,6 +51,7 @@ async function main() {
   try { await access(ENTRY); } catch { throw new Error('缺少 dist/cli/main.js，请先运行 npm install 和 npm run build'); }
   demoRoot = await mkdtemp(join(tmpdir(), 'knowledge-base-demo-'));
   dataDir = join(demoRoot, '演示知识库');
+  service = await cli(['service', 'start']);
   const sources = join(demoRoot, '示例原件'); await mkdir(sources);
   const knowledgeTag = await cli(['tag', 'create'], { name: 'knowledge', aliases: ['知识管理'], description: 'knowledge 资源收集、组织与复用。' });
   const previewTag = await cli(['tag', 'create'], { name: 'preview', aliases: ['预览'], description: 'preview 页面与只读浏览。' });
@@ -97,10 +99,18 @@ async function main() {
     tags: { knowledge: knowledgeTag.id, preview: previewTag.id }, systemId: system.id,
     check: checked, tagMatched: matched.total, unsupported: unsupported.total, pendingCandidates: pending.length, resolvedCandidates: resolvedCount,
     commands: { previewStart: command(['preview', 'start']), previewStop: command(['preview', 'stop']), query: command(['organize', 'query']), candidates: command(['organize', 'candidates']), check: command(['check']) },
-    note: '演示库保留在系统临时目录，可直接预览；系统清理临时目录时可能移除。脚本没有启动服务或注册系统任务。',
+    note: '演示库保留在系统临时目录。脚本在生成期间启动并停止独立服务，浏览前请运行清单中的启动命令。',
   };
   const manifestFile = join(demoRoot, 'demo-manifest.json'); await writeFile(manifestFile, JSON.stringify(manifest, null, 2));
-  console.log(JSON.stringify({ ok: true, dataDir, manifestFile, resources: checked.resources, tagMatched: matched.total, unsupported: unsupported.total, pendingCandidates: pending.length, resolvedCandidates: resolvedCount, previewStartCommand: manifest.commands.previewStart, previewStopCommand: manifest.commands.previewStop, serviceStarted: false }, null, 2));
+  return { ok: true, dataDir, manifestFile, resources: checked.resources, tagMatched: matched.total, unsupported: unsupported.total, pendingCandidates: pending.length, resolvedCandidates: resolvedCount, previewStartCommand: manifest.commands.previewStart, previewStopCommand: manifest.commands.previewStop, serviceRunning: false };
 }
 
-main().catch((error) => { process.stderr.write(JSON.stringify({ ok: false, error: error.message, demoRoot, dataDir }) + '\n'); process.exitCode = 1; });
+try {
+  let result;
+  try { result = await main(); }
+  finally { if (service) await cli(['service', 'stop']); }
+  console.log(JSON.stringify(result, null, 2));
+} catch (error) {
+  process.stderr.write(JSON.stringify({ ok: false, error: error.message, demoRoot, dataDir }) + '\n');
+  process.exitCode = 1;
+}

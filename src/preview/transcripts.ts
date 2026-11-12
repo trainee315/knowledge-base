@@ -25,7 +25,10 @@ async function body(request: IncomingMessage): Promise<Record<string, any>> {
   } catch { requireValue(false, '请求体须为有效 UTF-8 JSON 对象'); }
 }
 /** 开发和构建预览共用，仅显式配置请求打开短写会话。 */
-export async function handleTranscripts(request: IncomingMessage, response: ServerResponse, url: URL, dataDir: string, origin: string): Promise<boolean> {
+export async function handleTranscripts(request: IncomingMessage, response: ServerResponse, url: URL, dataDir: string, origin: string, scheduling?: {
+  command(action: 'create' | 'configure', input: Record<string, unknown>): Promise<Organization>;
+  project(organization: Organization): Organization;
+}): Promise<boolean> {
   if (!url.pathname.startsWith('/api/transcripts')) return false;
   try {
     const idMatch = /^\/api\/transcripts\/([^/]+)$/.exec(url.pathname);
@@ -42,10 +45,11 @@ export async function handleTranscripts(request: IncomingMessage, response: Serv
         } else if (url.pathname === '/api/transcripts/defaults') {
           const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Shanghai', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
           data = configuration({ alias: '新实例', startDate: today });
-        } else if (url.pathname === '/api/transcripts') data = (await app.manager.listOrganizations('session-transcript')).map(transcriptDetail);
+        } else if (url.pathname === '/api/transcripts') data = (await app.manager.listOrganizations('session-transcript')).map(org => transcriptDetail(scheduling?.project(org) ?? org));
         else {
           requireValue(id && UUID.test(id), '实例 ID 无效');
-          data = transcriptDetail(await app.manager.getOrganization(id));
+          const org = await app.manager.getOrganization(id);
+          data = transcriptDetail(scheduling?.project(org) ?? org);
         }
         previewJson(response, 200, { ok: true, data });
       } finally { await app.close(); }
@@ -61,14 +65,15 @@ export async function handleTranscripts(request: IncomingMessage, response: Serv
       return true;
     }
     requireValue(input.config && typeof input.config === 'object' && !Array.isArray(input.config), 'config 必须对象');
-    requireValue(Object.keys(input).every(key => ['config', 'expectedRevision'].includes(key)), '未知保存字段');
+    requireValue(Object.keys(input).every(key => ['config', 'expectedRevision', ...(scheduling ? ['expectedCronRevision'] : [])].includes(key)), '未知保存字段');
     let org: Organization;
     if (url.pathname === '/api/transcripts' && method === 'POST') {
-      org = await transcriptCommand(dataDir, 'create', input.config) as Organization;
+      org = scheduling ? await scheduling.command('create', input.config) : await transcriptCommand(dataDir, 'create', input.config) as Organization;
     } else {
       requireValue(method === 'PATCH' && id && UUID.test(id), '配置保存路径或方法无效');
       requireValue(Number.isSafeInteger(input.expectedRevision) && input.expectedRevision > 0, '保存须提供 expectedRevision');
-      org = await transcriptCommand(dataDir, 'configure', { ...input.config, id, expectedRevision: input.expectedRevision }) as Organization;
+      const patch = { ...input.config, id, expectedRevision: input.expectedRevision, ...(scheduling && input.expectedCronRevision !== undefined ? { expectedCronRevision: input.expectedCronRevision } : {}) };
+      org = scheduling ? await scheduling.command('configure', patch) : await transcriptCommand(dataDir, 'configure', patch) as Organization;
     }
     previewJson(response, 200, { ok: true, data: transcriptDetail(org) });
     return true;

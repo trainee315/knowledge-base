@@ -5,6 +5,7 @@ import path from 'node:path';
 import os from 'node:os';
 import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
+import { handleService } from '../service/client.js';
 import { fileURLToPath } from 'node:url';
 import { openApplication } from '../index.js';
 import { CoreManager } from '../core/manager.js';
@@ -92,6 +93,7 @@ test('独立CLI组织方式CRUD、默认业务方式disabled控制和只读并�
     assert.equal(output.ok, success); return output.data;
   }
   try {
+    await handleService(['start'], data);
     const created = run(['organization-type', 'register'], { id: 'collection', name: '集合', config: { layout: 'list' } }) as OrganizationType;
     assert.equal((run(['organization-type', 'get'], { id: created.id }) as OrganizationType).name, '集合');
     assert.ok((run(['organization-type', 'list']) as OrganizationType[]).some(value => value.id === created.id));
@@ -103,5 +105,5 @@ test('独立CLI组织方式CRUD、默认业务方式disabled控制和只读并�
     assert.equal((run(['tag', 'get'], { id: tag.id }) as { id: string }).id, tag.id); run(['organization-type', 'delete'], { id: 'tag' }, false);
     const manager = await CoreManager.open(data);
     try { const before = await fingerprint(data); assert.ok((run(['organization-type', 'list']) as OrganizationType[]).length); assert.deepEqual(await fingerprint(data), before); } finally { await manager.close(); }
-  } finally { await fs.rm(root, { recursive: true, force: true }); }
+  } finally { await handleService(['stop'], data); await fs.rm(root, { recursive: true, force: true }); }
 });

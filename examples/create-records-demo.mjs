@@ -18,6 +18,7 @@ await writeFile(join(root, 'config.json'), JSON.stringify(config, null, 2));
 const org = await transcriptCommand(data, 'create', config);
 const q = value => `'${value.replaceAll("'", "''")}'`;
 console.log(JSON.stringify({ root, data, session, organizationId: org.id, syntheticOnly: true, commands: [
+  `.\\cli.bat service start --data-dir ${q(data)} --json`,
   `.\\cli.bat note add --file ${q(join(root, 'note.md'))} --request-id demo-note --data-dir ${q(data)} --json`,
   `.\\cli.bat note list --data-dir ${q(data)} --json`,
   `.\\cli.bat transcript preview --alias v005-demo --data-dir ${q(data)} --json`,
@@ -26,4 +27,5 @@ console.log(JSON.stringify({ root, data, session, organizationId: org.id, synthe
   `.\\cli.bat transcript run --alias v005-demo --max-calls 1 --data-dir ${q(data)} --json`,
   `.\\cli.bat transcript records --alias v005-demo --data-dir ${q(data)} --json`,
   `.\\cli.bat check --data-dir ${q(data)} --json`,
+  `.\\cli.bat service stop --data-dir ${q(data)} --json`,
 ] }, null, 2));

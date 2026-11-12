@@ -10,4 +10,5 @@ import systemsPlugin from './systems/index.js';
 import projectTrackingPlugin from './project-tracking/index.js';
 import type { PluginDefinition } from '../contracts/index.js';
 import { transcriptPlugin } from '../records/plugin.js';
-export const builtinPlugins: PluginDefinition[] = [agentPlugin, contentPlugin, keywordsPlugin, tagsPlugin, relationsPlugin, tasksPlugin, organizerPlugin, schedulerPlugin, systemsPlugin, projectTrackingPlugin, transcriptPlugin];
+import { cronPlugin } from './cron/index.js';
+export const builtinPlugins: PluginDefinition[] = [agentPlugin, contentPlugin, keywordsPlugin, tagsPlugin, relationsPlugin, tasksPlugin, organizerPlugin, schedulerPlugin, systemsPlugin, projectTrackingPlugin, transcriptPlugin, cronPlugin];

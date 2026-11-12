@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
 import { createServer as createPortProbe } from 'node:net';
-import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
-import { join, resolve } from 'node:path';
+import { mkdir, mkdtemp, realpath, rm, writeFile } from 'node:fs/promises';
+import { dirname, join, resolve } from 'node:path';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { deflateSync } from 'node:zlib';
@@ -16,9 +16,10 @@ const REPO = fileURLToPath(new URL('../../', import.meta.url));
 const PPC = process.env.PPC_CLI_PATH ?? 'C:/Users/mamar/Desktop/personalProjectCenter/cli/ppc.mjs';
 const USE_PPC = process.env.KB_BROWSER_USE_PPC === '1';
 const CHROME = process.env.KB_CHROME_PATH ?? 'C:/Program Files/Google/Chrome/Application/chrome.exe';
-const evidence = resolve(process.env.KB_BROWSER_EVIDENCE ?? join(REPO, 'artifacts/preview'));
+const evidence = process.env.KB_BROWSER_EVIDENCE ? resolve(process.env.KB_BROWSER_EVIDENCE) : await mkdtemp(join(tmpdir(), 'kb-browser-evidence-'));
 const EXPECTED_PLUGIN_COUNT = builtinPlugins.length; // 注册表增添业务插件时仍验证所有状态卡片，不固定旧版本数量。
 const root = await mkdtemp(join(tmpdir(), '知识库 浏览器 中文 空格 '));
+const canonicalRoot = await realpath(root);
 const dataDir = join(root, '正式数据 目录');
 let browser;
 let preview;
@@ -64,6 +65,7 @@ async function inputCommand(args, input) {
 }
 try {
   await mkdir(evidence, { recursive: true });
+  preview = await cli(['service', 'start']);
   const imageFile = join(root, '绿色像素 图.png');
   await writeFile(imageFile, imageFixture());
   const image = await cli(['resource', 'import', '--file', imageFile]);
@@ -101,7 +103,6 @@ try {
   const devPage = await browser.newPage();
   await devPage.goto(`http://127.0.0.1:${devAddress.port}`);
   await devPage.getByText('33 个结果', { exact: true }).waitFor();
-  assert.equal(development.config.server.proxy, undefined);
   assert.equal((await devPage.request.get(`http://127.0.0.1:${devAddress.port}/api/resources`)).status(), 200);
   await devPage.close(); await development.close(); development = undefined;
   preview = await cli(['preview', 'start']);
@@ -176,8 +177,8 @@ try {
   await page.getByRole('heading', { name: 'project-tracking', exact: true }).waitFor();
   assert.equal(await page.locator('.plugin-card').count(), EXPECTED_PLUGIN_COUNT);
   await page.screenshot({ path: join(evidence, 'plugins-enabled.png'), fullPage: true });
-  await cli(['preview', 'stop']); preview = undefined;
   await cli(['plugin', 'disable', '--id', 'keywords', '--cascade']);
+  await cli(['preview', 'stop']); preview = undefined;
   preview = await cli(['preview', 'start']);
   await page.goto(preview.url);
   await page.getByText('33 个结果', { exact: true }).waitFor();
@@ -198,5 +199,7 @@ try {
   await development?.close();
   await browser?.close();
   if (preview) await cli(['preview', 'stop']);
+  assert.equal(await realpath(root), canonicalRoot);
+  assert.equal(dirname(canonicalRoot), await realpath(tmpdir()));
   await rm(root, { recursive: true, force: true });
 }

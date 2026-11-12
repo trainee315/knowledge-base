@@ -5,6 +5,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
+import { handleService } from '../service/client.js';
 import { openApplication } from '../index.js';
 import { createPreviewServer } from './server.js';
 import { browse } from './browse.js';
@@ -29,6 +30,7 @@ test('organization browser reads accepted tags, exact current keywords, recursiv
     await app.manager.registerOrganizationType({id:'reading',name:'Reading',config:{}});
     const custom=await app.manager.createOrganization({type:'reading',name:'Reading',references:[{kind:'resource',id:first.id}]});
     await app.close();
+    await handleService(['start'],data);
     const before=await fingerprint(data);const reader=await openApplication(data,{readOnly:true});
     const get=(p:string)=>browse(reader,new URL('http://localhost'+p)) as Promise<any>;
     const both='id='+tags[0].id+'&id='+tags[1].id;
@@ -53,7 +55,7 @@ test('organization browser reads accepted tags, exact current keywords, recursiv
     assert.equal((await fetch(preview.url+'/api/browse/documents?type=tag&id=invalid')).status,400);
     assert.equal((await fetch(preview.url+'/api/browse/collections?type=tag')).status,200);
     await preview.close();preview=undefined;assert.equal(await fingerprint(data),before);
-  } finally {await preview?.close();await rm(root,{recursive:true,force:true});}
+  } finally {await preview?.close();await handleService(['stop'],data);await rm(root,{recursive:true,force:true});}
 });
 
 test('unavailable business views report plugin errors and stale keyword metadata is excluded', async()=>{

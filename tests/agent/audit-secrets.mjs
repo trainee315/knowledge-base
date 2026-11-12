@@ -1,10 +1,12 @@
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, realpath, rm, writeFile } from 'node:fs/promises';
+import { readFileSync } from 'node:fs';
 import { homedir, tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { scanForSecret } from './secret-scan.mjs';
+import { preloadEnvironment, serviceCli } from '../service-cli.mjs';
 
 const REPO = fileURLToPath(new URL('../../', import.meta.url));
 const SECRET = join(homedir(), 'AppData/Local/knowledge-base/credentials/deepseek-test-v002.secrets.json');
@@ -18,21 +20,28 @@ async function main() {
   try { const value = JSON.parse(await readFile(SECRET, 'utf8')).DEEPSEEK_API_KEY; assert.equal(typeof value, 'string'); key = value.trim(); assert.ok(key); }
   catch { throw new Error('Credential unavailable for offline audit'); }
   const root = await mkdtemp(join(tmpdir(), 'kb-agent-secret-audit-'));
+  const canonicalRoot = await realpath(root);
   const dataDir = join(root, 'data'), backup = join(root, 'formal.backup.json');
+  const counter = join(root, 'network-attempts.txt');
+  await writeFile(counter, '');
+  const env = preloadEnvironment(new URL('./offline-fetch.mjs', import.meta.url), { ...process.env, DEEPSEEK_API_KEY: key, KB_OFFLINE_COUNTER_FILE: counter });
+  const attemptCount = () => readFileSync(counter, 'utf8').length / 2;
   const cases = [];
   const run = (name, words, input = {}) => {
-    const child = spawnSync(process.execPath, ['--import', new URL('./offline-fetch.mjs', import.meta.url).href, join(REPO, 'dist/cli/main.js'), ...words, '--data-dir', dataDir, '--input', '-', '--json'], { cwd: REPO, env: { ...process.env, DEEPSEEK_API_KEY: key }, input: JSON.stringify(input), encoding: 'utf8', windowsHide: true, timeout: 15_000, maxBuffer: 8 * 1024 * 1024 });
+    const before = attemptCount();
+    const child = spawnSync(process.execPath, [join(REPO, 'dist/cli/main.js'), ...words, '--data-dir', dataDir, '--input', '-', '--json'], { cwd: REPO, env, input: JSON.stringify(input), encoding: 'utf8', windowsHide: true, timeout: 15_000, maxBuffer: 8 * 1024 * 1024 });
     const output = `${child.stdout ?? ''}\n${child.stderr ?? ''}`;
     assert.equal(output.includes(key), false, 'CLI audit output contained a credential; content suppressed');
     assert.equal(child.error, undefined, 'CLI audit process failed; raw cause suppressed');
     let value; try { value = JSON.parse(child.stdout); } catch { throw new Error('CLI audit output was not JSON; content suppressed'); }
-    const attempts = Number(/KB_OFFLINE_REQUEST_COUNT:(\d+)/.exec(child.stderr)?.[1] ?? -1);
+    const attempts = attemptCount() - before;
     const safe = { name, exitCode: child.status, code: value.error?.code ?? 'OK', blockedTransportAttempts: attempts, credentialAbsentFromStdoutAndStderr: true };
     cases.push(safe); return { value, safe };
   };
-  let report;
+  let report, started;
   try {
     const campaign = JSON.parse(await readFile(LEDGER, 'utf8')); assert.equal(campaign.closed, true); assert.equal(campaign.requests, 3);
+    started = serviceCli(dataDir, ['service', 'start'], { env });
     const status = run('read-only status with configured key', ['agent', 'status']); assert.equal(status.safe.code, 'OK'); assert.equal(status.safe.blockedTransportAttempts, 0);
     const profile = run('profile stores environment reference', ['agent', 'profile', 'set'], { id: 'deepseek-default', credentialEnv: 'DEEPSEEK_API_KEY', maxTokens: 128 }); assert.equal(profile.safe.code, 'OK'); assert.equal(profile.safe.blockedTransportAttempts, 0);
     const invalid = run('unsupported schema rejected before transport', ['agent', 'generate', 'object'], { messages: [{ role: 'user', content: 'Synthetic json only.' }], schema: { type: 'object', unknownRule: true } }); assert.equal(invalid.safe.code, 'AGENT_UNSUPPORTED_SCHEMA'); assert.equal(invalid.safe.blockedTransportAttempts, 0);
@@ -43,7 +52,13 @@ async function main() {
     const serialized = JSON.stringify(report, null, 2); assert.equal(serialized.includes(key), false);
     await mkdir(dirname(OUTPUT), { recursive: true }); await writeFile(OUTPUT, serialized + '\n');
     if (!scan.passed) process.exitCode = 1;
-  } finally { await rm(root, { recursive: true, force: true }); key = ''; }
+  } finally {
+    if (started) serviceCli(dataDir, ['service', 'stop'], { env });
+    assert.equal(await realpath(root), canonicalRoot);
+    assert.equal(dirname(canonicalRoot), await realpath(tmpdir()));
+    await rm(root, { recursive: true, force: true });
+    key = '';
+  }
   console.log(JSON.stringify(report, null, 2));
 }
 

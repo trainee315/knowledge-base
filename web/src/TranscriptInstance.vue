@@ -24,8 +24,12 @@ const documentQuery = ref('');
 const offset = ref(0);
 const detail = ref<any>();
 const dirty = computed(() => Boolean(draft.value) && JSON.stringify(draft.value) !== savedConfig.value);
-const signature = computed(() => JSON.stringify({ config: draft.value, revision: instance.value?.revision ?? null, mode: mode.value, from: from.value, to: to.value }));
-const requestConfig = computed(() => ({ ...draft.value, projectDir: draft.value?.projectDir?.trim() || null, intervalMinutes: draft.value?.intervalMinutes === '' || draft.value?.intervalMinutes == null ? null : draft.value.intervalMinutes }));
+const cronManaged = computed(() => instance.value?.cronSchedule?.kind === 'cron');
+const signature = computed(() => JSON.stringify({ config: draft.value, revision: instance.value?.revision ?? null, cronRevision: instance.value?.cronRevision, mode: mode.value, from: from.value, to: to.value }));
+const requestConfig = computed(() => {
+  const { enabled, intervalMinutes, ...config } = draft.value ?? {};
+  return { ...config, projectDir: config.projectDir?.trim() || null, ...(cronManaged.value ? {} : { enabled, intervalMinutes: intervalMinutes === '' || intervalMinutes == null ? null : intervalMinutes }) };
+});
 const previewStale = computed(() => preview.value && previewSignature.value !== signature.value);
 const selectedProfile = computed(() => profiles.value.find(profile => profile.id === draft.value?.profile));
 const markdown = computed(() => renderMarkdown(detail.value?.content?.text ?? ''));
@@ -107,7 +111,7 @@ async function save() {
   if (busy.value) return;
   busy.value = true; error.value = ''; notice.value = '';
   try {
-    const data = await api('/api/transcripts' + (props.id === 'new' ? '' : '/' + props.id), props.id === 'new' ? 'POST' : 'PATCH', { config: requestConfig.value, ...(instance.value ? { expectedRevision: instance.value.revision } : {}) });
+    const data = await api('/api/transcripts' + (props.id === 'new' ? '' : '/' + props.id), props.id === 'new' ? 'POST' : 'PATCH', { config: requestConfig.value, ...(instance.value ? { expectedRevision: instance.value.revision, expectedCronRevision: instance.value.cronRevision } : {}) });
     if (!alive) return;
     instance.value = data;
     draft.value = structuredClone(data.config);
@@ -205,7 +209,7 @@ onUnmounted(() => {
       <h3>处理状态</h3>
       <dl class="instance-facts">
         <div><dt>项目目录</dt><dd>{{ instance.config.projectDir || '未限定' }}</dd></div>
-        <div><dt>周期</dt><dd>{{ instance.config.enabled ? `每 ${instance.config.intervalMinutes} 分钟检查` : '已停用' }}</dd></div>
+        <div><dt>周期</dt><dd>{{ instance.config.enabled ? cronManaged ? `${instance.cronSchedule.expression} · ${instance.cronSchedule.timezone}` : `每 ${instance.config.intervalMinutes} 分钟检查` : '已停用' }}</dd></div>
         <div><dt>执行状态</dt><dd>{{ instance.status.running ? '正在执行' : '空闲' }}</dd></div>
         <div><dt>最近执行</dt><dd>{{ time(instance.status.lastAttempt) }}</dd></div>
         <div><dt>下次到期</dt><dd>{{ instance.config.enabled && !instance.status.nextDue ? '等待首次检查' : time(instance.status.nextDue) }}</dd></div>
@@ -251,8 +255,11 @@ onUnmounted(() => {
         </fieldset>
         <fieldset :disabled="!editing || busy">
           <legend>周期设置</legend>
-          <label class="check-label"><input v-model="draft.enabled" type="checkbox">启用周期检查</label>
-          <label>检查间隔（分钟）<input v-model.number="draft.intervalMinutes" type="number" min="1" :required="draft.enabled"></label>
+          <p v-if="cronManaged">周期由 cron 计划管理。</p>
+          <template v-else>
+            <label class="check-label"><input v-model="draft.enabled" type="checkbox">启用周期检查</label>
+            <label>检查间隔（分钟）<input v-model.number="draft.intervalMinutes" type="number" min="1" :required="draft.enabled"></label>
+          </template>
           <p>启用周期须填写项目目录和检查间隔。</p>
         </fieldset>
         <details><summary>高级设置</summary><fieldset :disabled="!editing || busy"><legend>来源与预算</legend><label>来源目录<input v-model="draft.sourceRoot" required></label><div class="instance-grid"><label v-for="budget in budgets" :key="budget.key">{{ budget.label }}<input v-model.number="draft[budget.key]" type="number" :min="budget.min" :max="budget.key === 'maxDurationMs' ? 300000 : undefined" required></label></div></fieldset></details>

@@ -38,6 +38,7 @@ export function transcriptDetail(org: Organization) {
   const s = state(org);
   return {
     id: org.id, name: org.name, revision: org.revision, config: s.config,
+    ...(org.data.cronRevision !== undefined ? { cronRevision: org.data.cronRevision, cronSchedule: org.data.cronSchedule } : {}),
     createdAt: org.createdAt, updatedAt: org.updatedAt, effectiveFrom: s.effectiveFrom,
     status: {
       running: Boolean(s.lease && s.lease.expires > Date.now()),
@@ -153,7 +154,8 @@ export async function plan(org: Organization, input: Record<string, unknown>, no
 }
 
 type Generator = Pick<AgentApi, 'generateObject'>;
-export async function transcriptCommand(dataDir: string, action: string, input: Record<string, unknown>, injected?: Generator): Promise<unknown> {
+type ScheduleOperation = (config: Config, previous?: Config) => JsonObject | undefined;
+export async function transcriptCommand(dataDir: string, action: string, input: Record<string, unknown>, injected?: Generator, scheduleOperation?: ScheduleOperation): Promise<unknown> {
   const readOnly = ['list', 'get', 'records', 'preview'].includes(action);
   const app = await openApplication(dataDir, { readOnly });
   let org: Organization | undefined;
@@ -164,7 +166,7 @@ export async function transcriptCommand(dataDir: string, action: string, input: 
     if (action === 'create') {
       const config = configuration(input);
       requireValue(!(await manager.listOrganizations(TYPE)).some(item => normalize(item.name) === normalize(config.alias)), '别名已存在', 'ALIAS_CONFLICT');
-      return manager.createOrganization({ type: TYPE, name: config.alias, pluginId: 'transcripts', data: json({ schemaVersion: 1, config, entries: [], tasks: [], skips: [] }) });
+      return manager.createOrganization({ type: TYPE, name: config.alias, pluginId: 'transcripts', data: json({ schemaVersion: 1, config, entries: [], tasks: [], skips: [] }) }, scheduleOperation?.(config));
     }
     if (action === 'tick') {
       const due = (await manager.listOrganizations(TYPE)).filter(item => { const s = state(item); return s.config.enabled && (s.nextDue ?? 0) <= Date.now(); }).map(item => item.id);
@@ -179,14 +181,15 @@ export async function transcriptCommand(dataDir: string, action: string, input: 
     if (action === 'configure') {
       requireValue(!s.lease || s.lease.expires <= Date.now(), '配置正在执行', 'TRANSCRIPT_BUSY');
       if (input.expectedRevision !== undefined) requireValue(Number(input.expectedRevision) === org.revision, '配置修订冲突', 'REVISION_CONFLICT');
-      const config = configuration(input, s.config);
+      const previous = s.config;
+      const config = configuration(input, previous);
       requireValue(!(await manager.listOrganizations(TYPE)).some(item => item.id !== org!.id && normalize(item.name) === normalize(config.alias)), '别名已存在', 'ALIAS_CONFLICT');
       if (discoveryChanged(s.config, config)) s.effectiveFrom = new Date().toISOString();
       if (s.config.enabled !== config.enabled || s.config.intervalMinutes !== config.intervalMinutes) {
         s.nextDue = config.enabled ? Date.now() : undefined;
       }
       s.config = config;
-      return manager.updateOrganization(org.id, { name: config.alias, data: json(s) }, org.revision);
+      return manager.updateOrganization(org.id, { name: config.alias, data: json(s) }, org.revision, scheduleOperation?.(config, previous));
     }
     if (action === 'preview') {
       const preview = await plan(org, { ...input, backfill: input.from !== undefined });
