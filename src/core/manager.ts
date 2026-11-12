@@ -110,6 +110,32 @@ export class CoreManager implements CoreApi {
       await this.commit([{ file: historyFile, value: old }, { file: resource.file, value: content }, { file: this.metaPath(resource), value: json(resource) }], { type: 'resource.updated', entityId: id, revision: resource.revision }); return resource;
     });
   }
+  /** 记录、组织引用及调用方进度同一日志提交；不按正文去重。 */
+  async appendRecord(input: { id: string; content: Buffer; title: string; source?: string; plugins: ResourceMeta['plugins']; references?: ResourceReference[]; organization?: Organization; state?: { key: string; value: unknown } }): Promise<ResourceMeta> {
+    return this.mutate(async () => {
+      this.validateId(input.id);
+      assert(!(await this.allMetas()).some(item => item.id === input.id), 'ALREADY_EXISTS', '记录已存在');
+      const timestamp = now();
+      const resource: ResourceMeta = { schemaVersion: 1, id: input.id, originalName: input.title + '.md', extension: 'md', mediaType: 'text/markdown', hash: digest(input.content), size: input.content.length, contentVersion: 1, revision: 1, createdAt: timestamp, updatedAt: timestamp, file: `resources/md/${input.id}.md`, references: input.references ?? [], plugins: input.plugins, history: [], ...(input.source ? { source: input.source } : {}) };
+      await this.validateReferences(resource.references);
+      const writes: StorageMutation[] = [{ file: resource.file, value: input.content }, { file: this.metaPath(resource), value: json(resource) }];
+      if (input.organization) {
+        const organization = structuredClone(input.organization);
+        this.checkVersion((await this.getOrganization(organization.id)).revision, organization.revision);
+        assert(organization.type === 'session-transcript', 'INVALID_INPUT', '仅支持转录组织追加');
+        organization.references.push({ kind: 'resource', id: resource.id });
+        await this.validateReferences(organization.references.filter(ref => ref.id !== resource.id || ref.kind !== 'resource'));
+        organization.revision++; organization.updatedAt = timestamp;
+        writes.push({ file: `organizations/${organization.id}.json`, value: json(organization) });
+      }
+      if (input.state) {
+        assert(/^[a-zA-Z0-9_-]+$/.test(input.state.key), 'INVALID_KEY', '记录状态键非法');
+        writes.push({ file: `plugins/records/data/${input.state.key}.json`, value: json(input.state.value) });
+      }
+      await this.commit(writes, { type: 'resource.imported', entityId: resource.id, revision: 1 });
+      return resource;
+    });
+  }
   async deleteResource(id: string): Promise<ResourceMeta> { return this.changeDeleted(id, true); }
   async restoreResource(id: string): Promise<ResourceMeta> { return this.changeDeleted(id, false); }
   private async changeDeleted(id: string, deleted: boolean): Promise<ResourceMeta> {
@@ -130,10 +156,10 @@ export class CoreManager implements CoreApi {
   }); }
   async getOrganization(id: string): Promise<Organization> { this.validateId(id); return this.storage.snapshot(async () => { const file = `organizations/${id}.json`; const value = await this.storage.readJson<unknown>(file, null); assert(value, 'NOT_FOUND', '组织不存在', { id }); validateOrganization(value, file); return value; }); }
   async createOrganization(input: { type: string; name: string; data?: JsonObject; references?: ResourceReference[]; pluginId?: string; id?: string }): Promise<Organization> {
-    return this.mutate(async () => { assert(input.type && input.name, 'INVALID_INPUT', '组织需要 type 和 name'); const organizationType = (await this.listOrganizationTypes()).find(item => item.id === input.type); assert(!organizationType || organizationType.enabled, 'ORGANIZATION_TYPE_DISABLED', '组织方式已停用，不能新增组织实例', { type: input.type }); const id = input.id ?? randomUUID(); this.validateId(id); assert(!(await this.listOrganizations()).some(item => item.id === id), 'ALREADY_EXISTS', '组织已存在'); await this.validateReferences(input.references ?? []); const timestamp = now(); const organization: Organization = { schemaVersion: 1, id, type: input.type, name: input.name, revision: 1, createdAt: timestamp, updatedAt: timestamp, references: input.references ?? [], data: input.data ?? {}, ...(input.pluginId ? { pluginId: input.pluginId } : {}) }; await this.commit([{ file: `organizations/${id}.json`, value: json(organization) }], { type: 'organization.created', entityId: id, revision: 1 }); return organization; });
+    return this.mutate(async () => { assert(input.type && input.name, 'INVALID_INPUT', '组织需要 type 和 name'); if (input.type === 'session-transcript') assert(!(await this.listOrganizations(input.type)).some(item => normalize(item.name) === normalize(input.name)), 'ALIAS_CONFLICT', '转录别名已存在'); const organizationType = (await this.listOrganizationTypes()).find(item => item.id === input.type); assert(!organizationType || organizationType.enabled, 'ORGANIZATION_TYPE_DISABLED', '组织方式已停用，不能新增组织实例', { type: input.type }); const id = input.id ?? randomUUID(); this.validateId(id); assert(!(await this.listOrganizations()).some(item => item.id === id), 'ALREADY_EXISTS', '组织已存在'); await this.validateReferences(input.references ?? []); const timestamp = now(); const organization: Organization = { schemaVersion: 1, id, type: input.type, name: input.name, revision: 1, createdAt: timestamp, updatedAt: timestamp, references: input.references ?? [], data: input.data ?? {}, ...(input.pluginId ? { pluginId: input.pluginId } : {}) }; await this.commit([{ file: `organizations/${id}.json`, value: json(organization) }], { type: 'organization.created', entityId: id, revision: 1 }); return organization; });
   }
   async updateOrganization(id: string, patch: { name?: string; data?: JsonObject; references?: ResourceReference[] }, expectedRevision?: number): Promise<Organization> {
-    return this.mutate(async () => { const organization = await this.getOrganization(id); this.checkVersion(organization.revision, expectedRevision); if (patch.references) await this.validateReferences(patch.references); if (patch.name !== undefined) { assert(typeof patch.name === 'string' && patch.name.trim(), 'INVALID_INPUT', '组织名称不能为空'); organization.name = patch.name; } if (patch.data !== undefined) organization.data = patch.data; if (patch.references !== undefined) organization.references = patch.references; organization.revision++; organization.updatedAt = now(); await this.commit([{ file: `organizations/${id}.json`, value: json(organization) }], { type: 'organization.updated', entityId: id, revision: organization.revision }); return organization; });
+    return this.mutate(async () => { const organization = await this.getOrganization(id); this.checkVersion(organization.revision, expectedRevision); if (patch.references) await this.validateReferences(patch.references); if (patch.name !== undefined) { assert(typeof patch.name === 'string' && patch.name.trim(), 'INVALID_INPUT', '组织名称不能为空'); if (organization.type === 'session-transcript') assert(!(await this.listOrganizations(organization.type)).some(item => item.id !== id && normalize(item.name) === normalize(patch.name!)), 'ALIAS_CONFLICT', '转录别名已存在'); organization.name = patch.name; } if (patch.data !== undefined) organization.data = patch.data; if (patch.references !== undefined) organization.references = patch.references; organization.revision++; organization.updatedAt = now(); await this.commit([{ file: `organizations/${id}.json`, value: json(organization) }], { type: 'organization.updated', entityId: id, revision: organization.revision }); return organization; });
   }
   async deleteOrganization(id: string): Promise<void> { return this.mutate(async () => { const organization = await this.getOrganization(id); await this.assertNotReferenced('organization', id); await this.commit([{ file: `organizations/${id}.json`, value: null }], { type: 'organization.deleted', entityId: id, revision: organization.revision }); }); }
   async listOrganizationTypes(): Promise<OrganizationType[]> {

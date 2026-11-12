@@ -1,5 +1,7 @@
 # Knowledge Base
 
+v0.0.5“记录侧”开发候选支持组织实例详情中的可视化配置、草稿预览，并新增 `note add/list/get` 与 `transcript create/list/get/configure/preview/run/tick/records/retry/backfill`，正式版本仍为0.0.4，待用户验收。[候选契约](doc/新增需求/v0.0.5/contracts.md) · [隔离数据验收命令](doc/新增需求/v0.0.5/acceptance.md) · [验证与限制](doc/新增需求/v0.0.5/verification.md)。`node examples/create-records-demo.mjs` 创建独立临时库和合成session，脚本本身不调用模型。
+
 当前已发布 **v0.0.4**，2026-11-11用户验收通过。按标签、关键词、体系和项目跟踪浏览文档，支持标签交集、固定历史正文、URL恢复与文章概览选中状态。[004归档](doc/v0.0.4/readme.md) · [运行说明](doc/v0.0.4/running.md) · [版本历史](doc/version-history.md)。
 
 保留文件知识库、资源与组织管理、Agent基础设施、项目跟踪和单端口开发预览；Git发布标识v0.0.4。
@@ -21,7 +23,7 @@ npm run build
 
 普通命令执行后退出。预览显式启动独立临时进程，绑定 `127.0.0.1`，默认自动选择端口；`preview start --port 12345` 可固定端口。预览状态存在数据目录 `.runtime`，不属于正式数据。
 
-开发时 `npm ci` 后直接运行 `npm run dev`，无需预先构建或另启 API 服务：Vite 在同一进程的 `http://127.0.0.1:5183` 提供页面、HMR 和只读 `/api`。端口占用会明确报错，不自动跳号；可用 `npm run dev -- --port 5184` 显式更换。默认读取本仓绝对路径 `.data`，可先设置 `$env:KB_DATA_DIR = 'D:\临时知识库'` 选择其它库，启动日志显示 URL 与实际 dataDir。目录不存在时显示空库，不创建正式业务数据。开发没有 `/_control` 接口，按 Ctrl+C 停止；CLI `preview start/stop` 仍独立管理构建页面预览。插件启停后需重启开发预览。详见 [页面开发说明](./web/README.md)。
+开发时 `npm ci` 后直接运行 `npm run dev`，无需预先构建或另启 API 服务：Vite 在同一进程的 `http://127.0.0.1:5183` 提供页面、HMR、资源浏览与 Session 实例配置 `/api`。端口占用会明确报错，不自动跳号；可用 `npm run dev -- --port 5184` 显式更换。默认读取本仓绝对路径 `.data`，可先设置 `$env:KB_DATA_DIR = 'D:\临时知识库'` 选择其它库，启动日志显示 URL 与实际 dataDir。目录不存在时显示空库，不创建正式业务数据。开发没有 `/_control` 接口，按 Ctrl+C 停止；CLI `preview start/stop` 仍独立管理构建页面预览。插件启停后需重启开发预览。详见 [页面开发说明](./web/README.md)。
 
 所有命令支持 `--data-dir "D:\知识库数据"`，默认位置是本仓库 `.data`，与启动时工作目录无关。所有成功与失败均输出单个 JSON 对象，日志写 stderr；退出码成功 0，执行失败 1，参数错误 2。`--json` 明确声明结构化调用意图，输出保持一致。复杂参数放 UTF8 JSON 文件或用 `--input -` 读取 stdin，命令行参数覆盖同名输入字段。
 

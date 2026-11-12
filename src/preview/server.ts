@@ -7,13 +7,13 @@ import { createReadOnlyHandler, previewError, previewJson, type PreviewApplicati
 interface ServerOptions { app: PreviewApplication; dataDir: string; webDir: string; port?: number; token?: string; onClose?: () => Promise<void> }
 const ASSET_TYPES: Record<string, string> = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png', '.ico': 'image/x-icon' };
 
-/** 构建页面与只读 API 同源；独立 CLI 预览才提供令牌控制接口。 */
+/** 构建页面与本地 API 同源；独立 CLI 预览提供令牌控制接口。 */
 export async function createPreviewServer(options: ServerOptions) {
   const { app, dataDir, webDir } = options;
   const token = options.token ?? randomBytes(32).toString('hex');
   let origin = '';
   let closing: Promise<void> | undefined;
-  const handle = createReadOnlyHandler({ app, getOrigin: () => origin, control: async (request, response, url) => {
+  const handle = createReadOnlyHandler({ app, dataDir, getOrigin: () => origin, control: async (request, response, url) => {
     if (request.headers.authorization !== `Bearer ${token}`) { previewJson(response, 403, { ok: false }); return; }
     if (url.pathname === '/_control/status' && request.method === 'GET') { previewJson(response, 200, { pid: process.pid, dataDir }); return; }
     if (url.pathname === '/_control/stop' && request.method === 'POST') { previewJson(response, 200, { stopped: true }); setImmediate(() => { void close(); }); return; }

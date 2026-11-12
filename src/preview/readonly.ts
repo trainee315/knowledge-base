@@ -1,6 +1,7 @@
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import type { CoreApi, ResourceMeta } from '../contracts/index.js';
 import { browse } from './browse.js';
+import { handleTranscripts } from './transcripts.js';
 export interface PreviewApplication {
   manager: CoreApi;
   plugins: { list(): unknown; execute(name: string, input: Record<string, unknown>, args: string[]): Promise<unknown> };
@@ -10,6 +11,7 @@ export interface PreviewApplication {
 interface HandlerOptions {
   app: PreviewApplication;
   getOrigin(): string;
+  dataDir?: string;
   control?: (request: IncomingMessage, response: ServerResponse, url: URL) => Promise<void>;
 }
 // 只向浏览器内联显示被动图片格式，SVG/HTML 等原件统一作为附件下载。
@@ -24,10 +26,10 @@ function unavailable(error: unknown): boolean { return ['COMMAND_NOT_FOUND', 'UN
 
 export function previewError(response: ServerResponse, error: unknown): void {
   const code = (error as any)?.code ?? 'PREVIEW_ERROR';
-  const status = code === 'INVALID_ARGUMENT' ? 400 : ['NOT_FOUND', 'ENOENT'].includes(code) ? 404 : code === 'PLUGIN_UNAVAILABLE' ? 409 : 500;
+  const status = code === 'INVALID_ARGUMENT' ? 400 : code === 'LOCAL_ONLY' ? 403 : ['NOT_FOUND', 'ENOENT'].includes(code) ? 404 : ['PLUGIN_UNAVAILABLE', 'REVISION_CONFLICT', 'ALIAS_CONFLICT', 'TRANSCRIPT_BUSY', 'WRITER_LOCKED'].includes(code) ? 409 : 500;
   if (!response.headersSent) previewJson(response, status, { ok: false, error: { code, message: (error as Error).message } }); else response.destroy();
 }
-/** CLI 与 Vite 共享只读路由；false 表示校验通过后交由各自页面处理器。 */
+/** CLI 与 Vite 共享浏览及显式配置入口；false 交由各自页面处理器。 */
 export function createReadOnlyHandler(options: HandlerOptions) {
   const { app } = options;
   return async function handle(request: IncomingMessage, response: ServerResponse): Promise<boolean> {
@@ -38,6 +40,7 @@ export function createReadOnlyHandler(options: HandlerOptions) {
       const origin = options.getOrigin();
       if (!origin || request.headers.host !== new URL(origin).host || (request.headers.origin && request.headers.origin !== origin)) { previewJson(response, 403, { ok: false, error: { code: 'LOCAL_ONLY', message: '仅允许本地同源访问' } }); return true; }
       const url = new URL(request.url ?? '/', origin);
+      if (options.dataDir && await handleTranscripts(request, response, url, options.dataDir, origin)) return true;
       if (url.pathname === '/_control' || url.pathname.startsWith('/_control/')) {
         if (options.control) await options.control(request, response, url);
         else previewJson(response, 404, { ok: false, error: { code: 'NOT_FOUND', message: '开发服务器不提供控制接口' } });
@@ -78,7 +81,7 @@ export function createReadOnlyHandler(options: HandlerOptions) {
         } catch (error) { if (!unavailable(error)) throw error; }
         previewJson(response, 200, { ok: true, data: { resource, content } }); return true;
       }
-      if (url.pathname === '/api/organizations') { previewJson(response, 200, { ok: true, data: await app.manager.listOrganizations() }); return true; }
+      if (url.pathname === '/api/organizations') { previewJson(response, 200, { ok: true, data: (await app.manager.listOrganizations()).map(org => org.type === 'session-transcript' ? { ...org, data: { schemaVersion: 1 } } : org) }); return true; }
       if (url.pathname === '/api/organization-types') { previewJson(response, 200, { ok: true, data: await app.manager.listOrganizationTypes() }); return true; }
       if (url.pathname === '/api/plugins') {
         const list = await app.plugins.list() as any[];

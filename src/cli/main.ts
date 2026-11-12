@@ -6,6 +6,8 @@ import { CoreManager } from '../core/manager.js';
 import { KnowledgeError } from '../core/errors.js';
 import { openApplication } from '../index.js';
 import { handlePreview } from '../preview/index.js';
+import { noteCommand } from '../records/note.js';
+import { transcriptCommand } from '../records/transcript.js';
 import type { JsonObject, ResourceReference, ResourceQuery, OrganizationTypePatch } from '../contracts/index.js';
 
 // 数据位置与工作目录解耦，便于 PPC 从其他目录调用。
@@ -31,8 +33,10 @@ async function parse(argv: string[]) {
 }
 async function run(): Promise<unknown> {
   const { words, input, dataDir } = await parse(process.argv.slice(2)); const [group, action] = words;
-  if (!group || group === 'help' || flag(input, 'help')) return { version: '0.0.4', usage: 'cli.bat <command> [action] --input file|- --data-dir path --json', commands: ['resource import/list/get/update/delete/restore/purge/history', 'meta get/set', 'organization create/list/get/update/delete', 'organization-type register/list/get/update/enable/disable/delete', 'plugin list/enable/disable/refresh', 'project-track create/list/get/add/documents/read/query', 'agent status / profile list|get|set|delete / config get|set / generate text|object', 'backup --file path', 'restore --file path', 'check', 'reindex', 'preview start/stop/status', 'content/keyword/tag/relation/system/task/organize/schedule (插件命令)'] };
+  if (!group || group === 'help' || flag(input, 'help')) return { version: '0.0.4', usage: 'cli.bat <command> [action] --input file|- --data-dir path --json', commands: ['resource import/list/get/update/delete/restore/purge/history', 'note add/list/get', 'transcript create/list/get/configure/preview/run/tick/records/retry/backfill', 'meta get/set', 'organization create/list/get/update/delete', 'organization-type register/list/get/update/enable/disable/delete', 'plugin list/enable/disable/refresh', 'project-track create/list/get/add/documents/read/query', 'agent status / profile list|get|set|delete / config get|set / generate text|object', 'backup --file path', 'restore --file path', 'check', 'reindex', 'preview start/stop/status', 'content/keyword/tag/relation/system/task/organize/schedule (插件命令)'] };
   if (group === 'preview') return handlePreview([...words.slice(1), ...(input.port !== undefined ? ['--port', String(input.port)] : [])], dataDir);
+  if (group === 'note') return noteCommand(dataDir, action, input, async () => { const chunks: Buffer[] = []; for await (const chunk of process.stdin) chunks.push(Buffer.from(chunk)); return Buffer.concat(chunks); });
+  if (group === 'transcript') return transcriptCommand(dataDir, action, input);
   // 恢复先于插件初始化，避免初始化数据使目标目录不再为空。
   if (group === 'restore') { const manager = await CoreManager.open(dataDir); try { return await manager.restore(string(input, 'file')!); } finally { await manager.close(); } }
   const readOnly = group === 'resource' && ['list', 'get', 'history'].includes(action) || group === 'meta' && action === 'get' || ['organization', 'org', 'organization-type'].includes(group) && ['list', 'get'].includes(action) || group === 'plugin' && action === 'list' || group === 'backup' || group === 'check' || ['get', 'get-config', 'list', 'query', 'candidates', 'material', 'history', 'providers'].includes(action) && !['resource', 'organization', 'org', 'meta', 'plugin', 'organization-type'].includes(group);

@@ -1,0 +1,94 @@
+{
+  "version": "v0.0.5-candidate",
+  "baseline": "b4d8ee40be32520cbf7cdeab66e0b1ad74b8fe36",
+  "date": "2026-11-12T06:13:42.697Z",
+  "typecheck": {
+    "passed": true
+  },
+  "build": {
+    "passed": true
+  },
+  "tests": {
+    "passed": 93,
+    "total": 93,
+    "records": 18,
+    "configuration": 3,
+    "evidence": "full-transcript-regression.txt"
+  },
+  "independent": {
+    "passed": 10,
+    "total": 10,
+    "projectTracking": 9,
+    "development": 1,
+    "evidence": "visual-independent.txt"
+  },
+  "browser": {
+    "passed": true,
+    "ppc": false,
+    "evidence": "visual-regression/browser-result.json"
+  },
+  "liveModel": {
+    "calls": 3,
+    "model": "deepseek-flash",
+    "syntheticOnly": true,
+    "reviewed": true,
+    "evidence": "live-synthetic.json",
+    "checks": [
+      "plan is not implementation",
+      "12 corrected to 8",
+      "failed test not passed",
+      "multiple matters separate",
+      "TTL speculation not fact"
+    ]
+  },
+  "privateSessionsSentToModel": true,
+  "formalDataModified": true,
+  "published": false,
+  "knownLimits": [
+    "private source format can change",
+    "whole-file source scanning not benchmarked",
+    "oversized turns are blocked",
+    "crash lease up to 330 seconds",
+    "semantic fidelity needs human review"
+  ],
+  "visualConfiguration": {
+    "passed": true,
+    "realModelCalls": 0,
+    "evidence": "visual-configuration/result.json",
+    "features": [
+      "instance creation and detail",
+      "draft configuration and preview",
+      "revision conflicts and merged drafts",
+      "CLI interoperability",
+      "discovery boundary preservation",
+      "desktop and mobile",
+      "empty library first use"
+    ]
+  },
+  "secretScan": {
+    "filesScanned": 339,
+    "configuredCredentialAbsent": true
+  },
+  "sourceCompatibility": {
+    "adapter": "codex-rollout-2",
+    "syntheticTests": 2,
+    "realModelCalls": 0,
+    "checks": [
+      "checkpoint prefix",
+      "global message ordinal",
+      "cross-file completed turn",
+      "inherited child metadata exclusion"
+    ]
+  },
+  "transcriptProcessor": {
+    "version": "transcript-2",
+    "redactionVersion": "credentials-1",
+    "checks": [
+      "fixed historical cutoff",
+      "future sessions excluded",
+      "known and patterned credential redaction",
+      "source fingerprints retained"
+    ]
+  },
+  "productionDetails": "本地.data/.runtime保存，不包含在Git证据中"
+}
