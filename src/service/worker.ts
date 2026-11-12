@@ -22,6 +22,9 @@ const ASSET_TYPES: Record<string, string> = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8',
   '.css': 'text/css; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png', '.ico': 'image/x-icon',
 };
+const BUILT_ASSET = /^\/assets\/[a-z\d_.-]+\.(?:js|css|svg|png|ico)$/i;
+const pathIdentity = (path: string) => process.platform === 'win32' ? path.toLowerCase() : path;
+const inside = (root: string, path: string) => pathIdentity(path).startsWith(pathIdentity(root) + sep);
 
 async function readCommand(request: IncomingMessage) {
   assert(request.headers['content-type'] === 'application/json', 'INVALID_ARGUMENT', 'CLI 请求必须为 JSON');
@@ -61,7 +64,8 @@ function commandError(response: ServerResponse, error: unknown): void {
 /** 单一进程承接生命周期、业务请求和后台调度。 */
 async function start(): Promise<void> {
   const dataDir = await realpath(resolve(process.argv[2]));
-  const webDir = fileURLToPath(new URL('../web/', import.meta.url));
+  const webDir = await realpath(fileURLToPath(new URL('../web/', import.meta.url)));
+  const dataInsideWeb = pathIdentity(dataDir) === pathIdentity(webDir) || inside(webDir, dataDir);
   await access(resolve(webDir, 'index.html'));
   const release = await acquirePreviewMutex(dataDir, 'instance', 3000);
   const token = randomBytes(32).toString('hex');
@@ -80,15 +84,18 @@ async function start(): Promise<void> {
     stopping = true;
     closing ??= (async () => {
       try {
-        const drainCron = cron?.stop();
-        await Promise.allSettled(inFlight);
-        await drainCron;
+        await Promise.allSettled([cron?.stop(), ...inFlight]);
       } finally {
         try {
-          if (server?.listening) await new Promise<void>(resolve => server!.close(() => resolve()));
-          db?.close();
-          await removeServiceState(dataDir, token);
-        } finally { await release(); }
+          // 备份或恢复的 finally 可能重新启用计时器；请求排空后再次停止。
+          await cron?.stop();
+        } finally {
+          try {
+            if (server?.listening) await new Promise<void>(resolve => server!.close(() => resolve()));
+            db?.close();
+            await removeServiceState(dataDir, token);
+          } finally { await release(); }
+        }
       }
     })();
     return closing;
@@ -163,14 +170,12 @@ async function start(): Promise<void> {
       }
       if (url.pathname.startsWith('/api/')) {
         await queue.run(async () => {
+          if (await handlePluginRoutes(request, response, url, origin, { dataDir, dispatch: domainDispatch, cron: scheduler })) return;
           const app = await openApplication(dataDir, { readOnly: true });
           try {
             const handle = createReadOnlyHandler({
               app, dataDir, getOrigin: () => origin,
-              extension: async (req, res, routeUrl, browserOrigin) => {
-                if (await scheduler.handle(req, res, routeUrl, browserOrigin)) return true;
-                return handlePluginRoutes(req, res, routeUrl, browserOrigin, { dataDir, dispatch: domainDispatch, cron: scheduler });
-              },
+              extension: scheduler.handle,
             });
             await handle(request, response);
           } finally { await app.close(); }
@@ -181,8 +186,13 @@ async function start(): Promise<void> {
         previewJson(response, 405, { ok: false, error: { code: 'METHOD_NOT_ALLOWED', message: '静态页面仅支持读取' } });
         return;
       }
-      const path = resolve(webDir, '.' + decodeURIComponent(url.pathname === '/' ? '/index.html' : url.pathname));
-      if (!path.startsWith(resolve(webDir) + sep)) {
+      const pathname = url.pathname === '/' ? '/index.html' : url.pathname;
+      if (pathname !== '/index.html' && !BUILT_ASSET.test(pathname)) {
+        previewJson(response, 404, { ok: false, error: { code: 'NOT_FOUND', message: '静态资源不存在' } });
+        return;
+      }
+      const path = await realpath(resolve(webDir, '.' + pathname));
+      if (!inside(webDir, path) || dataInsideWeb && inside(dataDir, path)) {
         previewJson(response, 403, { ok: false, error: { code: 'LOCAL_ONLY', message: '无效静态文件路径' } });
         return;
       }

@@ -1,4 +1,5 @@
 import type { Plugin } from 'vite';
+import { realpathSync } from 'node:fs';
 import { request as forwardRequest, type IncomingMessage, type ServerResponse } from 'node:http';
 import { fileURLToPath } from 'node:url';
 import { resolve } from 'node:path';
@@ -8,8 +9,14 @@ import { previewJson } from '../src/preview/readonly.js';
 const DEFAULT_DATA_DIR = fileURLToPath(new URL('../.data', import.meta.url));
 const REPO_CODEX_DIR = fileURLToPath(new URL('../.codex', import.meta.url));
 const DEFAULT_DENY = ['.env', '.env.*', '*.{crt,pem}', '**/.git/**'];
+const PRIVATE_SERVICE_FILES = ['**/.runtime/**', '**/service.sqlite', '**/service.sqlite-*'];
 const PASSTHROUGH = ['accept', 'content-type', 'content-length', 'range'] as const;
 const HOP_HEADERS = new Set(['connection', 'keep-alive', 'transfer-encoding', 'upgrade']);
+const identity = (path: string) => process.platform === 'win32' ? path.replaceAll('\\', '/').toLowerCase() : path;
+function physicalPath(path: string): string {
+  try { return realpathSync.native(path); }
+  catch { return path; }
+}
 
 function proxy(request: IncomingMessage, response: ServerResponse, url: URL, target: string, origin: string): void {
   const upstream = forwardRequest(target + url.pathname + url.search, {
@@ -35,13 +42,14 @@ function proxy(request: IncomingMessage, response: ServerResponse, url: URL, tar
 /** Vite 只提供前端和热更新，业务 API 代理到统一服务。 */
 export function knowledgeApiPlugin(options: { dataDir?: string } = {}): Plugin {
   const dataDir = resolve(options.dataDir ?? process.env.KB_DATA_DIR ?? DEFAULT_DATA_DIR);
+  const privateRoots = [...new Set([dataDir, DEFAULT_DATA_DIR, REPO_CODEX_DIR].flatMap(path => [path, physicalPath(path)]))];
   let target: string;
   return {
     name: 'knowledge-service-proxy',
     apply: 'serve',
     config(config) {
-      const privateDirectories = [dataDir, DEFAULT_DATA_DIR, REPO_CODEX_DIR].map(path => path.replaceAll('\\', '/').replace(/[!*+?()[\]{}|]/g, '\\$&') + '/**');
-      return { server: { fs: { deny: [...(config.server?.fs?.deny ?? DEFAULT_DENY), '**/.data/**', ...privateDirectories] } } };
+      const privateDirectories = privateRoots.map(path => path.replaceAll('\\', '/').replace(/[!*+?()[\]{}|]/g, '\\$&') + '/**');
+      return { server: { fs: { deny: [...(config.server?.fs?.deny ?? DEFAULT_DENY), '**/.data/**', ...PRIVATE_SERVICE_FILES, ...privateDirectories] } } };
     },
     async configResolved(config) {
       if (config.server.host !== '127.0.0.1') throw new Error('知识库开发服务器只允许绑定 127.0.0.1');
@@ -78,9 +86,8 @@ export function knowledgeApiPlugin(options: { dataDir?: string } = {}): Plugin {
         try { pathname = decodeURIComponent(url.pathname); }
         catch { previewJson(response, 400, { ok: false, error: { code: 'INVALID_ARGUMENT', message: '无效路径' } }); return; }
         const file = resolve(pathname.startsWith('/@fs/') ? pathname.slice(5) : resolve(server.config.root, '.' + pathname));
-        const identity = (value: string) => process.platform === 'win32' ? value.replaceAll('\\', '/').toLowerCase() : value;
-        const candidate = identity(file);
-        if ([dataDir, DEFAULT_DATA_DIR].some(root => candidate === identity(root) || candidate.startsWith(identity(root) + '/'))) {
+        const candidates = [identity(file), identity(physicalPath(file))];
+        if (privateRoots.some(root => candidates.some(candidate => candidate === identity(root) || candidate.startsWith(identity(root) + '/')))) {
           previewJson(response, 403, { ok: false, error: { code: 'PRIVATE_DATA', message: '数据文件仅可通过知识库服务访问' } });
           return;
         }

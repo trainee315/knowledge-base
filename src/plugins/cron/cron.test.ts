@@ -54,6 +54,11 @@ test('legacy interval migration, expression compatibility, and plugin disable us
       try { return await app.plugins.setEnabled(String(input.id), words[1] === 'enable'); }
       finally { await app.close(); }
     }
+    if (words[0] === 'organization' && words[1] === 'delete') {
+      const manager = await CoreManager.open(dataDir);
+      try { await manager.deleteOrganization(String(input.id)); return { deleted: true }; }
+      finally { await manager.close(); }
+    }
     assert.fail(`unexpected dispatch ${words.join(' ')}`);
   };
   service = await createCronService({ db, dataDir, dispatch });
@@ -65,6 +70,8 @@ test('legacy interval migration, expression compatibility, and plugin disable us
   assert.equal(job.taskType, TRANSCRIBE);
   assert.deepEqual(job.schedule, { kind: 'interval', minutes: 45 });
   assert.equal(job.nextRunAt, first);
+  await assert.rejects(issue('organization', 'delete', { id: original.id }), { code: 'CRON_TARGET_IN_USE' });
+  await assert.rejects(issue('org', 'update', { id: original.id, data: {} }), { code: 'CRON_TARGET_IN_USE' });
   const changed = await issue('cron', 'update', { id: job.id, expectedRevision: job.revision, schedule: { kind: 'cron', expression: '0 7 * * *' } }) as Job;
   await assert.rejects(issue('transcript', 'configure', { id: original.id, expectedCronRevision: job.revision, intervalMinutes: 45 }), { code: 'REVISION_CONFLICT' });
   const renamed = await issue('transcript', 'configure', { id: original.id, alias: 'renamed', enabled: true, intervalMinutes: null, expectedCronRevision: changed.revision }) as Organization;
@@ -85,6 +92,7 @@ test('legacy interval migration, expression compatibility, and plugin disable us
   assert.deepEqual((await issue('cron', 'get', { id: job.id }) as Job).schedule, { kind: 'interval', minutes: 20 });
   await issue('transcript', 'configure', { id: original.id, enabled: false, intervalMinutes: null });
   await assert.rejects(issue('cron', 'get', { id: job.id }), { code: 'NOT_FOUND' });
+  assert.deepEqual(await issue('organization', 'delete', { id: original.id }), { deleted: true });
 
   const organizer = await issue('cron', 'create', { taskType: ORGANIZE, schedule: { kind: 'interval', minutes: 1 }, enabled: true }) as Job;
   await issue('plugin', 'disable', { id: 'cron' });

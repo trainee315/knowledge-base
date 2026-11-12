@@ -68,8 +68,14 @@ export async function backupRestore(operation: 'backup' | 'restore', input: Reco
     let result: { files: number };
     try {
       await writeFile(intermediate, JSON.stringify({ schemaVersion: 1, entries: backup.entries }), { flag: 'wx' });
-      result = await manager.restore(intermediate, (backup.schemaVersion === 2 ? { snapshot: backup.service } : {}) as JsonObject);
-      pendingRecovery = true;
+      try {
+        result = await manager.restore(intermediate, (backup.schemaVersion === 2 ? { snapshot: backup.service } : {}) as JsonObject);
+        pendingRecovery = true;
+      } catch (error) {
+        // 文件恢复可能已写入重做日志，必须在释放写者锁前判断是否需要重启补全。
+        pendingRecovery = await manager.storage.files('journal').then(files => files.some(file => file.endsWith('.json')), () => true);
+        throw error;
+      }
     } finally { await manager.close(); }
     await finishRestore(dataDir, db, cron);
     pendingRecovery = false;

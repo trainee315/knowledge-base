@@ -209,6 +209,18 @@ export async function createCronService({ dataDir, db, dispatch }: { dataDir: st
         return data;
       }));
     }
+    if ((group === 'organization' || group === 'org') && (action === 'delete' || action === 'update' && input.data !== undefined)) {
+      return handled(await change(async () => {
+        await legacy.applyIntents(Date.now());
+        if (typeof input.id === 'string') {
+          const key = transcriptKey(input.id);
+          assert(!targets.has(key), 'CRON_TARGET_BUSY', '转录实例正在运行');
+          const plan = store.target(key);
+          assert(!plan, 'CRON_TARGET_IN_USE', action === 'delete' ? '请先删除该转录实例的 cron 计划' : '有 cron 计划的转录实例须通过 transcript configure 修改业务配置', { jobId: plan?.id });
+        }
+        return dispatch(words, input);
+      }));
+    }
     if (group === 'schedule') {
       assert(await pluginAvailable('scheduler'), 'PLUGIN_UNAVAILABLE', '旧周期接口所属插件不可用');
       if (action === 'get') return handled(legacy.organizerState());

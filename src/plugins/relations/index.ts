@@ -10,7 +10,7 @@ import { agentProviderIdentity, createAgentScorer } from './agent-scorer.js';
 import { digest, readRelationRecord, scopeKey, type CoverageEntry, type RelationProviderIdentity, type RelationRecord, type RelationScope } from './cache.js';
 
 // 默认离线，评分逻辑版本须显式提升；加载、配置查询不发出请求。
-const DEFAULT_CONFIG: RelationConfig = { schemaVersion: 1, mode: 'offline', scoringLogicVersion: '1', maxBatchSize: 32 };
+export const DEFAULT_RELATION_CONFIG: RelationConfig = { schemaVersion: 1, mode: 'offline', scoringLogicVersion: '1', maxBatchSize: 32 };
 const TAG_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/iu;
 export interface RelationConfig { schemaVersion: 1; mode: 'offline' | 'agent'; agentProfile?: string; scoringLogicVersion: string; maxBatchSize: number }
 export interface ScoredRelations {
@@ -43,7 +43,7 @@ export const relationsPlugin: PluginDefinition = {
     const tags = context.getDependency<TagsApi>('tags');
     const keywords = context.getDependency<KeywordsApi>('keywords');
     const agent = context.getDependency<AgentApi>('agent');
-    let config = await context.store.read<RelationConfig>('config', { ...DEFAULT_CONFIG }); validateConfig(config);
+    let config = await context.store.read<RelationConfig>('config', { ...DEFAULT_RELATION_CONFIG }); validateConfig(config);
     let override: ScoringProvider | undefined;
     // 同标签所有scope串行，避免并发词对重复计费或覆盖同一正式文件。
     const pending = new Map<string, Promise<void>>();
@@ -143,7 +143,7 @@ export const relationsPlugin: PluginDefinition = {
       if (Object.keys(input).some(key => !['mode', 'agentProfile', 'scoringLogicVersion', 'maxBatchSize', 'json', 'input', 'dataDir'].includes(key))) throw new KnowledgeError('INVALID_RELATION_CONFIG', '评分配置包含未知字段');
       const patch: Partial<Omit<RelationConfig, 'schemaVersion'>> = {};
       if (input.mode !== undefined) patch.mode = input.mode as RelationConfig['mode'];
-      if (input.agentProfile !== undefined) patch.agentProfile = input.agentProfile as string;
+      if (input.agentProfile !== undefined) patch.agentProfile = input.agentProfile === null ? undefined : input.agentProfile as string;
       if (input.scoringLogicVersion !== undefined) patch.scoringLogicVersion = input.scoringLogicVersion as string;
       if (input.maxBatchSize !== undefined) patch.maxBatchSize = number(input.maxBatchSize, 32);
       return api.configure(patch);

@@ -3,15 +3,26 @@ import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { renderMarkdown } from '../../src/preview/markdown';
 import { previewPanels } from './panels';
 import OrganizationBrowser from './OrganizationBrowser.vue';
+import PluginDetail from './PluginDetail.vue';
+import { pluginHash } from './plugin-detail';
 
 type Resource = { id: string; originalName: string; extension: string; mediaType: string; size: number; contentVersion: number; updatedAt: string; deletedAt?: string; plugins: Record<string, unknown> };
 type Item = { resource: Resource; reasons?: string[]; matchReasons?: string[]; parseStatus: string };
 type Plugin = { id: string; enabled?: boolean; status?: string; version?: string; dependencies?: Record<string, string> };
 const tab = ref('resources');
 const instanceRoute = ref(false);
+const activeHash = ref(location.hash);
 let previousHash = location.hash;
 function switchTab(value: string) {
-  if (value === tab.value) return;
+  if (value === tab.value) {
+    if (value === 'plugins' && selectedPlugin.value && window.dispatchEvent(new Event('kb-before-navigation', { cancelable: true }))) location.hash = '#plugins';
+    return;
+  }
+  if (value === 'plugins' || tab.value === 'plugins') {
+    if (tab.value === 'plugins' && !window.dispatchEvent(new Event('kb-before-navigation', { cancelable: true }))) return;
+    location.hash = value === 'plugins' ? '#plugins' : value === 'organizations' ? '#browse' : '';
+    return;
+  }
   if (!window.dispatchEvent(new Event('kb-before-navigation', { cancelable: true }))) return;
   tab.value = value;
 }
@@ -26,6 +37,7 @@ const total = ref(0);
 const offset = ref(0);
 // 业务数据以同源接口为准，实例表单只在编辑期间持有草稿。
 const plugins = ref<Plugin[]>([]);
+const selectedPlugin = computed(() => new URLSearchParams(activeHash.value.split('?')[1] ?? '').get('id') ?? '');
 const organizations = ref<any[]>([]);
 const organizationTypes = ref<any[]>([]);
 const selected = ref<{ resource: Resource; content: { text?: string; status?: string; format?: string; referenceStatus?: string; diagnostics?: string[] }; systems?: unknown[] }>();
@@ -64,15 +76,30 @@ async function openResource(id: string): Promise<void> {
   finally { detailBusy.value = false; }
 }
 function readHash(): void {
-  if (!location.hash.startsWith('#browse') && tab.value === 'organizations' && !window.dispatchEvent(new Event('kb-before-navigation', { cancelable: true }))) {
+  const hash = location.hash;
+  const pluginRoute = /^#plugins(?:\?|$)/.test(hash);
+  if (hash !== previousHash && (tab.value === 'plugins' || !hash.startsWith('#browse') && tab.value === 'organizations') && !window.dispatchEvent(new Event('kb-before-navigation', { cancelable: true }))) {
     history.replaceState(null, '', previousHash);
     return;
   }
-  previousHash = location.hash;
-  instanceRoute.value = new URLSearchParams(location.hash.split('?')[1] ?? '').has('instance');
-  if (location.hash.startsWith('#browse')) { tab.value = 'organizations'; return; }
-  const match = /^#resource\/([a-f\d-]{36})$/i.exec(location.hash);
+  const wasPlugin = tab.value === 'plugins';
+  previousHash = hash;
+  activeHash.value = hash;
+  instanceRoute.value = new URLSearchParams(hash.split('?')[1] ?? '').has('instance');
+  if (pluginRoute) {
+    tab.value = 'plugins';
+    if (!selectedPlugin.value) void refreshPlugins();
+    return;
+  }
+  if (hash.startsWith('#browse')) { tab.value = 'organizations'; return; }
+  const match = /^#resource\/([a-f\d-]{36})$/i.exec(hash);
   if (match) void openResource(match[1]);
+  else if (wasPlugin) tab.value = 'resources';
+}
+async function refreshPlugins() {
+  error.value = '';
+  try { plugins.value = await api('/api/plugins'); }
+  catch (cause) { error.value = cause instanceof Error ? cause.message : String(cause); }
 }
 function closeDetail(): void { selected.value = undefined; history.replaceState(null, '', location.pathname + location.search); }
 function bytes(size: number): string { return size < 1024 ? `${size} B` : size < 1048576 ? `${(size / 1024).toFixed(1)} KB` : `${(size / 1048576).toFixed(1)} MB`; }
@@ -81,9 +108,20 @@ function reasonLabel(reason: string): string { return reason.startsWith('解析�
 function formatted(value: unknown): string { return JSON.stringify(value, null, 2); }
 onMounted(async () => {
   window.addEventListener('hashchange', readHash);
-  try { [plugins.value, organizations.value, organizationTypes.value] = await Promise.all([api('/api/plugins'), api('/api/organizations'), api('/api/organization-types')]); }
-  catch (cause) { error.value = String(cause instanceof Error ? cause.message : cause); }
-  await search(); readHash();
+  readHash();
+  const responses = await Promise.allSettled([api('/api/plugins'), api('/api/organizations'), api('/api/organization-types')]);
+  const [pluginResponse, organizationResponse, typeResponse] = responses;
+  if (pluginResponse.status === 'fulfilled') plugins.value = pluginResponse.value;
+  if (organizationResponse.status === 'fulfilled') organizations.value = organizationResponse.value;
+  if (typeResponse.status === 'fulfilled') organizationTypes.value = typeResponse.value;
+  await search();
+  if (tab.value === 'plugins' && pluginResponse.status === 'rejected' && !selectedPlugin.value) {
+    error.value = String(pluginResponse.reason?.message ?? pluginResponse.reason);
+  }
+  if (tab.value === 'organizations') {
+    const failed = [organizationResponse, typeResponse].find(item => item.status === 'rejected');
+    if (failed) error.value = String(failed.reason?.message ?? failed.reason);
+  }
 });
 onUnmounted(() => window.removeEventListener('hashchange', readHash));
 </script>
@@ -139,9 +177,18 @@ onUnmounted(() => window.removeEventListener('hashchange', readHash));
       </template>
       <button v-if="tab === 'organizations' && enabled.has('transcripts') && !instanceRoute && !organizationTypes.some(type => type.id === 'session-transcript')" @click="createFirstTranscript">新建 Session 转录实例</button>
       <OrganizationBrowser v-if="tab === 'organizations'" :types="organizationTypes" :organizations="organizations" @changed="refreshOrganizations" />
-      <p v-if="tab === 'plugins'" class="muted">当前展示本次预览启动时载入的插件状态。插件启停变更后，请停止并重新启动预览。</p>
-      <div v-if="tab === 'plugins'" class="card-grid"><section v-for="plugin in plugins" :key="plugin.id" class="plugin-card"><span class="status">{{ plugin.status ?? (plugin.enabled === false ? 'disabled' : 'ready') }}</span><h2>{{ plugin.id }}</h2><p class="muted">{{ plugin.version }}</p><h3>直接依赖</h3><p>{{ Object.keys(plugin.dependencies ?? {}).join(' → ') || '无' }}</p></section></div>
-      <footer>Agent 知识库 <span>临时预览服务 · 关闭后数据仍保存在文件中</span></footer>
+      <PluginDetail v-if="tab === 'plugins' && selectedPlugin" :key="selectedPlugin" :id="selectedPlugin" :route="activeHash" />
+      <template v-else-if="tab === 'plugins'">
+        <div class="plugin-list-tools"><button @click="refreshPlugins">刷新插件状态</button></div>
+        <div class="card-grid"><section v-for="plugin in plugins" :key="plugin.id" class="plugin-card"><span class="status">{{ plugin.status ?? (plugin.enabled === false ? 'disabled' : 'ready') }}</span><h2>{{ plugin.id }}</h2><p class="muted">{{ plugin.version }}</p><h3>直接依赖</h3><p>{{ Object.keys(plugin.dependencies ?? {}).join(' → ') || '无' }}</p><a :href="pluginHash(plugin.id)" :aria-label="'查看 ' + plugin.id + ' 详情'">查看详情 →</a></section></div>
+      </template>
+      <footer>Agent 知识库 <span>本地应用服务</span></footer>
     </main>
   </div>
 </template>
+
+<style scoped>
+.plugin-list-tools { display: flex; justify-content: flex-end; margin-bottom: 1rem; }
+.plugin-card a { display: inline-block; margin-top: .5rem; font-weight: 600; }
+.card-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr)); }
+</style>
