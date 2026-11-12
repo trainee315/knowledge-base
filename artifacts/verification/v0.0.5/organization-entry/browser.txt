@@ -1,0 +1,9 @@
+
+> agent-knowledge-base@0.0.5 test:web
+> node web/tests/browser.mjs
+
+
+知识库开发页面 http://127.0.0.1:62618
+业务服务 http://127.0.0.1:53193
+dataDir: C:\Users\mamar\AppData\Local\Temp\知识库 浏览器 中文 空格 pqYuso\正式数据 目录
+{"passed":true,"evidence":"D:\\project\\knowledge-base\\artifacts\\verification\\v0.0.5\\organization-entry\\browser"}

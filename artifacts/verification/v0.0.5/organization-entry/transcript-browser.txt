@@ -1,0 +1,5 @@
+
+知识库开发页面 http://127.0.0.1:5173
+业务服务 http://127.0.0.1:53593
+dataDir: C:\Users\mamar\AppData\Local\Temp\kb-visual-config-SqcAhv\data
+{"passed":true,"evidence":"D:\\project\\knowledge-base\\artifacts\\verification\\v0.0.5\\organization-entry\\transcript-browser"}

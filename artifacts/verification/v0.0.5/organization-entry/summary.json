@@ -1,0 +1,70 @@
+{
+  "change": "retire project-development-tracking from organization browser",
+  "date": "2026-11-12",
+  "baseline": "03104a2643334da10c3d9bfedf879ef7039ab17e",
+  "status": "user-confirmed-for-commit",
+  "passed": true,
+  "typecheck": {
+    "passed": true,
+    "evidence": "typecheck.txt"
+  },
+  "build": {
+    "passed": true,
+    "evidence": "build.txt"
+  },
+  "core": {
+    "passed": 99,
+    "total": 99,
+    "evidence": "tests.txt"
+  },
+  "independent": {
+    "passed": 10,
+    "total": 10,
+    "evidence": "independent.txt"
+  },
+  "browser": {
+    "passed": true,
+    "evidence": "browser/browser-result.json"
+  },
+  "transcriptBrowser": {
+    "passed": true,
+    "evidence": "transcript-browser/result.json",
+    "checks": [
+      "retired project type hidden",
+      "legacy URL redirected with cleared selection",
+      "legacy redirect reload back and forward",
+      "legacy desktop mobile and development routes",
+      "no legacy browser API calls",
+      "legacy organization resource and pinned content unchanged",
+      "pre-session library navigation without initialization",
+      "create",
+      "draft preview zero write",
+      "stale preview",
+      "cancel",
+      "unsaved navigation guard",
+      "revision conflict and retained draft",
+      "CLI interoperability and merged fields",
+      "ordinary config boundary",
+      "record reading and history",
+      "filter preview",
+      "mobile save",
+      "development server save",
+      "empty library first configuration"
+    ]
+  },
+  "realModelCalls": 0,
+  "syntheticModelFixtureCalls": 2,
+  "dataPolicy": "historical organization and pinned resource reads retained",
+  "scope": "organization browser presentation and legacy URL navigation",
+  "runtimeData": "isolated synthetic temporary libraries",
+  "limitation": "historical project entries retain their original representation",
+  "version": "0.0.5",
+  "supplementOf": "v0.0.5",
+  "verificationBaseline": "6363fde4e00af1d79f528eff551ff0beba3bf2fe",
+  "initialCoreVerification": {
+    "passed": 93,
+    "total": 93,
+    "baseline": "03104a2643334da10c3d9bfedf879ef7039ab17e"
+  },
+  "attribution": "User confirmed organization browser adjustment belongs to v0.0.5 supplement"
+}

@@ -34,7 +34,17 @@ try {
   await page.goBack();await page.locator('.browse-detail article').waitFor();
   const projectManifest=process.env.KB_BROWSER_PROJECT_MANIFEST;
   let historical=false;
-  if(projectManifest){const m=JSON.parse(await readFile(projectManifest,'utf8'));projectServer=await createPreviewServer({app:await openApplication(m.dataDir,{readOnly:true}),dataDir:m.dataDir,webDir:resolve('dist/web')});await page.goto(projectServer.url+'/#browse?'+new URLSearchParams({type:'project-development-tracking',id:m.projectId,entry:m.entries.pinnedHistory}));await page.locator('.browse-detail .text-content,.browse-detail article').waitFor();await page.locator('.browse-detail').getByText(/历史原文 v1/).waitFor();assert.match(await page.locator('.browse-detail').innerText(),/历史原文/);await page.screenshot({path:join(evidence,'pinned-history.png'),fullPage:true});historical=true;}
+  if(projectManifest){
+    const m=JSON.parse(await readFile(projectManifest,'utf8'));
+    projectServer=await createPreviewServer({app:await openApplication(m.dataDir,{readOnly:true}),dataDir:m.dataDir,webDir:resolve('dist/web')});
+    await page.goto(projectServer.url+'/#browse?'+new URLSearchParams({type:'project-development-tracking',id:m.projectId,entry:m.entries.pinnedHistory}));
+    await page.waitForFunction(()=>location.hash==='#browse?type=session-transcript');
+    assert.equal(await page.getByLabel('组织方式',{exact:true}).locator('option[value="project-development-tracking"]').count(),0);
+    const result=await (await fetch(projectServer.url+`/api/project-tracking/${m.projectId}/entries/${m.entries.pinnedHistory}`)).json();
+    assert.equal(result.ok,true);
+    assert.equal(result.data.entry.contentVersion,1);
+    historical=true;
+  }
   assert.deepEqual(failures,[]);assert.equal(await fingerprint(),before);
   await writeFile(join(evidence,'result.json'),JSON.stringify({passed:true,checks:{pngDocuments:4,architectureDocuments:5,keywordPhrase:true,multiTagAll:5,reload:true,back:true,mobile:true,historical,formalFilesUnchanged:true,pageErrors:failures}},null,2));
   console.log(JSON.stringify({passed:true,evidence}));

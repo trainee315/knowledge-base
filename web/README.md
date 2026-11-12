@@ -57,3 +57,7 @@ node web/tests/transcript-configuration.mjs
 组织与体系中选择 Session 转录，在实例列表新建实例或查看详情。概览、关联记录、实例配置三个页签支持 URL 恢复。表单可保存、取消及预览草稿，profile 显示模型与凭证可用性。冲突时保留草稿，刷新修订后合并其他字段。
 
 配置接口由开发和构建预览共用，短写会话复用CLI验证和事务。读取、配置保存及草稿预览的模型调用次数为零。补充验收见 doc/新增需求/v0.0.5/acceptance.md。
+
+## 组织入口调整
+
+组织方式选择器撤下“项目开发状态跟踪”，项目记录入口统一使用Session转录。旧的project-development-tracking页面链接进入Session转录列表，并清除原条目定位和筛选参数。历史条目仍可通过project-track命令和固定原文读取接口回查。需求及验收见[v0.0.5补充需求](../doc/新增需求/v0.0.5/organization-browser-followup.md)。

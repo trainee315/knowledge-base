@@ -4,6 +4,9 @@ import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { chromium } from 'playwright-core';
 import { createServer as createViteServer } from 'vite';
+import { openApplication } from '../../dist/index.js';
+import { CoreManager } from '../../dist/core/manager.js';
+import { createPreviewServer } from '../../dist/preview/server.js';
 import { transcriptCommand } from '../../dist/records/transcript.js';
 import { serviceCli } from '../../tests/service-cli.mjs';
 
@@ -17,12 +20,32 @@ const emptyData = join(root, 'first-use');
 const cli = (operation, input) => serviceCli(dataDir, ['transcript', operation], { input });
 await mkdir(sourceRoot);
 await mkdir(evidence, { recursive: true });
+await writeFile(join(evidence, 'result.json'), JSON.stringify({ passed: false, state: 'running' }, null, 2));
 const row = (type, payload) => JSON.stringify({ timestamp: '2026-01-01T01:00:00Z', type, payload }) + '\n';
 for (const id of ['alpha', 'beta']) {
   await writeFile(join(sourceRoot, id + '.jsonl'), row('session_meta', { id, cwd: root, source: 'cli' }) + row('event_msg', { type: 'task_started' }) + row('response_item', { type: 'message', role: 'user', content: [{ type: 'input_text', text: '合成要求 ' + id }] }) + row('event_msg', { type: 'task_complete' }));
 }
 const config = { alias: '已有实例', sourceRoot, projectDir: root, startDate: '2025-01-01', maxCalls: 2 };
 const existing = await transcriptCommand(dataDir, 'create', config);
+// 用固定历史原文验证撤下页面入口后，旧数据仍可按原契约回查。
+const legacyApp = await openApplication(dataDir);
+let legacyProject, legacyEntry, legacyResource, legacySnapshot;
+const legacyBody = '# 合成历史基线\n\n这是旧版项目条目的固定原文。';
+try {
+  const file = join(root, 'legacy.md');
+  await writeFile(file, legacyBody);
+  legacyResource = (await legacyApp.manager.importResource(file)).resource;
+  await legacyApp.plugins.refresh();
+  legacyProject = await legacyApp.plugins.execute('project-track create', { name: '旧项目跟踪实例' }, []);
+  legacyEntry = (await legacyApp.plugins.execute('project-track add', { projectId: legacyProject.id, resourceId: legacyResource.id, title: '旧基线', role: 'baseline', projectVersion: '0.0.3', stage: 'verified' }, [])).entry;
+  await writeFile(file, '# 合成当前原文\n\n原件已更新到第二版。');
+  await legacyApp.manager.updateResource(legacyResource.id, file);
+  await legacyApp.plugins.refresh();
+  legacySnapshot = { project: await legacyApp.manager.getOrganization(legacyProject.id), resource: await legacyApp.manager.getResource(legacyResource.id) };
+} finally {
+  await legacyApp.close();
+}
+const legacyHash = '#browse?' + new URLSearchParams({ type: 'project-development-tracking', id: legacyProject.id, entry: legacyEntry.id, resource: legacyResource.id, instance: legacyProject.id, view: 'config', q: '旧关键词', cq: '旧项目', co: '30', offset: '20', nodeId: 'old-node' });
 let modelCalls = 0;
 await transcriptCommand(dataDir, 'run', { id: existing.id }, { async generateObject(input) {
   modelCalls++;
@@ -34,6 +57,7 @@ let browser;
 let preview;
 let development;
 let emptyPreview;
+let legacyPreview;
 const pageErrors = [];
 try {
   preview = serviceCli(dataDir, ['service', 'start']);
@@ -41,7 +65,33 @@ try {
   const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
   page.setDefaultTimeout(15000);
   page.on('pageerror', error => pageErrors.push(error.message));
-  await page.goto(preview.url + '/#browse?type=session-transcript');
+  const legacyRequests = [];
+  page.on('request', request => {
+    const url = new URL(request.url());
+    if (url.pathname.startsWith('/api/project-tracking/') || url.pathname.startsWith('/api/browse/') && url.searchParams.get('type') === 'project-development-tracking') legacyRequests.push(request.url());
+  });
+  await page.goto(preview.url + legacyHash);
+  await page.waitForFunction(() => location.hash === '#browse?type=session-transcript');
+  const kinds = page.getByLabel('组织方式', { exact: true });
+  assert.equal(await kinds.inputValue(), 'session-transcript');
+  assert.equal(await kinds.locator('option[value="project-development-tracking"]').count(), 0);
+  assert.equal(await kinds.locator('option[value="tag"],option[value="keyword"],option[value="system"]').count(), 3);
+  await page.getByRole('button', { name: '查看 已有实例 详情', exact: true }).waitFor();
+  assert.equal(await page.getByLabel('搜索组织条目').inputValue(), '');
+  assert.equal(await page.getByLabel('搜索关联文档').inputValue(), '');
+  assert.equal(await page.locator('.browse-document').count(), 0);
+  await page.reload();
+  await page.getByRole('button', { name: '查看 已有实例 详情', exact: true }).waitFor();
+  await kinds.selectOption('tag');
+  await page.goBack();
+  await page.getByRole('button', { name: '查看 已有实例 详情', exact: true }).waitFor();
+  assert.equal(await kinds.inputValue(), 'session-transcript');
+  await page.goForward();
+  await page.waitForFunction(() => new URLSearchParams(location.hash.split('?')[1]).get('type') === 'tag');
+  assert.equal(await kinds.inputValue(), 'tag');
+  await page.goto(preview.url + legacyHash);
+  await page.getByRole('button', { name: '查看 已有实例 详情', exact: true }).waitFor();
+  await page.screenshot({ path: join(evidence, 'session-entry.png'), fullPage: true });
   await page.getByRole('button', { name: '新建实例', exact: true }).click();
   await page.getByLabel('展示别名', { exact: true }).fill('网页新实例');
   await page.getByLabel('项目目录', { exact: true }).fill(root);
@@ -120,12 +170,53 @@ try {
   await development.listen();
   const devUrl = `http://127.0.0.1:${development.httpServer.address().port}`;
   await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto(devUrl + legacyHash);
+  await page.waitForFunction(() => location.hash === '#browse?type=session-transcript');
+  assert.equal(await page.getByLabel('组织方式', { exact: true }).locator('option[value="project-development-tracking"]').count(), 0);
   await page.goto(devUrl + '/#browse?' + new URLSearchParams({ type: 'session-transcript', instance: id, view: 'config' }));
   await page.getByRole('button', { name: '编辑配置', exact: true }).click();
   await page.getByLabel('展示别名', { exact: true }).fill('开发服务保存');
   await page.getByRole('button', { name: '保存配置', exact: true }).click();
   await page.getByText('配置已保存', { exact: true }).waitFor();
   assert.equal(cli('get', { id }).name, '开发服务保存');
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(devUrl + legacyHash);
+  await page.getByRole('button', { name: '查看 开发服务保存 详情', exact: true }).waitFor();
+  assert.equal(await page.getByLabel('组织方式', { exact: true }).inputValue(), 'session-transcript');
+  assert.equal(await page.getByLabel('组织方式', { exact: true }).locator('option[value="project-development-tracking"]').count(), 0);
+  assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+  const historical = await (await fetch(preview.url + `/api/project-tracking/${legacyProject.id}/entries/${legacyEntry.id}`)).json();
+  assert.equal(historical.ok, true);
+  assert.equal(historical.data.text, legacyBody);
+  const legacyReader = await openApplication(dataDir, { readOnly: true });
+  try {
+    assert.deepEqual(await legacyReader.manager.getOrganization(legacyProject.id), legacySnapshot.project);
+    assert.deepEqual(await legacyReader.manager.getResource(legacyResource.id), legacySnapshot.resource);
+    assert.equal((await legacyReader.manager.readContent(legacyResource.id, 1)).toString('utf8'), legacyBody);
+  } finally {
+    await legacyReader.close();
+  }
+  const legacyData = join(root, 'pre-session-library');
+  const legacyManager = await CoreManager.open(legacyData);
+  try {
+    await legacyManager.registerOrganizationType({ id: 'project-development-tracking', name: '项目开发状态跟踪', config: {} });
+    await legacyManager.createOrganization({ type: 'project-development-tracking', name: '旧库实例', data: { schemaVersion: 1, entries: [] } });
+  } finally {
+    await legacyManager.close();
+  }
+  legacyPreview = await createPreviewServer({ app: await openApplication(legacyData, { readOnly: true }), dataDir: legacyData, webDir: resolve('dist/web') });
+  await page.goto(legacyPreview.url + legacyHash);
+  await page.getByRole('button', { name: '新建 Session 转录实例', exact: true }).waitFor();
+  assert.equal(await page.getByLabel('组织方式', { exact: true }).inputValue(), 'session-transcript');
+  assert.equal(await page.getByLabel('组织方式', { exact: true }).locator('option[value="project-development-tracking"]').count(), 0);
+  assert.equal(await page.getByRole('alert').count(), 0);
+  assert.equal(await page.getByLabel('搜索组织条目').inputValue(), '');
+  const oldLibraryReader = await openApplication(legacyData, { readOnly: true });
+  try {
+    assert.deepEqual((await oldLibraryReader.manager.listOrganizationTypes()).map(kind => kind.id), ['project-development-tracking']);
+  } finally {
+    await oldLibraryReader.close();
+  }
   emptyPreview = serviceCli(emptyData, ['service', 'start']);
   await page.goto(emptyPreview.url + '/#browse');
   await page.getByRole('button', { name: '新建 Session 转录实例', exact: true }).click();
@@ -137,8 +228,9 @@ try {
   await page.getByRole('heading', { name: '首次配置', exact: true }).waitFor();
   assert.equal(serviceCli(emptyData, ['transcript', 'list']).length, 1);
   assert.deepEqual(pageErrors, []);
+  assert.deepEqual(legacyRequests, []);
   assert.equal(modelCalls, 2);
-  await writeFile(join(evidence, 'result.json'), JSON.stringify({ passed: true, syntheticOnly: true, modelCallsForFixtures: 2, realModelCalls: 0, pageErrors, checks: ['create', 'draft preview zero write', 'stale preview', 'cancel', 'unsaved navigation guard', 'revision conflict and retained draft', 'CLI interoperability and merged fields', 'ordinary config boundary', 'record reading and history', 'filter preview', 'mobile save', 'development server save', 'empty library first configuration'] }, null, 2));
+  await writeFile(join(evidence, 'result.json'), JSON.stringify({ passed: true, syntheticOnly: true, modelCallsForFixtures: 2, realModelCalls: 0, pageErrors, checks: ['retired project type hidden', 'legacy URL redirected with cleared selection', 'legacy redirect reload back and forward', 'legacy desktop mobile and development routes', 'no legacy browser API calls', 'legacy organization resource and pinned content unchanged', 'pre-session library navigation without initialization', 'create', 'draft preview zero write', 'stale preview', 'cancel', 'unsaved navigation guard', 'revision conflict and retained draft', 'CLI interoperability and merged fields', 'ordinary config boundary', 'record reading and history', 'filter preview', 'mobile save', 'development server save', 'empty library first configuration'] }, null, 2));
   console.log(JSON.stringify({ passed: true, evidence }));
 } catch (error) {
   console.error(error);
@@ -148,6 +240,7 @@ try {
   await development?.close();
   if (preview) serviceCli(dataDir, ['service', 'stop']);
   if (emptyPreview) serviceCli(emptyData, ['service', 'stop']);
+  await legacyPreview?.close();
   const absolute = resolve(root);
   assert.equal(await realpath(absolute), canonicalRoot);
   assert.equal(dirname(canonicalRoot), await realpath(tmpdir()));

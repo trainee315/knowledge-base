@@ -6,6 +6,8 @@
 
 [组织实例可视化配置补充需求](visual-configuration.md)已实现并完成自动验证，纳入本次用户验收。
 
+[组织入口调整补充需求](organization-browser-followup.md)已实现并完成自动验证，2026-11-12用户确认归入v0.0.5并提交。项目记录入口由Session转录承接，历史条目继续支持回查。[补充验证与验收步骤](organization-browser-verification.md)
+
 交付自由记录、本机 Codex session 增量转录、主动 run 与外部定时 tick。复用资源版本、Agent profile、标签关键词及通用组织浏览。不实现客户端、MCP、远端服务、向量或系统任务。
 
 先落档再实施；隔离临时库、合成 session 自动验证，最多三次合成对话真实模型核对，再交用户验收。用户验收后按既有流程归档、统一正式版本、提交推送主分支与版本标签。
