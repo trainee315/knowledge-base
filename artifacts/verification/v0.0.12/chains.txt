@@ -1,0 +1,26 @@
+
+> agent-knowledge-base@0.0.5 test:chains
+> npm run build:core && node --test tests/chains/chain.test.mjs
+
+
+> agent-knowledge-base@0.0.5 build:core
+> tsc -p tsconfig.json
+
+✔ CLI resolves aliases once for run, retry and backfill (2825.4182ms)
+✔ CLI preview applies execution budgets and rejects unknown options (1653.5623ms)
+✔ CLI continuation reads every fragment once (2872.0428ms)
+✔ CLI indexes mixed-language identifiers and Chinese boundaries (2538.1829ms)
+✔ single-session budgets, frozen retry and status stay isolated (3408.1015ms)
+✔ partial errors retain structured results and retry frozen input once (3447.5082ms)
+✔ help is offline and effect-free, CLI options cannot silently widen scope (3694.3055ms)
+✔ list continuation preserves filters and rejects changed snapshots (3441.3664ms)
+✔ section continuations preserve original hashes and splitting identity (2947.8754ms)
+✔ completed work followed by an active turn cannot report full completion (1934.0748ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 28883.5308

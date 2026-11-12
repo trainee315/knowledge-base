@@ -10,6 +10,7 @@ import { configure, resolveScope, allowed, snapshot } from './scope.js';
 import { prepare, recallCommand } from './recall.js';
 import { buildIndex, pointer } from './index.js';
 import { split } from './fragments.js';
+import { TOKENIZER_VERSION, terms } from './fragments.js';
 import type { RecallConfig } from './types.js';
 import { developmentBusy, runDevelopmentWorkload } from './development.js';
 
@@ -70,7 +71,8 @@ test('notes remain pinned to original version after underlying resource update',
 });
 test('full response budget, metadata listing and registered task entries are bounded', async () => {
   const f = await setup(); await buildIndex(f.data, false, false);
-  const read = await prepare(f.data, { id: f.a, scope, maxBytes: 1500 }); assert.ok(Buffer.byteLength(JSON.stringify({ ok: true, data: read })) <= 1500);
+  await assert.rejects(prepare(f.data, { id: f.a, scope, maxBytes: 1500 }), { code: 'OUTPUT_BUDGET' });
+  const read = await prepare(f.data, { id: f.a, scope, maxBytes: 3000 }); assert.ok(Buffer.byteLength(JSON.stringify({ ok: true, data: read })) <= 3000); assert.ok(read.evidence.length);
   const task = await prepare(f.data, { task: '增加连击', scope, retrievalMode: 'lexical', maxBytes: 4000 }); assert.ok(task.evidence.some((x: any) => x.methods.includes('registered'))); assert.equal(task.usage.modelCalls, 0); assert.ok(task.gaps.length > 0);
   const list = await prepare(f.data, { mode: 'list', scope, sort: 'title', direction: 'asc' }); assert.equal(list.items.length, 1); assert.equal(list.usage.modelCalls, 0);
 });
@@ -155,4 +157,36 @@ test('development lease publication remains valid during concurrent polling', as
     const reader = (async () => { while (!finished) await developmentBusy(); })();
     await Promise.all([workload, reader]); assert.equal(await developmentBusy(), false);
   }
+});
+
+test('tokenizer migration is explicit and read remains independent of the old index', async () => {
+  const f = await setup(); await buildIndex(f.data, false, false);
+  const manager = await CoreManager.open(f.data);
+  try { const store = manager.pluginStore('recall'); const active = await store.read<any>('active-index', null, 'cache'); await store.write('active-index', { ...active, tokenizer: 'nfkc-cjk-bigram-1' }, 'cache'); } finally { await manager.close(); }
+  assert.equal((await recallCommand(f.data, ['recall', 'index', 'status'], {})).tokenizerCompatible, false);
+  await assert.rejects(prepare(f.data, { query: '连击窗口', scope, retrievalMode: 'lexical' }), { code: 'INDEX_TOKENIZER_MISMATCH' });
+  assert.ok((await prepare(f.data, { id: f.a, scope })).evidence.length);
+  const rebuilt = await buildIndex(f.data, false, false); assert.equal(rebuilt.tokenizer, TOKENIZER_VERSION); assert.ok(rebuilt.reusedFragments > 0);
+  assert.ok((await prepare(f.data, { query: '连击窗口', scope, retrievalMode: 'lexical' })).evidence.length);
+});
+
+test('mixed terms retain full identifiers and punctuation does not consume adjacent Chinese', () => {
+  const tokens = terms('CHAIN_PROBE_8192：限制为8；E_FAIL-42与v1.2.3，D:/src/battle.ts提交abc123');
+  for (const token of ['chain_probe_8192', '限制', 'e_fail-42', 'v1.2.3', 'd:/src/battle.ts', 'abc123']) assert.ok(tokens.includes(token), token);
+  assert.ok(!tokens.some(token => token.includes('8192:限制')));
+});
+
+test('multi-document task omissions expose bounded pinned read ranges', async () => {
+  const f = await setup();
+  await configure(f.data, { ...f.config, expectedRevision: f.config.revision, resources: { ...f.config.resources, [f.b]: { projectId: 'a', modules: ['battle'] } }, projects: f.config.projects.map(p => p.id === 'a' ? { ...p, entries: [f.a, f.b] } : p) });
+  await buildIndex(f.data, false, false);
+  const result = await prepare(f.data, { task: '连击窗口', scope, retrievalMode: 'lexical', maxFragments: 1, maxBytes: 10000, budgetTokens: 4000 });
+  assert.equal(result.evidence.length, 1); assert.ok(result.continuations.length); assert.equal(result.continue, undefined);
+  const ids = new Set(result.evidence.map((e: any) => e.resourceId));
+  for (const continuation of result.continuations) {
+    assert.equal(continuation.command, 'recall read');
+    const next = await prepare(f.data, { ...continuation.input, mode: 'read' });
+    for (const evidence of next.evidence) { assert.ok(evidence.ordinal < continuation.input.endOffset); ids.add(evidence.resourceId); }
+  }
+  assert.deepEqual([...ids].sort(), [f.a, f.b].sort());
 });

@@ -1,0 +1,1640 @@
+{
+  "syntheticOnly": true,
+  "modelSelectedCommands": true,
+  "cases": [
+    {
+      "name": "继续历史任务",
+      "task": "继续连击工作：调查最新窗口与验证状态。只读范围{\"projectId\":\"chain-project\",\"sessionId\":\"chain-live-session\"}，使用semantic实际向量查询，不要编造当前测试通过。",
+      "trace": [
+        {
+          "decision": {
+            "action": "cli",
+            "command": "recall prepare",
+            "inputJson": "{\"mode\":\"question\",\"query\":\"最新窗口 验证状态 测试结果\",\"scope\":{\"projectId\":\"chain-project\",\"sessionId\":\"chain-live-session\"},\"retrievalMode\":\"semantic\"}",
+            "answer": ""
+          },
+          "usage": {
+            "inputTokens": 2565,
+            "outputTokens": 74,
+            "totalTokens": 2639
+          },
+          "actualModel": "deepseek-flash",
+          "reply": {
+            "exit": 0,
+            "ok": true,
+            "data": {
+              "requestId": "0413c663-dd2a-4707-8f23-493ea8783a9d",
+              "route": "question",
+              "reason": "explicit",
+              "scope": {
+                "projectIds": [
+                  "chain-project"
+                ],
+                "modules": [],
+                "organizationIds": [],
+                "sourcePaths": [],
+                "sessionId": "chain-live-session"
+              },
+              "status": "partial",
+              "stages": [
+                "scope",
+                "vector"
+              ],
+              "evidence": [
+                {
+                  "resourceId": "639cda0f-b011-42f9-99f7-9ee15f2e967f",
+                  "contentVersion": 1,
+                  "contentHash": "06dacb796eb21d456fbdfb0b22e335041c2defce13f9691e09da67c51f5003a2",
+                  "title": "连击窗口与战斗帧缓存实施摘要.md",
+                  "projectId": "chain-project",
+                  "modules": [],
+                  "organizationIds": [
+                    "46d2cb07-337a-46aa-bace-0d1fff778cb1"
+                  ],
+                  "tagIds": [],
+                  "sourcePaths": [],
+                  "recordType": "transcript",
+                  "sessionId": "chain-live-session",
+                  "sourceFrom": "2026-01-01T00:00:00Z",
+                  "sourceTo": "2026-01-01T00:00:00Z",
+                  "recordedAt": "2026-11-12T11:49:38.680Z",
+                  "text": "## 实施与测试结果\n\n助手称已实施300毫秒窗口和60帧上限；执行测试出现 E_COMBO_8192，测试失败，尚未验证通过。助手推测失败与计时边界有关，未证实。\n",
+                  "start": 121,
+                  "end": 204,
+                  "headings": [
+                    null,
+                    "实施与测试结果"
+                  ],
+                  "continued": false,
+                  "ordinal": 2,
+                  "id": "f-761588e788f54b352849c27a18432e3bcba9852be455c294111a04d19c0fdfe0",
+                  "startLine": 9,
+                  "endLine": 11,
+                  "previous": "f-7e04afcfcde5a90f23ac066a6f7b82e7ccd08888447b1a255804ed38a748e762",
+                  "methods": [
+                    "vector"
+                  ],
+                  "score": 0.01639344262295082,
+                  "read": {
+                    "id": "639cda0f-b011-42f9-99f7-9ee15f2e967f",
+                    "version": 1,
+                    "scope": {
+                      "projectIds": [
+                        "chain-project"
+                      ],
+                      "modules": [],
+                      "organizationIds": [],
+                      "sourcePaths": [],
+                      "sessionId": "chain-live-session"
+                    },
+                    "offset": 2,
+                    "contentHash": "06dacb796eb21d456fbdfb0b22e335041c2defce13f9691e09da67c51f5003a2",
+                    "splitter": "markdown-block-1:74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+                  },
+                  "need": "最新窗口 验证状态 测试结果"
+                },
+                {
+                  "resourceId": "d7b1669c-5e1d-44ca-ba05-8b7f8c5c8db4",
+                  "contentVersion": 1,
+                  "contentHash": "1dbb2657eefb2806544aa50692a61aeac625b9307a5998d0520aaec36fb1dacb",
+                  "title": "连击窗口与战斗帧缓存调整摘要.md",
+                  "projectId": "chain-project",
+                  "modules": [],
+                  "organizationIds": [
+                    "46d2cb07-337a-46aa-bace-0d1fff778cb1"
+                  ],
+                  "tagIds": [],
+                  "sourcePaths": [],
+                  "recordType": "transcript",
+                  "sessionId": "chain-live-session",
+                  "sourceFrom": "2026-01-01T00:00:00Z",
+                  "sourceTo": "2026-01-01T00:00:00Z",
+                  "recordedAt": "2026-11-12T11:49:47.080Z",
+                  "text": "## 连击窗口由300毫秒改为280毫秒\n\n用户纠正此前设定：连击窗口改为280毫秒，原300毫秒不再适用；60帧上限保持不变。助手已按280毫秒完成修改，但尚未重跑测试，明确不得报告验证通过。此前300毫秒窗口下测试出现 E_COMBO_8192 失败、未验证通过的状态，在本次修改后仍未获得新的验证结论。\n\n",
+                  "start": 0,
+                  "end": 156,
+                  "headings": [
+                    null,
+                    "连击窗口由300毫秒改为280毫秒"
+                  ],
+                  "continued": false,
+                  "ordinal": 0,
+                  "id": "f-a20b3ef474d6052a52914c2eee0a00140559fd4887627f31d1f11ef49e7d304e",
+                  "startLine": 1,
+                  "endLine": 4,
+                  "next": "f-103fc5a6a31653f5479049eaa0b0a69a4457d1e73baa1862296f692227f8b4b2",
+                  "methods": [
+                    "vector"
+                  ],
+                  "score": 0.016129032258064516,
+                  "read": {
+                    "id": "d7b1669c-5e1d-44ca-ba05-8b7f8c5c8db4",
+                    "version": 1,
+                    "scope": {
+                      "projectIds": [
+                        "chain-project"
+                      ],
+                      "modules": [],
+                      "organizationIds": [],
+                      "sourcePaths": [],
+                      "sessionId": "chain-live-session"
+                    },
+                    "offset": 0,
+                    "contentHash": "1dbb2657eefb2806544aa50692a61aeac625b9307a5998d0520aaec36fb1dacb",
+                    "splitter": "markdown-block-1:74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+                  },
+                  "need": "最新窗口 验证状态 测试结果"
+                },
+                {
+                  "resourceId": "639cda0f-b011-42f9-99f7-9ee15f2e967f",
+                  "contentVersion": 1,
+                  "contentHash": "06dacb796eb21d456fbdfb0b22e335041c2defce13f9691e09da67c51f5003a2",
+                  "title": "连击窗口与战斗帧缓存实施摘要.md",
+                  "projectId": "chain-project",
+                  "modules": [],
+                  "organizationIds": [
+                    "46d2cb07-337a-46aa-bace-0d1fff778cb1"
+                  ],
+                  "tagIds": [],
+                  "sourcePaths": [],
+                  "recordType": "transcript",
+                  "sessionId": "chain-live-session",
+                  "sourceFrom": "2026-01-01T00:00:00Z",
+                  "sourceTo": "2026-01-01T00:00:00Z",
+                  "recordedAt": "2026-11-12T11:49:38.680Z",
+                  "text": "## 战斗帧缓存方案否决\n\n事务B中，缓存全部战斗帧的方案因内存超限被否决，只保留最近60帧。\n\n",
+                  "start": 72,
+                  "end": 121,
+                  "headings": [
+                    null,
+                    "战斗帧缓存方案否决"
+                  ],
+                  "continued": false,
+                  "ordinal": 1,
+                  "id": "f-7e04afcfcde5a90f23ac066a6f7b82e7ccd08888447b1a255804ed38a748e762",
+                  "startLine": 5,
+                  "endLine": 8,
+                  "previous": "f-ae225f7b596b55189e9c6b68df8552ba7a7cf4f8c75cc39141f80241c48be70a",
+                  "next": "f-761588e788f54b352849c27a18432e3bcba9852be455c294111a04d19c0fdfe0",
+                  "methods": [
+                    "vector"
+                  ],
+                  "score": 0.015873015873015872,
+                  "read": {
+                    "id": "639cda0f-b011-42f9-99f7-9ee15f2e967f",
+                    "version": 1,
+                    "scope": {
+                      "projectIds": [
+                        "chain-project"
+                      ],
+                      "modules": [],
+                      "organizationIds": [],
+                      "sourcePaths": [],
+                      "sessionId": "chain-live-session"
+                    },
+                    "offset": 1,
+                    "contentHash": "06dacb796eb21d456fbdfb0b22e335041c2defce13f9691e09da67c51f5003a2",
+                    "splitter": "markdown-block-1:74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+                  },
+                  "need": "最新窗口 验证状态 测试结果"
+                },
+                {
+                  "resourceId": "639cda0f-b011-42f9-99f7-9ee15f2e967f",
+                  "contentVersion": 1,
+                  "contentHash": "06dacb796eb21d456fbdfb0b22e335041c2defce13f9691e09da67c51f5003a2",
+                  "title": "连击窗口与战斗帧缓存实施摘要.md",
+                  "projectId": "chain-project",
+                  "modules": [],
+                  "organizationIds": [
+                    "46d2cb07-337a-46aa-bace-0d1fff778cb1"
+                  ],
+                  "tagIds": [],
+                  "sourcePaths": [],
+                  "recordType": "transcript",
+                  "sessionId": "chain-live-session",
+                  "sourceFrom": "2026-01-01T00:00:00Z",
+                  "sourceTo": "2026-01-01T00:00:00Z",
+                  "recordedAt": "2026-11-12T11:49:38.680Z",
+                  "text": "## 连击计数规则与硬约束\n\n用户明确要求：连击仅在普通攻击命中后累计，窗口为300毫秒；闪避和受击必须清空计数；禁止将窗口改为500毫秒。\n\n",
+                  "start": 0,
+                  "end": 72,
+                  "headings": [
+                    null,
+                    "连击计数规则与硬约束"
+                  ],
+                  "continued": false,
+                  "ordinal": 0,
+                  "id": "f-ae225f7b596b55189e9c6b68df8552ba7a7cf4f8c75cc39141f80241c48be70a",
+                  "startLine": 1,
+                  "endLine": 4,
+                  "next": "f-7e04afcfcde5a90f23ac066a6f7b82e7ccd08888447b1a255804ed38a748e762",
+                  "methods": [
+                    "vector"
+                  ],
+                  "score": 0.015625,
+                  "read": {
+                    "id": "639cda0f-b011-42f9-99f7-9ee15f2e967f",
+                    "version": 1,
+                    "scope": {
+                      "projectIds": [
+                        "chain-project"
+                      ],
+                      "modules": [],
+                      "organizationIds": [],
+                      "sourcePaths": [],
+                      "sessionId": "chain-live-session"
+                    },
+                    "offset": 0,
+                    "contentHash": "06dacb796eb21d456fbdfb0b22e335041c2defce13f9691e09da67c51f5003a2",
+                    "splitter": "markdown-block-1:74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+                  },
+                  "need": "最新窗口 验证状态 测试结果"
+                },
+                {
+                  "resourceId": "d7b1669c-5e1d-44ca-ba05-8b7f8c5c8db4",
+                  "contentVersion": 1,
+                  "contentHash": "1dbb2657eefb2806544aa50692a61aeac625b9307a5998d0520aaec36fb1dacb",
+                  "title": "连击窗口与战斗帧缓存调整摘要.md",
+                  "projectId": "chain-project",
+                  "modules": [],
+                  "organizationIds": [
+                    "46d2cb07-337a-46aa-bace-0d1fff778cb1"
+                  ],
+                  "tagIds": [],
+                  "sourcePaths": [],
+                  "recordType": "transcript",
+                  "sessionId": "chain-live-session",
+                  "sourceFrom": "2026-01-01T00:00:00Z",
+                  "sourceTo": "2026-01-01T00:00:00Z",
+                  "recordedAt": "2026-11-12T11:49:47.080Z",
+                  "text": "## 战斗帧缓存上限维持60帧\n\n缓存全部战斗帧的方案因内存超限被否决，只保留最近60帧；本次纠正中用户确认60帧上限不变。\n",
+                  "start": 156,
+                  "end": 219,
+                  "headings": [
+                    null,
+                    "战斗帧缓存上限维持60帧"
+                  ],
+                  "continued": false,
+                  "ordinal": 1,
+                  "id": "f-103fc5a6a31653f5479049eaa0b0a69a4457d1e73baa1862296f692227f8b4b2",
+                  "startLine": 5,
+                  "endLine": 7,
+                  "previous": "f-a20b3ef474d6052a52914c2eee0a00140559fd4887627f31d1f11ef49e7d304e",
+                  "methods": [
+                    "vector"
+                  ],
+                  "score": 0.015384615384615385,
+                  "read": {
+                    "id": "d7b1669c-5e1d-44ca-ba05-8b7f8c5c8db4",
+                    "version": 1,
+                    "scope": {
+                      "projectIds": [
+                        "chain-project"
+                      ],
+                      "modules": [],
+                      "organizationIds": [],
+                      "sourcePaths": [],
+                      "sessionId": "chain-live-session"
+                    },
+                    "offset": 1,
+                    "contentHash": "1dbb2657eefb2806544aa50692a61aeac625b9307a5998d0520aaec36fb1dacb",
+                    "splitter": "markdown-block-1:74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+                  },
+                  "need": "最新窗口 验证状态 测试结果"
+                }
+              ],
+              "needs": [
+                "最新窗口 验证状态 测试结果"
+              ],
+              "gaps": [],
+              "warnings": [
+                "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+              ],
+              "usage": {
+                "embeddingTexts": 1,
+                "embeddingTokens": 33,
+                "rerankPairs": 0,
+                "rerankTokens": 0,
+                "modelCalls": 1,
+                "cacheHits": 0,
+                "generationTokens": 0,
+                "apiCost": 0,
+                "modelPeakRssBytes": 155181056,
+                "modelCpuMs": 296,
+                "modelFsRead": 244,
+                "modelFsWrite": 0
+              },
+              "timings": {
+                "vectorMs": 313.53369999999995,
+                "totalMs": 401.82230000000027
+              },
+              "index": {
+                "generation": "e6c0eb3c-d41f-4e88-b601-5ee352cb697f",
+                "stale": false
+              },
+              "budget": {
+                "maxBytes": 9000,
+                "maxTokens": 3000,
+                "returnedBytes": 8427,
+                "estimatedTokens": 2809,
+                "counting": "utf8-bytes/3 estimate",
+                "omitted": 0
+              }
+            }
+          }
+        },
+        {
+          "decision": {
+            "action": "finish",
+            "command": "",
+            "inputJson": "",
+            "answer": "## 调查范围与执行阶段\n\n- 范围：projectId=chain-project，sessionId=chain-live-session（只读）。\n- 实际执行阶段：`scope` → `vector`（stages 显示为 [\"scope\",\"vector\"]，methods 均为 vector），即真实语义向量召回，非 BM25 降级。索引 generation=e6c0eb3c…，stale=false。\n- 状态：`partial`；warnings 含 `UNKNOWN_SCOPE_RECORDS_EXCLUDED`（有 1 条未知范围记录被排除，未纳入本次证据）。\n- 预算：返回 8427 字节 / 估算 2809 tokens，omitted=0。\n\n## 证据（按原文身份）\n\n**1. 连击窗口最新值 = 280 毫秒**\n- 资源 `d7b1669c-5e1d-44ca-ba05-8b7f8c5c8db4`，version 1，contentHash `1dbb2657…`，标题《连击窗口与战斗帧缓存调整摘要.md》，recordedAt 2026-11-12T11:49:47.080Z（较新）。\n- 原文（第 1–4 行）：“用户纠正此前设定：连击窗口改为280毫秒，原300毫秒不再适用；60帧上限保持不变。助手已按280毫秒完成修改，但尚未重跑测试，明确不得报告验证通过。”\n\n**2. 此前 300 毫秒窗口下的测试状态 = 失败、未验证通过**\n- 资源 `639cda0f-b011-42f9-99f7-9ee15f2e967f`，version 1，contentHash `06dacb79…`，标题《连击窗口与战斗帧缓存实施摘要.md》，recordedAt 2026-11-12T11:49:38.680Z（较早）。\n- 原文（第 9–11 行）：“助手称已实施300毫秒窗口和60帧上限；执行测试出现 E_COMBO_8192，测试失败，尚未验证通过。助手推测失败与计时边界有关，未证实。”\n\n**3. 原始硬约束（300 毫秒、闪避/受击清零、禁止 500 毫秒）**\n- 同资源 `639cda0f…`，第 1–4 行：“连击仅在普通攻击命中后累计，窗口为300毫秒；闪避和受击必须清空计数；禁止将窗口改为500毫秒。”\n- 注：该 300 毫秒已被证据 1 的用户纠正为 280 毫秒；闪避/受击清零与禁止 500 毫秒的约束在本次证据中未见撤销。\n\n**4. 战斗帧缓存 = 仅保留最近 60 帧**\n- 资源 `639cda0f…` 第 5–8 行：缓存全部战斗帧方案因内存超限被否决，只保留最近 60 帧。\n- 资源 `d7b1669c…` 第 5–7 行：本次纠正中用户确认 60 帧上限不变。\n\n## 验证状态结论\n\n- 当前**没有任何测试通过的证据**。最新状态是：已按 280 毫秒完成修改，但**尚未重跑测试**；此前 300 毫秒下的 E_COMBO_8192 失败结论在修改后**仍未获得新的验证结论**。\n- 因此不能报告“当前测试通过”。E_COMBO_8192 的成因（计时边界）仅为助手推测，原文标注“未证实”。\n\n## 未完成部分与下一步\n\n- 未完成：280 毫秒版本的实际测试运行与结果；1 条未知范围记录未纳入（UNKNOWN_SCOPE_RECORDS_EXCLUDED），如需覆盖需先明确其范围归属。\n- 下一步：在代码侧实际重跑测试以取得 280 毫秒窗口下的验证结论；历史摘要与向量排名不构成当前代码正确性的证明，修改前应核对当前源码与测试运行结果。"
+          },
+          "usage": {
+            "inputTokens": 5888,
+            "outputTokens": 969,
+            "totalTokens": 6857
+          },
+          "actualModel": "deepseek-flash"
+        }
+      ],
+      "passed": true,
+      "initial": {
+        "scope": {
+          "scope": {
+            "projectIds": [
+              "chain-project"
+            ],
+            "modules": [],
+            "organizationIds": [],
+            "sourcePaths": [],
+            "sessionId": "chain-live-session"
+          },
+          "revision": 8,
+          "projects": [
+            {
+              "id": "chain-project",
+              "modules": []
+            }
+          ],
+          "organizations": [
+            "46d2cb07-337a-46aa-bace-0d1fff778cb1"
+          ],
+          "records": 2,
+          "unknownScopeRecords": 1,
+          "recordedFrom": "2026-11-12T11:49:38.680Z",
+          "recordedTo": "2026-11-12T11:49:47.080Z",
+          "index": {
+            "ready": true,
+            "stale": false,
+            "tokenizerCompatible": true,
+            "expectedTokenizer": "nfkc-cjk-bigram-2",
+            "generation": "e6c0eb3c-d41f-4e88-b601-5ee352cb697f",
+            "tokenizer": "nfkc-cjk-bigram-2",
+            "builtAt": "2026-11-12T11:59:42.318Z",
+            "fragments": 120,
+            "vectors": true,
+            "unknownScopeRecords": 1
+          },
+          "capabilities": [
+            "read",
+            "list",
+            "question",
+            "task"
+          ],
+          "omittedMetadata": 0
+        },
+        "status": {
+          "id": "46d2cb07-337a-46aa-bace-0d1fff778cb1",
+          "name": "chain-live",
+          "revision": 14,
+          "config": {
+            "source": "codex",
+            "timezone": "Asia/Shanghai",
+            "sourceRoot": "D:\\project\\knowledge-base\\.recall-local\\v0.0.10\\campaign-9iAL7n\\source",
+            "additionalDirectories": [],
+            "includeSubdirectories": false,
+            "enabled": false,
+            "focus": "",
+            "profile": "chain-live",
+            "preprocessing": "conservative",
+            "maxSessions": 10,
+            "maxInputBytes": 200000,
+            "maxChunkBytes": 40000,
+            "maxCalls": 1,
+            "maxDurationMs": 120000,
+            "include": {
+              "sessionIds": [],
+              "titleKeywords": [],
+              "bodyKeywords": []
+            },
+            "exclude": {
+              "sessionIds": [],
+              "titleKeywords": [],
+              "bodyKeywords": []
+            },
+            "alias": "chain-live",
+            "projectDir": "D:\\project\\knowledge-base\\.recall-local\\v0.0.10\\campaign-9iAL7n",
+            "startDate": "2026-01-01"
+          },
+          "cronRevision": null,
+          "createdAt": "2026-11-12T11:49:36.654Z",
+          "updatedAt": "2026-11-12T11:49:48.265Z",
+          "status": {
+            "running": false,
+            "lastAttempt": "2026-11-12T11:49:48.169Z",
+            "nextDue": null,
+            "records": 2,
+            "pending": 0,
+            "failed": [],
+            "skips": [
+              {
+                "sessionId": "chain-live-session",
+                "reason": "no-new-content"
+              }
+            ]
+          }
+        },
+        "help": [
+          {
+            "command": "recall search",
+            "fields": [
+              "mode",
+              "id",
+              "version",
+              "query",
+              "task",
+              "needs",
+              "scope",
+              "contextProjectId",
+              "cwd",
+              "retrievalMode",
+              "rerank",
+              "budgetTokens",
+              "maxBytes",
+              "maxFragments",
+              "candidates",
+              "neighbors",
+              "section",
+              "offset",
+              "endOffset",
+              "limit",
+              "sort",
+              "direction",
+              "debug",
+              "projectId",
+              "snapshotFingerprint",
+              "contentHash",
+              "splitter"
+            ],
+            "required": [],
+            "example": {
+              "scope": {
+                "projectId": "example"
+              },
+              "query": "项目约束",
+              "retrievalMode": "hybrid"
+            }
+          },
+          {
+            "command": "recall prepare",
+            "fields": [
+              "mode",
+              "id",
+              "version",
+              "query",
+              "task",
+              "needs",
+              "scope",
+              "contextProjectId",
+              "cwd",
+              "retrievalMode",
+              "rerank",
+              "budgetTokens",
+              "maxBytes",
+              "maxFragments",
+              "candidates",
+              "neighbors",
+              "section",
+              "offset",
+              "endOffset",
+              "limit",
+              "sort",
+              "direction",
+              "debug",
+              "projectId",
+              "snapshotFingerprint",
+              "contentHash",
+              "splitter"
+            ],
+            "required": [],
+            "example": {
+              "scope": {
+                "projectId": "example"
+              },
+              "query": "项目约束",
+              "retrievalMode": "hybrid"
+            }
+          },
+          {
+            "command": "recall read",
+            "fields": [
+              "mode",
+              "id",
+              "version",
+              "query",
+              "task",
+              "needs",
+              "scope",
+              "contextProjectId",
+              "cwd",
+              "retrievalMode",
+              "rerank",
+              "budgetTokens",
+              "maxBytes",
+              "maxFragments",
+              "candidates",
+              "neighbors",
+              "section",
+              "offset",
+              "endOffset",
+              "limit",
+              "sort",
+              "direction",
+              "debug",
+              "projectId",
+              "snapshotFingerprint",
+              "contentHash",
+              "splitter"
+            ],
+            "required": [
+              "id",
+              "确定的项目范围"
+            ],
+            "example": {
+              "scope": {
+                "projectId": "example"
+              },
+              "id": "<resourceId>"
+            }
+          },
+          {
+            "command": "recall scope",
+            "fields": [
+              "mode",
+              "id",
+              "version",
+              "query",
+              "task",
+              "needs",
+              "scope",
+              "contextProjectId",
+              "cwd",
+              "retrievalMode",
+              "rerank",
+              "budgetTokens",
+              "maxBytes",
+              "maxFragments",
+              "candidates",
+              "neighbors",
+              "section",
+              "offset",
+              "endOffset",
+              "limit",
+              "sort",
+              "direction",
+              "debug",
+              "projectId",
+              "snapshotFingerprint",
+              "contentHash",
+              "splitter"
+            ],
+            "required": [],
+            "example": {
+              "scope": {
+                "projectId": "example"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "精确ID读取",
+      "task": "读取固定资源639cda0f-b011-42f9-99f7-9ee15f2e967f，范围{\"projectId\":\"chain-project\",\"sessionId\":\"chain-live-session\"}。报告该历史版本的窗口和失败状态；无需检索。",
+      "trace": [
+        {
+          "decision": {
+            "action": "cli",
+            "command": "recall read",
+            "inputJson": "{\"id\":\"639cda0f-b011-42f9-99f7-9ee15f2e967f\",\"scope\":{\"projectId\":\"chain-project\",\"sessionId\":\"chain-live-session\"}}",
+            "answer": ""
+          },
+          "usage": {
+            "inputTokens": 2337,
+            "outputTokens": 73,
+            "totalTokens": 2410
+          },
+          "actualModel": "deepseek-flash",
+          "reply": {
+            "exit": 0,
+            "ok": true,
+            "data": {
+              "requestId": "8b92f243-6354-4726-b6db-147deafeb389",
+              "route": "read",
+              "reason": "explicit",
+              "scope": {
+                "projectIds": [
+                  "chain-project"
+                ],
+                "modules": [],
+                "organizationIds": [],
+                "sourcePaths": [],
+                "sessionId": "chain-live-session"
+              },
+              "status": "ok",
+              "stages": [
+                "scope",
+                "direct-read"
+              ],
+              "evidence": [
+                {
+                  "resourceId": "639cda0f-b011-42f9-99f7-9ee15f2e967f",
+                  "contentVersion": 1,
+                  "contentHash": "06dacb796eb21d456fbdfb0b22e335041c2defce13f9691e09da67c51f5003a2",
+                  "title": "连击窗口与战斗帧缓存实施摘要.md",
+                  "projectId": "chain-project",
+                  "modules": [],
+                  "organizationIds": [
+                    "46d2cb07-337a-46aa-bace-0d1fff778cb1"
+                  ],
+                  "tagIds": [],
+                  "sourcePaths": [],
+                  "recordType": "transcript",
+                  "sessionId": "chain-live-session",
+                  "sourceFrom": "2026-01-01T00:00:00Z",
+                  "sourceTo": "2026-01-01T00:00:00Z",
+                  "recordedAt": "2026-11-12T11:49:38.680Z",
+                  "text": "## 连击计数规则与硬约束\n\n用户明确要求：连击仅在普通攻击命中后累计，窗口为300毫秒；闪避和受击必须清空计数；禁止将窗口改为500毫秒。\n\n",
+                  "start": 0,
+                  "end": 72,
+                  "headings": [
+                    null,
+                    "连击计数规则与硬约束"
+                  ],
+                  "continued": false,
+                  "ordinal": 0,
+                  "id": "f-ae225f7b596b55189e9c6b68df8552ba7a7cf4f8c75cc39141f80241c48be70a",
+                  "startLine": 1,
+                  "endLine": 4,
+                  "next": "f-7e04afcfcde5a90f23ac066a6f7b82e7ccd08888447b1a255804ed38a748e762",
+                  "methods": [
+                    "direct"
+                  ],
+                  "read": {
+                    "id": "639cda0f-b011-42f9-99f7-9ee15f2e967f",
+                    "version": 1,
+                    "scope": {
+                      "projectIds": [
+                        "chain-project"
+                      ],
+                      "modules": [],
+                      "organizationIds": [],
+                      "sourcePaths": [],
+                      "sessionId": "chain-live-session"
+                    },
+                    "offset": 0,
+                    "contentHash": "06dacb796eb21d456fbdfb0b22e335041c2defce13f9691e09da67c51f5003a2",
+                    "splitter": "markdown-block-1:74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+                  }
+                },
+                {
+                  "resourceId": "639cda0f-b011-42f9-99f7-9ee15f2e967f",
+                  "contentVersion": 1,
+                  "contentHash": "06dacb796eb21d456fbdfb0b22e335041c2defce13f9691e09da67c51f5003a2",
+                  "title": "连击窗口与战斗帧缓存实施摘要.md",
+                  "projectId": "chain-project",
+                  "modules": [],
+                  "organizationIds": [
+                    "46d2cb07-337a-46aa-bace-0d1fff778cb1"
+                  ],
+                  "tagIds": [],
+                  "sourcePaths": [],
+                  "recordType": "transcript",
+                  "sessionId": "chain-live-session",
+                  "sourceFrom": "2026-01-01T00:00:00Z",
+                  "sourceTo": "2026-01-01T00:00:00Z",
+                  "recordedAt": "2026-11-12T11:49:38.680Z",
+                  "text": "## 战斗帧缓存方案否决\n\n事务B中，缓存全部战斗帧的方案因内存超限被否决，只保留最近60帧。\n\n",
+                  "start": 72,
+                  "end": 121,
+                  "headings": [
+                    null,
+                    "战斗帧缓存方案否决"
+                  ],
+                  "continued": false,
+                  "ordinal": 1,
+                  "id": "f-7e04afcfcde5a90f23ac066a6f7b82e7ccd08888447b1a255804ed38a748e762",
+                  "startLine": 5,
+                  "endLine": 8,
+                  "previous": "f-ae225f7b596b55189e9c6b68df8552ba7a7cf4f8c75cc39141f80241c48be70a",
+                  "next": "f-761588e788f54b352849c27a18432e3bcba9852be455c294111a04d19c0fdfe0",
+                  "methods": [
+                    "direct"
+                  ],
+                  "read": {
+                    "id": "639cda0f-b011-42f9-99f7-9ee15f2e967f",
+                    "version": 1,
+                    "scope": {
+                      "projectIds": [
+                        "chain-project"
+                      ],
+                      "modules": [],
+                      "organizationIds": [],
+                      "sourcePaths": [],
+                      "sessionId": "chain-live-session"
+                    },
+                    "offset": 1,
+                    "contentHash": "06dacb796eb21d456fbdfb0b22e335041c2defce13f9691e09da67c51f5003a2",
+                    "splitter": "markdown-block-1:74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+                  }
+                },
+                {
+                  "resourceId": "639cda0f-b011-42f9-99f7-9ee15f2e967f",
+                  "contentVersion": 1,
+                  "contentHash": "06dacb796eb21d456fbdfb0b22e335041c2defce13f9691e09da67c51f5003a2",
+                  "title": "连击窗口与战斗帧缓存实施摘要.md",
+                  "projectId": "chain-project",
+                  "modules": [],
+                  "organizationIds": [
+                    "46d2cb07-337a-46aa-bace-0d1fff778cb1"
+                  ],
+                  "tagIds": [],
+                  "sourcePaths": [],
+                  "recordType": "transcript",
+                  "sessionId": "chain-live-session",
+                  "sourceFrom": "2026-01-01T00:00:00Z",
+                  "sourceTo": "2026-01-01T00:00:00Z",
+                  "recordedAt": "2026-11-12T11:49:38.680Z",
+                  "text": "## 实施与测试结果\n\n助手称已实施300毫秒窗口和60帧上限；执行测试出现 E_COMBO_8192，测试失败，尚未验证通过。助手推测失败与计时边界有关，未证实。\n",
+                  "start": 121,
+                  "end": 204,
+                  "headings": [
+                    null,
+                    "实施与测试结果"
+                  ],
+                  "continued": false,
+                  "ordinal": 2,
+                  "id": "f-761588e788f54b352849c27a18432e3bcba9852be455c294111a04d19c0fdfe0",
+                  "startLine": 9,
+                  "endLine": 11,
+                  "previous": "f-7e04afcfcde5a90f23ac066a6f7b82e7ccd08888447b1a255804ed38a748e762",
+                  "methods": [
+                    "direct"
+                  ],
+                  "read": {
+                    "id": "639cda0f-b011-42f9-99f7-9ee15f2e967f",
+                    "version": 1,
+                    "scope": {
+                      "projectIds": [
+                        "chain-project"
+                      ],
+                      "modules": [],
+                      "organizationIds": [],
+                      "sourcePaths": [],
+                      "sessionId": "chain-live-session"
+                    },
+                    "offset": 2,
+                    "contentHash": "06dacb796eb21d456fbdfb0b22e335041c2defce13f9691e09da67c51f5003a2",
+                    "splitter": "markdown-block-1:74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+                  }
+                }
+              ],
+              "needs": [],
+              "gaps": [],
+              "warnings": [
+                "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+              ],
+              "usage": {
+                "embeddingTexts": 0,
+                "embeddingTokens": 0,
+                "rerankPairs": 0,
+                "rerankTokens": 0,
+                "modelCalls": 0,
+                "cacheHits": 0,
+                "generationTokens": 0,
+                "apiCost": 0
+              },
+              "timings": {
+                "totalMs": 45.1182000000008
+              },
+              "readRange": {
+                "endOffset": 3
+              },
+              "budget": {
+                "maxBytes": 9000,
+                "maxTokens": 3000,
+                "returnedBytes": 4887,
+                "estimatedTokens": 1629,
+                "counting": "utf8-bytes/3 estimate",
+                "omitted": 0
+              }
+            }
+          }
+        },
+        {
+          "decision": {
+            "action": "finish",
+            "command": "",
+            "inputJson": "",
+            "answer": "已读取资源639cda0f-b011-42f9-99f7-9ee15f2e967f（v1，contentHash 06dacb79…，标题《连击窗口与战斗帧缓存实施摘要.md》，session chain-live-session，direct-read，3片元）。窗口：连击仅在普攻命中后累计，窗口300毫秒；闪避与受击清空计数；禁止改为500毫秒。战斗帧缓存全量方案因内存超限被否决，仅保留最近60帧。失败状态：助手称已实施300毫秒窗口与60帧上限，但测试报E_COMBO_8192失败，尚未验证通过；计时边界推测未证实。警告UNKNOWN_SCOPE_RECORDS_EXCLUDED（1条范围外记录被排除）。"
+          },
+          "usage": {
+            "inputTokens": 4334,
+            "outputTokens": 194,
+            "totalTokens": 4528
+          },
+          "actualModel": "deepseek-flash"
+        }
+      ],
+      "passed": true,
+      "initial": {
+        "scope": {
+          "scope": {
+            "projectIds": [
+              "chain-project"
+            ],
+            "modules": [],
+            "organizationIds": [],
+            "sourcePaths": [],
+            "sessionId": "chain-live-session"
+          },
+          "revision": 10,
+          "projects": [
+            {
+              "id": "chain-project",
+              "modules": []
+            }
+          ],
+          "organizations": [
+            "46d2cb07-337a-46aa-bace-0d1fff778cb1"
+          ],
+          "records": 2,
+          "unknownScopeRecords": 1,
+          "recordedFrom": "2026-11-12T11:49:38.680Z",
+          "recordedTo": "2026-11-12T11:49:47.080Z",
+          "index": {
+            "ready": true,
+            "stale": false,
+            "tokenizerCompatible": true,
+            "expectedTokenizer": "nfkc-cjk-bigram-2",
+            "generation": "7ad42826-64fa-4835-aea9-0086be300c29",
+            "tokenizer": "nfkc-cjk-bigram-2",
+            "builtAt": "2026-11-12T12:01:17.921Z",
+            "fragments": 128,
+            "vectors": true,
+            "unknownScopeRecords": 1
+          },
+          "capabilities": [
+            "read",
+            "list",
+            "question",
+            "task"
+          ],
+          "omittedMetadata": 0
+        },
+        "status": {
+          "id": "46d2cb07-337a-46aa-bace-0d1fff778cb1",
+          "name": "chain-live",
+          "revision": 14,
+          "config": {
+            "source": "codex",
+            "timezone": "Asia/Shanghai",
+            "sourceRoot": "D:\\project\\knowledge-base\\.recall-local\\v0.0.10\\campaign-9iAL7n\\source",
+            "additionalDirectories": [],
+            "includeSubdirectories": false,
+            "enabled": false,
+            "focus": "",
+            "profile": "chain-live",
+            "preprocessing": "conservative",
+            "maxSessions": 10,
+            "maxInputBytes": 200000,
+            "maxChunkBytes": 40000,
+            "maxCalls": 1,
+            "maxDurationMs": 120000,
+            "include": {
+              "sessionIds": [],
+              "titleKeywords": [],
+              "bodyKeywords": []
+            },
+            "exclude": {
+              "sessionIds": [],
+              "titleKeywords": [],
+              "bodyKeywords": []
+            },
+            "alias": "chain-live",
+            "projectDir": "D:\\project\\knowledge-base\\.recall-local\\v0.0.10\\campaign-9iAL7n",
+            "startDate": "2026-01-01"
+          },
+          "cronRevision": null,
+          "createdAt": "2026-11-12T11:49:36.654Z",
+          "updatedAt": "2026-11-12T11:49:48.265Z",
+          "status": {
+            "running": false,
+            "lastAttempt": "2026-11-12T11:49:48.169Z",
+            "nextDue": null,
+            "records": 2,
+            "pending": 0,
+            "failed": [],
+            "skips": [
+              {
+                "sessionId": "chain-live-session",
+                "reason": "no-new-content"
+              }
+            ]
+          }
+        },
+        "help": [
+          {
+            "command": "recall read",
+            "fields": [
+              "mode",
+              "id",
+              "version",
+              "query",
+              "task",
+              "needs",
+              "scope",
+              "contextProjectId",
+              "cwd",
+              "retrievalMode",
+              "rerank",
+              "budgetTokens",
+              "maxBytes",
+              "maxFragments",
+              "candidates",
+              "neighbors",
+              "section",
+              "offset",
+              "endOffset",
+              "limit",
+              "sort",
+              "direction",
+              "debug",
+              "projectId",
+              "snapshotFingerprint",
+              "contentHash",
+              "splitter"
+            ],
+            "required": [
+              "id",
+              "确定的项目范围"
+            ],
+            "example": {
+              "scope": {
+                "projectId": "example"
+              },
+              "id": "<resourceId>"
+            }
+          },
+          {
+            "command": "recall scope",
+            "fields": [
+              "mode",
+              "id",
+              "version",
+              "query",
+              "task",
+              "needs",
+              "scope",
+              "contextProjectId",
+              "cwd",
+              "retrievalMode",
+              "rerank",
+              "budgetTokens",
+              "maxBytes",
+              "maxFragments",
+              "candidates",
+              "neighbors",
+              "section",
+              "offset",
+              "endOffset",
+              "limit",
+              "sort",
+              "direction",
+              "debug",
+              "projectId",
+              "snapshotFingerprint",
+              "contentHash",
+              "splitter"
+            ],
+            "required": [],
+            "example": {
+              "scope": {
+                "projectId": "example"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "无答案",
+      "task": "查找不存在的错误码 E_DOES_NOT_EXIST_987654 的处理历史。范围{\"projectId\":\"chain-project\",\"sessionId\":\"chain-live-session\"}，用lexical精确术语查询，没有证据则保持未知。",
+      "trace": [
+        {
+          "decision": {
+            "action": "cli",
+            "command": "recall search",
+            "inputJson": "{\"scope\":{\"projectId\":\"chain-project\",\"sessionId\":\"chain-live-session\"},\"query\":\"E_DOES_NOT_EXIST_987654\",\"retrievalMode\":\"lexical\"}",
+            "answer": ""
+          },
+          "usage": {
+            "inputTokens": 2460,
+            "outputTokens": 70,
+            "totalTokens": 2530
+          },
+          "actualModel": "deepseek-flash",
+          "reply": {
+            "exit": 0,
+            "ok": true,
+            "data": {
+              "requestId": "07099688-1059-4cfc-a68c-a8285556042c",
+              "route": "question",
+              "reason": "explicit",
+              "scope": {
+                "projectIds": [
+                  "chain-project"
+                ],
+                "modules": [],
+                "organizationIds": [],
+                "sourcePaths": [],
+                "sessionId": "chain-live-session"
+              },
+              "status": "insufficient",
+              "stages": [
+                "scope",
+                "bm25"
+              ],
+              "evidence": [],
+              "needs": [
+                "E_DOES_NOT_EXIST_987654"
+              ],
+              "gaps": [
+                "E_DOES_NOT_EXIST_987654"
+              ],
+              "warnings": [
+                "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+              ],
+              "usage": {
+                "embeddingTexts": 0,
+                "embeddingTokens": 0,
+                "rerankPairs": 0,
+                "rerankTokens": 0,
+                "modelCalls": 0,
+                "cacheHits": 0,
+                "generationTokens": 0,
+                "apiCost": 0
+              },
+              "timings": {
+                "bm25Ms": 1.231699999999364,
+                "totalMs": 82.89999999999964
+              },
+              "index": {
+                "generation": "7ad42826-64fa-4835-aea9-0086be300c29",
+                "stale": false
+              },
+              "budget": {
+                "maxBytes": 9000,
+                "maxTokens": 3000,
+                "returnedBytes": 836,
+                "estimatedTokens": 279,
+                "counting": "utf8-bytes/3 estimate",
+                "omitted": 0
+              }
+            }
+          }
+        }
+      ],
+      "passed": false,
+      "initial": {
+        "scope": {
+          "scope": {
+            "projectIds": [
+              "chain-project"
+            ],
+            "modules": [],
+            "organizationIds": [],
+            "sourcePaths": [],
+            "sessionId": "chain-live-session"
+          },
+          "revision": 10,
+          "projects": [
+            {
+              "id": "chain-project",
+              "modules": []
+            }
+          ],
+          "organizations": [
+            "46d2cb07-337a-46aa-bace-0d1fff778cb1"
+          ],
+          "records": 2,
+          "unknownScopeRecords": 1,
+          "recordedFrom": "2026-11-12T11:49:38.680Z",
+          "recordedTo": "2026-11-12T11:49:47.080Z",
+          "index": {
+            "ready": true,
+            "stale": false,
+            "tokenizerCompatible": true,
+            "expectedTokenizer": "nfkc-cjk-bigram-2",
+            "generation": "7ad42826-64fa-4835-aea9-0086be300c29",
+            "tokenizer": "nfkc-cjk-bigram-2",
+            "builtAt": "2026-11-12T12:01:17.921Z",
+            "fragments": 128,
+            "vectors": true,
+            "unknownScopeRecords": 1
+          },
+          "capabilities": [
+            "read",
+            "list",
+            "question",
+            "task"
+          ],
+          "omittedMetadata": 0
+        },
+        "status": {
+          "id": "46d2cb07-337a-46aa-bace-0d1fff778cb1",
+          "name": "chain-live",
+          "revision": 14,
+          "config": {
+            "source": "codex",
+            "timezone": "Asia/Shanghai",
+            "sourceRoot": "D:\\project\\knowledge-base\\.recall-local\\v0.0.10\\campaign-9iAL7n\\source",
+            "additionalDirectories": [],
+            "includeSubdirectories": false,
+            "enabled": false,
+            "focus": "",
+            "profile": "chain-live",
+            "preprocessing": "conservative",
+            "maxSessions": 10,
+            "maxInputBytes": 200000,
+            "maxChunkBytes": 40000,
+            "maxCalls": 1,
+            "maxDurationMs": 120000,
+            "include": {
+              "sessionIds": [],
+              "titleKeywords": [],
+              "bodyKeywords": []
+            },
+            "exclude": {
+              "sessionIds": [],
+              "titleKeywords": [],
+              "bodyKeywords": []
+            },
+            "alias": "chain-live",
+            "projectDir": "D:\\project\\knowledge-base\\.recall-local\\v0.0.10\\campaign-9iAL7n",
+            "startDate": "2026-01-01"
+          },
+          "cronRevision": null,
+          "createdAt": "2026-11-12T11:49:36.654Z",
+          "updatedAt": "2026-11-12T11:49:48.265Z",
+          "status": {
+            "running": false,
+            "lastAttempt": "2026-11-12T11:49:48.169Z",
+            "nextDue": null,
+            "records": 2,
+            "pending": 0,
+            "failed": [],
+            "skips": [
+              {
+                "sessionId": "chain-live-session",
+                "reason": "no-new-content"
+              }
+            ]
+          }
+        },
+        "help": [
+          {
+            "command": "recall search",
+            "fields": [
+              "mode",
+              "id",
+              "version",
+              "query",
+              "task",
+              "needs",
+              "scope",
+              "contextProjectId",
+              "cwd",
+              "retrievalMode",
+              "rerank",
+              "budgetTokens",
+              "maxBytes",
+              "maxFragments",
+              "candidates",
+              "neighbors",
+              "section",
+              "offset",
+              "endOffset",
+              "limit",
+              "sort",
+              "direction",
+              "debug",
+              "projectId",
+              "snapshotFingerprint",
+              "contentHash",
+              "splitter"
+            ],
+            "required": [],
+            "example": {
+              "scope": {
+                "projectId": "example"
+              },
+              "query": "项目约束",
+              "retrievalMode": "hybrid"
+            }
+          },
+          {
+            "command": "recall prepare",
+            "fields": [
+              "mode",
+              "id",
+              "version",
+              "query",
+              "task",
+              "needs",
+              "scope",
+              "contextProjectId",
+              "cwd",
+              "retrievalMode",
+              "rerank",
+              "budgetTokens",
+              "maxBytes",
+              "maxFragments",
+              "candidates",
+              "neighbors",
+              "section",
+              "offset",
+              "endOffset",
+              "limit",
+              "sort",
+              "direction",
+              "debug",
+              "projectId",
+              "snapshotFingerprint",
+              "contentHash",
+              "splitter"
+            ],
+            "required": [],
+            "example": {
+              "scope": {
+                "projectId": "example"
+              },
+              "query": "项目约束",
+              "retrievalMode": "hybrid"
+            }
+          },
+          {
+            "command": "recall scope",
+            "fields": [
+              "mode",
+              "id",
+              "version",
+              "query",
+              "task",
+              "needs",
+              "scope",
+              "contextProjectId",
+              "cwd",
+              "retrievalMode",
+              "rerank",
+              "budgetTokens",
+              "maxBytes",
+              "maxFragments",
+              "candidates",
+              "neighbors",
+              "section",
+              "offset",
+              "endOffset",
+              "limit",
+              "sort",
+              "direction",
+              "debug",
+              "projectId",
+              "snapshotFingerprint",
+              "contentHash",
+              "splitter"
+            ],
+            "required": [],
+            "example": {
+              "scope": {
+                "projectId": "example"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "failures": [
+    "KnowledgeError: Agent输出不符合schema"
+  ],
+  "cwd": "D:\\project\\knowledge-base\\.recall-local\\v0.0.10\\campaign-9iAL7n\\Agent 项目 with spaces",
+  "promptHash": "db1f73a062dcf080b9c053905df0bd9c0f473f6bf33ddcf1eca0f9e5e4c1dfb2",
+  "partialFailureSeed": {
+    "exit": 1,
+    "ok": false,
+    "error": {
+      "code": "TRANSCRIPT_FAILED",
+      "message": "{\"failures\":[{\"sessionId\":\"recover-a\",\"taskId\":\"a834389b75776268ee9bc929502460e241767983b69993c5429f10f7c049a6fb\",\"message\":\"KnowledgeError: Agent服务暂不可用\"}]}",
+      "details": {
+        "calls": 2,
+        "saved": 1,
+        "remaining": 1,
+        "organizationRemaining": 1,
+        "deferred": 0,
+        "complete": false,
+        "skips": [],
+        "records": [
+          {
+            "resourceId": "f73706fd-f88e-459a-9f65-33b38d4f565d",
+            "sessionId": "recover-b",
+            "taskId": "2d2c2b2e211702d5ca7fafed9c8144fff3db23cb001cfdee23c7b08729b155ca",
+            "cutoff": "2026-11-12T12:01:15.307Z"
+          }
+        ],
+        "stopReason": "failed",
+        "scope": {
+          "organizationId": "3ab96509-fe35-48ec-8549-35e9ab70b942",
+          "sessionId": null,
+          "frozenTasksOnly": true
+        },
+        "cutoff": null,
+        "effective": {
+          "maxCalls": 2,
+          "maxSessions": 10,
+          "maxInputBytes": 200000,
+          "maxDurationMs": 120000
+        },
+        "processedTasks": [
+          {
+            "id": "a834389b75776268ee9bc929502460e241767983b69993c5429f10f7c049a6fb",
+            "sessionId": "recover-a",
+            "cutoff": "2026-11-12T12:01:14.904Z"
+          },
+          {
+            "id": "2d2c2b2e211702d5ca7fafed9c8144fff3db23cb001cfdee23c7b08729b155ca",
+            "sessionId": "recover-b",
+            "cutoff": "2026-11-12T12:01:15.307Z"
+          }
+        ],
+        "nextAction": "retry",
+        "failures": [
+          {
+            "sessionId": "recover-a",
+            "taskId": "a834389b75776268ee9bc929502460e241767983b69993c5429f10f7c049a6fb",
+            "message": "KnowledgeError: Agent服务暂不可用"
+          }
+        ]
+      }
+    }
+  },
+  "ledger": {
+    "syntheticOnly": true,
+    "maximumCalls": 24,
+    "attempts": [
+      {
+        "ordinal": 1,
+        "at": "2026-11-12T11:49:37.507Z",
+        "model": "deepseek-flash",
+        "requestBytes": 3205,
+        "requestHash": "bcd8bb5ab2df0bddcaf102b31ce07fcf5e2d72ff5ef9462ad580455e668eebb2",
+        "status": 200,
+        "usage": {
+          "prompt_tokens": 724,
+          "completion_tokens": 168,
+          "total_tokens": 892,
+          "prompt_tokens_details": {
+            "cached_tokens": 256
+          },
+          "prompt_cache_hit_tokens": 256,
+          "prompt_cache_miss_tokens": 468
+        },
+        "actualModel": "deepseek-flash"
+      },
+      {
+        "ordinal": 2,
+        "at": "2026-11-12T11:49:45.070Z",
+        "model": "deepseek-flash",
+        "requestBytes": 3705,
+        "requestHash": "e6c1edbbfbe6cbb40d32ef64dffc5b9acdd340a8ceccf17059c9225f990da445",
+        "status": 200,
+        "usage": {
+          "prompt_tokens": 896,
+          "completion_tokens": 167,
+          "total_tokens": 1063,
+          "prompt_tokens_details": {
+            "cached_tokens": 256
+          },
+          "prompt_cache_hit_tokens": 256,
+          "prompt_cache_miss_tokens": 640
+        },
+        "actualModel": "deepseek-flash"
+      },
+      {
+        "ordinal": 3,
+        "at": "2026-11-12T11:58:04.313Z",
+        "model": "deepseek-flash",
+        "requestBytes": 6196,
+        "requestHash": "b55e64013f2b7060d233247ed02b892a0e7cb082afc45956bcf12894ac3b441e",
+        "status": 200,
+        "usage": {
+          "prompt_tokens": 1357,
+          "completion_tokens": 73,
+          "total_tokens": 1430,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "prompt_cache_hit_tokens": 0,
+          "prompt_cache_miss_tokens": 1357
+        },
+        "actualModel": "deepseek-flash"
+      },
+      {
+        "ordinal": 4,
+        "at": "2026-11-12T11:58:05.611Z",
+        "model": "deepseek-flash",
+        "requestBytes": 6748,
+        "requestHash": "81d295525aac8a87d67bcfe1dbb45afd0618b9d13984f4165c57bec7e6b06696",
+        "status": 200,
+        "usage": {
+          "prompt_tokens": 1475,
+          "completion_tokens": 22,
+          "total_tokens": 1497,
+          "prompt_tokens_details": {
+            "cached_tokens": 1280
+          },
+          "prompt_cache_hit_tokens": 1280,
+          "prompt_cache_miss_tokens": 195
+        },
+        "actualModel": "deepseek-flash"
+      },
+      {
+        "ordinal": 5,
+        "at": "2026-11-12T11:58:55.323Z",
+        "model": "deepseek-flash",
+        "requestBytes": 6659,
+        "requestHash": "15e4999095233cc0f7af5bbbae05d021b7c9a178fcb2f9001d5994b4ee5463dc",
+        "status": 200,
+        "usage": {
+          "prompt_tokens": 1471,
+          "completion_tokens": 29,
+          "total_tokens": 1500,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "prompt_cache_hit_tokens": 0,
+          "prompt_cache_miss_tokens": 1471
+        },
+        "actualModel": "deepseek-flash"
+      },
+      {
+        "ordinal": 6,
+        "at": "2026-11-12T11:59:43.450Z",
+        "model": "deepseek-flash",
+        "requestBytes": 10829,
+        "requestHash": "a6923fad90786a1ef613f2341813a9355c3402e843f129e5d2d361b9465b254d",
+        "status": 200,
+        "usage": {
+          "prompt_tokens": 2565,
+          "completion_tokens": 74,
+          "total_tokens": 2639,
+          "prompt_tokens_details": {
+            "cached_tokens": 1152
+          },
+          "prompt_cache_hit_tokens": 1152,
+          "prompt_cache_miss_tokens": 1413
+        },
+        "actualModel": "deepseek-flash"
+      },
+      {
+        "ordinal": 7,
+        "at": "2026-11-12T11:59:45.076Z",
+        "model": "deepseek-flash",
+        "requestBytes": 20407,
+        "requestHash": "cc156bb4acd352618f61d011677bec811295a87f2dc4bd878f6f4d0a250bf8f6",
+        "status": 200,
+        "usage": {
+          "prompt_tokens": 5888,
+          "completion_tokens": 969,
+          "total_tokens": 6857,
+          "prompt_tokens_details": {
+            "cached_tokens": 2560
+          },
+          "prompt_cache_hit_tokens": 2560,
+          "prompt_cache_miss_tokens": 3328
+        },
+        "actualModel": "deepseek-flash"
+      },
+      {
+        "ordinal": 8,
+        "at": "2026-11-12T11:59:50.726Z",
+        "model": "deepseek-flash",
+        "requestBytes": 9752,
+        "requestHash": "99871bdd7432937fcd26668e2106a16f3e20f31a32e84f04127baf2f05b908c9",
+        "status": 200,
+        "usage": {
+          "prompt_tokens": 2337,
+          "completion_tokens": 73,
+          "total_tokens": 2410,
+          "prompt_tokens_details": {
+            "cached_tokens": 1152
+          },
+          "prompt_cache_hit_tokens": 1152,
+          "prompt_cache_miss_tokens": 1185
+        },
+        "actualModel": "deepseek-flash"
+      },
+      {
+        "ordinal": 9,
+        "at": "2026-11-12T11:59:52.201Z",
+        "model": "deepseek-flash",
+        "requestBytes": 15432,
+        "requestHash": "91e99bb1f6e9530026863eb256208919baac57931df58033341c6a3d9a4be89e",
+        "status": 200,
+        "usage": {
+          "prompt_tokens": 4324,
+          "completion_tokens": 462,
+          "total_tokens": 4786,
+          "prompt_tokens_details": {
+            "cached_tokens": 2304
+          },
+          "prompt_cache_hit_tokens": 2304,
+          "prompt_cache_miss_tokens": 2020
+        },
+        "actualModel": "deepseek-flash"
+      },
+      {
+        "ordinal": 10,
+        "at": "2026-11-12T12:01:18.555Z",
+        "model": "deepseek-flash",
+        "requestBytes": 15491,
+        "requestHash": "f91193f548d3c1040e7c6af2de7e84187c71a3c70df64f47a2ca40951c141797",
+        "status": 200,
+        "usage": {
+          "prompt_tokens": 4334,
+          "completion_tokens": 194,
+          "total_tokens": 4528,
+          "prompt_tokens_details": {
+            "cached_tokens": 1280
+          },
+          "prompt_cache_hit_tokens": 1280,
+          "prompt_cache_miss_tokens": 3054
+        },
+        "actualModel": "deepseek-flash"
+      },
+      {
+        "ordinal": 11,
+        "at": "2026-11-12T12:01:21.185Z",
+        "model": "deepseek-flash",
+        "requestBytes": 10360,
+        "requestHash": "5d4dbc410219c034ef15e298a6f33066b81e1d3682177a10ac5ad57867f25112",
+        "status": 200,
+        "usage": {
+          "prompt_tokens": 2460,
+          "completion_tokens": 70,
+          "total_tokens": 2530,
+          "prompt_tokens_details": {
+            "cached_tokens": 1152
+          },
+          "prompt_cache_hit_tokens": 1152,
+          "prompt_cache_miss_tokens": 1308
+        },
+        "actualModel": "deepseek-flash"
+      },
+      {
+        "ordinal": 12,
+        "at": "2026-11-12T12:01:22.308Z",
+        "model": "deepseek-flash",
+        "requestBytes": 11672,
+        "requestHash": "c0e30ac71091af5f61a85ada1536078f19864cc4a33b505a0cf184fed6bdf0cd",
+        "status": 200,
+        "usage": {
+          "prompt_tokens": 2838,
+          "completion_tokens": 129,
+          "total_tokens": 2967,
+          "prompt_tokens_details": {
+            "cached_tokens": 2432
+          },
+          "prompt_cache_hit_tokens": 2432,
+          "prompt_cache_miss_tokens": 406
+        },
+        "actualModel": "deepseek-flash"
+      }
+    ]
+  },
+  "passed": false,
+  "previousFailures": [
+    "KnowledgeError: Agent输出不符合schema"
+  ]
+}

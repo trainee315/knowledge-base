@@ -1,0 +1,22 @@
+[
+  {
+    "data": "D:\\project\\knowledge-base\\.recall-local\\v0.0.10\\campaign-9iAL7n\\data",
+    "result": {
+      "ok": true,
+      "data": {
+        "running": false,
+        "dataDir": "D:\\project\\knowledge-base\\.recall-local\\v0.0.10\\campaign-9iAL7n\\data"
+      }
+    }
+  },
+  {
+    "data": "D:\\project\\knowledge-base\\.recall-local\\v0.0.10\\demo-NEHhhH\\knowledge-data",
+    "result": {
+      "ok": true,
+      "data": {
+        "running": false,
+        "dataDir": "D:\\project\\knowledge-base\\.recall-local\\v0.0.10\\demo-NEHhhH\\knowledge-data"
+      }
+    }
+  }
+]

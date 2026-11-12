@@ -36,7 +36,7 @@ const visibleFields = computed(() => (detail.value?.configuration.fields ?? []).
 watch(() => draft.value.providerId, value => { if (value === 'codex-cli') { draft.value.temperature = 0; draft.value.reasoning = 'off'; } });
 async function inspectAgent(action: 'check' | 'test') {
   const config = detail.value?.configuration;
-  if (!config || dirty.value || checking.value) return;
+  if (!config?.key || dirty.value || checking.value) return;
   checking.value = true; connection.value = '';
   try {
     const result = await pluginRequest<any>(path.value + '/' + action, { method: 'POST', body: { values: {}, expectedConfigVersion: config.configVersion, configKey: config.key } });
@@ -265,8 +265,8 @@ function display(value: unknown): string {
           </div>
           <section v-if="id === 'agent' && detail.configuration.editable" class="plugin-agent-tools">
             <p class="muted">状态检测针对服务器运行账号；编辑配置后请先保存。</p>
-            <button type="button" :disabled="dirty || saving || checking" @click="inspectAgent('check')">检查登录状态</button>
-            <button type="button" :disabled="dirty || saving || checking" @click="inspectAgent('test')">测试连接（消耗额度）</button>
+            <button type="button" :disabled="!detail.configuration.key || dirty || saving || checking" @click="inspectAgent('check')">检查登录状态</button>
+            <button type="button" :disabled="!detail.configuration.key || dirty || saving || checking" @click="inspectAgent('test')">测试连接（消耗额度）</button>
             <p v-if="checking" role="status">正在检测…</p>
             <p v-if="connection" role="status">{{ connection }}</p>
             <button type="button" :disabled="dirty || saving || checking" @click="creating = !creating">新增 Codex 配置</button>

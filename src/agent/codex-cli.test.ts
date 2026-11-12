@@ -106,7 +106,9 @@ test('Codex process output is bounded', async () => {
 test('Codex service timeout eventually releases actual process slot', async () => {
   const f = await fixture('hang');
   try {
-    await assert.rejects(f.service.generateText({ profile: f.profile.id, messages, timeoutMs: 700 }), { code: 'AGENT_TIMEOUT' });
+    // 登录检测另有测试；此用例让时限覆盖生成子进程，避免并行负载下先耗尽检测预算。
+    f.provider.check = async () => ({ state: 'ready' });
+    await assert.rejects(f.service.generateText({ profile: f.profile.id, messages, timeoutMs: 2000 }), { code: 'AGENT_TIMEOUT' });
     for (let index=0; index<100 && f.service.status().active; index++) await new Promise(resolve => setTimeout(resolve,20));
     assert.equal(f.service.status().active,0);
     const capture=JSON.parse(await readFile(f.capture,'utf8'));

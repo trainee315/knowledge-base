@@ -1,0 +1,3843 @@
+{
+  "passed": true,
+  "syntheticOnly": true,
+  "finalSource": true,
+  "index": {
+    "schema": 1,
+    "generation": "974ad74a-d023-48b7-a0b8-c0cc90d40dd1",
+    "fingerprint": "9d44219e54161b6755f71b0c9674bbcba723cb5a9dd73ed92623396dbf7e769e",
+    "splitter": "markdown-block-1:74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+    "tokenizer": "nfkc-cjk-bigram-2",
+    "model": "6cf47aee644c477e707d490c24bb21fe16219d01aaa005f8cb4af39b783dce88",
+    "builtAt": "2026-11-12T12:12:13.389Z",
+    "records": 45,
+    "fragments": 139,
+    "skipped": [],
+    "usage": {
+      "embeddingTexts": 2,
+      "embeddingTokens": 90,
+      "rerankPairs": 0,
+      "rerankTokens": 0,
+      "modelCalls": 1,
+      "cacheHits": 105,
+      "generationTokens": 0,
+      "apiCost": 0,
+      "modelPeakRssBytes": 154652672,
+      "modelCpuMs": 249,
+      "modelFsRead": 245,
+      "modelFsWrite": 0
+    },
+    "truncatedEncodingInputs": 0,
+    "reusedFragments": 137,
+    "vectors": true,
+    "warnings": [],
+    "durationMs": 734.3372
+  },
+  "migration": {
+    "schema": 1,
+    "generation": "665581d6-4185-41fe-b6f5-fe690e0f5077",
+    "fingerprint": "9d44219e54161b6755f71b0c9674bbcba723cb5a9dd73ed92623396dbf7e769e",
+    "splitter": "markdown-block-1:74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+    "tokenizer": "nfkc-cjk-bigram-2",
+    "model": "6cf47aee644c477e707d490c24bb21fe16219d01aaa005f8cb4af39b783dce88",
+    "builtAt": "2026-11-12T12:12:13.565Z",
+    "records": 45,
+    "fragments": 139,
+    "skipped": [],
+    "usage": {
+      "embeddingTexts": 0,
+      "embeddingTokens": 0,
+      "rerankPairs": 0,
+      "rerankTokens": 0,
+      "modelCalls": 0,
+      "cacheHits": 107,
+      "generationTokens": 0,
+      "apiCost": 0
+    },
+    "truncatedEncodingInputs": 0,
+    "reusedFragments": 139,
+    "vectors": true,
+    "warnings": [],
+    "durationMs": 161.1753
+  },
+  "evaluation": {
+    "kind": "retrieval-only",
+    "snapshot": "9d44219e54161b6755f71b0c9674bbcba723cb5a9dd73ed92623396dbf7e769e",
+    "casesHash": "62764507c684ea65e21921816c837f982d1ecbc82ef68aa9d6fc47bb4b6d3e4f",
+    "sampleCount": 13,
+    "rows": [
+      {
+        "caseId": "timeout-exact",
+        "mode": "literal",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 0.5,
+        "ndcgAt5": 0.6309297535714575,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 3483,
+        "durationMs": 802.1665,
+        "usage": {
+          "embeddingTexts": 0,
+          "embeddingTokens": 0,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 0,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0
+        },
+        "verified": true,
+        "warnings": [],
+        "evidence": [
+          {
+            "resourceId": "d45e6d47-8b4d-490d-85c1-c3abf3a98d0d",
+            "start": 0,
+            "end": 8,
+            "relevant": false
+          },
+          {
+            "resourceId": "d45e6d47-8b4d-490d-85c1-c3abf3a98d0d",
+            "start": 8,
+            "end": 45,
+            "relevant": true
+          },
+          {
+            "resourceId": "d45e6d47-8b4d-490d-85c1-c3abf3a98d0d",
+            "start": 45,
+            "end": 80,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "timeout-exact",
+        "mode": "bm25",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 1990,
+        "durationMs": 51.728799999999865,
+        "usage": {
+          "embeddingTexts": 0,
+          "embeddingTokens": 0,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 0,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "d45e6d47-8b4d-490d-85c1-c3abf3a98d0d",
+            "start": 8,
+            "end": 45,
+            "relevant": true
+          }
+        ]
+      },
+      {
+        "caseId": "timeout-exact",
+        "mode": "semantic",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 2080,
+        "durationMs": 396.3977,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 25,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 1,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 154591232,
+          "modelCpuMs": 233,
+          "modelFsRead": 245,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "d45e6d47-8b4d-490d-85c1-c3abf3a98d0d",
+            "start": 8,
+            "end": 45,
+            "relevant": true
+          }
+        ]
+      },
+      {
+        "caseId": "timeout-exact",
+        "mode": "hybrid",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 2128,
+        "durationMs": 370.73279999999977,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 25,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 1,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 155041792,
+          "modelCpuMs": 265,
+          "modelFsRead": 245,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "d45e6d47-8b4d-490d-85c1-c3abf3a98d0d",
+            "start": 8,
+            "end": 45,
+            "relevant": true
+          }
+        ]
+      },
+      {
+        "caseId": "timeout-exact",
+        "mode": "hybrid-rerank",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 2159,
+        "durationMs": 2369.0218,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 25,
+          "rerankPairs": 1,
+          "rerankTokens": 33,
+          "modelCalls": 2,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 914108416,
+          "modelCpuMs": 1873,
+          "modelFsRead": 698,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "d45e6d47-8b4d-490d-85c1-c3abf3a98d0d",
+            "start": 8,
+            "end": 45,
+            "relevant": true
+          }
+        ]
+      },
+      {
+        "caseId": "timeout-exact",
+        "mode": "task",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 2301,
+        "durationMs": 2286.2802,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 25,
+          "rerankPairs": 1,
+          "rerankTokens": 33,
+          "modelCalls": 2,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 923062272,
+          "modelCpuMs": 1951,
+          "modelFsRead": 696,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "d45e6d47-8b4d-490d-85c1-c3abf3a98d0d",
+            "start": 8,
+            "end": 45,
+            "relevant": true
+          }
+        ]
+      },
+      {
+        "caseId": "timeout-paraphrase",
+        "mode": "literal",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 0,
+        "reciprocalRank": 0,
+        "ndcgAt5": 0,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 0,
+        "duplicateRatio": 0,
+        "resultBytes": 173,
+        "durationMs": 742.7401,
+        "usage": {
+          "embeddingTexts": 0,
+          "embeddingTokens": 0,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 0,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0
+        },
+        "verified": true,
+        "warnings": [],
+        "evidence": []
+      },
+      {
+        "caseId": "timeout-paraphrase",
+        "mode": "bm25",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 2056,
+        "durationMs": 86.63889999999992,
+        "usage": {
+          "embeddingTexts": 0,
+          "embeddingTokens": 0,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 0,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "d45e6d47-8b4d-490d-85c1-c3abf3a98d0d",
+            "start": 8,
+            "end": 45,
+            "relevant": true
+          }
+        ]
+      },
+      {
+        "caseId": "timeout-paraphrase",
+        "mode": "semantic",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 2145,
+        "durationMs": 446.3069999999998,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 36,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 1,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 155770880,
+          "modelCpuMs": 265,
+          "modelFsRead": 245,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "d45e6d47-8b4d-490d-85c1-c3abf3a98d0d",
+            "start": 8,
+            "end": 45,
+            "relevant": true
+          }
+        ]
+      },
+      {
+        "caseId": "timeout-paraphrase",
+        "mode": "hybrid",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 2193,
+        "durationMs": 376.3732,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 36,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 1,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 154677248,
+          "modelCpuMs": 296,
+          "modelFsRead": 245,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "d45e6d47-8b4d-490d-85c1-c3abf3a98d0d",
+            "start": 8,
+            "end": 45,
+            "relevant": true
+          }
+        ]
+      },
+      {
+        "caseId": "timeout-paraphrase",
+        "mode": "hybrid-rerank",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 2225,
+        "durationMs": 2086.0663000000004,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 36,
+          "rerankPairs": 1,
+          "rerankTokens": 38,
+          "modelCalls": 2,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 914509824,
+          "modelCpuMs": 1639,
+          "modelFsRead": 693,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "d45e6d47-8b4d-490d-85c1-c3abf3a98d0d",
+            "start": 8,
+            "end": 45,
+            "relevant": true
+          }
+        ]
+      },
+      {
+        "caseId": "timeout-paraphrase",
+        "mode": "task",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 2294,
+        "durationMs": 2075.0950999999986,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 36,
+          "rerankPairs": 1,
+          "rerankTokens": 38,
+          "modelCalls": 2,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 914784256,
+          "modelCpuMs": 1560,
+          "modelFsRead": 692,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "d45e6d47-8b4d-490d-85c1-c3abf3a98d0d",
+            "start": 8,
+            "end": 45,
+            "relevant": true
+          }
+        ]
+      },
+      {
+        "caseId": "migration-exact",
+        "mode": "literal",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 0.5,
+        "ndcgAt5": 0.6309297535714575,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 3524,
+        "durationMs": 737.9416999999994,
+        "usage": {
+          "embeddingTexts": 0,
+          "embeddingTokens": 0,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 0,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0
+        },
+        "verified": true,
+        "warnings": [],
+        "evidence": [
+          {
+            "resourceId": "0daed7c3-9e6e-47a8-9a8f-bb74265040b4",
+            "start": 0,
+            "end": 8,
+            "relevant": false
+          },
+          {
+            "resourceId": "0daed7c3-9e6e-47a8-9a8f-bb74265040b4",
+            "start": 8,
+            "end": 56,
+            "relevant": true
+          },
+          {
+            "resourceId": "0daed7c3-9e6e-47a8-9a8f-bb74265040b4",
+            "start": 56,
+            "end": 91,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "migration-exact",
+        "mode": "bm25",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 2032,
+        "durationMs": 44.99439999999959,
+        "usage": {
+          "embeddingTexts": 0,
+          "embeddingTokens": 0,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 0,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "0daed7c3-9e6e-47a8-9a8f-bb74265040b4",
+            "start": 8,
+            "end": 56,
+            "relevant": true
+          }
+        ]
+      },
+      {
+        "caseId": "migration-exact",
+        "mode": "semantic",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 4349,
+        "durationMs": 384.09929999999986,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 26,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 1,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 156184576,
+          "modelCpuMs": 358,
+          "modelFsRead": 245,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "0daed7c3-9e6e-47a8-9a8f-bb74265040b4",
+            "start": 8,
+            "end": 56,
+            "relevant": true
+          },
+          {
+            "resourceId": "0daed7c3-9e6e-47a8-9a8f-bb74265040b4",
+            "start": 56,
+            "end": 91,
+            "relevant": false
+          },
+          {
+            "resourceId": "0daed7c3-9e6e-47a8-9a8f-bb74265040b4",
+            "start": 0,
+            "end": 8,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "migration-exact",
+        "mode": "hybrid",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 4398,
+        "durationMs": 408.65029999999933,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 26,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 1,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 155283456,
+          "modelCpuMs": 264,
+          "modelFsRead": 245,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "0daed7c3-9e6e-47a8-9a8f-bb74265040b4",
+            "start": 8,
+            "end": 56,
+            "relevant": true
+          },
+          {
+            "resourceId": "0daed7c3-9e6e-47a8-9a8f-bb74265040b4",
+            "start": 56,
+            "end": 91,
+            "relevant": false
+          },
+          {
+            "resourceId": "0daed7c3-9e6e-47a8-9a8f-bb74265040b4",
+            "start": 0,
+            "end": 8,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "migration-exact",
+        "mode": "hybrid-rerank",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 4426,
+        "durationMs": 2226.1746000000003,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 26,
+          "rerankPairs": 3,
+          "rerankTokens": 84,
+          "modelCalls": 2,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 916545536,
+          "modelCpuMs": 1811,
+          "modelFsRead": 689,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "0daed7c3-9e6e-47a8-9a8f-bb74265040b4",
+            "start": 8,
+            "end": 56,
+            "relevant": true
+          },
+          {
+            "resourceId": "0daed7c3-9e6e-47a8-9a8f-bb74265040b4",
+            "start": 0,
+            "end": 8,
+            "relevant": false
+          },
+          {
+            "resourceId": "0daed7c3-9e6e-47a8-9a8f-bb74265040b4",
+            "start": 56,
+            "end": 91,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "migration-exact",
+        "mode": "task",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 2324,
+        "durationMs": 1974.6568000000007,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 26,
+          "rerankPairs": 3,
+          "rerankTokens": 84,
+          "modelCalls": 2,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 915197952,
+          "modelCpuMs": 1780,
+          "modelFsRead": 698,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "0daed7c3-9e6e-47a8-9a8f-bb74265040b4",
+            "start": 8,
+            "end": 56,
+            "relevant": true
+          }
+        ]
+      },
+      {
+        "caseId": "migration-paraphrase",
+        "mode": "literal",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 0,
+        "reciprocalRank": 0,
+        "ndcgAt5": 0,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 0,
+        "duplicateRatio": 0,
+        "resultBytes": 173,
+        "durationMs": 662.9693999999981,
+        "usage": {
+          "embeddingTexts": 0,
+          "embeddingTokens": 0,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 0,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0
+        },
+        "verified": true,
+        "warnings": [],
+        "evidence": []
+      },
+      {
+        "caseId": "migration-paraphrase",
+        "mode": "bm25",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 2093,
+        "durationMs": 44.52549999999974,
+        "usage": {
+          "embeddingTexts": 0,
+          "embeddingTokens": 0,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 0,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "0daed7c3-9e6e-47a8-9a8f-bb74265040b4",
+            "start": 8,
+            "end": 56,
+            "relevant": true
+          }
+        ]
+      },
+      {
+        "caseId": "migration-paraphrase",
+        "mode": "semantic",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0.19999999999999996,
+        "resultBytes": 7129,
+        "durationMs": 384.0108,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 36,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 1,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 155516928,
+          "modelCpuMs": 327,
+          "modelFsRead": 245,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "0daed7c3-9e6e-47a8-9a8f-bb74265040b4",
+            "start": 8,
+            "end": 56,
+            "relevant": true
+          },
+          {
+            "resourceId": "cca59438-5330-41ed-90a4-8eeffa697032",
+            "start": 8,
+            "end": 54,
+            "relevant": false
+          },
+          {
+            "resourceId": "cca59438-5330-41ed-90a4-8eeffa697032",
+            "start": 54,
+            "end": 89,
+            "relevant": false
+          },
+          {
+            "resourceId": "0daed7c3-9e6e-47a8-9a8f-bb74265040b4",
+            "start": 56,
+            "end": 91,
+            "relevant": false
+          },
+          {
+            "resourceId": "ca3a26dd-eaac-4a32-92b6-2190bab532d9",
+            "start": 8,
+            "end": 52,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "migration-paraphrase",
+        "mode": "hybrid",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0.19999999999999996,
+        "resultBytes": 7178,
+        "durationMs": 380.3159999999989,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 36,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 1,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 156291072,
+          "modelCpuMs": 249,
+          "modelFsRead": 245,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "0daed7c3-9e6e-47a8-9a8f-bb74265040b4",
+            "start": 8,
+            "end": 56,
+            "relevant": true
+          },
+          {
+            "resourceId": "cca59438-5330-41ed-90a4-8eeffa697032",
+            "start": 8,
+            "end": 54,
+            "relevant": false
+          },
+          {
+            "resourceId": "cca59438-5330-41ed-90a4-8eeffa697032",
+            "start": 54,
+            "end": 89,
+            "relevant": false
+          },
+          {
+            "resourceId": "0daed7c3-9e6e-47a8-9a8f-bb74265040b4",
+            "start": 56,
+            "end": 91,
+            "relevant": false
+          },
+          {
+            "resourceId": "ca3a26dd-eaac-4a32-92b6-2190bab532d9",
+            "start": 8,
+            "end": 52,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "migration-paraphrase",
+        "mode": "hybrid-rerank",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0.4,
+        "resultBytes": 7099,
+        "durationMs": 2083.659399999997,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 36,
+          "rerankPairs": 8,
+          "rerankTokens": 268,
+          "modelCalls": 2,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 914214912,
+          "modelCpuMs": 1764,
+          "modelFsRead": 697,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "0daed7c3-9e6e-47a8-9a8f-bb74265040b4",
+            "start": 8,
+            "end": 56,
+            "relevant": true
+          },
+          {
+            "resourceId": "cca59438-5330-41ed-90a4-8eeffa697032",
+            "start": 8,
+            "end": 54,
+            "relevant": false
+          },
+          {
+            "resourceId": "0daed7c3-9e6e-47a8-9a8f-bb74265040b4",
+            "start": 56,
+            "end": 91,
+            "relevant": false
+          },
+          {
+            "resourceId": "cca59438-5330-41ed-90a4-8eeffa697032",
+            "start": 54,
+            "end": 89,
+            "relevant": false
+          },
+          {
+            "resourceId": "ca3a26dd-eaac-4a32-92b6-2190bab532d9",
+            "start": 52,
+            "end": 87,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "migration-paraphrase",
+        "mode": "task",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 4876,
+        "durationMs": 2085.2520000000004,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 36,
+          "rerankPairs": 8,
+          "rerankTokens": 268,
+          "modelCalls": 2,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 913014784,
+          "modelCpuMs": 1810,
+          "modelFsRead": 688,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "0daed7c3-9e6e-47a8-9a8f-bb74265040b4",
+            "start": 8,
+            "end": 56,
+            "relevant": true
+          },
+          {
+            "resourceId": "cca59438-5330-41ed-90a4-8eeffa697032",
+            "start": 8,
+            "end": 54,
+            "relevant": false
+          },
+          {
+            "resourceId": "ca3a26dd-eaac-4a32-92b6-2190bab532d9",
+            "start": 8,
+            "end": 52,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "cooldown-exact",
+        "mode": "literal",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 0.5,
+        "ndcgAt5": 0.6309297535714575,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 3505,
+        "durationMs": 673.8044000000009,
+        "usage": {
+          "embeddingTexts": 0,
+          "embeddingTokens": 0,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 0,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0
+        },
+        "verified": true,
+        "warnings": [],
+        "evidence": [
+          {
+            "resourceId": "595a7d26-ab74-4e77-b4b4-3560e4b544f3",
+            "start": 0,
+            "end": 8,
+            "relevant": false
+          },
+          {
+            "resourceId": "595a7d26-ab74-4e77-b4b4-3560e4b544f3",
+            "start": 8,
+            "end": 54,
+            "relevant": true
+          },
+          {
+            "resourceId": "595a7d26-ab74-4e77-b4b4-3560e4b544f3",
+            "start": 54,
+            "end": 88,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "cooldown-exact",
+        "mode": "bm25",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 2016,
+        "durationMs": 42.88129999999728,
+        "usage": {
+          "embeddingTexts": 0,
+          "embeddingTokens": 0,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 0,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "595a7d26-ab74-4e77-b4b4-3560e4b544f3",
+            "start": 8,
+            "end": 54,
+            "relevant": true
+          }
+        ]
+      },
+      {
+        "caseId": "cooldown-exact",
+        "mode": "semantic",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 0,
+        "reciprocalRank": 0,
+        "ndcgAt5": 0,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 0,
+        "duplicateRatio": 0,
+        "resultBytes": 851,
+        "durationMs": 340.5626999999986,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 25,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 1,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 154365952,
+          "modelCpuMs": 296,
+          "modelFsRead": 245,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": []
+      },
+      {
+        "caseId": "cooldown-exact",
+        "mode": "hybrid",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 2141,
+        "durationMs": 363.86149999999907,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 25,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 1,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 154865664,
+          "modelCpuMs": 312,
+          "modelFsRead": 245,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "595a7d26-ab74-4e77-b4b4-3560e4b544f3",
+            "start": 8,
+            "end": 54,
+            "relevant": true
+          }
+        ]
+      },
+      {
+        "caseId": "cooldown-exact",
+        "mode": "hybrid-rerank",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 2185,
+        "durationMs": 1844.5442999999977,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 25,
+          "rerankPairs": 1,
+          "rerankTokens": 39,
+          "modelCalls": 2,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 913858560,
+          "modelCpuMs": 1515,
+          "modelFsRead": 690,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "595a7d26-ab74-4e77-b4b4-3560e4b544f3",
+            "start": 8,
+            "end": 54,
+            "relevant": true
+          }
+        ]
+      },
+      {
+        "caseId": "cooldown-exact",
+        "mode": "task",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 2309,
+        "durationMs": 1843.7882999999965,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 25,
+          "rerankPairs": 1,
+          "rerankTokens": 39,
+          "modelCalls": 2,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 912195584,
+          "modelCpuMs": 1499,
+          "modelFsRead": 692,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "595a7d26-ab74-4e77-b4b4-3560e4b544f3",
+            "start": 8,
+            "end": 54,
+            "relevant": true
+          }
+        ]
+      },
+      {
+        "caseId": "cooldown-paraphrase",
+        "mode": "literal",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 0,
+        "reciprocalRank": 0,
+        "ndcgAt5": 0,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 0,
+        "duplicateRatio": 0,
+        "resultBytes": 173,
+        "durationMs": 648.3398000000016,
+        "usage": {
+          "embeddingTexts": 0,
+          "embeddingTokens": 0,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 0,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0
+        },
+        "verified": true,
+        "warnings": [],
+        "evidence": []
+      },
+      {
+        "caseId": "cooldown-paraphrase",
+        "mode": "bm25",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 2082,
+        "durationMs": 42.353800000000774,
+        "usage": {
+          "embeddingTexts": 0,
+          "embeddingTokens": 0,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 0,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "595a7d26-ab74-4e77-b4b4-3560e4b544f3",
+            "start": 8,
+            "end": 54,
+            "relevant": true
+          }
+        ]
+      },
+      {
+        "caseId": "cooldown-paraphrase",
+        "mode": "semantic",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 7019,
+        "durationMs": 416.5018999999993,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 36,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 1,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 155684864,
+          "modelCpuMs": 312,
+          "modelFsRead": 245,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "595a7d26-ab74-4e77-b4b4-3560e4b544f3",
+            "start": 8,
+            "end": 54,
+            "relevant": true
+          },
+          {
+            "resourceId": "595a7d26-ab74-4e77-b4b4-3560e4b544f3",
+            "start": 0,
+            "end": 8,
+            "relevant": false
+          },
+          {
+            "resourceId": "595a7d26-ab74-4e77-b4b4-3560e4b544f3",
+            "start": 54,
+            "end": 88,
+            "relevant": false
+          },
+          {
+            "resourceId": "c653a420-56af-4290-af02-06dc2e1da7ce",
+            "start": 8,
+            "end": 48,
+            "relevant": false
+          },
+          {
+            "resourceId": "39e45365-4270-49fe-861f-3a2c36b2dd22",
+            "start": 8,
+            "end": 53,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "cooldown-paraphrase",
+        "mode": "hybrid",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 7068,
+        "durationMs": 396.2502999999997,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 36,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 1,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 155426816,
+          "modelCpuMs": 233,
+          "modelFsRead": 245,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "595a7d26-ab74-4e77-b4b4-3560e4b544f3",
+            "start": 8,
+            "end": 54,
+            "relevant": true
+          },
+          {
+            "resourceId": "595a7d26-ab74-4e77-b4b4-3560e4b544f3",
+            "start": 0,
+            "end": 8,
+            "relevant": false
+          },
+          {
+            "resourceId": "595a7d26-ab74-4e77-b4b4-3560e4b544f3",
+            "start": 54,
+            "end": 88,
+            "relevant": false
+          },
+          {
+            "resourceId": "c653a420-56af-4290-af02-06dc2e1da7ce",
+            "start": 8,
+            "end": 48,
+            "relevant": false
+          },
+          {
+            "resourceId": "39e45365-4270-49fe-861f-3a2c36b2dd22",
+            "start": 8,
+            "end": 53,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "cooldown-paraphrase",
+        "mode": "hybrid-rerank",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 7103,
+        "durationMs": 2015.4857999999986,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 36,
+          "rerankPairs": 6,
+          "rerankTokens": 254,
+          "modelCalls": 2,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 915222528,
+          "modelCpuMs": 1827,
+          "modelFsRead": 695,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "595a7d26-ab74-4e77-b4b4-3560e4b544f3",
+            "start": 8,
+            "end": 54,
+            "relevant": true
+          },
+          {
+            "resourceId": "595a7d26-ab74-4e77-b4b4-3560e4b544f3",
+            "start": 0,
+            "end": 8,
+            "relevant": false
+          },
+          {
+            "resourceId": "c653a420-56af-4290-af02-06dc2e1da7ce",
+            "start": 8,
+            "end": 48,
+            "relevant": false
+          },
+          {
+            "resourceId": "39e45365-4270-49fe-861f-3a2c36b2dd22",
+            "start": 8,
+            "end": 53,
+            "relevant": false
+          },
+          {
+            "resourceId": "595a7d26-ab74-4e77-b4b4-3560e4b544f3",
+            "start": 54,
+            "end": 88,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "cooldown-paraphrase",
+        "mode": "task",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 4863,
+        "durationMs": 2007.1183999999994,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 36,
+          "rerankPairs": 6,
+          "rerankTokens": 254,
+          "modelCalls": 2,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 913092608,
+          "modelCpuMs": 1655,
+          "modelFsRead": 690,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "595a7d26-ab74-4e77-b4b4-3560e4b544f3",
+            "start": 8,
+            "end": 54,
+            "relevant": true
+          },
+          {
+            "resourceId": "c653a420-56af-4290-af02-06dc2e1da7ce",
+            "start": 8,
+            "end": 48,
+            "relevant": false
+          },
+          {
+            "resourceId": "107d79dc-f652-40cd-933c-44ca4643d297",
+            "start": 8,
+            "end": 69,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "pagination-exact",
+        "mode": "literal",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 0.5,
+        "ndcgAt5": 0.6309297535714575,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 3529,
+        "durationMs": 679.2707000000009,
+        "usage": {
+          "embeddingTexts": 0,
+          "embeddingTokens": 0,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 0,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0
+        },
+        "verified": true,
+        "warnings": [],
+        "evidence": [
+          {
+            "resourceId": "ba8391cb-e401-412c-ac28-3ec2a8d9dfa5",
+            "start": 0,
+            "end": 8,
+            "relevant": false
+          },
+          {
+            "resourceId": "ba8391cb-e401-412c-ac28-3ec2a8d9dfa5",
+            "start": 8,
+            "end": 58,
+            "relevant": true
+          },
+          {
+            "resourceId": "ba8391cb-e401-412c-ac28-3ec2a8d9dfa5",
+            "start": 58,
+            "end": 93,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "pagination-exact",
+        "mode": "bm25",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 2030,
+        "durationMs": 44.366900000000896,
+        "usage": {
+          "embeddingTexts": 0,
+          "embeddingTokens": 0,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 0,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "ba8391cb-e401-412c-ac28-3ec2a8d9dfa5",
+            "start": 8,
+            "end": 58,
+            "relevant": true
+          }
+        ]
+      },
+      {
+        "caseId": "pagination-exact",
+        "mode": "semantic",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 2118,
+        "durationMs": 352.90750000000116,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 25,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 1,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 154603520,
+          "modelCpuMs": 202,
+          "modelFsRead": 245,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "ba8391cb-e401-412c-ac28-3ec2a8d9dfa5",
+            "start": 8,
+            "end": 58,
+            "relevant": true
+          }
+        ]
+      },
+      {
+        "caseId": "pagination-exact",
+        "mode": "hybrid",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 2167,
+        "durationMs": 357.0699999999997,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 25,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 1,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 155189248,
+          "modelCpuMs": 218,
+          "modelFsRead": 245,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "ba8391cb-e401-412c-ac28-3ec2a8d9dfa5",
+            "start": 8,
+            "end": 58,
+            "relevant": true
+          }
+        ]
+      },
+      {
+        "caseId": "pagination-exact",
+        "mode": "hybrid-rerank",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 2205,
+        "durationMs": 1866.4308999999994,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 25,
+          "rerankPairs": 1,
+          "rerankTokens": 43,
+          "modelCalls": 2,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 913321984,
+          "modelCpuMs": 1702,
+          "modelFsRead": 690,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "ba8391cb-e401-412c-ac28-3ec2a8d9dfa5",
+            "start": 8,
+            "end": 58,
+            "relevant": true
+          }
+        ]
+      },
+      {
+        "caseId": "pagination-exact",
+        "mode": "task",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 2363,
+        "durationMs": 1831.2253999999957,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 25,
+          "rerankPairs": 1,
+          "rerankTokens": 43,
+          "modelCalls": 2,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 912138240,
+          "modelCpuMs": 1796,
+          "modelFsRead": 683,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "ba8391cb-e401-412c-ac28-3ec2a8d9dfa5",
+            "start": 8,
+            "end": 58,
+            "relevant": true
+          }
+        ]
+      },
+      {
+        "caseId": "pagination-paraphrase",
+        "mode": "literal",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 0,
+        "reciprocalRank": 0,
+        "ndcgAt5": 0,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 0,
+        "duplicateRatio": 0,
+        "resultBytes": 173,
+        "durationMs": 658.4261000000042,
+        "usage": {
+          "embeddingTexts": 0,
+          "embeddingTokens": 0,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 0,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0
+        },
+        "verified": true,
+        "warnings": [],
+        "evidence": []
+      },
+      {
+        "caseId": "pagination-paraphrase",
+        "mode": "bm25",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 2095,
+        "durationMs": 45.75220000000263,
+        "usage": {
+          "embeddingTexts": 0,
+          "embeddingTokens": 0,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 0,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "ba8391cb-e401-412c-ac28-3ec2a8d9dfa5",
+            "start": 8,
+            "end": 58,
+            "relevant": true
+          }
+        ]
+      },
+      {
+        "caseId": "pagination-paraphrase",
+        "mode": "semantic",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 6850,
+        "durationMs": 400.64140000000043,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 36,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 1,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 155410432,
+          "modelCpuMs": 296,
+          "modelFsRead": 245,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "ba8391cb-e401-412c-ac28-3ec2a8d9dfa5",
+            "start": 8,
+            "end": 58,
+            "relevant": true
+          },
+          {
+            "resourceId": "ba8391cb-e401-412c-ac28-3ec2a8d9dfa5",
+            "start": 0,
+            "end": 8,
+            "relevant": false
+          },
+          {
+            "resourceId": "13d1ad4d-39bf-489f-9ab1-df0986752773",
+            "start": 8,
+            "end": 48,
+            "relevant": false
+          },
+          {
+            "resourceId": "ba8391cb-e401-412c-ac28-3ec2a8d9dfa5",
+            "start": 58,
+            "end": 93,
+            "relevant": false
+          },
+          {
+            "resourceId": "13d1ad4d-39bf-489f-9ab1-df0986752773",
+            "start": 0,
+            "end": 8,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "pagination-paraphrase",
+        "mode": "hybrid",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 6899,
+        "durationMs": 359.30719999999565,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 36,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 1,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 155062272,
+          "modelCpuMs": 249,
+          "modelFsRead": 245,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "ba8391cb-e401-412c-ac28-3ec2a8d9dfa5",
+            "start": 8,
+            "end": 58,
+            "relevant": true
+          },
+          {
+            "resourceId": "ba8391cb-e401-412c-ac28-3ec2a8d9dfa5",
+            "start": 0,
+            "end": 8,
+            "relevant": false
+          },
+          {
+            "resourceId": "13d1ad4d-39bf-489f-9ab1-df0986752773",
+            "start": 8,
+            "end": 48,
+            "relevant": false
+          },
+          {
+            "resourceId": "ba8391cb-e401-412c-ac28-3ec2a8d9dfa5",
+            "start": 58,
+            "end": 93,
+            "relevant": false
+          },
+          {
+            "resourceId": "13d1ad4d-39bf-489f-9ab1-df0986752773",
+            "start": 0,
+            "end": 8,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "pagination-paraphrase",
+        "mode": "hybrid-rerank",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 6939,
+        "durationMs": 2081.7929000000004,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 36,
+          "rerankPairs": 6,
+          "rerankTokens": 193,
+          "modelCalls": 2,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 914464768,
+          "modelCpuMs": 1607,
+          "modelFsRead": 697,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "ba8391cb-e401-412c-ac28-3ec2a8d9dfa5",
+            "start": 8,
+            "end": 58,
+            "relevant": true
+          },
+          {
+            "resourceId": "13d1ad4d-39bf-489f-9ab1-df0986752773",
+            "start": 8,
+            "end": 48,
+            "relevant": false
+          },
+          {
+            "resourceId": "ba8391cb-e401-412c-ac28-3ec2a8d9dfa5",
+            "start": 0,
+            "end": 8,
+            "relevant": false
+          },
+          {
+            "resourceId": "13d1ad4d-39bf-489f-9ab1-df0986752773",
+            "start": 0,
+            "end": 8,
+            "relevant": false
+          },
+          {
+            "resourceId": "13d1ad4d-39bf-489f-9ab1-df0986752773",
+            "start": 48,
+            "end": 83,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "pagination-paraphrase",
+        "mode": "task",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 3590,
+        "durationMs": 2009.6296999999977,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 36,
+          "rerankPairs": 6,
+          "rerankTokens": 193,
+          "modelCalls": 2,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 912764928,
+          "modelCpuMs": 1671,
+          "modelFsRead": 693,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "ba8391cb-e401-412c-ac28-3ec2a8d9dfa5",
+            "start": 8,
+            "end": 58,
+            "relevant": true
+          },
+          {
+            "resourceId": "13d1ad4d-39bf-489f-9ab1-df0986752773",
+            "start": 8,
+            "end": 48,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "encryption-exact",
+        "mode": "literal",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 0.5,
+        "ndcgAt5": 0.6309297535714575,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 3515,
+        "durationMs": 666.536500000002,
+        "usage": {
+          "embeddingTexts": 0,
+          "embeddingTokens": 0,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 0,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0
+        },
+        "verified": true,
+        "warnings": [],
+        "evidence": [
+          {
+            "resourceId": "ca3a26dd-eaac-4a32-92b6-2190bab532d9",
+            "start": 0,
+            "end": 8,
+            "relevant": false
+          },
+          {
+            "resourceId": "ca3a26dd-eaac-4a32-92b6-2190bab532d9",
+            "start": 8,
+            "end": 52,
+            "relevant": true
+          },
+          {
+            "resourceId": "ca3a26dd-eaac-4a32-92b6-2190bab532d9",
+            "start": 52,
+            "end": 87,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "encryption-exact",
+        "mode": "bm25",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 2016,
+        "durationMs": 41.94360000000597,
+        "usage": {
+          "embeddingTexts": 0,
+          "embeddingTokens": 0,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 0,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "ca3a26dd-eaac-4a32-92b6-2190bab532d9",
+            "start": 8,
+            "end": 52,
+            "relevant": true
+          }
+        ]
+      },
+      {
+        "caseId": "encryption-exact",
+        "mode": "semantic",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 6663,
+        "durationMs": 368.6941000000006,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 25,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 1,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 154664960,
+          "modelCpuMs": 280,
+          "modelFsRead": 245,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "ca3a26dd-eaac-4a32-92b6-2190bab532d9",
+            "start": 8,
+            "end": 52,
+            "relevant": true
+          },
+          {
+            "resourceId": "ca3a26dd-eaac-4a32-92b6-2190bab532d9",
+            "start": 0,
+            "end": 8,
+            "relevant": false
+          },
+          {
+            "resourceId": "ca3a26dd-eaac-4a32-92b6-2190bab532d9",
+            "start": 52,
+            "end": 87,
+            "relevant": false
+          },
+          {
+            "resourceId": "cca59438-5330-41ed-90a4-8eeffa697032",
+            "start": 0,
+            "end": 8,
+            "relevant": false
+          },
+          {
+            "resourceId": "cca59438-5330-41ed-90a4-8eeffa697032",
+            "start": 8,
+            "end": 54,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "encryption-exact",
+        "mode": "hybrid",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 6710,
+        "durationMs": 376.55020000000513,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 25,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 1,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 154918912,
+          "modelCpuMs": 296,
+          "modelFsRead": 245,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "ca3a26dd-eaac-4a32-92b6-2190bab532d9",
+            "start": 8,
+            "end": 52,
+            "relevant": true
+          },
+          {
+            "resourceId": "ca3a26dd-eaac-4a32-92b6-2190bab532d9",
+            "start": 0,
+            "end": 8,
+            "relevant": false
+          },
+          {
+            "resourceId": "ca3a26dd-eaac-4a32-92b6-2190bab532d9",
+            "start": 52,
+            "end": 87,
+            "relevant": false
+          },
+          {
+            "resourceId": "cca59438-5330-41ed-90a4-8eeffa697032",
+            "start": 0,
+            "end": 8,
+            "relevant": false
+          },
+          {
+            "resourceId": "cca59438-5330-41ed-90a4-8eeffa697032",
+            "start": 8,
+            "end": 54,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "encryption-exact",
+        "mode": "hybrid-rerank",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 6756,
+        "durationMs": 1952.2752999999939,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 25,
+          "rerankPairs": 5,
+          "rerankTokens": 139,
+          "modelCalls": 2,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 914288640,
+          "modelCpuMs": 1591,
+          "modelFsRead": 691,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "ca3a26dd-eaac-4a32-92b6-2190bab532d9",
+            "start": 8,
+            "end": 52,
+            "relevant": true
+          },
+          {
+            "resourceId": "cca59438-5330-41ed-90a4-8eeffa697032",
+            "start": 0,
+            "end": 8,
+            "relevant": false
+          },
+          {
+            "resourceId": "cca59438-5330-41ed-90a4-8eeffa697032",
+            "start": 8,
+            "end": 54,
+            "relevant": false
+          },
+          {
+            "resourceId": "ca3a26dd-eaac-4a32-92b6-2190bab532d9",
+            "start": 52,
+            "end": 87,
+            "relevant": false
+          },
+          {
+            "resourceId": "ca3a26dd-eaac-4a32-92b6-2190bab532d9",
+            "start": 0,
+            "end": 8,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "encryption-exact",
+        "mode": "task",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 3601,
+        "durationMs": 1939.2262000000046,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 25,
+          "rerankPairs": 5,
+          "rerankTokens": 139,
+          "modelCalls": 2,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 913190912,
+          "modelCpuMs": 1749,
+          "modelFsRead": 700,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "ca3a26dd-eaac-4a32-92b6-2190bab532d9",
+            "start": 8,
+            "end": 52,
+            "relevant": true
+          },
+          {
+            "resourceId": "cca59438-5330-41ed-90a4-8eeffa697032",
+            "start": 8,
+            "end": 54,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "encryption-paraphrase",
+        "mode": "literal",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 0,
+        "reciprocalRank": 0,
+        "ndcgAt5": 0,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 0,
+        "duplicateRatio": 0,
+        "resultBytes": 173,
+        "durationMs": 660.4357000000018,
+        "usage": {
+          "embeddingTexts": 0,
+          "embeddingTokens": 0,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 0,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0
+        },
+        "verified": true,
+        "warnings": [],
+        "evidence": []
+      },
+      {
+        "caseId": "encryption-paraphrase",
+        "mode": "bm25",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 3389,
+        "durationMs": 65.10369999999966,
+        "usage": {
+          "embeddingTexts": 0,
+          "embeddingTokens": 0,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 0,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "ca3a26dd-eaac-4a32-92b6-2190bab532d9",
+            "start": 8,
+            "end": 52,
+            "relevant": true
+          },
+          {
+            "resourceId": "0daed7c3-9e6e-47a8-9a8f-bb74265040b4",
+            "start": 8,
+            "end": 56,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "encryption-paraphrase",
+        "mode": "semantic",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 7053,
+        "durationMs": 403.9746000000014,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 35,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 1,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 154660864,
+          "modelCpuMs": 218,
+          "modelFsRead": 245,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "ca3a26dd-eaac-4a32-92b6-2190bab532d9",
+            "start": 8,
+            "end": 52,
+            "relevant": true
+          },
+          {
+            "resourceId": "ca3a26dd-eaac-4a32-92b6-2190bab532d9",
+            "start": 0,
+            "end": 8,
+            "relevant": false
+          },
+          {
+            "resourceId": "ca3a26dd-eaac-4a32-92b6-2190bab532d9",
+            "start": 52,
+            "end": 87,
+            "relevant": false
+          },
+          {
+            "resourceId": "0daed7c3-9e6e-47a8-9a8f-bb74265040b4",
+            "start": 8,
+            "end": 56,
+            "relevant": false
+          },
+          {
+            "resourceId": "cca59438-5330-41ed-90a4-8eeffa697032",
+            "start": 8,
+            "end": 54,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "encryption-paraphrase",
+        "mode": "hybrid",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 7120,
+        "durationMs": 380.22230000000127,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 35,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 1,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 155791360,
+          "modelCpuMs": 218,
+          "modelFsRead": 245,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "ca3a26dd-eaac-4a32-92b6-2190bab532d9",
+            "start": 8,
+            "end": 52,
+            "relevant": true
+          },
+          {
+            "resourceId": "0daed7c3-9e6e-47a8-9a8f-bb74265040b4",
+            "start": 8,
+            "end": 56,
+            "relevant": false
+          },
+          {
+            "resourceId": "ca3a26dd-eaac-4a32-92b6-2190bab532d9",
+            "start": 0,
+            "end": 8,
+            "relevant": false
+          },
+          {
+            "resourceId": "ca3a26dd-eaac-4a32-92b6-2190bab532d9",
+            "start": 52,
+            "end": 87,
+            "relevant": false
+          },
+          {
+            "resourceId": "cca59438-5330-41ed-90a4-8eeffa697032",
+            "start": 8,
+            "end": 54,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "encryption-paraphrase",
+        "mode": "hybrid-rerank",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 7084,
+        "durationMs": 2120.1823000000004,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 35,
+          "rerankPairs": 8,
+          "rerankTokens": 267,
+          "modelCalls": 2,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 915161088,
+          "modelCpuMs": 1826,
+          "modelFsRead": 684,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "ca3a26dd-eaac-4a32-92b6-2190bab532d9",
+            "start": 8,
+            "end": 52,
+            "relevant": true
+          },
+          {
+            "resourceId": "0daed7c3-9e6e-47a8-9a8f-bb74265040b4",
+            "start": 8,
+            "end": 56,
+            "relevant": false
+          },
+          {
+            "resourceId": "ca3a26dd-eaac-4a32-92b6-2190bab532d9",
+            "start": 0,
+            "end": 8,
+            "relevant": false
+          },
+          {
+            "resourceId": "cca59438-5330-41ed-90a4-8eeffa697032",
+            "start": 8,
+            "end": 54,
+            "relevant": false
+          },
+          {
+            "resourceId": "cca59438-5330-41ed-90a4-8eeffa697032",
+            "start": 0,
+            "end": 8,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "encryption-paraphrase",
+        "mode": "task",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 3603,
+        "durationMs": 2041.0628999999972,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 35,
+          "rerankPairs": 8,
+          "rerankTokens": 267,
+          "modelCalls": 2,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 910569472,
+          "modelCpuMs": 1826,
+          "modelFsRead": 690,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "ca3a26dd-eaac-4a32-92b6-2190bab532d9",
+            "start": 8,
+            "end": 52,
+            "relevant": true
+          },
+          {
+            "resourceId": "0daed7c3-9e6e-47a8-9a8f-bb74265040b4",
+            "start": 8,
+            "end": 56,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "rollback-exact",
+        "mode": "literal",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 0.5,
+        "ndcgAt5": 0.6309297535714575,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 3547,
+        "durationMs": 696.4098999999987,
+        "usage": {
+          "embeddingTexts": 0,
+          "embeddingTokens": 0,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 0,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0
+        },
+        "verified": true,
+        "warnings": [],
+        "evidence": [
+          {
+            "resourceId": "107d79dc-f652-40cd-933c-44ca4643d297",
+            "start": 0,
+            "end": 8,
+            "relevant": false
+          },
+          {
+            "resourceId": "107d79dc-f652-40cd-933c-44ca4643d297",
+            "start": 8,
+            "end": 69,
+            "relevant": true
+          },
+          {
+            "resourceId": "107d79dc-f652-40cd-933c-44ca4643d297",
+            "start": 69,
+            "end": 103,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "rollback-exact",
+        "mode": "bm25",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 2055,
+        "durationMs": 41.73599999999715,
+        "usage": {
+          "embeddingTexts": 0,
+          "embeddingTokens": 0,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 0,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "107d79dc-f652-40cd-933c-44ca4643d297",
+            "start": 8,
+            "end": 69,
+            "relevant": true
+          }
+        ]
+      },
+      {
+        "caseId": "rollback-exact",
+        "mode": "semantic",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 2143,
+        "durationMs": 353.10459999999875,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 25,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 1,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 154828800,
+          "modelCpuMs": 203,
+          "modelFsRead": 245,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "107d79dc-f652-40cd-933c-44ca4643d297",
+            "start": 8,
+            "end": 69,
+            "relevant": true
+          }
+        ]
+      },
+      {
+        "caseId": "rollback-exact",
+        "mode": "hybrid",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 2192,
+        "durationMs": 356.1967999999979,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 25,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 1,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 155766784,
+          "modelCpuMs": 202,
+          "modelFsRead": 245,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "107d79dc-f652-40cd-933c-44ca4643d297",
+            "start": 8,
+            "end": 69,
+            "relevant": true
+          }
+        ]
+      },
+      {
+        "caseId": "rollback-exact",
+        "mode": "hybrid-rerank",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 2233,
+        "durationMs": 1919.8462999999974,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 25,
+          "rerankPairs": 1,
+          "rerankTokens": 49,
+          "modelCalls": 2,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 922673152,
+          "modelCpuMs": 1718,
+          "modelFsRead": 682,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "107d79dc-f652-40cd-933c-44ca4643d297",
+            "start": 8,
+            "end": 69,
+            "relevant": true
+          }
+        ]
+      },
+      {
+        "caseId": "rollback-exact",
+        "mode": "task",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 2328,
+        "durationMs": 2759.006100000006,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 25,
+          "rerankPairs": 1,
+          "rerankTokens": 49,
+          "modelCalls": 2,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 922607616,
+          "modelCpuMs": 2170,
+          "modelFsRead": 685,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "107d79dc-f652-40cd-933c-44ca4643d297",
+            "start": 8,
+            "end": 69,
+            "relevant": true
+          }
+        ]
+      },
+      {
+        "caseId": "rollback-paraphrase",
+        "mode": "literal",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 0,
+        "reciprocalRank": 0,
+        "ndcgAt5": 0,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 0,
+        "duplicateRatio": 0,
+        "resultBytes": 173,
+        "durationMs": 1104.278999999995,
+        "usage": {
+          "embeddingTexts": 0,
+          "embeddingTokens": 0,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 0,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0
+        },
+        "verified": true,
+        "warnings": [],
+        "evidence": []
+      },
+      {
+        "caseId": "rollback-paraphrase",
+        "mode": "bm25",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 3400,
+        "durationMs": 90.9068000000043,
+        "usage": {
+          "embeddingTexts": 0,
+          "embeddingTokens": 0,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 0,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "107d79dc-f652-40cd-933c-44ca4643d297",
+            "start": 8,
+            "end": 69,
+            "relevant": true
+          },
+          {
+            "resourceId": "c653a420-56af-4290-af02-06dc2e1da7ce",
+            "start": 8,
+            "end": 48,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "rollback-paraphrase",
+        "mode": "semantic",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 7244,
+        "durationMs": 616.3528000000006,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 35,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 1,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 155107328,
+          "modelCpuMs": 421,
+          "modelFsRead": 246,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "107d79dc-f652-40cd-933c-44ca4643d297",
+            "start": 8,
+            "end": 69,
+            "relevant": true
+          },
+          {
+            "resourceId": "c653a420-56af-4290-af02-06dc2e1da7ce",
+            "start": 8,
+            "end": 48,
+            "relevant": false
+          },
+          {
+            "resourceId": "107d79dc-f652-40cd-933c-44ca4643d297",
+            "start": 69,
+            "end": 103,
+            "relevant": false
+          },
+          {
+            "resourceId": "39e45365-4270-49fe-861f-3a2c36b2dd22",
+            "start": 8,
+            "end": 53,
+            "relevant": false
+          },
+          {
+            "resourceId": "595a7d26-ab74-4e77-b4b4-3560e4b544f3",
+            "start": 8,
+            "end": 54,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "rollback-paraphrase",
+        "mode": "hybrid",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 7297,
+        "durationMs": 572.050599999995,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 35,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 1,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 155066368,
+          "modelCpuMs": 327,
+          "modelFsRead": 245,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "107d79dc-f652-40cd-933c-44ca4643d297",
+            "start": 8,
+            "end": 69,
+            "relevant": true
+          },
+          {
+            "resourceId": "c653a420-56af-4290-af02-06dc2e1da7ce",
+            "start": 8,
+            "end": 48,
+            "relevant": false
+          },
+          {
+            "resourceId": "107d79dc-f652-40cd-933c-44ca4643d297",
+            "start": 69,
+            "end": 103,
+            "relevant": false
+          },
+          {
+            "resourceId": "39e45365-4270-49fe-861f-3a2c36b2dd22",
+            "start": 8,
+            "end": 53,
+            "relevant": false
+          },
+          {
+            "resourceId": "595a7d26-ab74-4e77-b4b4-3560e4b544f3",
+            "start": 8,
+            "end": 54,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "rollback-paraphrase",
+        "mode": "hybrid-rerank",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0.19999999999999996,
+        "resultBytes": 7020,
+        "durationMs": 3400.739499999996,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 35,
+          "rerankPairs": 8,
+          "rerankTokens": 294,
+          "modelCalls": 2,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 915017728,
+          "modelCpuMs": 2420,
+          "modelFsRead": 701,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "107d79dc-f652-40cd-933c-44ca4643d297",
+            "start": 8,
+            "end": 69,
+            "relevant": true
+          },
+          {
+            "resourceId": "c653a420-56af-4290-af02-06dc2e1da7ce",
+            "start": 8,
+            "end": 48,
+            "relevant": false
+          },
+          {
+            "resourceId": "107d79dc-f652-40cd-933c-44ca4643d297",
+            "start": 0,
+            "end": 8,
+            "relevant": false
+          },
+          {
+            "resourceId": "107d79dc-f652-40cd-933c-44ca4643d297",
+            "start": 69,
+            "end": 103,
+            "relevant": false
+          },
+          {
+            "resourceId": "39e45365-4270-49fe-861f-3a2c36b2dd22",
+            "start": 53,
+            "end": 87,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "rollback-paraphrase",
+        "mode": "task",
+        "split": "acceptance",
+        "answerable": true,
+        "recallAt5": 1,
+        "reciprocalRank": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": 1,
+        "duplicateRatio": 0,
+        "resultBytes": 3589,
+        "durationMs": 8686.555899999992,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 35,
+          "rerankPairs": 8,
+          "rerankTokens": 294,
+          "modelCalls": 2,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 922656768,
+          "modelCpuMs": 5280,
+          "modelFsRead": 673,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": [
+          {
+            "resourceId": "107d79dc-f652-40cd-933c-44ca4643d297",
+            "start": 8,
+            "end": 69,
+            "relevant": true
+          },
+          {
+            "resourceId": "c653a420-56af-4290-af02-06dc2e1da7ce",
+            "start": 8,
+            "end": 48,
+            "relevant": false
+          }
+        ]
+      },
+      {
+        "caseId": "beta-no-answer",
+        "mode": "literal",
+        "split": "acceptance",
+        "answerable": false,
+        "recallAt5": null,
+        "reciprocalRank": 0,
+        "ndcgAt5": null,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": null,
+        "duplicateRatio": 0,
+        "resultBytes": 173,
+        "durationMs": 3205.8557999999903,
+        "usage": {
+          "embeddingTexts": 0,
+          "embeddingTokens": 0,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 0,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0
+        },
+        "verified": true,
+        "warnings": [],
+        "evidence": []
+      },
+      {
+        "caseId": "beta-no-answer",
+        "mode": "bm25",
+        "split": "acceptance",
+        "answerable": false,
+        "recallAt5": null,
+        "reciprocalRank": 0,
+        "ndcgAt5": null,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": null,
+        "duplicateRatio": 0,
+        "resultBytes": 805,
+        "durationMs": 114.3173999999999,
+        "usage": {
+          "embeddingTexts": 0,
+          "embeddingTokens": 0,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 0,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": []
+      },
+      {
+        "caseId": "beta-no-answer",
+        "mode": "semantic",
+        "split": "acceptance",
+        "answerable": false,
+        "recallAt5": null,
+        "reciprocalRank": 0,
+        "ndcgAt5": null,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": null,
+        "duplicateRatio": 0,
+        "resultBytes": 893,
+        "durationMs": 1219.788499999995,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 32,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 1,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 155172864,
+          "modelCpuMs": 765,
+          "modelFsRead": 245,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": []
+      },
+      {
+        "caseId": "beta-no-answer",
+        "mode": "hybrid",
+        "split": "acceptance",
+        "answerable": false,
+        "recallAt5": null,
+        "reciprocalRank": 0,
+        "ndcgAt5": null,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": null,
+        "duplicateRatio": 0,
+        "resultBytes": 932,
+        "durationMs": 1047.9058000000077,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 32,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 1,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 155148288,
+          "modelCpuMs": 812,
+          "modelFsRead": 245,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": []
+      },
+      {
+        "caseId": "beta-no-answer",
+        "mode": "hybrid-rerank",
+        "split": "acceptance",
+        "answerable": false,
+        "recallAt5": null,
+        "reciprocalRank": 0,
+        "ndcgAt5": null,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": null,
+        "duplicateRatio": 0,
+        "resultBytes": 932,
+        "durationMs": 985.3506999999954,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 32,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 1,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 154570752,
+          "modelCpuMs": 733,
+          "modelFsRead": 245,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": []
+      },
+      {
+        "caseId": "beta-no-answer",
+        "mode": "task",
+        "split": "acceptance",
+        "answerable": false,
+        "recallAt5": null,
+        "reciprocalRank": 0,
+        "ndcgAt5": null,
+        "noAnswerFalse": false,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "requiredCoverage": null,
+        "duplicateRatio": 0,
+        "resultBytes": 1048,
+        "durationMs": 841.9691999999923,
+        "usage": {
+          "embeddingTexts": 1,
+          "embeddingTokens": 32,
+          "rerankPairs": 0,
+          "rerankTokens": 0,
+          "modelCalls": 1,
+          "cacheHits": 0,
+          "generationTokens": 0,
+          "apiCost": 0,
+          "modelPeakRssBytes": 155582464,
+          "modelCpuMs": 609,
+          "modelFsRead": 245,
+          "modelFsWrite": 0
+        },
+        "verified": true,
+        "warnings": [
+          "UNKNOWN_SCOPE_RECORDS_EXCLUDED"
+        ],
+        "evidence": []
+      }
+    ],
+    "summary": [
+      {
+        "mode": "literal",
+        "verified": true,
+        "recallAt5": 0.5,
+        "mrr": 0.25,
+        "ndcgAt5": 0.3154648767857288,
+        "noAnswerFalse": 0,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "conditionCoverage": 0.5,
+        "meanMs": 918.3981230769225
+      },
+      {
+        "mode": "bm25",
+        "verified": true,
+        "recallAt5": 1,
+        "mrr": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": 0,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "conditionCoverage": 1,
+        "meanMs": 58.24994615384674
+      },
+      {
+        "mode": "semantic",
+        "verified": true,
+        "recallAt5": 0.9166666666666666,
+        "mrr": 0.9166666666666666,
+        "ndcgAt5": 0.9166666666666666,
+        "noAnswerFalse": 0,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "conditionCoverage": 0.9166666666666666,
+        "meanMs": 467.9494538461535
+      },
+      {
+        "mode": "hybrid",
+        "verified": true,
+        "recallAt5": 1,
+        "mrr": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": 0,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "conditionCoverage": 1,
+        "meanMs": 441.9605384615384
+      },
+      {
+        "mode": "hybrid-rerank",
+        "verified": true,
+        "recallAt5": 1,
+        "mrr": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": 0,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "conditionCoverage": 1,
+        "meanMs": 2073.197699999998
+      },
+      {
+        "mode": "task",
+        "verified": true,
+        "recallAt5": 1,
+        "mrr": 1,
+        "ndcgAt5": 1,
+        "noAnswerFalse": 0,
+        "scopeLeaks": 0,
+        "referenceFailures": 0,
+        "conditionCoverage": 1,
+        "meanMs": 2490.83586153846
+      }
+    ],
+    "limitations": [
+      "相关片元必须同时命中目标资源和标注原文条件；仅命中标题不算正确证据",
+      "脚本查询不是工作Agent端到端评价",
+      "本机API费用为0；电力/硬件/工作Agent费用未据此推断"
+    ]
+  },
+  "latency": [
+    {
+      "mode": "literal",
+      "p95Ms": 3205.8557999999903
+    },
+    {
+      "mode": "bm25",
+      "p95Ms": 114.3173999999999
+    },
+    {
+      "mode": "semantic",
+      "p95Ms": 1219.788499999995
+    },
+    {
+      "mode": "hybrid",
+      "p95Ms": 1047.9058000000077
+    },
+    {
+      "mode": "hybrid-rerank",
+      "p95Ms": 3400.739499999996
+    },
+    {
+      "mode": "task",
+      "p95Ms": 8686.555899999992
+    },
+    {
+      "mode": "scope",
+      "p95Ms": 81.3926999999967
+    },
+    {
+      "mode": "read",
+      "p95Ms": 69.37110000000393
+    },
+    {
+      "mode": "list",
+      "p95Ms": 26.059799999988172
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+
+知识库开发页面 http://127.0.0.1:5173
+业务服务 http://127.0.0.1:56423
+dataDir: C:\Users\mamar\AppData\Local\Temp\kb-visual-config-Cd4qMr\data
+{"passed":true,"evidence":"C:\\Users\\mamar\\AppData\\Local\\Temp\\kb-transcript-evidence-j6x3VS"}

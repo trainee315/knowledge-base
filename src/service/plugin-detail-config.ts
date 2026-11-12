@@ -66,7 +66,7 @@ function agentForm(profiles: AgentProfile[], key: string | undefined, editable: 
   const profile = profiles.find(profile => profile.id === selected);
   if (!profile) {
     assert(!key, 'NOT_FOUND', '模型配置不存在');
-    return { kind: 'none', editable: false, message: '没有可显示的模型配置。' };
+    return { kind: 'form', editable, fields: [], values: {}, configVersion: version([]), message: '尚无模型配置，可新增 Codex 配置。' };
   }
   const { id, revision, model, timeoutMs, maxTokens, temperature, reasoning } = profile;
   return {

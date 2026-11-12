@@ -1,12 +1,13 @@
 import { performance } from 'node:perf_hooks';
 import { randomUUID } from 'node:crypto';
 import { CoreManager } from '../core/manager.js';
-import { allowed, configure, fail, hash, requireValue, resolveScope, snapshot } from './scope.js';
-import { split, terms } from './fragments.js';
+import { allowed, configure, fail, hash, readConfig, requireValue, resolveScope, snapshot } from './scope.js';
+import { split, terms, TOKENIZER_VERSION, SPLITTER_VERSION } from './fragments.js';
 import { buildIndex, indexStatus, lexical, openIndex, scopedFragments } from './index.js';
 import { emptyUsage, infer, modelLock, prepareModels } from './models.js';
 import type { Fragment, Hit, Request, Scope, SourceRecord, Usage } from './types.js';
 import { requireDevelopmentIdle } from './development.js';
+import { validateCommand } from '../cli/contract.js';
 
 const RRF_K = 60; // 按排名融合，不混加 BM25/cosine/logits。
 const DEFAULT_CANDIDATES = 20;
@@ -21,7 +22,7 @@ const TASK_MARKERS: Record<string, string[]> = { '适用约束': ['约束','必�
 function integer(value: unknown, fallback: number, min: number, max: number, name: string): number { const n = value === undefined ? fallback : Number(value); requireValue(Number.isSafeInteger(n) && n >= min && n <= max, `${name} 必须在 ${min}..${max}`); return n; }
 function bool(value: unknown): boolean { requireValue(value === undefined || [true, false, 'true', 'false'].includes(value as any), '布尔参数无效'); return value === true || value === 'true'; }
 function parse(input: Record<string, unknown>): Request {
-  requireValue(Object.keys(input).every(k => ['mode','id','version','query','task','needs','scope','contextProjectId','cwd','retrievalMode','rerank','budgetTokens','maxBytes','maxFragments','candidates','neighbors','section','offset','limit','sort','direction','debug','projectId','input','json'].includes(k)), '未知召回请求字段');
+  validateCommand(['recall', 'prepare'], input);
   const request = { ...input } as Request;
   if (!request.scope && input.projectId) request.scope = { projectId: String(input.projectId) };
   requireValue(request.mode === undefined || ['auto', 'read', 'list', 'question', 'task'].includes(request.mode), 'mode 无效');
@@ -32,6 +33,7 @@ function parse(input: Record<string, unknown>): Request {
   request.maxBytes = Math.min(integer(request.maxBytes, DEFAULT_BYTES, MIN_BYTES, MAX_BYTES, 'maxBytes'), request.budgetTokens * 3);
   request.maxFragments = integer(request.maxFragments, 6, 1, 50, 'maxFragments'); request.candidates = integer(request.candidates, DEFAULT_CANDIDATES, 1, 100, 'candidates');
   request.neighbors = integer(request.neighbors, 0, 0, 3, 'neighbors'); request.offset = integer(request.offset, 0, 0, 1_000_000, 'offset'); request.limit = integer(request.limit, 20, 1, 100, 'limit');
+  if (request.endOffset !== undefined) { request.endOffset = integer(request.endOffset, 0, 1, 1_000_001, 'endOffset'); requireValue(request.endOffset > request.offset, 'endOffset必须大于offset'); }
   if (request.version !== undefined) request.version = integer(request.version, 1, 1, 1_000_000, 'version');
   requireValue(request.sort === undefined || ['recordedAt', 'title'].includes(request.sort), 'sort 无效'); requireValue(request.direction === undefined || ['asc', 'desc'].includes(request.direction), 'direction 无效');
   request.rerank = bool(request.rerank); request.debug = bool(request.debug);
@@ -56,16 +58,42 @@ async function original(dataDir: string, record: SourceRecord): Promise<SourceRe
 function budget(result: any, request: Request) {
   result.budget = { maxBytes: request.maxBytes, maxTokens: request.budgetTokens, returnedBytes: 0, estimatedTokens: 0, counting: 'utf8-bytes/3 estimate', omitted: 0 };
   const measure = () => Buffer.byteLength(JSON.stringify({ ok: true, data: result }));
+  // 裁剪从尾部进行，遗漏集合始终按原顺序保存；不同路由不能共用一个read游标。
+  const omitted: any[] = [];
+  const continuation = () => {
+    if (result.route === 'list' && result.status !== 'ambiguous' && result.page) {
+      const offset = request.offset! + result.items.length;
+      if (offset < result.page.total) {
+        result.continueCommand = 'recall list';
+        result.continue = { mode: 'list', scope: result.scope, query: request.query, offset, limit: request.limit, sort: result.page.sort, direction: result.page.direction, snapshotFingerprint: result.snapshotFingerprint, maxBytes: request.maxBytes, budgetTokens: request.budgetTokens };
+      } else { delete result.continue; delete result.continueCommand; }
+    } else if (result.route === 'read' && omitted.length && result.status !== 'ambiguous') {
+      result.continueCommand = 'recall read';
+      result.continue = { ...omitted[0].read, mode: 'read', endOffset: result.readRange.endOffset, section: request.section, maxFragments: request.maxFragments, maxBytes: request.maxBytes, budgetTokens: request.budgetTokens };
+    } else if (omitted.length) {
+      const ranges: any[] = [];
+      for (const item of omitted) {
+        const input = item.read ?? { id: item.resourceId, scope: result.scope };
+        const previous = ranges.at(-1)?.input;
+        if (previous && previous.id === input.id && previous.version === input.version && previous.endOffset === input.offset) previous.endOffset++;
+        else ranges.push({ command: 'recall read', input: { ...input, ...(input.offset !== undefined ? { endOffset: input.offset + 1 } : {}) } });
+      }
+      result.continuations = ranges;
+    }
+  };
   const remove = () => {
     const removed = result.evidence?.pop() ?? result.items?.pop();
     if (!removed) return false;
+    omitted.unshift(removed);
     result.budget.omitted++; if (result.status !== 'ambiguous') result.status = 'insufficient';
     if (removed.need && !result.gaps.includes(removed.need)) result.gaps.push(removed.need);
-    if (!result.continue) result.continue = removed.read ?? { id: removed.resourceId, scope: result.scope };
     if (!result.warnings.includes('OUTPUT_BUDGET_OMITTED')) result.warnings.push('OUTPUT_BUDGET_OMITTED');
+    continuation();
     return true;
   };
+  continuation();
   while (result.evidence?.length > request.maxFragments! || measure() > request.maxBytes! - 100) if (!remove()) break;
+  if (omitted.length && !result.evidence?.length && !result.items?.length) fail('OUTPUT_BUDGET', '预算不足以返回一个完整片元/条目及继续入口，请增加预算或缩小范围');
   if (measure() > request.maxBytes! - 100) { delete result.debug; result.warnings = ['OUTPUT_METADATA_BUDGET']; result.gaps = ['完整请求元数据超出预算，请缩小范围或增加预算']; if (result.needs) result.needs = []; }
   for (let i = 0; i < 4; i++) { result.budget.returnedBytes = measure(); result.budget.estimatedTokens = Math.ceil(result.budget.returnedBytes / 3); }
   if (measure() > request.maxBytes!) fail('OUTPUT_BUDGET', '预算不足以容纳必要定位和范围，请增加预算');
@@ -73,6 +101,8 @@ function budget(result: any, request: Request) {
 }
 
 function meaningfulMatch(query: string, text: string) {
+  const exact = query.normalize('NFKC').trim().toLowerCase();
+  if (/^[a-z0-9]+(?:[_./:\\-]+[a-z0-9]+)+$/u.test(exact)) return terms(text).includes(exact);
   const wanted = [...new Set(terms(query).filter(t => [...t].length >= 2))];
   if (!wanted.length) return text.normalize('NFKC').includes(query.normalize('NFKC'));
   const actual = new Set(terms(text)); return wanted.filter(t => actual.has(t)).length >= Math.min(2, wanted.length);
@@ -81,6 +111,9 @@ function meaningfulMatch(query: string, text: string) {
 export async function prepare(dataDir: string, raw: Record<string, unknown>) {
   if (!raw.id && raw.mode !== 'read' && raw.mode !== 'list' && (raw.query || raw.task)) await requireDevelopmentIdle();
   const start = performance.now(); const request = parse(raw); const source = await snapshot(dataDir, false, request.id && request.version ? { [request.id]: request.version } : {});
+  if (request.snapshotFingerprint && request.snapshotFingerprint !== source.fingerprint) fail('CONTINUATION_STALE', '列表快照已变化，请从首页重新查询');
+  const splitter = SPLITTER_VERSION + ':' + hash(JSON.stringify(source.config.chunking ?? null));
+  if (request.splitter && request.splitter !== splitter) fail('CONTINUATION_STALE', '切分配置已变化，请重新读取固定资源版本');
   const scope = resolveScope(source.config, request); const records = source.records.filter(r => allowed(r, scope)); const byId = new Map(records.map(r => [r.resourceId, r]));
   const route = request.mode && request.mode !== 'auto' ? request.mode : request.id ? 'read' : request.task ? 'task' : request.query ? 'question' : 'list';
   const usage = emptyUsage(); const stages: string[] = ['scope']; const warnings: string[] = []; const needs: string[] = []; const gaps: string[] = [];
@@ -89,11 +122,12 @@ export async function prepare(dataDir: string, raw: Record<string, unknown>) {
   let index: Awaited<ReturnType<typeof openIndex>> = null;
   const finish = () => { result.timings.totalMs = performance.now() - start; if (!result.evidence.length && !result.items?.length && !['unavailable', 'ambiguous'].includes(result.status)) result.status = 'insufficient'; return budget(result, request); };
   if (route === 'list') {
+    result.snapshotFingerprint = source.fingerprint;
     stages.push('metadata-list'); const direction = request.direction ?? 'desc'; const field = request.sort ?? 'recordedAt';
     let selected = records;
     if (request.query) { // 显式列举全文筛选只走 lexical 路径。
       index = await openIndex(dataDir); if (!index) { warnings.push('INDEX_NOT_READY'); result.items = []; return finish(); }
-      try { const ids = new Set(lexical(index.db, records.map(r => r.resourceId), request.query, 100_000).filter(h => { const current = byId.get(h.fragment.resourceId); return current?.contentVersion === h.fragment.contentVersion && current.contentHash === h.fragment.contentHash && meaningfulMatch(request.query!, h.fragment.text); }).map(h => h.fragment.resourceId)); selected = selected.filter(r => ids.has(r.resourceId)); stages.push('bm25-filter'); } finally { index.db.close(); }
+      try { if (index.active.tokenizer !== TOKENIZER_VERSION) fail('INDEX_TOKENIZER_MISMATCH', '全文分词版本已变化，请显式recall index build --vectors（需要向量时）或build'); const ids = new Set(lexical(index.db, records.map(r => r.resourceId), request.query, 100_000).filter(h => { const current = byId.get(h.fragment.resourceId); return current?.contentVersion === h.fragment.contentVersion && current.contentHash === h.fragment.contentHash && meaningfulMatch(request.query!, h.fragment.text); }).map(h => h.fragment.resourceId)); selected = selected.filter(r => ids.has(r.resourceId)); stages.push('bm25-filter'); } finally { index.db.close(); }
       if (index.active.fingerprint !== source.fingerprint) warnings.push('INDEX_STALE');
     }
     selected.sort((a, b) => (direction === 'asc' ? 1 : -1) * a[field].localeCompare(b[field]) || a.resourceId.localeCompare(b.resourceId));
@@ -120,12 +154,14 @@ export async function prepare(dataDir: string, raw: Record<string, unknown>) {
       if (record && request.version) record = (await snapshot(dataDir, false, { [record.resourceId]: request.version })).records.find(r => r.resourceId === record!.resourceId && allowed(r, scope));
     }
     if (!record) fail('SCOPE_NOT_FOUND', '资源不存在、已删除或不在允许范围');
+    if (request.contentHash && record.contentHash !== request.contentHash) fail('CONTINUATION_STALE', '原文身份与续读定位不一致');
     if (fragment && (record.contentVersion !== fragment.contentVersion || record.contentHash !== fragment.contentHash)) fail('INDEX_STALE', '片元版本已改变，请按资源固定版本读取');
     record = await original(dataDir, record); const all = split(record, source.config.chunking);
     if (fragment && !all.some(f => f.id === fragment!.id)) fail('INDEX_STALE', '切分配置已变化，请重建或按固定资源版本读取');
-    let selected = fragment ? all.filter(f => Math.abs(f.ordinal - fragment!.ordinal) <= request.neighbors!) : all.slice(request.offset);
+    let selected = fragment ? all.filter(f => Math.abs(f.ordinal - fragment!.ordinal) <= request.neighbors!) : all.slice(request.offset, request.endOffset);
     if (request.section) selected = selected.filter(f => f.headings.includes(request.section!));
-    result.evidence = selected.map(f => hit(f, scope, ['direct']));
+    result.readRange = { endOffset: selected.at(-1) ? selected.at(-1)!.ordinal + 1 : request.offset };
+    result.evidence = selected.map(f => ({ ...hit(f, scope, ['direct']), read: { ...hit(f, scope, ['direct']).read, contentHash: f.contentHash, splitter } }));
     if (selected.some(f => f.continued)) warnings.push('LONG_BLOCK_REQUIRES_ADJACENT_CONTEXT');
     return finish();
   }
@@ -136,6 +172,7 @@ export async function prepare(dataDir: string, raw: Record<string, unknown>) {
   if (result.index.stale) warnings.push('INDEX_STALE');
   if (index.active.truncatedEncodingInputs) warnings.push('INDEX_ENCODING_INPUTS_TRUNCATED');
   try {
+    if (index.active.tokenizer !== TOKENIZER_VERSION) fail('INDEX_TOKENIZER_MISMATCH', '分词版本已变化，请显式重建索引；需要向量时使用recall index build --vectors');
     const current = (fragment: Fragment) => { const record = byId.get(fragment.resourceId); return !!record && record.contentVersion === fragment.contentVersion && record.contentHash === fragment.contentHash; };
     const candidates = scopedFragments(index.db, records.map(r => r.resourceId)).filter(x => current(x.fragment));
     const currentIds = [...new Set(candidates.map(x => x.fragment.resourceId))];
@@ -206,7 +243,7 @@ export async function prepare(dataDir: string, raw: Record<string, unknown>) {
       const record = valid.get(item.resourceId); if (!record || record.contentVersion !== item.contentVersion || record.contentHash !== item.contentHash) { warnings.push('SOURCE_CHANGED_EVIDENCE_REMOVED'); continue; }
       const body = checked.get(record.resourceId) ?? await original(dataDir, record); checked.set(record.resourceId, body);
       if (body.text.slice(item.start, item.end) !== item.text) fail('INDEX_INVALID', '片元与原文偏移不匹配');
-      const { text, ...metadata } = record; result.evidence.push({ ...item, ...metadata });
+      const { text, ...metadata } = record; result.evidence.push({ ...item, ...metadata, read: { ...item.read, contentHash: record.contentHash, splitter } });
     }
     if (route === 'task') stages.push('task-assembly');
     result.warnings = [...new Set(warnings)]; if (gaps.length || warnings.length) result.status = 'partial'; return finish();
@@ -214,7 +251,9 @@ export async function prepare(dataDir: string, raw: Record<string, unknown>) {
 }
 
 export async function recallCommand(dataDir: string, words: string[], input: Record<string, unknown>) {
+  validateCommand(words, input);
   const action = words[1];
+  if (action === 'config') { const manager = await CoreManager.open(dataDir, { readOnly: true }); try { return await readConfig(manager); } finally { await manager.close(); } }
   if (action === 'configure') return configure(dataDir, input);
   if (action === 'model') { if (words[2] === 'prepare') return prepareModels(dataDir); requireValue(words[2] === 'status', '未知 model 操作'); const lock = await modelLock(dataDir); return { ready: !!lock, ...(lock ? { identity: lock.fingerprint, embedding: lock.embedding, reranker: lock.reranker, runtime: lock.runtime } : {}) }; }
   if (action === 'index') { if (words[2] === 'build') return buildIndex(dataDir, bool(input.vectors), bool(input.rebuild)); requireValue(words[2] === 'status', '未知 index 操作'); return indexStatus(dataDir); }
