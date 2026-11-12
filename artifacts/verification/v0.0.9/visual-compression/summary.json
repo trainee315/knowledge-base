@@ -1,0 +1,91 @@
+{
+  "version": "v0.0.9",
+  "supplement": "visual-session-compression",
+  "scope": "selected Session instance config.preprocessing",
+  "entry": "#plugins?id=project-tracking&view=config",
+  "modes": [
+    "off",
+    "conservative",
+    "aggressive"
+  ],
+  "core": {
+    "passed": 119,
+    "total": 119
+  },
+  "focused": {
+    "passed": 39,
+    "total": 39
+  },
+  "independent": {
+    "passed": 10,
+    "total": 10
+  },
+  "typecheck": true,
+  "build": true,
+  "pluginBrowser": {
+    "passed": true,
+    "plugins": 12,
+    "checks": [
+      "all plugin overviews",
+      "no independent config",
+      "pagination and deep links",
+      "back and forward",
+      "empty collection",
+      "draft guard",
+      "conflict compare and rebase",
+      "CLI configuration interoperability",
+      "session compression three modes and descriptions",
+      "session selection and saved URL",
+      "compression cancel and draft guard",
+      "compression CLI readback and mobile save",
+      "cron create/edit/enable/disable/delete",
+      "history after deletion",
+      "disabled and failed details",
+      "mobile layout"
+    ],
+    "externalRequests": 0,
+    "failures": []
+  },
+  "transcriptBrowser": {
+    "passed": true,
+    "syntheticOnly": true,
+    "modelCallsForFixtures": 2,
+    "realModelCalls": 0,
+    "pageErrors": [],
+    "checks": [
+      "retired project type hidden",
+      "legacy URL redirected with cleared selection",
+      "legacy redirect reload back and forward",
+      "legacy desktop mobile and development routes",
+      "no legacy browser API calls",
+      "legacy organization resource and pinned content unchanged",
+      "pre-session library navigation without initialization",
+      "create",
+      "draft preview zero write",
+      "stale preview",
+      "cancel",
+      "unsaved navigation guard",
+      "revision conflict and retained draft",
+      "CLI interoperability and merged fields",
+      "ordinary config boundary",
+      "record reading and history",
+      "filter preview",
+      "mobile save",
+      "development server save",
+      "empty library first configuration"
+    ]
+  },
+  "livePage": {
+    "port": 5183,
+    "backendPort": 62945,
+    "verified": true,
+    "options": 3,
+    "descriptions": 3
+  },
+  "realModelCalls": 0,
+  "credentialScan": {
+    "files": 87,
+    "knownValues": 2,
+    "matches": 0
+  }
+}

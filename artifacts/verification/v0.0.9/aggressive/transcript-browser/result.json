@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "syntheticOnly": true,
+  "modelCallsForFixtures": 2,
+  "realModelCalls": 0,
+  "pageErrors": [],
+  "checks": [
+    "retired project type hidden",
+    "legacy URL redirected with cleared selection",
+    "legacy redirect reload back and forward",
+    "legacy desktop mobile and development routes",
+    "no legacy browser API calls",
+    "legacy organization resource and pinned content unchanged",
+    "pre-session library navigation without initialization",
+    "create",
+    "draft preview zero write",
+    "stale preview",
+    "cancel",
+    "unsaved navigation guard",
+    "revision conflict and retained draft",
+    "CLI interoperability and merged fields",
+    "ordinary config boundary",
+    "record reading and history",
+    "filter preview",
+    "mobile save",
+    "development server save",
+    "empty library first configuration"
+  ]
+}

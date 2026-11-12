@@ -1,0 +1,877 @@
+{
+  "version": "v0.0.9",
+  "supplement": "aggressive",
+  "cutoff": "2026-11-12T07:49:41.455Z",
+  "model": "deepseek-flash",
+  "profileUnchanged": true,
+  "promptAndSchemaUnchanged": true,
+  "characterUnit": "Unicode code points including whitespace; body excludes context, request includes context and prompt/schema",
+  "rawBodyCharacters": 2171510,
+  "history": [
+    {
+      "feature": "tools",
+      "off": {
+        "label": "tools-off",
+        "before": {
+          "characters": 941653,
+          "bytes": 963746
+        },
+        "after": {
+          "characters": 200344,
+          "bytes": 222461
+        },
+        "removedCharacters": 741309,
+        "reductionPercent": 78.72422219225128,
+        "roles": {
+          "user": {
+            "before": {
+              "characters": 60,
+              "bytes": 122
+            },
+            "after": {
+              "characters": 60,
+              "bytes": 122
+            }
+          },
+          "assistant": {
+            "before": {
+              "characters": 1229,
+              "bytes": 2707
+            },
+            "after": {
+              "characters": 1229,
+              "bytes": 2707
+            }
+          },
+          "tool-call": {
+            "before": {
+              "characters": 84815,
+              "bytes": 94823
+            },
+            "after": {
+              "characters": 84815,
+              "bytes": 94823
+            }
+          },
+          "tool-result": {
+            "before": {
+              "characters": 855549,
+              "bytes": 866094
+            },
+            "after": {
+              "characters": 114240,
+              "bytes": 124809
+            }
+          }
+        },
+        "rules": {
+          "payload-path": {
+            "hits": 3,
+            "removedCharacters": 741309
+          }
+        },
+        "request": {
+          "beforeCharacters": 1003935,
+          "afterCharacters": 262614,
+          "beforeBytes": 1035932,
+          "afterBytes": 294635
+        },
+        "usage": {
+          "inputTokens": 85915,
+          "outputTokens": 1579,
+          "totalTokens": 87494
+        },
+        "model": "deepseek-flash",
+        "promptVersion": "2c063e1d61a0c912234b026e249342bf8276aec04645e15719c1e4c965095a4e"
+      },
+      "conservative": {
+        "label": "tools-conservative",
+        "before": {
+          "characters": 941653,
+          "bytes": 963746
+        },
+        "after": {
+          "characters": 189977,
+          "bytes": 212514
+        },
+        "removedCharacters": 751676,
+        "reductionPercent": 79.8251585244246,
+        "roles": {
+          "user": {
+            "before": {
+              "characters": 60,
+              "bytes": 122
+            },
+            "after": {
+              "characters": 60,
+              "bytes": 122
+            }
+          },
+          "assistant": {
+            "before": {
+              "characters": 1229,
+              "bytes": 2707
+            },
+            "after": {
+              "characters": 1229,
+              "bytes": 2707
+            }
+          },
+          "tool-call": {
+            "before": {
+              "characters": 84815,
+              "bytes": 94823
+            },
+            "after": {
+              "characters": 84815,
+              "bytes": 94823
+            }
+          },
+          "tool-result": {
+            "before": {
+              "characters": 855549,
+              "bytes": 866094
+            },
+            "after": {
+              "characters": 103873,
+              "bytes": 114862
+            }
+          }
+        },
+        "rules": {
+          "tool-wrapper": {
+            "hits": 27,
+            "removedCharacters": 10367
+          },
+          "payload-path": {
+            "hits": 3,
+            "removedCharacters": 741309
+          }
+        },
+        "request": {
+          "beforeCharacters": 1003935,
+          "afterCharacters": 248489,
+          "beforeBytes": 1035932,
+          "afterBytes": 280930
+        },
+        "usage": {
+          "inputTokens": 81608,
+          "outputTokens": 1423,
+          "totalTokens": 83031
+        },
+        "model": "deepseek-flash",
+        "promptVersion": "2c063e1d61a0c912234b026e249342bf8276aec04645e15719c1e4c965095a4e"
+      },
+      "aggressive": {
+        "label": "tools-aggressive",
+        "before": {
+          "characters": 941653,
+          "bytes": 963746
+        },
+        "after": {
+          "characters": 83325,
+          "bytes": 98175
+        },
+        "removedCharacters": 858328,
+        "reductionPercent": 91.15119900855198,
+        "roles": {
+          "user": {
+            "before": {
+              "characters": 60,
+              "bytes": 122
+            },
+            "after": {
+              "characters": 60,
+              "bytes": 122
+            }
+          },
+          "assistant": {
+            "before": {
+              "characters": 1229,
+              "bytes": 2707
+            },
+            "after": {
+              "characters": 1229,
+              "bytes": 2707
+            }
+          },
+          "tool-call": {
+            "before": {
+              "characters": 84815,
+              "bytes": 94823
+            },
+            "after": {
+              "characters": 41946,
+              "bytes": 49511
+            }
+          },
+          "tool-result": {
+            "before": {
+              "characters": 855549,
+              "bytes": 866094
+            },
+            "after": {
+              "characters": 40090,
+              "bytes": 45835
+            }
+          }
+        },
+        "rules": {
+          "aggressive-call": {
+            "hits": 28,
+            "removedCharacters": 42869
+          },
+          "aggressive-result": {
+            "hits": 7,
+            "removedCharacters": 63783
+          },
+          "tool-wrapper": {
+            "hits": 27,
+            "removedCharacters": 10367
+          },
+          "payload-path": {
+            "hits": 3,
+            "removedCharacters": 741309
+          }
+        },
+        "request": {
+          "beforeCharacters": 1003935,
+          "afterCharacters": 93248,
+          "beforeBytes": 1035932,
+          "afterBytes": 112364
+        },
+        "usage": {
+          "inputTokens": 31770,
+          "outputTokens": 1113,
+          "totalTokens": 32883
+        },
+        "model": "deepseek-flash",
+        "promptVersion": "2c063e1d61a0c912234b026e249342bf8276aec04645e15719c1e4c965095a4e"
+      }
+    },
+    {
+      "feature": "corrections",
+      "off": {
+        "label": "corrections-off",
+        "before": {
+          "characters": 299121,
+          "bytes": 337275
+        },
+        "after": {
+          "characters": 299121,
+          "bytes": 337275
+        },
+        "removedCharacters": 0,
+        "reductionPercent": 0,
+        "roles": {
+          "user": {
+            "before": {
+              "characters": 1082,
+              "bytes": 2400
+            },
+            "after": {
+              "characters": 1082,
+              "bytes": 2400
+            }
+          },
+          "assistant": {
+            "before": {
+              "characters": 19500,
+              "bytes": 46301
+            },
+            "after": {
+              "characters": 19500,
+              "bytes": 46301
+            }
+          },
+          "tool-call": {
+            "before": {
+              "characters": 5918,
+              "bytes": 5942
+            },
+            "after": {
+              "characters": 5918,
+              "bytes": 5942
+            }
+          },
+          "tool-result": {
+            "before": {
+              "characters": 272621,
+              "bytes": 282632
+            },
+            "after": {
+              "characters": 272621,
+              "bytes": 282632
+            }
+          }
+        },
+        "rules": {},
+        "request": {
+          "beforeCharacters": 322201,
+          "afterCharacters": 322201,
+          "beforeBytes": 363793,
+          "afterBytes": 363793
+        },
+        "usage": {
+          "inputTokens": 102066,
+          "outputTokens": 2926,
+          "totalTokens": 104992
+        },
+        "model": "deepseek-flash",
+        "promptVersion": "2c063e1d61a0c912234b026e249342bf8276aec04645e15719c1e4c965095a4e"
+      },
+      "conservative": {
+        "label": "corrections-conservative",
+        "before": {
+          "characters": 299121,
+          "bytes": 337275
+        },
+        "after": {
+          "characters": 290624,
+          "bytes": 328898
+        },
+        "removedCharacters": 8497,
+        "reductionPercent": 2.8406564567516153,
+        "roles": {
+          "user": {
+            "before": {
+              "characters": 1082,
+              "bytes": 2400
+            },
+            "after": {
+              "characters": 1082,
+              "bytes": 2400
+            }
+          },
+          "assistant": {
+            "before": {
+              "characters": 19500,
+              "bytes": 46301
+            },
+            "after": {
+              "characters": 19500,
+              "bytes": 46301
+            }
+          },
+          "tool-call": {
+            "before": {
+              "characters": 5918,
+              "bytes": 5942
+            },
+            "after": {
+              "characters": 5918,
+              "bytes": 5942
+            }
+          },
+          "tool-result": {
+            "before": {
+              "characters": 272621,
+              "bytes": 282632
+            },
+            "after": {
+              "characters": 264124,
+              "bytes": 274255
+            }
+          }
+        },
+        "rules": {
+          "tool-wrapper": {
+            "hits": 10,
+            "removedCharacters": 8497
+          }
+        },
+        "request": {
+          "beforeCharacters": 322201,
+          "afterCharacters": 310534,
+          "beforeBytes": 363793,
+          "afterBytes": 352246
+        },
+        "usage": {
+          "inputTokens": 98160,
+          "outputTokens": 3049,
+          "totalTokens": 101209
+        },
+        "model": "deepseek-flash",
+        "promptVersion": "2c063e1d61a0c912234b026e249342bf8276aec04645e15719c1e4c965095a4e"
+      },
+      "aggressive": {
+        "label": "corrections-aggressive",
+        "before": {
+          "characters": 299121,
+          "bytes": 337275
+        },
+        "after": {
+          "characters": 44757,
+          "bytes": 75361
+        },
+        "removedCharacters": 254364,
+        "reductionPercent": 85.03715887550523,
+        "roles": {
+          "user": {
+            "before": {
+              "characters": 1082,
+              "bytes": 2400
+            },
+            "after": {
+              "characters": 1082,
+              "bytes": 2400
+            }
+          },
+          "assistant": {
+            "before": {
+              "characters": 19500,
+              "bytes": 46301
+            },
+            "after": {
+              "characters": 19500,
+              "bytes": 46301
+            }
+          },
+          "tool-call": {
+            "before": {
+              "characters": 5918,
+              "bytes": 5942
+            },
+            "after": {
+              "characters": 4321,
+              "bytes": 4393
+            }
+          },
+          "tool-result": {
+            "before": {
+              "characters": 272621,
+              "bytes": 282632
+            },
+            "after": {
+              "characters": 19854,
+              "bytes": 22267
+            }
+          }
+        },
+        "rules": {
+          "aggressive-call": {
+            "hits": 6,
+            "removedCharacters": 1597
+          },
+          "tool-wrapper": {
+            "hits": 10,
+            "removedCharacters": 8497
+          },
+          "aggressive-result": {
+            "hits": 12,
+            "removedCharacters": 244270
+          }
+        },
+        "request": {
+          "beforeCharacters": 322201,
+          "afterCharacters": 51452,
+          "beforeBytes": 363793,
+          "afterBytes": 85494
+        },
+        "usage": {
+          "inputTokens": 22284,
+          "outputTokens": 2064,
+          "totalTokens": 24348
+        },
+        "model": "deepseek-flash",
+        "promptVersion": "2c063e1d61a0c912234b026e249342bf8276aec04645e15719c1e4c965095a4e"
+      }
+    },
+    {
+      "feature": "verification",
+      "off": {
+        "label": "verification-off",
+        "before": {
+          "characters": 930736,
+          "bytes": 1004380
+        },
+        "after": {
+          "characters": 232620,
+          "bytes": 307284
+        },
+        "removedCharacters": 698116,
+        "reductionPercent": 75.00687627855804,
+        "roles": {
+          "user": {
+            "before": {
+              "characters": 966,
+              "bytes": 1780
+            },
+            "after": {
+              "characters": 966,
+              "bytes": 1780
+            }
+          },
+          "assistant": {
+            "before": {
+              "characters": 10604,
+              "bytes": 25879
+            },
+            "after": {
+              "characters": 10604,
+              "bytes": 25879
+            }
+          },
+          "tool-call": {
+            "before": {
+              "characters": 118213,
+              "bytes": 118581
+            },
+            "after": {
+              "characters": 24689,
+              "bytes": 26029
+            }
+          },
+          "tool-result": {
+            "before": {
+              "characters": 800953,
+              "bytes": 858140
+            },
+            "after": {
+              "characters": 196361,
+              "bytes": 253596
+            }
+          }
+        },
+        "rules": {
+          "payload-path": {
+            "hits": 83,
+            "removedCharacters": 698116
+          }
+        },
+        "request": {
+          "beforeCharacters": 1024580,
+          "afterCharacters": 326448,
+          "beforeBytes": 1100112,
+          "afterBytes": 403000
+        },
+        "usage": {
+          "inputTokens": 125011,
+          "outputTokens": 2658,
+          "totalTokens": 127669
+        },
+        "model": "deepseek-flash",
+        "promptVersion": "2c063e1d61a0c912234b026e249342bf8276aec04645e15719c1e4c965095a4e"
+      },
+      "conservative": {
+        "label": "verification-conservative",
+        "before": {
+          "characters": 930736,
+          "bytes": 1004380
+        },
+        "after": {
+          "characters": 208396,
+          "bytes": 287556
+        },
+        "removedCharacters": 722340,
+        "reductionPercent": 77.60954771277785,
+        "roles": {
+          "user": {
+            "before": {
+              "characters": 966,
+              "bytes": 1780
+            },
+            "after": {
+              "characters": 966,
+              "bytes": 1780
+            }
+          },
+          "assistant": {
+            "before": {
+              "characters": 10604,
+              "bytes": 25879
+            },
+            "after": {
+              "characters": 10604,
+              "bytes": 25879
+            }
+          },
+          "tool-call": {
+            "before": {
+              "characters": 118213,
+              "bytes": 118581
+            },
+            "after": {
+              "characters": 24689,
+              "bytes": 26029
+            }
+          },
+          "tool-result": {
+            "before": {
+              "characters": 800953,
+              "bytes": 858140
+            },
+            "after": {
+              "characters": 172137,
+              "bytes": 233868
+            }
+          }
+        },
+        "rules": {
+          "tool-wrapper": {
+            "hits": 45,
+            "removedCharacters": 23520
+          },
+          "payload-path": {
+            "hits": 83,
+            "removedCharacters": 698116
+          },
+          "duplicate-tool-result": {
+            "hits": 66,
+            "removedCharacters": 496
+          },
+          "successful-test-lines": {
+            "hits": 1,
+            "removedCharacters": 208
+          }
+        },
+        "request": {
+          "beforeCharacters": 1024580,
+          "afterCharacters": 290249,
+          "beforeBytes": 1100112,
+          "afterBytes": 371297
+        },
+        "usage": {
+          "inputTokens": 115065,
+          "outputTokens": 2432,
+          "totalTokens": 117497
+        },
+        "model": "deepseek-flash",
+        "promptVersion": "2c063e1d61a0c912234b026e249342bf8276aec04645e15719c1e4c965095a4e"
+      },
+      "aggressive": {
+        "label": "verification-aggressive",
+        "before": {
+          "characters": 930736,
+          "bytes": 1004380
+        },
+        "after": {
+          "characters": 101435,
+          "bytes": 161564
+        },
+        "removedCharacters": 829301,
+        "reductionPercent": 89.101635694762,
+        "roles": {
+          "user": {
+            "before": {
+              "characters": 966,
+              "bytes": 1780
+            },
+            "after": {
+              "characters": 966,
+              "bytes": 1780
+            }
+          },
+          "assistant": {
+            "before": {
+              "characters": 10604,
+              "bytes": 25879
+            },
+            "after": {
+              "characters": 10604,
+              "bytes": 25879
+            }
+          },
+          "tool-call": {
+            "before": {
+              "characters": 118213,
+              "bytes": 118581
+            },
+            "after": {
+              "characters": 18421,
+              "bytes": 20057
+            }
+          },
+          "tool-result": {
+            "before": {
+              "characters": 800953,
+              "bytes": 858140
+            },
+            "after": {
+              "characters": 71444,
+              "bytes": 113848
+            }
+          }
+        },
+        "rules": {
+          "aggressive-call": {
+            "hits": 37,
+            "removedCharacters": 6268
+          },
+          "tool-wrapper": {
+            "hits": 45,
+            "removedCharacters": 23520
+          },
+          "aggressive-result": {
+            "hits": 25,
+            "removedCharacters": 100693
+          },
+          "payload-path": {
+            "hits": 83,
+            "removedCharacters": 698116
+          },
+          "duplicate-tool-result": {
+            "hits": 66,
+            "removedCharacters": 496
+          },
+          "successful-test-lines": {
+            "hits": 1,
+            "removedCharacters": 208
+          }
+        },
+        "request": {
+          "beforeCharacters": 1024580,
+          "afterCharacters": 128989,
+          "beforeBytes": 1100112,
+          "afterBytes": 191006
+        },
+        "usage": {
+          "inputTokens": 51296,
+          "outputTokens": 2183,
+          "totalTokens": 53479
+        },
+        "model": "deepseek-flash",
+        "promptVersion": "2c063e1d61a0c912234b026e249342bf8276aec04645e15719c1e4c965095a4e"
+      }
+    }
+  ],
+  "totals": {
+    "off": {
+      "bodyCharacters": 732085,
+      "requestCharacters": 911263,
+      "requestBytes": 1061428,
+      "inputTokens": 312992,
+      "outputTokens": 7163
+    },
+    "conservative": {
+      "bodyCharacters": 688997,
+      "requestCharacters": 849272,
+      "requestBytes": 1004473,
+      "inputTokens": 294833,
+      "outputTokens": 6904
+    },
+    "aggressive": {
+      "bodyCharacters": 229517,
+      "requestCharacters": 273689,
+      "requestBytes": 388864,
+      "inputTokens": 105350,
+      "outputTokens": 5360
+    }
+  },
+  "calls": {
+    "total": 17,
+    "history": 17,
+    "incremental": 0,
+    "usage": {
+      "inputTokens": 1068823,
+      "outputTokens": 35923,
+      "totalTokens": 1104746
+    }
+  },
+  "checks": {
+    "formalDatabaseValid": true,
+    "identities": [
+      {
+        "feature": "tools",
+        "mode": "off",
+        "requestMatchesCurrentProcessor": true,
+        "sourcePositionsAndFingerprintsUnchanged": true,
+        "payloadAbsent": true
+      },
+      {
+        "feature": "tools",
+        "mode": "conservative",
+        "requestMatchesCurrentProcessor": true,
+        "sourcePositionsAndFingerprintsUnchanged": true,
+        "payloadAbsent": true
+      },
+      {
+        "feature": "tools",
+        "mode": "aggressive",
+        "requestMatchesCurrentProcessor": true,
+        "sourcePositionsAndFingerprintsUnchanged": true,
+        "payloadAbsent": true
+      },
+      {
+        "feature": "corrections",
+        "mode": "off",
+        "requestMatchesCurrentProcessor": true,
+        "sourcePositionsAndFingerprintsUnchanged": true,
+        "payloadAbsent": true
+      },
+      {
+        "feature": "corrections",
+        "mode": "conservative",
+        "requestMatchesCurrentProcessor": true,
+        "sourcePositionsAndFingerprintsUnchanged": true,
+        "payloadAbsent": true
+      },
+      {
+        "feature": "corrections",
+        "mode": "aggressive",
+        "requestMatchesCurrentProcessor": true,
+        "sourcePositionsAndFingerprintsUnchanged": true,
+        "payloadAbsent": true
+      },
+      {
+        "feature": "verification",
+        "mode": "off",
+        "requestMatchesCurrentProcessor": true,
+        "sourcePositionsAndFingerprintsUnchanged": true,
+        "payloadAbsent": true
+      },
+      {
+        "feature": "verification",
+        "mode": "conservative",
+        "requestMatchesCurrentProcessor": true,
+        "sourcePositionsAndFingerprintsUnchanged": true,
+        "payloadAbsent": true
+      },
+      {
+        "feature": "verification",
+        "mode": "aggressive",
+        "requestMatchesCurrentProcessor": true,
+        "sourcePositionsAndFingerprintsUnchanged": true,
+        "payloadAbsent": true
+      }
+    ],
+    "credentialValuesScanned": 2,
+    "credentialMatches": 0,
+    "shaValuesAbsentFromSource": [],
+    "pendingPublicFilesScanned": 62,
+    "pendingPublicCredentialMatches": 0,
+    "currentProcessorRequestsReverified": true
+  },
+  "quality": {
+    "status": "manual review recorded in aggressive-verification.md",
+    "finalRequests": [
+      15,
+      16,
+      17
+    ],
+    "knownEarlyRegression": "Tool patch constraints and execution environment were lost in early aggressive trials; fixed and retested",
+    "scope": "three frozen historical ranges, nine selected outputs; all attempts included in usage"
+  },
+  "automated": {
+    "core": {
+      "passed": 118,
+      "total": 118
+    },
+    "records": {
+      "passed": 37,
+      "total": 37
+    },
+    "preprocessing": {
+      "passed": 19,
+      "total": 19
+    },
+    "independent": {
+      "passed": 10,
+      "total": 10
+    },
+    "typecheck": true,
+    "build": true,
+    "browser": true,
+    "transcriptBrowser": true
+  }
+}

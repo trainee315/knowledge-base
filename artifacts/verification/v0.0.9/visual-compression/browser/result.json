@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "plugins": 12,
+  "checks": [
+    "all plugin overviews",
+    "no independent config",
+    "pagination and deep links",
+    "back and forward",
+    "empty collection",
+    "draft guard",
+    "conflict compare and rebase",
+    "CLI configuration interoperability",
+    "session compression three modes and descriptions",
+    "session selection and saved URL",
+    "compression cancel and draft guard",
+    "compression CLI readback and mobile save",
+    "cron create/edit/enable/disable/delete",
+    "history after deletion",
+    "disabled and failed details",
+    "mobile layout"
+  ],
+  "externalRequests": 0,
+  "failures": []
+}

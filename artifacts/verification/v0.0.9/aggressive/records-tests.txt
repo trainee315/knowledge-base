@@ -1,0 +1,45 @@
+✔ all modes strip media, data URLs and long encoding while preserving short semantic values (10.7358ms)
+✔ payload removal handles nested and truncated results and never invents ambiguous paths (2.6041ms)
+✔ aggressive mode reduces file dumps and orchestration while retaining spoken facts and failure evidence (65.7402ms)
+✔ source call association preserves existing fingerprints (10.1712ms)
+✔ mixed command and patch scripts retain conditions inside literal patches (0.7285ms)
+✔ preprocessing preserves conversation, commands, provenance and Unicode character counts (4.8766ms)
+✔ recognized wrappers and complete successful test streams compact with diagnostic fallback (4.113ms)
+✔ terminal formatting and duplicates preserve statuses and stay within an input segment (2.7712ms)
+✔ image encoding becomes only a source path and preserves original provenance (0.7062ms)
+✔ long single-line tool output is preserved with linear formatting cleanup (15.5789ms)
+✔ preview exposes cleaning, fixed run cutoff and configuration changes preserve successful progress (1182.0528ms)
+✔ frozen prepared input survives retries and legacy pending tasks retain original format (2068.5244ms)
+✔ prepared input redacts credentials and cleaned input determines segment budgets (1.1004ms)
+✔ cleaned complete turns fit a budget that rejects raw turns, and preview overrides are read only (571.2878ms)
+✔ frozen input tampering fails explicitly before a model call (1264.6642ms)
+✔ fixed run cutoff defers newer frozen tasks until an explicit retry (1391.9007ms)
+✔ frozen system prompt and schema are included in request integrity checks (1040.2417ms)
+✔ legacy pending inputs migrate only payload policy and freeze the sanitized retry material (2989.5958ms)
+✔ cached legacy model results recover without calls and output payloads become source paths (1139.6074ms)
+✔ note preserves BOM/CRLF, independent identical submissions, request conflicts and deletion replay (917.059ms)
+✔ config validates alias, timezone, budgets and directory segment boundaries (4.8512ms)
+✔ source retains equal timestamps and skips active turns, detects unknown message formats (7.2806ms)
+✔ preview is read only, failure retry, old session append, rename and processor-independent coverage (1877.8831ms)
+✔ model does not hold writer lock; output references validated and no resource on failure (797.6888ms)
+✔ atomic append redo recovery keeps organization and resource consistent (569.6889ms)
+✔ filters, budgets and backfill retain excluded historical material (1234.2598ms)
+✔ CLI stdin is byte faithful, JSON stdout and invalid arguments exit 2 (1413.5492ms)
+✔ multiple batches use whole turns, fixed snapshot excludes new messages during model (2591.4552ms)
+✔ zero call budget, tick due dedup and oversized turns never fake successful output (1183.4302ms)
+✔ saved model result resumes without another call and survives backup restore (1169.6602ms)
+✔ explicit note tags and transcript generic organization browsing reuse existing semantics (1146.2874ms)
+✔ malformed source fails explicitly but does not prevent independent session progress (1290.8925ms)
+✔ credential redaction handles historical keys, authorization values and known credentials (0.9328ms)
+✔ formal transcript boundary redacts source and response without changing message provenance (935.1154ms)
+✔ checkpoint fragments retain global positions and reconstruct a completed turn (9.6583ms)
+✔ child metadata with embedded parent session is excluded before inherited material parsing (2.9567ms)
+✔ historical cutoff excludes a turn completed after that cutoff (18.7131ms)
+ℹ tests 37
+ℹ suites 0
+ℹ pass 37
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14494.8228

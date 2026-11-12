@@ -109,6 +109,7 @@ try {
   let created = cli('list').find(org => org.name === '网页新实例修改');
   assert.ok(created);
   assert.equal(created.data.config.maxCalls, 0);
+  assert.equal(created.data.config.preprocessing, 'conservative');
   const id = created.id;
   await page.reload();
   await page.getByRole('button', { name: '编辑配置', exact: true }).click();
@@ -120,7 +121,7 @@ try {
   assert.equal(await page.getByLabel('展示别名', { exact: true }).inputValue(), '网页新实例修改');
   await page.getByRole('button', { name: '编辑配置', exact: true }).click();
   await page.getByLabel('展示别名', { exact: true }).fill('网页保存名称');
-  cli('configure', { id, focus: 'CLI 并发修改' });
+  cli('configure', { id, focus: 'CLI 并发修改', preprocessing: 'aggressive' });
   const conflict = page.waitForResponse(response => response.url().endsWith('/api/transcripts/' + id) && response.request().method() === 'PATCH');
   await page.getByRole('button', { name: '保存配置', exact: true }).click();
   const conflictResponse = await conflict;
@@ -135,6 +136,7 @@ try {
   created = cli('get', { id });
   assert.equal(created.name, '网页保存名称');
   assert.equal(created.data.config.focus, 'CLI 并发修改');
+  assert.equal(created.data.config.preprocessing, 'aggressive');
   assert.equal(created.data.effectiveFrom, undefined);
   await page.getByRole('button', { name: '返回实例列表', exact: true }).click();
   await page.getByRole('button', { name: '查看 已有实例 详情', exact: true }).click();

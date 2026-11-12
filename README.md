@@ -6,6 +6,8 @@
 
 `note add/list/get` 管理自由记录，`transcript create/list/get/configure/preview/run/tick/records/retry/backfill` 管理会话转录。`node examples/create-records-demo.mjs` 创建独立临时库和合成session，打印可复制验收命令。
 
+v0.0.9转录输入预处理与压缩模式页面配置于2026-11-12用户验收通过，支持off/conservative/aggressive及全模式载荷路径替换。页面入口为插件→project-tracking→配置，按Session实例保存。[需求、契约与验证记录](doc/新增需求/v0.0.9/readme.md)
+
 要求 Node.js 24+、npm。首次运行：
 
 ```powershell

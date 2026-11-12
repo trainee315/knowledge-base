@@ -1,7 +1,7 @@
 export type ConfigValue = string | number | boolean | null;
 export type Values = Record<string, ConfigValue>;
-export interface Choice { value: string; label: string }
-export interface Field { key: string; label: string; type: 'text' | 'number' | 'boolean' | 'select'; options?: Choice[] }
+export interface Choice { value: string; label: string; description?: string }
+export interface Field { key: string; label: string; type: 'text' | 'number' | 'boolean' | 'select'; options?: Choice[]; description?: string }
 export interface Configuration {
   kind: 'none' | 'form' | 'link' | 'cron';
   editable: boolean;
@@ -12,6 +12,7 @@ export interface Configuration {
   configVersion?: string;
   key?: string;
   choices?: Choice[];
+  choicesLabel?: string;
 }
 export interface PluginDetail {
   id: string;

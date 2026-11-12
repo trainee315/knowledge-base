@@ -55,6 +55,55 @@ try {
     await page.getByRole('link', { name: '查看 ' + id + ' 详情' }).waitFor();
   }
 
+  await open('project-tracking', 'config');
+  await page.getByText('请先创建Session转录实例，再配置压缩模式。', { exact: true }).waitFor();
+  const alpha = cli(['transcript', 'create'], { alias: '压缩模式甲', startDate: '2026-01-01', sourceRoot: root });
+  const beta = cli(['transcript', 'create'], { alias: '压缩模式乙', startDate: '2026-01-01', sourceRoot: root });
+  await open('project-tracking', 'config', { configKey: alpha.id });
+  const compression = page.getByLabel('Session压缩模式', { exact: true });
+  const instance = page.getByLabel('Session实例');
+  assert.equal(await compression.inputValue(), 'conservative');
+  assert.equal(await page.locator('.plugin-mode-help li').count(), 3);
+  await page.getByText(/各模式均以原始路径替换二进制和编码载荷/).waitFor();
+  await compression.selectOption('off');
+  await page.getByRole('button', { name: '保存配置' }).click();
+  await page.getByText('配置已保存', { exact: true }).waitFor();
+  assert.equal(cli(['transcript', 'get'], { id: alpha.id }).data.config.preprocessing, 'off');
+  await compression.selectOption('conservative');
+  await page.getByRole('button', { name: '取消修改' }).click();
+  assert.equal(await compression.inputValue(), 'off');
+  await compression.selectOption('aggressive');
+  await page.getByRole('button', { name: '保存配置' }).click();
+  await page.getByText('配置已保存', { exact: true }).waitFor();
+  await page.reload();
+  await compression.waitFor();
+  assert.equal(await compression.inputValue(), 'aggressive');
+  assert.equal(cli(['transcript', 'get'], { id: alpha.id }).data.config.preprocessing, 'aggressive');
+  await compression.selectOption('off');
+  page.once('dialog', dialog => dialog.dismiss());
+  await instance.selectOption(beta.id);
+  assert.equal(await instance.inputValue(), alpha.id);
+  assert.equal(await compression.inputValue(), 'off');
+  await page.getByRole('button', { name: '取消修改' }).click();
+  await instance.selectOption(beta.id);
+  await page.waitForURL(new RegExp('configKey=' + beta.id));
+  await page.waitForFunction(() => document.querySelector('[aria-label="Session压缩模式"]')?.value === 'conservative');
+  await page.goBack();
+  await page.waitForFunction(() => document.querySelector('[aria-label="Session压缩模式"]')?.value === 'aggressive');
+  await page.goForward();
+  await page.waitForFunction(() => document.querySelector('[aria-label="Session压缩模式"]')?.value === 'conservative');
+  await page.setViewportSize({ width: 390, height: 844 });
+  await compression.selectOption('aggressive');
+  await page.getByRole('button', { name: '保存配置' }).click();
+  await page.getByText('配置已保存', { exact: true }).waitFor();
+  assert.equal(cli(['transcript', 'get'], { id: beta.id }).data.config.preprocessing, 'aggressive');
+  assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+  await page.screenshot({ path: join(evidence, 'session-compression-mobile.png'), fullPage: true });
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await open('project-tracking', 'config', { configKey: alpha.id });
+  await compression.waitFor();
+  await page.screenshot({ path: join(evidence, 'session-compression.png'), fullPage: true });
+
   await open('content');
   await byTab('配置').click();
   await page.getByText('此插件没有独立配置项。', { exact: true }).waitFor();
@@ -161,7 +210,7 @@ try {
   assert.ok(await page.getByLabel('评分逻辑版本').isDisabled());
   assert.deepEqual(failures, []);
   assert.equal(await readFile(counter, 'utf8'), '');
-  const checks = ['all plugin overviews', 'no independent config', 'pagination and deep links', 'back and forward', 'empty collection', 'draft guard', 'conflict compare and rebase', 'CLI configuration interoperability', 'cron create/edit/enable/disable/delete', 'history after deletion', 'disabled and failed details', 'mobile layout'];
+  const checks = ['all plugin overviews', 'no independent config', 'pagination and deep links', 'back and forward', 'empty collection', 'draft guard', 'conflict compare and rebase', 'CLI configuration interoperability', 'session compression three modes and descriptions', 'session selection and saved URL', 'compression cancel and draft guard', 'compression CLI readback and mobile save', 'cron create/edit/enable/disable/delete', 'history after deletion', 'disabled and failed details', 'mobile layout'];
   await writeFile(join(evidence, 'result.json'), JSON.stringify({ passed: true, plugins: pluginIds.length, checks, externalRequests: 0, failures }, null, 2) + '\n');
   console.log(JSON.stringify({ passed: true, evidence }));
 } finally {

@@ -1,0 +1,27 @@
+✔ all modes strip media, data URLs and long encoding while preserving short semantic values (9.3639ms)
+✔ payload removal handles nested and truncated results and never invents ambiguous paths (1.1753ms)
+✔ aggressive mode reduces file dumps and orchestration while retaining spoken facts and failure evidence (42.8555ms)
+✔ source call association preserves existing fingerprints (9.6879ms)
+✔ mixed command and patch scripts retain conditions inside literal patches (0.6371ms)
+✔ preprocessing preserves conversation, commands, provenance and Unicode character counts (3.0877ms)
+✔ recognized wrappers and complete successful test streams compact with diagnostic fallback (1.9345ms)
+✔ terminal formatting and duplicates preserve statuses and stay within an input segment (1.2229ms)
+✔ image encoding becomes only a source path and preserves original provenance (0.404ms)
+✔ long single-line tool output is preserved with linear formatting cleanup (12.9795ms)
+✔ preview exposes cleaning, fixed run cutoff and configuration changes preserve successful progress (969.9427ms)
+✔ frozen prepared input survives retries and legacy pending tasks retain original format (1853.3216ms)
+✔ prepared input redacts credentials and cleaned input determines segment budgets (0.9375ms)
+✔ cleaned complete turns fit a budget that rejects raw turns, and preview overrides are read only (499.6874ms)
+✔ frozen input tampering fails explicitly before a model call (948.0879ms)
+✔ fixed run cutoff defers newer frozen tasks until an explicit retry (1170.7165ms)
+✔ frozen system prompt and schema are included in request integrity checks (866.6043ms)
+✔ legacy pending inputs migrate only payload policy and freeze the sanitized retry material (2457.6093ms)
+✔ cached legacy model results recover without calls and output payloads become source paths (890.2646ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9864.2497

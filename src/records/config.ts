@@ -1,11 +1,13 @@
 import path from 'node:path';
 import { homedir } from 'node:os';
 import { normalize, requireValue, text } from './common.js';
+import type { PreprocessingMode } from './preprocess.js';
 export interface Filters { sessionIds: string[]; titleKeywords: string[]; bodyKeywords: string[] }
 export interface Config {
   alias: string; source: 'codex'; sourceRoot: string; startDate: string; timezone: string; projectDir?: string;
   additionalDirectories: string[]; includeSubdirectories: boolean; include: Filters; exclude: Filters;
   enabled: boolean; intervalMinutes?: number; focus: string; profile: string;
+  preprocessing?: PreprocessingMode;
   maxSessions: number; maxInputBytes: number; maxChunkBytes: number; maxCalls: number; maxDurationMs: number;
 }
 /** 只有发现范围变化才建立新边界，展示、生成和调度设置保留既有增量范围。 */
@@ -14,7 +16,7 @@ export function discoveryChanged(previous: Config, next: Config): boolean {
   return fields.some(key => JSON.stringify(previous[key]) !== JSON.stringify(next[key]));
 }
 const EMPTY = (): Filters => ({ sessionIds: [], titleKeywords: [], bodyKeywords: [] });
-const DEFAULTS = { source: 'codex' as const, timezone: 'Asia/Shanghai', sourceRoot: path.join(homedir(), '.codex'), additionalDirectories: [], includeSubdirectories: false, enabled: false, focus: '', profile: 'deepseek-default', maxSessions: 10, maxInputBytes: 200_000, maxChunkBytes: 40_000, maxCalls: 0, maxDurationMs: 120_000 };
+const DEFAULTS = { source: 'codex' as const, timezone: 'Asia/Shanghai', sourceRoot: path.join(homedir(), '.codex'), additionalDirectories: [], includeSubdirectories: false, enabled: false, focus: '', profile: 'deepseek-default', preprocessing: 'conservative' as const, maxSessions: 10, maxInputBytes: 200_000, maxChunkBytes: 40_000, maxCalls: 0, maxDurationMs: 120_000 };
 export function configuration(input: Record<string, unknown>, previous?: Config): Config {
   const fields = new Set([...Object.keys(DEFAULTS), 'alias', 'startDate', 'projectDir', 'include', 'exclude', 'intervalMinutes']);
   const clean = Object.fromEntries(Object.entries(input).filter(([key]) => !['id', 'json', 'input', 'dataDir', 'expectedRevision'].includes(key)));
@@ -30,6 +32,7 @@ export function configuration(input: Record<string, unknown>, previous?: Config)
   try { new Intl.DateTimeFormat('en', { timeZone: c.timezone }); } catch { requireValue(false, '无效时区'); }
   startTime(c.startDate, c.timezone);
   requireValue(typeof c.focus === 'string', 'focus 必须字符串');
+  requireValue(['conservative', 'off', 'aggressive'].includes(c.preprocessing!), 'preprocessing 必须为 conservative、off 或 aggressive');
   for (const key of ['maxSessions', 'maxInputBytes', 'maxChunkBytes', 'maxCalls', 'maxDurationMs', 'intervalMinutes'] as const) {
     if (c[key] !== undefined) { c[key] = Number(c[key]); requireValue(Number.isSafeInteger(c[key]) && c[key]! >= (key === 'maxCalls' ? 0 : 1), `${key} 必须为有效整数`); }
   }

@@ -77,6 +77,10 @@
 .plugin-fields {
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
 }
+.plugin-field { min-width: 0; }
+.plugin-field-help { margin: .6rem 0; font-size: .85rem; line-height: 1.6; }
+.plugin-mode-help { display: grid; gap: .7rem; padding: 0; margin: .8rem 0 0; list-style: none; font-size: .85rem; line-height: 1.6; }
+.plugin-mode-help strong, .plugin-mode-help span { display: block; }
 .plugin-form label,
 .plugin-select {
   display: grid;

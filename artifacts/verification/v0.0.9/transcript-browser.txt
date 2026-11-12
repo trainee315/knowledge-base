@@ -1,0 +1,5 @@
+
+知识库开发页面 http://127.0.0.1:5173
+业务服务 http://127.0.0.1:60599
+dataDir: C:\Users\mamar\AppData\Local\Temp\kb-visual-config-Ej5OPU\data
+{"passed":true,"evidence":"D:\\project\\knowledge-base\\artifacts\\verification\\v0.0.9\\transcript-browser"}

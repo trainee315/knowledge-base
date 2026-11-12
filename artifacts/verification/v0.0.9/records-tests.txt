@@ -1,0 +1,38 @@
+✔ preprocessing preserves conversation, commands, provenance and Unicode character counts (1.914ms)
+✔ recognized wrappers and complete successful test streams compact with diagnostic fallback (3.1434ms)
+✔ terminal formatting and duplicates preserve statuses and stay within an input segment (0.7873ms)
+✔ complete known image encoding becomes a source reference and unknown media remains intact (0.427ms)
+✔ long single-line tool output is preserved with linear formatting cleanup (11.9338ms)
+✔ preview exposes cleaning, fixed run cutoff and configuration changes preserve successful progress (1175.8992ms)
+✔ frozen prepared input survives retries and legacy pending tasks retain original format (1978.544ms)
+✔ prepared input redacts credentials and cleaned input determines segment budgets (0.5484ms)
+✔ cleaned complete turns fit a budget that rejects raw turns, and preview overrides are read only (507.4411ms)
+✔ frozen input tampering fails explicitly before a model call (861.0106ms)
+✔ fixed run cutoff defers newer frozen tasks until an explicit retry (1137.3873ms)
+✔ frozen system prompt and schema are included in request integrity checks (872.2326ms)
+✔ note preserves BOM/CRLF, independent identical submissions, request conflicts and deletion replay (902.9229ms)
+✔ config validates alias, timezone, budgets and directory segment boundaries (5.5828ms)
+✔ source retains equal timestamps and skips active turns, detects unknown message formats (11.8835ms)
+✔ preview is read only, failure retry, old session append, rename and processor-independent coverage (1889.3676ms)
+✔ model does not hold writer lock; output references validated and no resource on failure (712.2905ms)
+✔ atomic append redo recovery keeps organization and resource consistent (480.5493ms)
+✔ filters, budgets and backfill retain excluded historical material (805.1193ms)
+✔ CLI stdin is byte faithful, JSON stdout and invalid arguments exit 2 (1279.8621ms)
+✔ multiple batches use whole turns, fixed snapshot excludes new messages during model (1863.3022ms)
+✔ zero call budget, tick due dedup and oversized turns never fake successful output (864.7587ms)
+✔ saved model result resumes without another call and survives backup restore (970.3122ms)
+✔ explicit note tags and transcript generic organization browsing reuse existing semantics (981.1421ms)
+✔ malformed source fails explicitly but does not prevent independent session progress (968.8153ms)
+✔ credential redaction handles historical keys, authorization values and known credentials (0.8932ms)
+✔ formal transcript boundary redacts source and response without changing message provenance (916.604ms)
+✔ checkpoint fragments retain global positions and reconstruct a completed turn (10.1503ms)
+✔ child metadata with embedded parent session is excluded before inherited material parsing (3.2738ms)
+✔ historical cutoff excludes a turn completed after that cutoff (17.9102ms)
+ℹ tests 30
+ℹ suites 0
+ℹ pass 30
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12009.1966
