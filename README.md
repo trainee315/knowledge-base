@@ -1,6 +1,6 @@
 # Knowledge Base
 
-[v0.0.12 候选](doc/新增需求/v0.0.12/readme.md)：Agent 接入服务器 Codex CLI 订阅登录，支持模型配置及 Session 选择；独立分支待验收。
+[v0.0.12 候选](doc/新增需求/v0.0.12/readme.md)：Agent 接入服务器 Codex CLI 订阅登录，支持模型配置及 Session 选择；已按用户要求以未验收状态并入主线，供一并验证。
 
 v0.0.11 待验证版本提供语义关键词与标签：页面新增标签后后台自动匹配，支持增量更新、失败重试及原文片元浏览。[使用与契约](doc/新增需求/v0.0.11/contracts.md) · [验证记录](doc/新增需求/v0.0.11/verification.md)。
 

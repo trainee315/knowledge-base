@@ -23,5 +23,7 @@
       "totalTokens": 11436
     }
   },
-  "mainMerged": false
+  "mainMerged": true,
+  "mergeStatus": "merged-pending-user-acceptance",
+  "mergeAuthorizationDate": "2026-11-12"
 }
