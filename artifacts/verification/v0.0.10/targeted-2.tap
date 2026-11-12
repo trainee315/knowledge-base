@@ -1,0 +1,168 @@
+TAP version 13
+# (node:5916) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: scope identity: ambiguity, context intersection and directory segment boundaries
+ok 1 - scope identity: ambiguity, context intersection and directory segment boundaries
+  ---
+  duration_ms: 1.3756
+  type: 'test'
+  ...
+# Subtest: fixed original offsets preserve BOM CRLF, emoji and deterministic fragment identities
+ok 2 - fixed original offsets preserve BOM CRLF, emoji and deterministic fragment identities
+  ---
+  duration_ms: 1104.2062
+  type: 'test'
+  ...
+# Subtest: direct reading needs no index or model and respects project scope
+ok 3 - direct reading needs no index or model and respects project scope
+  ---
+  duration_ms: 1050.8806
+  type: 'test'
+  ...
+# Subtest: scoped BM25 cannot let other projects occupy top K; lexical never invokes reranking
+ok 4 - scoped BM25 cannot let other projects occupy top K; lexical never invokes reranking
+  ---
+  duration_ms: 1122.0065
+  type: 'test'
+  ...
+# Subtest: deletion applies before rebuild; restore and metadata mapping changes reuse stable fragments
+ok 5 - deletion applies before rebuild; restore and metadata mapping changes reuse stable fragments
+  ---
+  duration_ms: 1197.4359
+  type: 'test'
+  ...
+# Subtest: notes remain pinned to original version after underlying resource update
+ok 6 - notes remain pinned to original version after underlying resource update
+  ---
+  duration_ms: 1070.1192
+  type: 'test'
+  ...
+# Subtest: full response budget, metadata listing and registered task entries are bounded
+ok 7 - full response budget, metadata listing and registered task entries are bounded
+  ---
+  duration_ms: 1047.0086
+  type: 'test'
+  ...
+# Subtest: source time never substitutes recordedAt and uses explicit half-open boundaries
+ok 8 - source time never substitutes recordedAt and uses explicit half-open boundaries
+  ---
+  duration_ms: 972.1639
+  type: 'test'
+  ...
+# Subtest: missing model is explicit, hybrid degrades and index is not rebuilt by queries
+ok 9 - missing model is explicit, hybrid degrades and index is not rebuilt by queries
+  ---
+  duration_ms: 1019.0861
+  type: 'test'
+  ...
+# Subtest: invalid filters and FTS syntax cannot widen query or execute arbitrary expressions
+ok 10 - invalid filters and FTS syntax cannot widen query or execute arbitrary expressions
+  ---
+  duration_ms: 1087.4543
+  type: 'test'
+  ...
+# Subtest: development workload explicitly defers expensive recall without disabling direct reads
+ok 11 - development workload explicitly defers expensive recall without disabling direct reads
+  ---
+  duration_ms: 1946.0024
+  type: 'test'
+  ...
+# Subtest: split configuration versions identities and fixed read continuation advances
+ok 12 - split configuration versions identities and fixed read continuation advances
+  ---
+  duration_ms: 1277.095
+  type: 'test'
+  ...
+# Subtest: exact titles return bounded ambiguity candidates without model calls
+ok 13 - exact titles return bounded ambiguity candidates without model calls
+  ---
+  duration_ms: 1130.2156
+  type: 'test'
+  ...
+# Subtest: scope summary cache follows source revisions and cannot leak caller mutations
+ok 14 - scope summary cache follows source revisions and cannot leak caller mutations
+  ---
+  duration_ms: 927.0745
+  type: 'test'
+  ...
+# Subtest: missing derived generation recovers only through explicit rebuild
+ok 15 - missing derived generation recovers only through explicit rebuild
+  ---
+  duration_ms: 1065.174
+  type: 'test'
+  ...
+# Subtest: invalid model manifest degrades hybrid explicitly while lexical remains independent
+ok 16 - invalid model manifest degrades hybrid explicitly while lexical remains independent
+  ---
+  duration_ms: 967.3341
+  type: 'test'
+  ...
+# Subtest: development lease publication remains valid during concurrent polling
+ok 17 - development lease publication remains valid during concurrent polling
+  ---
+  duration_ms: 736.7299
+  type: 'test'
+  ...
+# Subtest: CLI resolves aliases once for run, retry and backfill
+ok 18 - CLI resolves aliases once for run, retry and backfill
+  ---
+  duration_ms: 2870.8675
+  type: 'test'
+  ...
+# Subtest: CLI preview applies execution budgets and rejects unknown options
+ok 19 - CLI preview applies execution budgets and rejects unknown options
+  ---
+  duration_ms: 1738.5558
+  type: 'test'
+  ...
+# Subtest: CLI continuation reads every fragment once
+ok 20 - CLI continuation reads every fragment once
+  ---
+  duration_ms: 3405.3135
+  type: 'test'
+  ...
+# Subtest: CLI indexes mixed-language identifiers and Chinese boundaries
+ok 21 - CLI indexes mixed-language identifiers and Chinese boundaries
+  ---
+  duration_ms: 2864.6892
+  type: 'test'
+  ...
+# Subtest: single-session budgets, frozen retry and status stay isolated
+ok 22 - single-session budgets, frozen retry and status stay isolated
+  ---
+  duration_ms: 3818.3211
+  type: 'test'
+  ...
+# Subtest: partial errors retain structured results and retry frozen input once
+ok 23 - partial errors retain structured results and retry frozen input once
+  ---
+  duration_ms: 2678.1474
+  type: 'test'
+  ...
+# Subtest: help is offline and effect-free, CLI options cannot silently widen scope
+ok 24 - help is offline and effect-free, CLI options cannot silently widen scope
+  ---
+  duration_ms: 2906.0717
+  type: 'test'
+  ...
+# Subtest: list continuation preserves filters and rejects changed snapshots
+ok 25 - list continuation preserves filters and rejects changed snapshots
+  ---
+  duration_ms: 2693.5746
+  type: 'test'
+  ...
+# Subtest: section continuations preserve original hashes and splitting identity
+ok 26 - section continuations preserve original hashes and splitting identity
+  ---
+  duration_ms: 2925.4973
+  type: 'test'
+  ...
+1..26
+# tests 26
+# suites 0
+# pass 26
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 26057.9614

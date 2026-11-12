@@ -1,0 +1,834 @@
+TAP version 13
+# Subtest: DeepSeek text maps generic messages and bounded non-thinking options through real HTTP
+ok 1 - DeepSeek text maps generic messages and bounded non-thinking options through real HTTP
+  ---
+  duration_ms: 52.3871
+  type: 'test'
+  ...
+# Subtest: JSON purpose maps response_format and validates a generic schema outside scoring
+ok 2 - JSON purpose maps response_format and validates a generic schema outside scoring
+  ---
+  duration_ms: 13.2107
+  type: 'test'
+  ...
+# Subtest: blank stop, truncation, invalid JSON and schema mismatch reject once without hidden retries
+ok 3 - blank stop, truncation, invalid JSON and schema mismatch reject once without hidden retries
+  ---
+  duration_ms: 47.3321
+  type: 'test'
+  ...
+# Subtest: 401, 429 and 5xx have sanitized classifications and exactly one HTTP attempt
+ok 4 - 401, 429 and 5xx have sanitized classifications and exactly one HTTP attempt
+  ---
+  duration_ms: 33.3071
+  type: 'test'
+  ...
+# Subtest: transport error causes never escape as credential-bearing errors
+ok 5 - transport error causes never escape as credential-bearing errors
+  ---
+  duration_ms: 0.9996
+  type: 'test'
+  ...
+# Subtest: profile/status/schema/no-key validation perform no HTTP requests
+ok 6 - profile/status/schema/no-key validation perform no HTTP requests
+  ---
+  duration_ms: 2.9734
+  type: 'test'
+  ...
+# Subtest: AbortSignal and timeout cover the active HTTP request
+ok 7 - AbortSignal and timeout cover the active HTTP request
+  ---
+  duration_ms: 28.6914
+  type: 'test'
+  ...
+# Subtest: queued cancellation, queue timeout and queue limit never invoke an extra request
+ok 8 - queued cancellation, queue timeout and queue limit never invoke an extra request
+  ---
+  duration_ms: 62.4456
+  type: 'test'
+  ...
+# Subtest: a replacement generic provider serves text and object purposes without changing business code
+ok 9 - a replacement generic provider serves text and object purposes without changing business code
+  ---
+  duration_ms: 1.1971
+  type: 'test'
+  ...
+# Subtest: plugin load, read-only configuration and backup keep credentials out of formal data
+ok 10 - plugin load, read-only configuration and backup keep credentials out of formal data
+  ---
+  duration_ms: 1100.9897
+  type: 'test'
+  ...
+# Subtest: relation cache normalizes words, stores zero coverage sparsely, and follows explicit scope versions
+ok 11 - relation cache normalizes words, stores zero coverage sparsely, and follows explicit scope versions
+  ---
+  duration_ms: 1529.4187
+  type: 'test'
+  ...
+# Subtest: relation malformed or duplicate batches never persist partial coverage
+ok 12 - relation malformed or duplicate batches never persist partial coverage
+  ---
+  duration_ms: 1186.2069
+  type: 'test'
+  ...
+# Subtest: organizer and scheduled runs with zero model-call budget never reach HTTP
+ok 13 - organizer and scheduled runs with zero model-call budget never reach HTTP
+  ---
+  duration_ms: 2084.108
+  type: 'test'
+  ...
+# Subtest: semantic identity excludes transport/revision/credential references and in-flight calls retain snapshots
+ok 14 - semantic identity excludes transport/revision/credential references and in-flight calls retain snapshots
+  ---
+  duration_ms: 3.7788
+  type: 'test'
+  ...
+# Subtest: canonical upstream model aliases do not change requested semantic identity
+ok 15 - canonical upstream model aliases do not change requested semantic identity
+  ---
+  duration_ms: 0.4282
+  type: 'test'
+  ...
+# Subtest: aborted non-cooperative providers retain actual concurrency slots until settled
+ok 16 - aborted non-cooperative providers retain actual concurrency slots until settled
+  ---
+  duration_ms: 36.7052
+  type: 'test'
+  ...
+# Subtest: profile whitelist rejects secrets, nulls, stale revisions and failed persistence without mutation
+ok 17 - profile whitelist rejects secrets, nulls, stale revisions and failed persistence without mutation
+  ---
+  duration_ms: 1.8223
+  type: 'test'
+  ...
+# Subtest: schema snapshots remain stable and unknown provider exceptions are sanitized
+ok 18 - schema snapshots remain stable and unknown provider exceptions are sanitized
+  ---
+  duration_ms: 1.4581
+  type: 'test'
+  ...
+# Subtest: agent CLI inspection is read-only without keys and profiles/backups only persist references
+ok 19 - agent CLI inspection is read-only without keys and profiles/backups only persist references
+  ---
+  duration_ms: 4006.8523
+  type: 'test'
+  ...
+# Subtest: CLI has single-object output, UTF8 input, correct exit codes and read-only queries alongside writer
+ok 20 - CLI has single-object output, UTF8 input, correct exit codes and read-only queries alongside writer
+  ---
+  duration_ms: 7000.168
+  type: 'test'
+  ...
+# Subtest: resource dedup, explicit copy, history, soft delete, references and backup restore
+ok 21 - resource dedup, explicit copy, history, soft delete, references and backup restore
+  ---
+  duration_ms: 637.7477
+  type: 'test'
+  ...
+# Subtest: same UUID organization references protect resource and all content versions from purge
+ok 22 - same UUID organization references protect resource and all content versions from purge
+  ---
+  duration_ms: 438.3489
+  type: 'test'
+  ...
+# Subtest: same UUID resource references protect organization from deletion
+ok 23 - same UUID resource references protect organization from deletion
+  ---
+  duration_ms: 316.0743
+  type: 'test'
+  ...
+# Subtest: true same-kind self references do not block deleting their own entity
+ok 24 - true same-kind self references do not block deleting their own entity
+  ---
+  duration_ms: 387.407
+  type: 'test'
+  ...
+# Subtest: single writer and injected interrupted transaction recovers all files on reopen
+ok 25 - single writer and injected interrupted transaction recovers all files on reopen
+  ---
+  duration_ms: 139.39
+  type: 'test'
+  ...
+# Subtest: concurrent read snapshot never returns mixed multi-file transaction
+ok 26 - concurrent read snapshot never returns mixed multi-file transaction
+  ---
+  duration_ms: 2004.3112
+  type: 'test'
+  ...
+# Subtest: DAG preflight detects full cycles/missing/version before loading
+ok 27 - DAG preflight detects full cycles/missing/version before loading
+  ---
+  duration_ms: 1.5791
+  type: 'test'
+  ...
+# Subtest: host enforces dependency access and meta permissions, refresh failure blocks dependents and reverse stop
+ok 28 - host enforces dependency access and meta permissions, refresh failure blocks dependents and reverse stop
+  ---
+  duration_ms: 375.7921
+  type: 'test'
+  ...
+# Subtest: backup validates hashes and refuses traversal before writing
+ok 29 - backup validates hashes and refuses traversal before writing
+  ---
+  duration_ms: 18.0819
+  type: 'test'
+  ...
+# Subtest: core remains usable with every business plugin disabled and retains plugin data
+ok 30 - core remains usable with every business plugin disabled and retains plugin data
+  ---
+  duration_ms: 494.8737
+  type: 'test'
+  ...
+# Subtest: stale diagnostic locks cannot produce two OS writers and killed holder releases mutex
+ok 31 - stale diagnostic locks cannot produce two OS writers and killed holder releases mutex
+  ---
+  duration_ms: 1511.1828
+  type: 'test'
+  ...
+# Subtest: restore prevalidates canonical paths and schema before any formal data write
+ok 32 - restore prevalidates canonical paths and schema before any formal data write
+  ---
+  duration_ms: 94.078
+  type: 'test'
+  ...
+# Subtest: unknown live core schema cannot be read or updated and organization patch cannot change ownership
+ok 33 - unknown live core schema cannot be read or updated and organization patch cannot change ownership
+  ---
+  duration_ms: 340.2998
+  type: 'test'
+  ...
+# Subtest: refresh failure fences cached APIs and commands across restart without loading blocked dependents
+ok 34 - refresh failure fences cached APIs and commands across restart without loading blocked dependents
+  ---
+  duration_ms: 356.1022
+  type: 'test'
+  ...
+# Subtest: restore and ordinary IO reject existing junction ancestors before journal or external writes
+ok 35 - restore and ordinary IO reject existing junction ancestors before journal or external writes
+  ---
+  duration_ms: 233.3273
+  type: 'test'
+  ...
+# Subtest: future plugin dataVersion prevents load and dependent activation without downgrading persisted version
+ok 36 - future plugin dataVersion prevents load and dependent activation without downgrading persisted version
+  ---
+  duration_ms: 94.1835
+  type: 'test'
+  ...
+# Subtest: generic organization type CRUD, enabled policy, use protection, backup and schema validation
+ok 37 - generic organization type CRUD, enabled policy, use protection, backup and schema validation
+  ---
+  duration_ms: 776.4635
+  type: 'test'
+  ...
+# Subtest: UTF8解析、未知格式降级、中英文关键词和离线评分
+ok 38 - UTF8解析、未知格式降级、中英文关键词和离线评分
+  ---
+  duration_ms: 23.0119
+  type: 'test'
+  ...
+# Subtest: 真实导入到候选、标签新增回填、查询组合、人工拒绝保护和过期结果阻断
+ok 39 - 真实导入到候选、标签新增回填、查询组合、人工拒绝保护和过期结果阻断
+  ---
+  duration_ms: 3327.0246
+  type: 'test'
+  ...
+# Subtest: 独立CLI进程自动导入链路与结构化候选提交
+ok 40 - 独立CLI进程自动导入链路与结构化候选提交
+  ---
+  duration_ms: 8537.3366
+  type: 'test'
+  ...
+# Subtest: 评分处理器版本变化重新排队，旧处理器候选不能提交
+ok 41 - 评分处理器版本变化重新排队，旧处理器候选不能提交
+  ---
+  duration_ms: 936.6014
+  type: 'test'
+  ...
+# Subtest: Markdown链接及图片登记正式引用，代码示例忽略，移除链接解除保护并诊断坏目标
+ok 42 - Markdown链接及图片登记正式引用，代码示例忽略，移除链接解除保护并诊断坏目标
+  ---
+  duration_ms: 1672.8142
+  type: 'test'
+  ...
+# Subtest: 定时模拟时钟与进程重启后的同日去重
+ok 43 - 定时模拟时钟与进程重启后的同日去重
+  ---
+  duration_ms: 558.068
+  type: 'test'
+  ...
+# Subtest: 任务持久化去重、失败重试断点、超时、重试上限及模型预算
+ok 44 - 任务持久化去重、失败重试断点、超时、重试上限及模型预算
+  ---
+  duration_ms: 489.7577
+  type: 'test'
+  ...
+# Subtest: 超时处理器退出前隔离重试，旧异步写不会与新attempt重叠
+ok 45 - 超时处理器退出前隔离重试，旧异步写不会与新attempt重叠
+  ---
+  duration_ms: 710.5504
+  type: 'test'
+  ...
+# Subtest: 调度失败、超时与预算未完成不标当日成功，同日可继续
+ok 46 - 调度失败、超时与预算未完成不标当日成功，同日可继续
+  ---
+  duration_ms: 976.3887
+  type: 'test'
+  ...
+# Subtest: 评分进行中切换provider丢弃旧结果，输入类型与整数预算严格校验
+ok 47 - 评分进行中切换provider丢弃旧结果，输入类型与整数预算严格校验
+  ---
+  duration_ms: 510.495
+  type: 'test'
+  ...
+# Subtest: 已知插件未来meta版本拒读拒写，未知分区保留，算法v2与meta v1独立
+ok 48 - 已知插件未来meta版本拒读拒写，未知分区保留，算法v2与meta v1独立
+  ---
+  duration_ms: 673.7479
+  type: 'test'
+  ...
+# Subtest: readVersion keeps pinned bytes, BOM/CRLF and history format; fromText is deterministic and readonly
+ok 49 - readVersion keeps pinned bytes, BOM/CRLF and history format; fromText is deterministic and readonly
+  ---
+  duration_ms: 433.5548
+  type: 'test'
+  ...
+# Subtest: readVersion distinguishes malformed JSON, invalid UTF8 and unsupported original without writes
+ok 50 - readVersion distinguishes malformed JSON, invalid UTF8 and unsupported original without writes
+  ---
+  duration_ms: 683.2632
+  type: 'test'
+  ...
+# Subtest: readVersion rejects hash mismatch and future content schema without masking original bytes
+ok 51 - readVersion rejects hash mismatch and future content schema without masking original bytes
+  ---
+  duration_ms: 511.4065
+  type: 'test'
+  ...
+# (node:69456) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: claims coalesce missed occurrences and recover interrupted runs without replay
+ok 52 - claims coalesce missed occurrences and recover interrupted runs without replay
+  ---
+  duration_ms: 32.3462
+  type: 'test'
+  ...
+# Subtest: legacy interval migration, expression compatibility, and plugin disable use one authority
+ok 53 - legacy interval migration, expression compatibility, and plugin disable use one authority
+  ---
+  duration_ms: 2572.9805
+  type: 'test'
+  ...
+# Subtest: 业务默认组织方式首次登记一次，只读零写，删除后重开与恢复不重建
+ok 54 - 业务默认组织方式首次登记一次，只读零写，删除后重开与恢复不重建
+  ---
+  duration_ms: 1676.2405
+  type: 'test'
+  ...
+# Subtest: 通用组织方式CRUD、版本冲突、使用中保护和disabled保留旧组织
+ok 55 - 通用组织方式CRUD、版本冲突、使用中保护和disabled保留旧组织
+  ---
+  duration_ms: 504.8642
+  type: 'test'
+  ...
+# Subtest: 独立CLI组织方式CRUD、默认业务方式disabled控制和只读并发
+ok 56 - 独立CLI组织方式CRUD、默认业务方式disabled控制和只读并发
+  ---
+  duration_ms: 7815.8019
+  type: 'test'
+  ...
+# Subtest: 项目固定全文/标签别名/关键词快照；旧版本unknown与显式known-empty不混淆
+ok 57 - 项目固定全文/标签别名/关键词快照；旧版本unknown与显式known-empty不混淆
+  ---
+  duration_ms: 1300.013
+  type: 'test'
+  ...
+# Subtest: requestId先于动态默认值解析；并发追加无丢失且同请求只登记一次
+ok 58 - requestId先于动态默认值解析；并发追加无丢失且同请求只登记一次
+  ---
+  duration_ms: 1233.5893
+  type: 'test'
+  ...
+# Subtest: 版本先于日期/全文分页/基线独立去重；asOf替代范围不受标签过滤和未来记录污染
+ok 59 - 版本先于日期/全文分页/基线独立去重；asOf替代范围不受标签过滤和未来记录污染
+  ---
+  duration_ms: 884.7481
+  type: 'test'
+  ...
+# Subtest: 项目范围/引用保护/备份恢复/future schema/非法解析及参数拒绝
+ok 60 - 项目范围/引用保护/备份恢复/future schema/非法解析及参数拒绝
+  ---
+  duration_ms: 1464.1054
+  type: 'test'
+  ...
+# Subtest: 真实CLI只读命令在writer持锁时零写入；参数失败退出2；替代标注使用过滤前全域
+ok 61 - 真实CLI只读命令在writer持锁时零写入；参数失败退出2；替代标注使用过滤前全域
+  ---
+  duration_ms: 5933.7225
+  type: 'test'
+  ...
+# Subtest: 归一化词对和0覆盖复用，只补新词，同标签并发请求不重复生成
+ok 62 - 归一化词对和0覆盖复用，只补新词，同标签并发请求不重复生成
+  ---
+  duration_ms: 1512.7839
+  type: 'test'
+  ...
+# Subtest: 标签定义变动保留旧词对追踪并提示，显式版本或生成语义变化才重评
+ok 63 - 标签定义变动保留旧词对追踪并提示，显式版本或生成语义变化才重评
+  ---
+  duration_ms: 1486.2
+  type: 'test'
+  ...
+# Subtest: 缺失、重复、越界、截断、失败、取消及多批半成品都不污染已有覆盖
+ok 64 - 缺失、重复、越界、截断、失败、取消及多批半成品都不污染已有覆盖
+  ---
+  duration_ms: 1337.6689
+  type: 'test'
+  ...
+# Subtest: 默认零模型预算阻止自动收费，缓存命中动态估0，显式版本补评不覆盖manual
+ok 65 - 默认零模型预算阻止自动收费，缓存命中动态估0，显式版本补评不覆盖manual
+  ---
+  duration_ms: 3766.1628
+  type: 'test'
+  ...
+# Subtest: v001评分迁移保留provider并把0转coverage，future结构拒绝且备份恢复复用
+ok 66 - v001评分迁移保留provider并把0转coverage，future结构拒绝且备份恢复复用
+  ---
+  duration_ms: 1397.6814
+  type: 'test'
+  ...
+# Subtest: prepare在预算前动态估0/淘汰旧任务，预算不足不阻零费用任务，耗时后不派发
+ok 67 - prepare在预算前动态估0/淘汰旧任务，预算不足不阻零费用任务，耗时后不派发
+  ---
+  duration_ms: 1004.0927
+  type: 'test'
+  ...
+# Subtest: organization browser reads accepted tags, exact current keywords, recursive systems and pinned history without writes
+ok 68 - organization browser reads accepted tags, exact current keywords, recursive systems and pinned history without writes
+  ---
+  duration_ms: 5850.6879
+  type: 'test'
+  ...
+# Subtest: unavailable business views report plugin errors and stale keyword metadata is excluded
+ok 69 - unavailable business views report plugin errors and stale keyword metadata is excluded
+  ---
+  duration_ms: 1922.2889
+  type: 'test'
+  ...
+# Subtest: Markdown escapes HTML, blocks unsafe links and external image requests
+ok 70 - Markdown escapes HTML, blocks unsafe links and external image requests
+  ---
+  duration_ms: 13.7609
+  type: 'test'
+  ...
+# Subtest: Markdown resolves stable UUID image and resource links
+ok 71 - Markdown resolves stable UUID image and resource links
+  ---
+  duration_ms: 1.5759
+  type: 'test'
+  ...
+# Subtest: real core/plugins preview supports query, content, UUID files, organizations, and denies writes/cross-origin
+ok 72 - real core/plugins preview supports query, content, UUID files, organizations, and denies writes/cross-origin
+  ---
+  duration_ms: 3038.7161
+  type: 'test'
+  ...
+# Subtest: background preview lifecycle is explicit, idempotent and works with Chinese/space data paths
+ok 73 - background preview lifecycle is explicit, idempotent and works with Chinese/space data paths
+  ---
+  duration_ms: 2123.3143
+  type: 'test'
+  ...
+# Subtest: eight CLI processes, case/junction aliases and stale PID records share one canonical preview instance
+ok 74 - eight CLI processes, case/junction aliases and stale PID records share one canonical preview instance
+  ---
+  duration_ms: 5988.6782
+  type: 'test'
+  ...
+# Subtest: draft preview and HTTP configuration share CLI state without model calls, support revision conflicts
+ok 75 - draft preview and HTTP configuration share CLI state without model calls, support revision conflicts
+  ---
+  duration_ms: 1797.3906
+  type: 'test'
+  ...
+# Subtest: ordinary configuration keeps discovery boundary, scope changes preserve tasks and coverage
+ok 76 - ordinary configuration keeps discovery boundary, scope changes preserve tasks and coverage
+  ---
+  duration_ms: 2671.0213
+  type: 'test'
+  ...
+# Subtest: configuration HTTP enforces same origin, body limits, errors and active lease, never exposes task material
+ok 77 - configuration HTTP enforces same origin, body limits, errors and active lease, never exposes task material
+  ---
+  duration_ms: 1880.6519
+  type: 'test'
+  ...
+# (node:96324) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: scope identity: ambiguity, context intersection and directory segment boundaries
+ok 78 - scope identity: ambiguity, context intersection and directory segment boundaries
+  ---
+  duration_ms: 3.5337
+  type: 'test'
+  ...
+# Subtest: fixed original offsets preserve BOM CRLF, emoji and deterministic fragment identities
+ok 79 - fixed original offsets preserve BOM CRLF, emoji and deterministic fragment identities
+  ---
+  duration_ms: 2245.1064
+  type: 'test'
+  ...
+# Subtest: direct reading needs no index or model and respects project scope
+ok 80 - direct reading needs no index or model and respects project scope
+  ---
+  duration_ms: 2788.4587
+  type: 'test'
+  ...
+# Subtest: scoped BM25 cannot let other projects occupy top K; lexical never invokes reranking
+ok 81 - scoped BM25 cannot let other projects occupy top K; lexical never invokes reranking
+  ---
+  duration_ms: 2817.5443
+  type: 'test'
+  ...
+# Subtest: deletion applies before rebuild; restore and metadata mapping changes reuse stable fragments
+ok 82 - deletion applies before rebuild; restore and metadata mapping changes reuse stable fragments
+  ---
+  duration_ms: 2392.089
+  type: 'test'
+  ...
+# Subtest: notes remain pinned to original version after underlying resource update
+ok 83 - notes remain pinned to original version after underlying resource update
+  ---
+  duration_ms: 1288.5835
+  type: 'test'
+  ...
+# Subtest: full response budget, metadata listing and registered task entries are bounded
+ok 84 - full response budget, metadata listing and registered task entries are bounded
+  ---
+  duration_ms: 1214.783
+  type: 'test'
+  ...
+# Subtest: source time never substitutes recordedAt and uses explicit half-open boundaries
+ok 85 - source time never substitutes recordedAt and uses explicit half-open boundaries
+  ---
+  duration_ms: 997.3165
+  type: 'test'
+  ...
+# Subtest: missing model is explicit, hybrid degrades and index is not rebuilt by queries
+ok 86 - missing model is explicit, hybrid degrades and index is not rebuilt by queries
+  ---
+  duration_ms: 1011.6184
+  type: 'test'
+  ...
+# Subtest: invalid filters and FTS syntax cannot widen query or execute arbitrary expressions
+ok 87 - invalid filters and FTS syntax cannot widen query or execute arbitrary expressions
+  ---
+  duration_ms: 989.1495
+  type: 'test'
+  ...
+# Subtest: development workload explicitly defers expensive recall without disabling direct reads
+ok 88 - development workload explicitly defers expensive recall without disabling direct reads
+  ---
+  duration_ms: 1848.0648
+  type: 'test'
+  ...
+# Subtest: split configuration versions identities and fixed read continuation advances
+ok 89 - split configuration versions identities and fixed read continuation advances
+  ---
+  duration_ms: 995.4297
+  type: 'test'
+  ...
+# Subtest: exact titles return bounded ambiguity candidates without model calls
+ok 90 - exact titles return bounded ambiguity candidates without model calls
+  ---
+  duration_ms: 1031.2635
+  type: 'test'
+  ...
+# Subtest: scope summary cache follows source revisions and cannot leak caller mutations
+ok 91 - scope summary cache follows source revisions and cannot leak caller mutations
+  ---
+  duration_ms: 931.9965
+  type: 'test'
+  ...
+# Subtest: missing derived generation recovers only through explicit rebuild
+ok 92 - missing derived generation recovers only through explicit rebuild
+  ---
+  duration_ms: 863.4769
+  type: 'test'
+  ...
+# Subtest: invalid model manifest degrades hybrid explicitly while lexical remains independent
+ok 93 - invalid model manifest degrades hybrid explicitly while lexical remains independent
+  ---
+  duration_ms: 776.9462
+  type: 'test'
+  ...
+# Subtest: development lease publication remains valid during concurrent polling
+ok 94 - development lease publication remains valid during concurrent polling
+  ---
+  duration_ms: 609.5553
+  type: 'test'
+  ...
+# Subtest: all modes strip media, data URLs and long encoding while preserving short semantic values
+ok 95 - all modes strip media, data URLs and long encoding while preserving short semantic values
+  ---
+  duration_ms: 18.4548
+  type: 'test'
+  ...
+# Subtest: payload removal handles nested and truncated results and never invents ambiguous paths
+ok 96 - payload removal handles nested and truncated results and never invents ambiguous paths
+  ---
+  duration_ms: 3.2038
+  type: 'test'
+  ...
+# Subtest: aggressive mode reduces file dumps and orchestration while retaining spoken facts and failure evidence
+ok 97 - aggressive mode reduces file dumps and orchestration while retaining spoken facts and failure evidence
+  ---
+  duration_ms: 89.2711
+  type: 'test'
+  ...
+# Subtest: source call association preserves existing fingerprints
+ok 98 - source call association preserves existing fingerprints
+  ---
+  duration_ms: 13.8402
+  type: 'test'
+  ...
+# Subtest: mixed command and patch scripts retain conditions inside literal patches
+ok 99 - mixed command and patch scripts retain conditions inside literal patches
+  ---
+  duration_ms: 1.4222
+  type: 'test'
+  ...
+# Subtest: preprocessing preserves conversation, commands, provenance and Unicode character counts
+ok 100 - preprocessing preserves conversation, commands, provenance and Unicode character counts
+  ---
+  duration_ms: 8.4834
+  type: 'test'
+  ...
+# Subtest: recognized wrappers and complete successful test streams compact with diagnostic fallback
+ok 101 - recognized wrappers and complete successful test streams compact with diagnostic fallback
+  ---
+  duration_ms: 4.728
+  type: 'test'
+  ...
+# Subtest: terminal formatting and duplicates preserve statuses and stay within an input segment
+ok 102 - terminal formatting and duplicates preserve statuses and stay within an input segment
+  ---
+  duration_ms: 4.5592
+  type: 'test'
+  ...
+# Subtest: image encoding becomes only a source path and preserves original provenance
+ok 103 - image encoding becomes only a source path and preserves original provenance
+  ---
+  duration_ms: 2.5861
+  type: 'test'
+  ...
+# Subtest: long single-line tool output is preserved with linear formatting cleanup
+ok 104 - long single-line tool output is preserved with linear formatting cleanup
+  ---
+  duration_ms: 30.3789
+  type: 'test'
+  ...
+# Subtest: preview exposes cleaning, fixed run cutoff and configuration changes preserve successful progress
+ok 105 - preview exposes cleaning, fixed run cutoff and configuration changes preserve successful progress
+  ---
+  duration_ms: 3133.8353
+  type: 'test'
+  ...
+# Subtest: frozen prepared input survives retries and legacy pending tasks retain original format
+ok 106 - frozen prepared input survives retries and legacy pending tasks retain original format
+  ---
+  duration_ms: 5805.9659
+  type: 'test'
+  ...
+# Subtest: prepared input redacts credentials and cleaned input determines segment budgets
+ok 107 - prepared input redacts credentials and cleaned input determines segment budgets
+  ---
+  duration_ms: 2.0054
+  type: 'test'
+  ...
+# Subtest: cleaned complete turns fit a budget that rejects raw turns, and preview overrides are read only
+ok 108 - cleaned complete turns fit a budget that rejects raw turns, and preview overrides are read only
+  ---
+  duration_ms: 848.7794
+  type: 'test'
+  ...
+# Subtest: frozen input tampering fails explicitly before a model call
+ok 109 - frozen input tampering fails explicitly before a model call
+  ---
+  duration_ms: 1128.4534
+  type: 'test'
+  ...
+# Subtest: fixed run cutoff defers newer frozen tasks until an explicit retry
+ok 110 - fixed run cutoff defers newer frozen tasks until an explicit retry
+  ---
+  duration_ms: 1405.9095
+  type: 'test'
+  ...
+# Subtest: frozen system prompt and schema are included in request integrity checks
+ok 111 - frozen system prompt and schema are included in request integrity checks
+  ---
+  duration_ms: 983.5445
+  type: 'test'
+  ...
+# Subtest: legacy pending inputs migrate only payload policy and freeze the sanitized retry material
+ok 112 - legacy pending inputs migrate only payload policy and freeze the sanitized retry material
+  ---
+  duration_ms: 2754.8258
+  type: 'test'
+  ...
+# Subtest: cached legacy model results recover without calls and output payloads become source paths
+ok 113 - cached legacy model results recover without calls and output payloads become source paths
+  ---
+  duration_ms: 981.8549
+  type: 'test'
+  ...
+# Subtest: note preserves BOM/CRLF, independent identical submissions, request conflicts and deletion replay
+ok 114 - note preserves BOM/CRLF, independent identical submissions, request conflicts and deletion replay
+  ---
+  duration_ms: 2192.437
+  type: 'test'
+  ...
+# Subtest: config validates alias, timezone, budgets and directory segment boundaries
+ok 115 - config validates alias, timezone, budgets and directory segment boundaries
+  ---
+  duration_ms: 15.7098
+  type: 'test'
+  ...
+# Subtest: source retains equal timestamps and skips active turns, detects unknown message formats
+ok 116 - source retains equal timestamps and skips active turns, detects unknown message formats
+  ---
+  duration_ms: 27.7001
+  type: 'test'
+  ...
+# Subtest: preview is read only, failure retry, old session append, rename and processor-independent coverage
+ok 117 - preview is read only, failure retry, old session append, rename and processor-independent coverage
+  ---
+  duration_ms: 5914.6225
+  type: 'test'
+  ...
+# Subtest: model does not hold writer lock; output references validated and no resource on failure
+ok 118 - model does not hold writer lock; output references validated and no resource on failure
+  ---
+  duration_ms: 1328.927
+  type: 'test'
+  ...
+# Subtest: atomic append redo recovery keeps organization and resource consistent
+ok 119 - atomic append redo recovery keeps organization and resource consistent
+  ---
+  duration_ms: 620.3088
+  type: 'test'
+  ...
+# Subtest: filters, budgets and backfill retain excluded historical material
+ok 120 - filters, budgets and backfill retain excluded historical material
+  ---
+  duration_ms: 1053.5059
+  type: 'test'
+  ...
+# Subtest: CLI stdin is byte faithful, JSON stdout and invalid arguments exit 2
+ok 121 - CLI stdin is byte faithful, JSON stdout and invalid arguments exit 2
+  ---
+  duration_ms: 1593.0564
+  type: 'test'
+  ...
+# Subtest: multiple batches use whole turns, fixed snapshot excludes new messages during model
+ok 122 - multiple batches use whole turns, fixed snapshot excludes new messages during model
+  ---
+  duration_ms: 2303.1496
+  type: 'test'
+  ...
+# Subtest: zero call budget, tick due dedup and oversized turns never fake successful output
+ok 123 - zero call budget, tick due dedup and oversized turns never fake successful output
+  ---
+  duration_ms: 1120.2488
+  type: 'test'
+  ...
+# Subtest: saved model result resumes without another call and survives backup restore
+ok 124 - saved model result resumes without another call and survives backup restore
+  ---
+  duration_ms: 1015.3516
+  type: 'test'
+  ...
+# Subtest: explicit note tags and transcript generic organization browsing reuse existing semantics
+ok 125 - explicit note tags and transcript generic organization browsing reuse existing semantics
+  ---
+  duration_ms: 1079.1131
+  type: 'test'
+  ...
+# Subtest: malformed source fails explicitly but does not prevent independent session progress
+ok 126 - malformed source fails explicitly but does not prevent independent session progress
+  ---
+  duration_ms: 1189.9107
+  type: 'test'
+  ...
+# Subtest: credential redaction handles historical keys, authorization values and known credentials
+ok 127 - credential redaction handles historical keys, authorization values and known credentials
+  ---
+  duration_ms: 2.7133
+  type: 'test'
+  ...
+# Subtest: formal transcript boundary redacts source and response without changing message provenance
+ok 128 - formal transcript boundary redacts source and response without changing message provenance
+  ---
+  duration_ms: 2589.1196
+  type: 'test'
+  ...
+# Subtest: checkpoint fragments retain global positions and reconstruct a completed turn
+ok 129 - checkpoint fragments retain global positions and reconstruct a completed turn
+  ---
+  duration_ms: 19.557
+  type: 'test'
+  ...
+# Subtest: child metadata with embedded parent session is excluded before inherited material parsing
+ok 130 - child metadata with embedded parent session is excluded before inherited material parsing
+  ---
+  duration_ms: 10.7841
+  type: 'test'
+  ...
+# Subtest: historical cutoff excludes a turn completed after that cutoff
+ok 131 - historical cutoff excludes a turn completed after that cutoff
+  ---
+  duration_ms: 50.6312
+  type: 'test'
+  ...
+# (node:37612) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: file restore with a durable journal keeps cron paused until recovery completes
+ok 132 - file restore with a durable journal keeps cron paused until recovery completes
+  ---
+  duration_ms: 509.3342
+  type: 'test'
+  ...
+# Subtest: plugin detail exposes safe projections, enforces CAS and remains readable after plugin failure
+ok 133 - plugin detail exposes safe projections, enforces CAS and remains readable after plugin failure
+  ---
+  duration_ms: 4083.8047
+  type: 'test'
+  ...
+# Subtest: project-tracking compression form configures selected session with CAS and zero model calls
+ok 134 - project-tracking compression form configures selected session with CAS and zero model calls
+  ---
+  duration_ms: 2806.6075
+  type: 'test'
+  ...
+# (node:9640) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: service preserves stdin bytes and backs up and restores cron retry history
+ok 135 - service preserves stdin bytes and backs up and restores cron retry history
+  ---
+  duration_ms: 7174.397
+  type: 'test'
+  ...
+# Subtest: production serves built assets but keeps a nested service data directory private
+ok 136 - production serves built assets but keeps a nested service data directory private
+  ---
+  duration_ms: 952.2663
+  type: 'test'
+  ...
+1..136
+# tests 136
+# suites 0
+# pass 136
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 24236.76

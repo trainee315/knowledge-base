@@ -31,5 +31,6 @@
     ],
     "pageErrors": []
   },
-  "mainIntegration": "waiting for v0.0.10 commit"
+  "mainIntegration": "integrated v0.0.10; automated checks passed; pending user verification",
+  "integrationReport": "integration.json"
 }

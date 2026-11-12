@@ -19,6 +19,8 @@
     "cli": "node dist/cli/main.js",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test:recall": "npm run build:core && node --test dist/recall/recall.test.js && node tests/recall/cli.mjs",
+    "test:chains": "npm run build:core && node --test tests/chains/chain.test.mjs",
+    "demo:agent": "npm run build:core && node examples/agent/project-integration.mjs",
     "demo:recall": "npm run build:core && node tests/recall/demo.mjs",
     "test:semantic": "npm run build:core && node --test dist/semantic/*.test.js"
   },

@@ -1,6 +1,8 @@
 # Knowledge Base
 
-v0.0.11 开发版本提供语义关键词与标签：页面新增标签后后台自动匹配，支持增量更新、失败重试及原文片元浏览。[使用与契约](doc/新增需求/v0.0.11/contracts.md) · [验证记录](doc/新增需求/v0.0.11/verification.md)。
+v0.0.11 待验证版本提供语义关键词与标签：页面新增标签后后台自动匹配，支持增量更新、失败重试及原文片元浏览。[使用与契约](doc/新增需求/v0.0.11/contracts.md) · [验证记录](doc/新增需求/v0.0.11/verification.md)。
+
+[v0.0.10候选实现](doc/新增需求/v0.0.10/readme.md)：已修复Session压缩与向量片元召回链路，补齐CLI帮助、范围与完成状态、固定版本续读及项目Agent提示词。[验证报告](doc/新增需求/v0.0.10/verification.md) · `npm run demo:agent` 生成隔离接入实例。待用户验收，未正式发布。
 
 开发路线：[项目架构原则](doc/architecture-principles.md) · [v0.0.6 本地服务与 cron](doc/新增需求/v0.0.6/readme.md) · [v0.0.7 插件详情](doc/新增需求/v0.0.7/readme.md) · [v0.0.8 Agent召回候选](doc/新增需求/v0.0.8/readme.md)。下方命令用于当前主分支，发布版本的命令见相应归档。
 

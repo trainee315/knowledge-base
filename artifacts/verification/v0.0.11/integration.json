@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-12",
+  "version": "0.0.11",
+  "status": "pending user verification",
+  "implementationCommit": "6e64ea941b029274bbfddb9af9aa5ffd2782c8c2",
+  "integratedMainCommit": "7aeeb6215fd70707513761d63b01eb5245bbacad",
+  "build": true,
+  "unit": { "tests": 155, "pass": 155, "fail": 0, "skipped": 0 },
+  "v0010Chains": { "tests": 10, "pass": 10, "fail": 0, "skipped": 0 },
+  "recallCli": true,
+  "existingBrowser": true,
+  "semanticBrowser": true,
+  "cloudModelCalls": 0,
+  "release": false
+}

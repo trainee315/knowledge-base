@@ -1,0 +1,51 @@
+{
+  "syntheticOnly": true,
+  "provider": "offline-demo",
+  "root": "D:\\project\\knowledge-base\\.recall-local\\v0.0.10\\demo-NEHhhH",
+  "data": "D:\\project\\knowledge-base\\.recall-local\\v0.0.10\\demo-NEHhhH\\knowledge-data",
+  "projects": [
+    {
+      "project": "D:\\project\\knowledge-base\\.recall-local\\v0.0.10\\demo-NEHhhH\\example-a 项目",
+      "projectId": "example-a",
+      "sessionId": "example-a-main",
+      "organizationId": "e079cea1-b13c-4717-b18c-da6562b0e2a0",
+      "resourceId": "d14a1edf-8943-4e87-b15c-e013a14a083d",
+      "otherSessionProcessed": false,
+      "search": {
+        "resourceIds": [
+          "d14a1edf-8943-4e87-b15c-e013a14a083d"
+        ],
+        "stages": [
+          "scope",
+          "bm25"
+        ],
+        "modelCalls": 0
+      }
+    },
+    {
+      "project": "D:\\project\\knowledge-base\\.recall-local\\v0.0.10\\demo-NEHhhH\\example-b 项目",
+      "projectId": "example-b",
+      "sessionId": "example-b-main",
+      "organizationId": "ebb06670-05cd-4752-8ed4-9f02cef4e95f",
+      "resourceId": "bcf5a239-794f-4396-b308-772fe56df8bb",
+      "otherSessionProcessed": false,
+      "search": {
+        "resourceIds": [
+          "bcf5a239-794f-4396-b308-772fe56df8bb"
+        ],
+        "stages": [
+          "scope",
+          "bm25"
+        ],
+        "modelCalls": 0
+      }
+    }
+  ],
+  "passed": true,
+  "commands": [
+    "node \"D:\\project\\knowledge-base\\dist\\cli\\main.js\" service start --data-dir \"D:\\project\\knowledge-base\\.recall-local\\v0.0.10\\demo-NEHhhH\\knowledge-data\" --json",
+    "node \"D:\\project\\knowledge-base\\dist\\cli\\main.js\" recall prepare --input \"D:\\project\\knowledge-base\\.recall-local\\v0.0.10\\demo-NEHhhH\\example-a 项目\\investigate.json\" --data-dir \"D:\\project\\knowledge-base\\.recall-local\\v0.0.10\\demo-NEHhhH\\knowledge-data\" --json",
+    "node \"D:\\project\\knowledge-base\\dist\\cli\\main.js\" recall prepare --input \"D:\\project\\knowledge-base\\.recall-local\\v0.0.10\\demo-NEHhhH\\example-b 项目\\investigate.json\" --data-dir \"D:\\project\\knowledge-base\\.recall-local\\v0.0.10\\demo-NEHhhH\\knowledge-data\" --json",
+    "node \"D:\\project\\knowledge-base\\dist\\cli\\main.js\" service stop --data-dir \"D:\\project\\knowledge-base\\.recall-local\\v0.0.10\\demo-NEHhhH\\knowledge-data\" --json"
+  ]
+}

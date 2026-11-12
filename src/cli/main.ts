@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { KnowledgeError } from '../core/errors.js';
 import { handleService, callService } from '../service/client.js';
 import { runDevelopmentWorkload } from '../recall/development.js';
+import { booleanOptions, commandHelp, validateCommand } from './contract.js';
 
 // 数据位置与工作目录解耦，便于 PPC 从其他目录调用。
 const DEFAULT_DATA_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../.data');
@@ -16,17 +17,24 @@ async function parse(argv: string[]) {
   const words: string[] = []; const options: Record<string, unknown> = {};
   for (let index = 0; index < argv.length; index++) {
     const token = argv[index];
-    if (token.startsWith('--')) { const equal = token.indexOf('='); const key = (equal < 0 ? token.slice(2) : token.slice(2, equal)).replace(/-([a-z])/g, (_, letter: string) => letter.toUpperCase()); if (!key) argumentError('空选项'); let value: unknown = true; if (equal >= 0) value = token.slice(equal + 1); else if (!['stdin', 'json', 'help', 'copy', 'cascade', 'includeDeleted', 'content'].includes(key) && argv[index + 1] && !argv[index + 1].startsWith('--')) value = argv[++index]; options[key] = value; } else words.push(token);
+    if (token.startsWith('--')) { const equal = token.indexOf('='); const key = (equal < 0 ? token.slice(2) : token.slice(2, equal)).replace(/-([a-z])/g, (_, letter: string) => letter.toUpperCase()); if (!key) argumentError('空选项'); let value: unknown = true; if (equal >= 0) value = token.slice(equal + 1); else if (argv[index + 1] && !argv[index + 1].startsWith('--') && (!booleanOptions.has(key) || ['true', 'false'].includes(argv[index + 1]))) value = argv[++index]; options[key] = value; } else words.push(token);
   }
   let input: Record<string, unknown> = {};
+  if (options.help !== undefined && ![true, false, 'true', 'false'].includes(options.help as any)) argumentError('--help 必须为布尔值');
+  // 帮助先于input文件读取、stdin等待和任何实际动作。
+  if (words[0] === 'help' || flag(options, 'help')) return { words, input: options, dataDir: DEFAULT_DATA_DIR };
   if (options.input !== undefined) { if (typeof options.input !== 'string') argumentError('--input 需要文件路径或 -'); const source = options.input === '-' ? await stdin() : await fs.readFile(path.resolve(options.input), 'utf8'); try { const data: unknown = JSON.parse(source.replace(/^\uFEFF/, '')); if (data === null || typeof data !== 'object' || Array.isArray(data)) argumentError('--input 顶层必须为JSON对象'); input = data as Record<string, unknown>; } catch (error) { if (error instanceof KnowledgeError) throw error; argumentError('--input 不是有效UTF8 JSON'); } }
-  return { words, input: { ...input, ...options }, dataDir: path.resolve(typeof options.dataDir === 'string' ? options.dataDir : DEFAULT_DATA_DIR) };
+  const merged = { ...input, ...options };
+  if (merged.dataDir !== undefined && (typeof merged.dataDir !== 'string' || !merged.dataDir.trim())) argumentError('--data-dir 需要非空目录路径');
+  for (const key of ['json', 'help']) if (merged[key] !== undefined && ![true, false, 'true', 'false'].includes(merged[key] as any)) argumentError(`--${key} 必须为布尔值`);
+  return { words, input: merged, dataDir: path.resolve(typeof merged.dataDir === 'string' ? merged.dataDir : DEFAULT_DATA_DIR) };
 }
 async function run(): Promise<unknown> {
   const { words, input, dataDir } = await parse(process.argv.slice(2));
   const [group, action] = words;
+  if (!group || group === 'help' || flag(input, 'help')) return commandHelp(group === 'help' ? words.slice(1) : words);
+  validateCommand(words, input);
   if (group === 'recall' && action === 'workload') { const result = await runDevelopmentWorkload(input); if (result.exitCode !== 0) process.exitCode = 1; return result; }
-  if (!group || group === 'help' || flag(input, 'help')) return { version: '0.0.11', usage: 'cli.bat <command> [action] --input file|- --data-dir path --json', commands: ['semantic list/get/create/update/delete/retry/retry-all/run', 'resource import/list/get/update/delete/restore/purge/history', 'note add/list/get', 'transcript create/list/get/configure/preview/run/tick/records/retry/backfill', 'meta get/set', 'organization create/list/get/update/delete', 'organization-type register/list/get/update/enable/disable/delete', 'plugin list/enable/disable/refresh', 'project-track create/list/get/add/documents/read/query', 'agent status / profile list|get|set|delete / config get|set / generate text|object', 'recall configure/scope/prepare/read/list/search/eval', 'recall index status|build / model prepare|status / workload', 'backup --file path', 'restore --file path', 'check', 'reindex', 'service start/stop/restart/status', 'preview start/stop/status (服务兼容入口)', 'cron types/create/list/get/update/enable/disable/delete/run/retry/runs', 'content/keyword/tag/relation/system/task/organize/schedule (插件命令)'] };
   if (group === 'service' || group === 'preview') {
     const state = await handleService([...words.slice(1), ...(input.port !== undefined ? ['--port', String(input.port)] : [])], dataDir);
     return group === 'preview' ? { ...state, notice: 'preview 和 service 共享生命周期，停止会一同停止定时任务' } : state;

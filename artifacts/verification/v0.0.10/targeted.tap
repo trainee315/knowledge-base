@@ -1,0 +1,387 @@
+TAP version 13
+# (node:89644) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: claims coalesce missed occurrences and recover interrupted runs without replay
+ok 1 - claims coalesce missed occurrences and recover interrupted runs without replay
+  ---
+  duration_ms: 28.4737
+  type: 'test'
+  ...
+# Subtest: legacy interval migration, expression compatibility, and plugin disable use one authority
+ok 2 - legacy interval migration, expression compatibility, and plugin disable use one authority
+  ---
+  duration_ms: 1373.6736
+  type: 'test'
+  ...
+# (node:33184) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: scope identity: ambiguity, context intersection and directory segment boundaries
+ok 3 - scope identity: ambiguity, context intersection and directory segment boundaries
+  ---
+  duration_ms: 2.2437
+  type: 'test'
+  ...
+# Subtest: fixed original offsets preserve BOM CRLF, emoji and deterministic fragment identities
+ok 4 - fixed original offsets preserve BOM CRLF, emoji and deterministic fragment identities
+  ---
+  duration_ms: 1246.805
+  type: 'test'
+  ...
+# Subtest: direct reading needs no index or model and respects project scope
+ok 5 - direct reading needs no index or model and respects project scope
+  ---
+  duration_ms: 1161.9888
+  type: 'test'
+  ...
+# Subtest: scoped BM25 cannot let other projects occupy top K; lexical never invokes reranking
+ok 6 - scoped BM25 cannot let other projects occupy top K; lexical never invokes reranking
+  ---
+  duration_ms: 1116.8633
+  type: 'test'
+  ...
+# Subtest: deletion applies before rebuild; restore and metadata mapping changes reuse stable fragments
+ok 7 - deletion applies before rebuild; restore and metadata mapping changes reuse stable fragments
+  ---
+  duration_ms: 1249.2704
+  type: 'test'
+  ...
+# Subtest: notes remain pinned to original version after underlying resource update
+ok 8 - notes remain pinned to original version after underlying resource update
+  ---
+  duration_ms: 1017.8865
+  type: 'test'
+  ...
+# Subtest: full response budget, metadata listing and registered task entries are bounded
+not ok 9 - full response budget, metadata listing and registered task entries are bounded
+  ---
+  duration_ms: 1069.1088
+  type: 'test'
+  location: 'D:\\project\\knowledge-base\\dist\\recall\\recall.test.js:114:1'
+  failureType: 'testCodeFailure'
+  error: '预算不足以返回一个完整片元/条目及继续入口，请增加预算或缩小范围'
+  code: 'OUTPUT_BUDGET'
+  name: 'KnowledgeError'
+  stack: |-
+    fail (file:///D:/project/knowledge-base/dist/recall/scope.js:8:54)
+    budget (file:///D:/project/knowledge-base/dist/recall/recall.js:125:9)
+    finish (file:///D:/project/knowledge-base/dist/recall/recall.js:173:48)
+    prepare (file:///D:/project/knowledge-base/dist/recall/recall.js:255:16)
+    async TestContext.<anonymous> (file:///D:/project/knowledge-base/dist/recall/recall.test.js:117:18)
+    async Test.run (node:internal/test_runner/test:1113:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:788:7)
+  ...
+# Subtest: source time never substitutes recordedAt and uses explicit half-open boundaries
+ok 10 - source time never substitutes recordedAt and uses explicit half-open boundaries
+  ---
+  duration_ms: 988.9673
+  type: 'test'
+  ...
+# Subtest: missing model is explicit, hybrid degrades and index is not rebuilt by queries
+ok 11 - missing model is explicit, hybrid degrades and index is not rebuilt by queries
+  ---
+  duration_ms: 1123.9349
+  type: 'test'
+  ...
+# Subtest: invalid filters and FTS syntax cannot widen query or execute arbitrary expressions
+ok 12 - invalid filters and FTS syntax cannot widen query or execute arbitrary expressions
+  ---
+  duration_ms: 1098.2209
+  type: 'test'
+  ...
+# Subtest: development workload explicitly defers expensive recall without disabling direct reads
+ok 13 - development workload explicitly defers expensive recall without disabling direct reads
+  ---
+  duration_ms: 1942.2782
+  type: 'test'
+  ...
+# Subtest: split configuration versions identities and fixed read continuation advances
+ok 14 - split configuration versions identities and fixed read continuation advances
+  ---
+  duration_ms: 954.167
+  type: 'test'
+  ...
+# Subtest: exact titles return bounded ambiguity candidates without model calls
+ok 15 - exact titles return bounded ambiguity candidates without model calls
+  ---
+  duration_ms: 929.8226
+  type: 'test'
+  ...
+# Subtest: scope summary cache follows source revisions and cannot leak caller mutations
+ok 16 - scope summary cache follows source revisions and cannot leak caller mutations
+  ---
+  duration_ms: 803.3839
+  type: 'test'
+  ...
+# Subtest: missing derived generation recovers only through explicit rebuild
+ok 17 - missing derived generation recovers only through explicit rebuild
+  ---
+  duration_ms: 802.2516
+  type: 'test'
+  ...
+# Subtest: invalid model manifest degrades hybrid explicitly while lexical remains independent
+ok 18 - invalid model manifest degrades hybrid explicitly while lexical remains independent
+  ---
+  duration_ms: 730.0686
+  type: 'test'
+  ...
+# Subtest: development lease publication remains valid during concurrent polling
+ok 19 - development lease publication remains valid during concurrent polling
+  ---
+  duration_ms: 604.7838
+  type: 'test'
+  ...
+# Subtest: all modes strip media, data URLs and long encoding while preserving short semantic values
+ok 20 - all modes strip media, data URLs and long encoding while preserving short semantic values
+  ---
+  duration_ms: 14.8669
+  type: 'test'
+  ...
+# Subtest: payload removal handles nested and truncated results and never invents ambiguous paths
+ok 21 - payload removal handles nested and truncated results and never invents ambiguous paths
+  ---
+  duration_ms: 2.6569
+  type: 'test'
+  ...
+# Subtest: aggressive mode reduces file dumps and orchestration while retaining spoken facts and failure evidence
+ok 22 - aggressive mode reduces file dumps and orchestration while retaining spoken facts and failure evidence
+  ---
+  duration_ms: 68.7387
+  type: 'test'
+  ...
+# Subtest: source call association preserves existing fingerprints
+ok 23 - source call association preserves existing fingerprints
+  ---
+  duration_ms: 11.3143
+  type: 'test'
+  ...
+# Subtest: mixed command and patch scripts retain conditions inside literal patches
+ok 24 - mixed command and patch scripts retain conditions inside literal patches
+  ---
+  duration_ms: 1.1656
+  type: 'test'
+  ...
+# Subtest: preprocessing preserves conversation, commands, provenance and Unicode character counts
+ok 25 - preprocessing preserves conversation, commands, provenance and Unicode character counts
+  ---
+  duration_ms: 4.9353
+  type: 'test'
+  ...
+# Subtest: recognized wrappers and complete successful test streams compact with diagnostic fallback
+ok 26 - recognized wrappers and complete successful test streams compact with diagnostic fallback
+  ---
+  duration_ms: 2.5368
+  type: 'test'
+  ...
+# Subtest: terminal formatting and duplicates preserve statuses and stay within an input segment
+ok 27 - terminal formatting and duplicates preserve statuses and stay within an input segment
+  ---
+  duration_ms: 2.4095
+  type: 'test'
+  ...
+# Subtest: image encoding becomes only a source path and preserves original provenance
+ok 28 - image encoding becomes only a source path and preserves original provenance
+  ---
+  duration_ms: 0.9278
+  type: 'test'
+  ...
+# Subtest: long single-line tool output is preserved with linear formatting cleanup
+ok 29 - long single-line tool output is preserved with linear formatting cleanup
+  ---
+  duration_ms: 23.7241
+  type: 'test'
+  ...
+# Subtest: preview exposes cleaning, fixed run cutoff and configuration changes preserve successful progress
+ok 30 - preview exposes cleaning, fixed run cutoff and configuration changes preserve successful progress
+  ---
+  duration_ms: 1531.6603
+  type: 'test'
+  ...
+# Subtest: frozen prepared input survives retries and legacy pending tasks retain original format
+ok 31 - frozen prepared input survives retries and legacy pending tasks retain original format
+  ---
+  duration_ms: 2506.8342
+  type: 'test'
+  ...
+# Subtest: prepared input redacts credentials and cleaned input determines segment budgets
+ok 32 - prepared input redacts credentials and cleaned input determines segment budgets
+  ---
+  duration_ms: 0.872
+  type: 'test'
+  ...
+# Subtest: cleaned complete turns fit a budget that rejects raw turns, and preview overrides are read only
+ok 33 - cleaned complete turns fit a budget that rejects raw turns, and preview overrides are read only
+  ---
+  duration_ms: 625.7821
+  type: 'test'
+  ...
+# Subtest: frozen input tampering fails explicitly before a model call
+ok 34 - frozen input tampering fails explicitly before a model call
+  ---
+  duration_ms: 993.0292
+  type: 'test'
+  ...
+# Subtest: fixed run cutoff defers newer frozen tasks until an explicit retry
+ok 35 - fixed run cutoff defers newer frozen tasks until an explicit retry
+  ---
+  duration_ms: 1379.7462
+  type: 'test'
+  ...
+# Subtest: frozen system prompt and schema are included in request integrity checks
+ok 36 - frozen system prompt and schema are included in request integrity checks
+  ---
+  duration_ms: 1054.6521
+  type: 'test'
+  ...
+# Subtest: legacy pending inputs migrate only payload policy and freeze the sanitized retry material
+ok 37 - legacy pending inputs migrate only payload policy and freeze the sanitized retry material
+  ---
+  duration_ms: 2992.5718
+  type: 'test'
+  ...
+# Subtest: cached legacy model results recover without calls and output payloads become source paths
+ok 38 - cached legacy model results recover without calls and output payloads become source paths
+  ---
+  duration_ms: 921.9539
+  type: 'test'
+  ...
+# Subtest: note preserves BOM/CRLF, independent identical submissions, request conflicts and deletion replay
+ok 39 - note preserves BOM/CRLF, independent identical submissions, request conflicts and deletion replay
+  ---
+  duration_ms: 1139.9268
+  type: 'test'
+  ...
+# Subtest: config validates alias, timezone, budgets and directory segment boundaries
+ok 40 - config validates alias, timezone, budgets and directory segment boundaries
+  ---
+  duration_ms: 6.982
+  type: 'test'
+  ...
+# Subtest: source retains equal timestamps and skips active turns, detects unknown message formats
+ok 41 - source retains equal timestamps and skips active turns, detects unknown message formats
+  ---
+  duration_ms: 10.9838
+  type: 'test'
+  ...
+# Subtest: preview is read only, failure retry, old session append, rename and processor-independent coverage
+ok 42 - preview is read only, failure retry, old session append, rename and processor-independent coverage
+  ---
+  duration_ms: 2400.0434
+  type: 'test'
+  ...
+# Subtest: model does not hold writer lock; output references validated and no resource on failure
+ok 43 - model does not hold writer lock; output references validated and no resource on failure
+  ---
+  duration_ms: 849.2958
+  type: 'test'
+  ...
+# Subtest: atomic append redo recovery keeps organization and resource consistent
+ok 44 - atomic append redo recovery keeps organization and resource consistent
+  ---
+  duration_ms: 545.325
+  type: 'test'
+  ...
+# Subtest: filters, budgets and backfill retain excluded historical material
+ok 45 - filters, budgets and backfill retain excluded historical material
+  ---
+  duration_ms: 938.7986
+  type: 'test'
+  ...
+# Subtest: CLI stdin is byte faithful, JSON stdout and invalid arguments exit 2
+ok 46 - CLI stdin is byte faithful, JSON stdout and invalid arguments exit 2
+  ---
+  duration_ms: 1582.7249
+  type: 'test'
+  ...
+# Subtest: multiple batches use whole turns, fixed snapshot excludes new messages during model
+ok 47 - multiple batches use whole turns, fixed snapshot excludes new messages during model
+  ---
+  duration_ms: 2527.6072
+  type: 'test'
+  ...
+# Subtest: zero call budget, tick due dedup and oversized turns never fake successful output
+ok 48 - zero call budget, tick due dedup and oversized turns never fake successful output
+  ---
+  duration_ms: 1228.4255
+  type: 'test'
+  ...
+# Subtest: saved model result resumes without another call and survives backup restore
+ok 49 - saved model result resumes without another call and survives backup restore
+  ---
+  duration_ms: 967.3915
+  type: 'test'
+  ...
+# Subtest: explicit note tags and transcript generic organization browsing reuse existing semantics
+ok 50 - explicit note tags and transcript generic organization browsing reuse existing semantics
+  ---
+  duration_ms: 1005.1919
+  type: 'test'
+  ...
+# Subtest: malformed source fails explicitly but does not prevent independent session progress
+ok 51 - malformed source fails explicitly but does not prevent independent session progress
+  ---
+  duration_ms: 1060.5997
+  type: 'test'
+  ...
+# Subtest: credential redaction handles historical keys, authorization values and known credentials
+ok 52 - credential redaction handles historical keys, authorization values and known credentials
+  ---
+  duration_ms: 1.416
+  type: 'test'
+  ...
+# Subtest: formal transcript boundary redacts source and response without changing message provenance
+ok 53 - formal transcript boundary redacts source and response without changing message provenance
+  ---
+  duration_ms: 1163.4825
+  type: 'test'
+  ...
+# Subtest: checkpoint fragments retain global positions and reconstruct a completed turn
+ok 54 - checkpoint fragments retain global positions and reconstruct a completed turn
+  ---
+  duration_ms: 14.2364
+  type: 'test'
+  ...
+# Subtest: child metadata with embedded parent session is excluded before inherited material parsing
+ok 55 - child metadata with embedded parent session is excluded before inherited material parsing
+  ---
+  duration_ms: 3.7649
+  type: 'test'
+  ...
+# Subtest: historical cutoff excludes a turn completed after that cutoff
+ok 56 - historical cutoff excludes a turn completed after that cutoff
+  ---
+  duration_ms: 23.6043
+  type: 'test'
+  ...
+# Subtest: CLI resolves aliases once for run, retry and backfill
+ok 57 - CLI resolves aliases once for run, retry and backfill
+  ---
+  duration_ms: 2970.3285
+  type: 'test'
+  ...
+# Subtest: CLI preview applies execution budgets and rejects unknown options
+ok 58 - CLI preview applies execution budgets and rejects unknown options
+  ---
+  duration_ms: 1800.2955
+  type: 'test'
+  ...
+# Subtest: CLI continuation reads every fragment once
+ok 59 - CLI continuation reads every fragment once
+  ---
+  duration_ms: 3518.4817
+  type: 'test'
+  ...
+# Subtest: CLI indexes mixed-language identifiers and Chinese boundaries
+ok 60 - CLI indexes mixed-language identifiers and Chinese boundaries
+  ---
+  duration_ms: 2788.1944
+  type: 'test'
+  ...
+1..60
+# tests 60
+# suites 0
+# pass 59
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 17087.8458

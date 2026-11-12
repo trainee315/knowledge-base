@@ -3,7 +3,7 @@ import type { SourceRecord, Fragment } from './types.js';
 import { hash, normalize } from './scope.js';
 
 export const SPLITTER_VERSION = 'markdown-block-1';
-export const TOKENIZER_VERSION = 'nfkc-cjk-bigram-1';
+export const TOKENIZER_VERSION = 'nfkc-cjk-bigram-2'; // 分离汉字与拉丁标识符，旧全文索引须显式重建。
 const TARGET_CHARS = 900; // 相邻完整块聚合目标；不改变原文偏移。
 const MAX_BLOCK_CHARS = 1400; // 超长块显式标为 continued，并提供邻接展开。
 const parser = new MarkdownIt({ html: false });
@@ -11,9 +11,9 @@ const parser = new MarkdownIt({ html: false });
 /** 索引文本与原文分离；中文单字/二元词兼容短查询及工程标识。 */
 export function terms(text: string): string[] {
   const normalized = normalize(text); const result: string[] = [];
-  for (const part of normalized.match(/[\p{Script=Han}]+|[\p{L}\p{N}_./:-]+/gu) ?? []) {
+  for (const part of normalized.match(/[\p{Script=Han}]+|[\p{Script=Latin}\p{N}]+(?:[_./:\\-]+[\p{Script=Latin}\p{N}]+)*/gu) ?? []) {
     if (/^[\p{Script=Han}]+$/u.test(part)) { const chars = [...part]; result.push(...chars); for (let i = 0; i < chars.length - 1; i++) result.push(chars[i] + chars[i + 1]); }
-    else result.push(part);
+    else { result.push(part); result.push(...part.split(/[_./:\\-]+/u).filter(piece => piece.length >= 2 && piece !== part)); }
   }
   return result;
 }

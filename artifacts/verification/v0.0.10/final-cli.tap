@@ -1,0 +1,18 @@
+✔ CLI resolves aliases once for run, retry and backfill (2295.5618ms)
+✔ CLI preview applies execution budgets and rejects unknown options (1718.1571ms)
+✔ CLI continuation reads every fragment once (2784.9199ms)
+✔ CLI indexes mixed-language identifiers and Chinese boundaries (2307.4088ms)
+✔ single-session budgets, frozen retry and status stay isolated (3236.694ms)
+✔ partial errors retain structured results and retry frozen input once (2279.2178ms)
+✔ help is offline and effect-free, CLI options cannot silently widen scope (3109.074ms)
+✔ list continuation preserves filters and rejects changed snapshots (2494.9926ms)
+✔ section continuations preserve original hashes and splitting identity (2952.4389ms)
+✔ completed work followed by an active turn cannot report full completion (2123.4526ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 25394.4258
