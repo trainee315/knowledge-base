@@ -10,7 +10,7 @@ const DEFAULT_DATA_DIR = fileURLToPath(new URL('../.data', import.meta.url));
 const DEFAULT_DENY = ['.env', '.env.*', '*.{crt,pem}', '**/.git/**'];
 interface DevApiOptions { dataDir?: string; open?: typeof openApplication }
 
-/** Vite 自己承载只读 API，无代理、子进程或第二个监听端口。 */
+/** Vite 在同一端口承载浏览和实例配置 API。 */
 export function knowledgeApiPlugin(options: DevApiOptions = {}): Plugin {
   return {
     name: 'knowledge-readonly-api',
@@ -33,7 +33,7 @@ export function knowledgeApiPlugin(options: DevApiOptions = {}): Plugin {
         const address = server.httpServer?.address();
         return address && typeof address !== 'string' ? `http://127.0.0.1:${address.port}` : '';
       };
-      const handle = createReadOnlyHandler({ app, getOrigin: origin });
+      const handle = createReadOnlyHandler({ app, dataDir, getOrigin: origin });
       server.middlewares.use((request, response, next) => {
         void handle(request, response).then((handled) => {
           if (handled) return;
@@ -60,7 +60,7 @@ export function knowledgeApiPlugin(options: DevApiOptions = {}): Plugin {
       // close 事件也涵盖 Vite 配置重启；应用只释放一次。
       server.httpServer.once('close', () => { void closeApp().catch((error) => server.config.logger.error(String(error))); });
       server.httpServer.once('listening', () => {
-        server.config.logger.info(`\n知识库开发预览 ${origin()}\ndataDir: ${dataDir}\n只读模式；插件启停后需重启开发预览。`);
+        server.config.logger.info(`\n知识库开发预览 ${origin()}\ndataDir: ${dataDir}\n支持 Session 实例配置；插件启停后需重启开发预览。`);
       });
     },
   };

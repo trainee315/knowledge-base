@@ -1,0 +1,22 @@
+✔ note preserves BOM/CRLF, independent identical submissions, request conflicts and deletion replay (771.7718ms)
+✔ config validates alias, timezone, budgets and directory segment boundaries (5.0699ms)
+✔ source retains equal timestamps and skips active turns, detects unknown message formats (9.8554ms)
+✔ preview is read only, failure retry, old session append, rename and processor-independent coverage (1938.2691ms)
+✔ model does not hold writer lock; output references validated and no resource on failure (848.8016ms)
+✔ atomic append redo recovery keeps organization and resource consistent (516.938ms)
+✔ filters, budgets and backfill retain excluded historical material (941.2648ms)
+✔ CLI stdin is byte faithful, JSON stdout and invalid arguments exit 2 (942.8333ms)
+✔ multiple batches use whole turns, fixed snapshot excludes new messages during model (2622.4344ms)
+✔ zero call budget, tick due dedup and oversized turns never fake successful output (1221.0624ms)
+✔ saved model result resumes without another call and survives backup restore (1241.2252ms)
+✔ explicit note tags and transcript generic organization browsing reuse existing semantics (1116.689ms)
+✔ malformed source fails explicitly but does not prevent independent session progress (1014.574ms)
+✔ credential redaction handles historical keys, authorization values and known credentials (0.8697ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13347.1323

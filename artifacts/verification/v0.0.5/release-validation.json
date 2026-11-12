@@ -1,0 +1,58 @@
+{
+  "version": "0.0.5",
+  "tag": "v0.0.5",
+  "date": "2026-11-12",
+  "baseline": "b4d8ee40be32520cbf7cdeab66e0b1ad74b8fe36",
+  "userAcceptance": true,
+  "passed": true,
+  "typecheck": {
+    "passed": true,
+    "evidence": "release/typecheck.txt"
+  },
+  "build": {
+    "passed": true,
+    "evidence": "release/tests.txt",
+    "entry": "npm test runs npm run build"
+  },
+  "core": {
+    "passed": 93,
+    "total": 93,
+    "evidence": "release/tests.txt"
+  },
+  "independent": {
+    "passed": 10,
+    "total": 10,
+    "projectTracking": 9,
+    "development": 1,
+    "evidence": "release/independent.txt"
+  },
+  "browser": {
+    "passed": true,
+    "evidence": "release/browser/browser-result.json"
+  },
+  "transcriptBrowser": {
+    "passed": true,
+    "evidence": "release/transcript-browser/result.json"
+  },
+  "cliVersion": {
+    "passed": true,
+    "evidence": "release/help.json"
+  },
+  "secretScan": {
+    "passed": true,
+    "evidence": "release/secret-scan.json",
+    "scope": "tracked and unignored working tree files; exact known credential values and prohibited data paths"
+  },
+  "realModelCallsDuringReleaseValidation": 0,
+  "realModelQualityEvidence": "live-synthetic.json",
+  "privateProductionDetails": "kept only in ignored local runtime data",
+  "knownLimits": [
+    "semantic correctness has not been exhaustively annotated",
+    "historical pending decisions may remain unresolved in individual summaries",
+    "backfill insertion and predecessor order may differ from source chronology",
+    "private source formats can change and source scanning scale has not been benchmarked",
+    "oversized complete turns require a higher budget",
+    "model fees can repeat if a crash occurs before response persistence",
+    "local source and old resource versions can retain historical sensitive values"
+  ]
+}

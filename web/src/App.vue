@@ -8,10 +8,23 @@ type Resource = { id: string; originalName: string; extension: string; mediaType
 type Item = { resource: Resource; reasons?: string[]; matchReasons?: string[]; parseStatus: string };
 type Plugin = { id: string; enabled?: boolean; status?: string; version?: string; dependencies?: Record<string, string> };
 const tab = ref('resources');
+const instanceRoute = ref(false);
+let previousHash = location.hash;
+function switchTab(value: string) {
+  if (value === tab.value) return;
+  if (!window.dispatchEvent(new Event('kb-before-navigation', { cancelable: true }))) return;
+  tab.value = value;
+}
+function createFirstTranscript() {
+  location.hash = '#browse?type=session-transcript&instance=new&view=config';
+}
+async function refreshOrganizations() {
+  [organizations.value, organizationTypes.value] = await Promise.all([api('/api/organizations'), api('/api/organization-types')]);
+}
 const items = ref<Item[]>([]);
 const total = ref(0);
 const offset = ref(0);
-// 所有展示数据来自同源只读接口，页面不保存独立的业务状态。
+// 业务数据以同源接口为准，实例表单只在编辑期间持有草稿。
 const plugins = ref<Plugin[]>([]);
 const organizations = ref<any[]>([]);
 const organizationTypes = ref<any[]>([]);
@@ -50,7 +63,17 @@ async function openResource(id: string): Promise<void> {
   catch (cause) { error.value = String(cause instanceof Error ? cause.message : cause); }
   finally { detailBusy.value = false; }
 }
-function readHash(): void { if (location.hash.startsWith('#browse')) { tab.value='organizations'; return; } const match = /^#resource\/([a-f\d-]{36})$/i.exec(location.hash); if (match) void openResource(match[1]); }
+function readHash(): void {
+  if (!location.hash.startsWith('#browse') && tab.value === 'organizations' && !window.dispatchEvent(new Event('kb-before-navigation', { cancelable: true }))) {
+    history.replaceState(null, '', previousHash);
+    return;
+  }
+  previousHash = location.hash;
+  instanceRoute.value = new URLSearchParams(location.hash.split('?')[1] ?? '').has('instance');
+  if (location.hash.startsWith('#browse')) { tab.value = 'organizations'; return; }
+  const match = /^#resource\/([a-f\d-]{36})$/i.exec(location.hash);
+  if (match) void openResource(match[1]);
+}
 function closeDetail(): void { selected.value = undefined; history.replaceState(null, '', location.pathname + location.search); }
 function bytes(size: number): string { return size < 1024 ? `${size} B` : size < 1048576 ? `${(size / 1024).toFixed(1)} KB` : `${(size / 1048576).toFixed(1)} MB`; }
 function parseLabel(status: string): string { return ({ parsed: '已解析', unsupported: '暂不支持', pending: '待解析', unparsed: '待解析', failed: '解析失败' } as Record<string, string>)[status] ?? status; }
@@ -69,16 +92,16 @@ onUnmounted(() => window.removeEventListener('hashchange', readHash));
   <div class="shell">
     <aside class="sidebar">
       <div class="brand"><span class="brand-icon">知</span><div>知识库<small>本地资源管理</small></div></div>
-      <div class="read-only"><span></span> 本地只读预览</div>
+      <div class="read-only"><span></span> 本地知识库</div>
       <nav aria-label="主导航">
-        <button :class="{ active: tab === 'resources' }" @click="tab = 'resources'">▤ <span>资源</span><small>{{ total }}</small></button>
-        <button :class="{ active: tab === 'organizations' }" @click="tab = 'organizations'">⌘ <span>组织与体系</span><small>{{ organizations.length }}</small></button>
-        <button :class="{ active: tab === 'plugins' }" @click="tab = 'plugins'">◈ <span>插件状态</span><small>{{ plugins.length }}</small></button>
+        <button :class="{ active: tab === 'resources' }" @click="switchTab('resources')">▤ <span>资源</span><small>{{ total }}</small></button>
+        <button :class="{ active: tab === 'organizations' }" @click="switchTab('organizations')">⌘ <span>组织与体系</span><small>{{ organizations.length }}</small></button>
+        <button :class="{ active: tab === 'plugins' }" @click="switchTab('plugins')">◈ <span>插件状态</span><small>{{ plugins.length }}</small></button>
       </nav>
-      <div class="sidebar-footer">资源由 UUID 稳定引用<br>所有修改请通过 CLI 完成</div>
+      <div class="sidebar-footer">资源由 UUID 稳定引用<br>Session 配置可在实例详情编辑</div>
     </aside>
     <main>
-      <header><div><div class="eyebrow">KNOWLEDGE BASE / {{ tab === 'resources' ? 'RESOURCES' : tab === 'plugins' ? 'PLUGINS' : 'ORGANIZATIONS' }}</div><h1>{{ tab === 'resources' ? '资源浏览' : tab === 'plugins' ? '插件状态' : '组织与体系' }}</h1></div><span class="local-label">127.0.0.1 · 只读</span></header>
+      <header><div><div class="eyebrow">KNOWLEDGE BASE / {{ tab === 'resources' ? 'RESOURCES' : tab === 'plugins' ? 'PLUGINS' : 'ORGANIZATIONS' }}</div><h1>{{ tab === 'resources' ? '资源浏览' : tab === 'plugins' ? '插件状态' : '组织与体系' }}</h1></div><span class="local-label">127.0.0.1 · 本地</span></header>
       <p v-if="error" role="alert" class="error">{{ error }}</p>
       <template v-if="tab === 'resources'">
         <form class="filters" @submit.prevent="search()">
@@ -114,7 +137,8 @@ onUnmounted(() => window.removeEventListener('hashchange', readHash));
           <section v-else class="detail-placeholder"><div>▤</div><h2>从资源开始探索</h2><p>选择一项资源，浏览正文、元数据与关联信息。</p><span>本地存储 · UUID 引用 · 按需预览</span></section>
         </div>
       </template>
-      <OrganizationBrowser v-if="tab === 'organizations'" :types="organizationTypes" :organizations="organizations" />
+      <button v-if="tab === 'organizations' && enabled.has('transcripts') && !instanceRoute && !organizationTypes.some(type => type.id === 'session-transcript')" @click="createFirstTranscript">新建 Session 转录实例</button>
+      <OrganizationBrowser v-if="tab === 'organizations'" :types="organizationTypes" :organizations="organizations" @changed="refreshOrganizations" />
       <p v-if="tab === 'plugins'" class="muted">当前展示本次预览启动时载入的插件状态。插件启停变更后，请停止并重新启动预览。</p>
       <div v-if="tab === 'plugins'" class="card-grid"><section v-for="plugin in plugins" :key="plugin.id" class="plugin-card"><span class="status">{{ plugin.status ?? (plugin.enabled === false ? 'disabled' : 'ready') }}</span><h2>{{ plugin.id }}</h2><p class="muted">{{ plugin.version }}</p><h3>直接依赖</h3><p>{{ Object.keys(plugin.dependencies ?? {}).join(' → ') || '无' }}</p></section></div>
       <footer>Agent 知识库 <span>临时预览服务 · 关闭后数据仍保存在文件中</span></footer>

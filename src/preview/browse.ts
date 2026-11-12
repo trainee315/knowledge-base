@@ -43,7 +43,15 @@ export async function browse(app: PreviewApplication, url: URL): Promise<unknown
   if (url.pathname.endsWith('/collections')) {
     const entries = type === 'keyword'
       ? [...new Set(resources.flatMap(words))].sort().map(word => ({ id: word, name: word, description: '关键词', count: resources.filter(r => words(r).includes(word)).length }))
-      : await Promise.all(organizations.map(async org => ({ id: org.id, name: org.name, description: String(org.data.description ?? ''), count: type === 'tag' ? resources.filter(r => tagged(r, org.id)).length : type === 'project-development-tracking' ? (await exec('project-track documents', { projectId: org.id, limit: 1 })).total : resources.filter(r => refs(org).has(r.id)).length })));
+      : await Promise.all(organizations.map(async org => {
+        const summary = {
+          id: org.id, name: org.name, description: String(org.data.description ?? ''),
+          count: type === 'tag' ? resources.filter(r => tagged(r, org.id)).length : type === 'project-development-tracking' ? (await exec('project-track documents', { projectId: org.id, limit: 1 })).total : resources.filter(r => refs(org).has(r.id)).length,
+        };
+        if (type !== 'session-transcript') return summary;
+        const config = org.data.config as Record<string, any> | undefined;
+        return { ...summary, projectDir: config?.projectDir ?? '', enabled: config?.enabled === true, intervalMinutes: config?.intervalMinutes ?? null };
+      }));
     const filtered = entries.filter(item => !query || normalize(item.name).includes(query));
     return { items: filtered.slice(offset, offset + limit), total: filtered.length, offset, limit };
   }

@@ -1,0 +1,5 @@
+
+知识库开发预览 http://127.0.0.1:5173
+dataDir: C:\Users\mamar\AppData\Local\Temp\kb-visual-config-iTwxQr\data
+支持 Session 实例配置；插件启停后需重启开发预览。
+{"passed":true,"evidence":"D:\\project\\knowledge-base\\artifacts\\verification\\v0.0.5\\release\\transcript-browser"}

@@ -1,8 +1,10 @@
 # Knowledge Base
 
-当前已发布 **v0.0.4**，2026-11-11用户验收通过。按标签、关键词、体系和项目跟踪浏览文档，支持标签交集、固定历史正文、URL恢复与文章概览选中状态。[004归档](doc/v0.0.4/readme.md) · [运行说明](doc/v0.0.4/running.md) · [版本历史](doc/version-history.md)。
+当前版本 **v0.0.5**，2026-11-12用户验收通过。新增自由记录、Codex session增量转录、主动执行与周期检查CLI，以及组织实例详情中的可视化配置和草稿预览。[005归档](doc/v0.0.5/readme.md) · [运行说明](doc/v0.0.5/running.md) · [版本历史](doc/version-history.md)。
 
-保留文件知识库、资源与组织管理、Agent基础设施、项目跟踪和单端口开发预览；Git发布标识v0.0.4。
+`note add/list/get` 管理自由记录，`transcript create/list/get/configure/preview/run/tick/records/retry/backfill` 管理会话转录。`node examples/create-records-demo.mjs` 创建独立临时库和合成session，打印可复制验收命令。
+
+保留文件知识库、资源与组织管理、Agent基础设施、项目跟踪和单端口开发预览；Git发布标识v0.0.5。
 
 要求 Node.js 24+、npm。首次运行：
 
@@ -21,7 +23,7 @@ npm run build
 
 普通命令执行后退出。预览显式启动独立临时进程，绑定 `127.0.0.1`，默认自动选择端口；`preview start --port 12345` 可固定端口。预览状态存在数据目录 `.runtime`，不属于正式数据。
 
-开发时 `npm ci` 后直接运行 `npm run dev`，无需预先构建或另启 API 服务：Vite 在同一进程的 `http://127.0.0.1:5183` 提供页面、HMR 和只读 `/api`。端口占用会明确报错，不自动跳号；可用 `npm run dev -- --port 5184` 显式更换。默认读取本仓绝对路径 `.data`，可先设置 `$env:KB_DATA_DIR = 'D:\临时知识库'` 选择其它库，启动日志显示 URL 与实际 dataDir。目录不存在时显示空库，不创建正式业务数据。开发没有 `/_control` 接口，按 Ctrl+C 停止；CLI `preview start/stop` 仍独立管理构建页面预览。插件启停后需重启开发预览。详见 [页面开发说明](./web/README.md)。
+开发时 `npm ci` 后直接运行 `npm run dev`，无需预先构建或另启 API 服务：Vite 在同一进程的 `http://127.0.0.1:5183` 提供页面、HMR、资源浏览与 Session 实例配置 `/api`。端口占用会明确报错，不自动跳号；可用 `npm run dev -- --port 5184` 显式更换。默认读取本仓绝对路径 `.data`，可先设置 `$env:KB_DATA_DIR = 'D:\临时知识库'` 选择其它库，启动日志显示 URL 与实际 dataDir。目录不存在时显示空库，不创建正式业务数据。开发没有 `/_control` 接口，按 Ctrl+C 停止；CLI `preview start/stop` 仍独立管理构建页面预览。插件启停后需重启开发预览。详见 [页面开发说明](./web/README.md)。
 
 所有命令支持 `--data-dir "D:\知识库数据"`，默认位置是本仓库 `.data`，与启动时工作目录无关。所有成功与失败均输出单个 JSON 对象，日志写 stderr；退出码成功 0，执行失败 1，参数错误 2。`--json` 明确声明结构化调用意图，输出保持一致。复杂参数放 UTF8 JSON 文件或用 `--input -` 读取 stdin，命令行参数覆盖同名输入字段。
 
@@ -56,6 +58,6 @@ npm run build
 
 整理默认使用离线词汇相关评分，分数只召回候选，最终标签归属由工作Codex/人工提交。DeepSeek已支持显式generate或agent评分调用，可能产生费用；自动任务默认模型次数预算0。OCR、复杂格式正文解析、向量检索、远程插件和实际操作系统定时任务尚未实现。`schedule configure/get/tick/run`保存夜间策略并响应显式调用；如需定时触发，由外部工具调用schedule tick。默认03:00/Asia/Shanghai、100任务/60秒，费用参数按声明估算，不代表供应商实时账单硬限。
 
-验证使用 `npm test`、`npm run build`、`npm run test:web`；规模基准使用 `node dist/core/benchmark.js`。当前能力见 [运行说明](./doc/v0.0.4/running.md)、[公共契约](./doc/v0.0.4/contracts.md)、[验证与局限](./doc/v0.0.4/verification.md)。[002开发历史](./doc/新增需求/v0.0.2/readme.md)与 [001归档](./doc/v0.0.1/readme.md)保留原始证据；PPC独立转发不依赖PPC后台，跨仓库接入见 [integrations/ppc](./integrations/ppc/README.md)。
+验证使用 `npm test`、`npm run build`、`npm run test:web`；规模基准使用 `node dist/core/benchmark.js`。当前能力见 [运行说明](./doc/v0.0.5/running.md)、[公共契约](./doc/v0.0.5/contracts.md)、[验证与局限](./doc/v0.0.5/verification.md)。[002开发历史](./doc/新增需求/v0.0.2/readme.md)与 [001归档](./doc/v0.0.1/readme.md)保留原始证据；PPC独立转发不依赖PPC后台，跨仓库接入见 [integrations/ppc](./integrations/ppc/README.md)。
 
-002发布检查：typecheck、构建、62/62测试、9插件/33资源Chrome、正式CLI/PPC2/2及补丁验证通过。新增同UUID跨kind引用保护回归，真实模型账本沿用已关闭3次，不追加调用。002历史发布证据位于 `artifacts/verification/v0.0.2/release`；001的34项冻结验证与1000资源21.35秒合成基准保留为历史，不冒充新性能结果。
+005正式版复核通过类型检查、完整构建、93项核心测试、10项独立集成测试，以及资源浏览和实例配置两组Chrome回归。真实模型质量检查包含3段合成样本，后续真实会话转录由用户授权，生产细节保留在本地。摘要语义准确度与历史状态消解边界见[验证归档](./doc/v0.0.5/verification.md)，本次发布复核详见[验证汇总](./artifacts/verification/v0.0.5/release-validation.json)。001至004的原始验证证据保留在各自版本目录。

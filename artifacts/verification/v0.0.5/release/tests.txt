@@ -1,0 +1,126 @@
+
+> agent-knowledge-base@0.0.5 test
+> npm run build && node --test dist/**/*.test.js
+
+
+> agent-knowledge-base@0.0.5 build
+> npm run build:core && npm run build:web
+
+
+> agent-knowledge-base@0.0.5 build:core
+> tsc -p tsconfig.json
+
+
+> agent-knowledge-base@0.0.5 build:web
+> vite build --config web/vite.config.ts
+
+vite v7.3.8 building client environment for production...
+transforming...
+✓ 39 modules transformed.
+rendering chunks...
+computing gzip size...
+../dist/web/index.html                   0.37 kB │ gzip:  0.30 kB
+../dist/web/assets/index-BHf8zl8w.css   14.60 kB │ gzip:  3.72 kB
+../dist/web/assets/index-DC1fwMoy.js   214.19 kB │ gzip: 83.97 kB
+✓ built in 678ms
+✔ DeepSeek text maps generic messages and bounded non-thinking options through real HTTP (65.1252ms)
+✔ JSON purpose maps response_format and validates a generic schema outside scoring (14.1346ms)
+✔ blank stop, truncation, invalid JSON and schema mismatch reject once without hidden retries (66.4827ms)
+✔ 401, 429 and 5xx have sanitized classifications and exactly one HTTP attempt (25.3406ms)
+✔ transport error causes never escape as credential-bearing errors (1.4767ms)
+✔ profile/status/schema/no-key validation perform no HTTP requests (3.1046ms)
+✔ AbortSignal and timeout cover the active HTTP request (36.3866ms)
+✔ queued cancellation, queue timeout and queue limit never invoke an extra request (60.8186ms)
+✔ a replacement generic provider serves text and object purposes without changing business code (1.4132ms)
+✔ plugin load, read-only configuration and backup keep credentials out of formal data (1422.1495ms)
+✔ relation cache normalizes words, stores zero coverage sparsely, and follows explicit scope versions (1850.3942ms)
+✔ relation malformed or duplicate batches never persist partial coverage (1237.8485ms)
+✔ organizer and scheduled runs with zero model-call budget never reach HTTP (1805.8527ms)
+✔ semantic identity excludes transport/revision/credential references and in-flight calls retain snapshots (2.8006ms)
+✔ canonical upstream model aliases do not change requested semantic identity (0.3217ms)
+✔ aborted non-cooperative providers retain actual concurrency slots until settled (30.7015ms)
+✔ profile whitelist rejects secrets, nulls, stale revisions and failed persistence without mutation (1.7558ms)
+✔ schema snapshots remain stable and unknown provider exceptions are sanitized (1.5417ms)
+✔ agent CLI inspection is read-only without keys and profiles/backups only persist references (3198.903ms)
+✔ CLI has single-object output, UTF8 input, correct exit codes and read-only queries alongside writer (5363.9494ms)
+✔ resource dedup, explicit copy, history, soft delete, references and backup restore (952.0512ms)
+✔ same UUID organization references protect resource and all content versions from purge (511.5918ms)
+✔ same UUID resource references protect organization from deletion (312.1181ms)
+✔ true same-kind self references do not block deleting their own entity (478.076ms)
+✔ single writer and injected interrupted transaction recovers all files on reopen (124.5859ms)
+✔ concurrent read snapshot never returns mixed multi-file transaction (2204.0652ms)
+✔ DAG preflight detects full cycles/missing/version before loading (1.3959ms)
+✔ host enforces dependency access and meta permissions, refresh failure blocks dependents and reverse stop (357.0012ms)
+✔ backup validates hashes and refuses traversal before writing (15.8108ms)
+✔ core remains usable with every business plugin disabled and retains plugin data (415.422ms)
+✔ stale diagnostic locks cannot produce two OS writers and killed holder releases mutex (1058.5782ms)
+✔ restore prevalidates canonical paths and schema before any formal data write (73.4771ms)
+✔ unknown live core schema cannot be read or updated and organization patch cannot change ownership (209.6861ms)
+✔ refresh failure fences cached APIs and commands across restart without loading blocked dependents (273.9715ms)
+✔ restore and ordinary IO reject existing junction ancestors before journal or external writes (157.2696ms)
+✔ future plugin dataVersion prevents load and dependent activation without downgrading persisted version (91.3613ms)
+✔ generic organization type CRUD, enabled policy, use protection, backup and schema validation (603.7599ms)
+✔ UTF8解析、未知格式降级、中英文关键词和离线评分 (25.4575ms)
+✔ 真实导入到候选、标签新增回填、查询组合、人工拒绝保护和过期结果阻断 (4082.9022ms)
+✔ 独立CLI进程自动导入链路与结构化候选提交 (6113.4106ms)
+✔ 评分处理器版本变化重新排队，旧处理器候选不能提交 (869.035ms)
+✔ Markdown链接及图片登记正式引用，代码示例忽略，移除链接解除保护并诊断坏目标 (1631.0858ms)
+✔ 定时模拟时钟与进程重启后的同日去重 (463.2361ms)
+✔ 任务持久化去重、失败重试断点、超时、重试上限及模型预算 (399.3991ms)
+✔ 超时处理器退出前隔离重试，旧异步写不会与新attempt重叠 (700.4123ms)
+✔ 调度失败、超时与预算未完成不标当日成功，同日可继续 (874.468ms)
+✔ 评分进行中切换provider丢弃旧结果，输入类型与整数预算严格校验 (407.8759ms)
+✔ 已知插件未来meta版本拒读拒写，未知分区保留，算法v2与meta v1独立 (691.7746ms)
+✔ readVersion keeps pinned bytes, BOM/CRLF and history format; fromText is deterministic and readonly (729.5964ms)
+✔ readVersion distinguishes malformed JSON, invalid UTF8 and unsupported original without writes (759.6625ms)
+✔ readVersion rejects hash mismatch and future content schema without masking original bytes (632.5484ms)
+✔ 业务默认组织方式首次登记一次，只读零写，删除后重开与恢复不重建 (1964.2941ms)
+✔ 通用组织方式CRUD、版本冲突、使用中保护和disabled保留旧组织 (585.986ms)
+✔ 独立CLI组织方式CRUD、默认业务方式disabled控制和只读并发 (5949.7976ms)
+✔ 项目固定全文/标签别名/关键词快照；旧版本unknown与显式known-empty不混淆 (1544.3377ms)
+✔ requestId先于动态默认值解析；并发追加无丢失且同请求只登记一次 (1608.4242ms)
+✔ 版本先于日期/全文分页/基线独立去重；asOf替代范围不受标签过滤和未来记录污染 (1016.6887ms)
+✔ 项目范围/引用保护/备份恢复/future schema/非法解析及参数拒绝 (1250.3522ms)
+✔ 真实CLI只读命令在writer持锁时零写入；参数失败退出2；替代标注使用过滤前全域 (3929.5413ms)
+✔ 归一化词对和0覆盖复用，只补新词，同标签并发请求不重复生成 (1770.1285ms)
+✔ 标签定义变动保留旧词对追踪并提示，显式版本或生成语义变化才重评 (1743.0022ms)
+✔ 缺失、重复、越界、截断、失败、取消及多批半成品都不污染已有覆盖 (1279.6256ms)
+✔ 默认零模型预算阻止自动收费，缓存命中动态估0，显式版本补评不覆盖manual (2973.4788ms)
+✔ v001评分迁移保留provider并把0转coverage，future结构拒绝且备份恢复复用 (1026.7428ms)
+✔ prepare在预算前动态估0/淘汰旧任务，预算不足不阻零费用任务，耗时后不派发 (1168.7143ms)
+✔ organization browser reads accepted tags, exact current keywords, recursive systems and pinned history without writes (4926.114ms)
+✔ unavailable business views report plugin errors and stale keyword metadata is excluded (1471.5542ms)
+✔ Markdown escapes HTML, blocks unsafe links and external image requests (12.8361ms)
+✔ Markdown resolves stable UUID image and resource links (1.0615ms)
+✔ real core/plugins preview supports query, content, UUID files, organizations, and denies writes/cross-origin (3627.3441ms)
+✔ background preview lifecycle is explicit, idempotent and works with Chinese/space data paths (1748.463ms)
+✔ eight CLI processes, case/junction aliases and stale PID records share one canonical preview instance (4423.5157ms)
+✔ draft preview and HTTP configuration share CLI state without model calls, support revision conflicts (2035.8777ms)
+✔ ordinary configuration keeps discovery boundary, scope changes preserve tasks and coverage (2520.9785ms)
+✔ configuration HTTP enforces same origin, body limits, errors and active lease, never exposes task material (1272.0551ms)
+✔ note preserves BOM/CRLF, independent identical submissions, request conflicts and deletion replay (2554.1585ms)
+✔ config validates alias, timezone, budgets and directory segment boundaries (10.2695ms)
+✔ source retains equal timestamps and skips active turns, detects unknown message formats (20.895ms)
+✔ preview is read only, failure retry, old session append, rename and processor-independent coverage (4988.0801ms)
+✔ model does not hold writer lock; output references validated and no resource on failure (1129.0373ms)
+✔ atomic append redo recovery keeps organization and resource consistent (591.1705ms)
+✔ filters, budgets and backfill retain excluded historical material (1076.6406ms)
+✔ CLI stdin is byte faithful, JSON stdout and invalid arguments exit 2 (1096.0022ms)
+✔ multiple batches use whole turns, fixed snapshot excludes new messages during model (2020.9202ms)
+✔ zero call budget, tick due dedup and oversized turns never fake successful output (964.0241ms)
+✔ saved model result resumes without another call and survives backup restore (1081.8154ms)
+✔ explicit note tags and transcript generic organization browsing reuse existing semantics (1084.7041ms)
+✔ malformed source fails explicitly but does not prevent independent session progress (1175.5797ms)
+✔ credential redaction handles historical keys, authorization values and known credentials (1.9488ms)
+✔ formal transcript boundary redacts source and response without changing message provenance (2583.1866ms)
+✔ checkpoint fragments retain global positions and reconstruct a completed turn (28.1548ms)
+✔ child metadata with embedded parent session is excluded before inherited material parsing (8.558ms)
+✔ historical cutoff excludes a turn completed after that cutoff (69.41ms)
+ℹ tests 93
+ℹ suites 0
+ℹ pass 93
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 19364.7336

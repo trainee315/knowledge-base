@@ -1,0 +1,23 @@
+✔ MD/TXT/JSON full text preserves BOM, CRLF, Unicode and whitespace; invalid inputs leave no project writes (907.3066ms)
+✔ fixed JSON history ignores misleading current name and cached metadata, survives updates and recycling (985.9698ms)
+✔ tag definitions, aliases, accepted decisions and derived keyword changes cannot rewrite registered snapshots (766.4674ms)
+✔ requestId replays before default CV, tags and now are re-evaluated; replacement and project boundaries stay explicit (1010.2625ms)
+✔ concurrent append and duplicate requestId races neither lose entries nor create duplicate documents (922.5005ms)
+✔ version-first ordering, full-body pagination, baseline context and asOf replacement annotations are independent of filtering (1169.5243ms)
+✔ backup restores pinned recycled history and future project schema fails without downgrade (874.4116ms)
+✔ fixed CLI query/read work while writer holds lock and perform no business writes or network (918.2715ms)
+✔ calendar-invalid or timezone-free dates and unsafe version integers fail without project writes (575.237ms)
+dev: source config loaded
+dev: listening
+dev: page and Vite client
+dev: API/security/download isolation
+dev: port conflict
+✔ source-bundled Vite serves page/API on one strict port and releases readonly apps on failure/close (1852.7359ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8293.5808

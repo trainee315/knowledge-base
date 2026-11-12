@@ -1,0 +1,9 @@
+
+> agent-knowledge-base@0.0.5 test:web
+> node web/tests/browser.mjs
+
+
+知识库开发预览 http://127.0.0.1:50873
+dataDir: C:\Users\mamar\AppData\Local\Temp\知识库 浏览器 中文 空格 sVp64G\正式数据 目录
+支持 Session 实例配置；插件启停后需重启开发预览。
+{"passed":true,"evidence":"D:\\project\\knowledge-base\\artifacts\\verification\\v0.0.5\\release\\browser"}

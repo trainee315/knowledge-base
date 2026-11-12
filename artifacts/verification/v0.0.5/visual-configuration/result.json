@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "syntheticOnly": true,
+  "modelCallsForFixtures": 2,
+  "realModelCalls": 0,
+  "pageErrors": [],
+  "checks": [
+    "create",
+    "draft preview zero write",
+    "stale preview",
+    "cancel",
+    "unsaved navigation guard",
+    "revision conflict and retained draft",
+    "CLI interoperability and merged fields",
+    "ordinary config boundary",
+    "record reading and history",
+    "filter preview",
+    "mobile save",
+    "development server save",
+    "empty library first configuration"
+  ]
+}
