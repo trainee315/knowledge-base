@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "modelCalls": 0,
+  "checks": [
+    "create-profile",
+    "model-and-effort-persist",
+    "deepseek-preserved",
+    "login-diagnostic",
+    "connection-error",
+    "session-selection",
+    "mobile",
+    "same-origin",
+    "post-only"
+  ]
+}

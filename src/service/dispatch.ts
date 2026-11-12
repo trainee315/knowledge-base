@@ -21,7 +21,7 @@ export async function dispatch(dataDir: string, words: string[], input: Record<s
   // 恢复先于插件初始化，避免初始化数据使目标目录不再为空。
   if (group === 'restore') { const manager = await CoreManager.open(dataDir); try { return await manager.restore(string(input, 'file')!); } finally { await manager.close(); } }
   const readOnly = group === 'resource' && ['list', 'get', 'history'].includes(action) || group === 'meta' && action === 'get' || ['organization', 'org', 'organization-type'].includes(group) && ['list', 'get'].includes(action) || group === 'plugin' && action === 'list' || group === 'backup' || group === 'check' || ['get', 'get-config', 'list', 'query', 'candidates', 'material', 'history', 'providers'].includes(action) && !['resource', 'organization', 'org', 'meta', 'plugin', 'organization-type'].includes(group);
-  const agentReadOnly = group === 'agent' && (action === 'status' || ['profile', 'config'].includes(action) && ['list', 'get'].includes(words[2]));
+  const agentReadOnly = group === 'agent' && (['status', 'check', 'test', 'generate'].includes(action) || ['profile', 'config'].includes(action) && ['list', 'get'].includes(words[2]));
   const application = await openApplication(dataDir, { readOnly: readOnly || agentReadOnly || group === 'project-track' && ['list', 'get', 'documents', 'read', 'query'].includes(action) }); const { manager, plugins } = application;
   let changed = false; let result: unknown;
   try {

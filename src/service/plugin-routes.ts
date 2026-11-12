@@ -1,4 +1,5 @@
 import type { IncomingMessage, ServerResponse } from 'node:http';
+import { AgentError } from '../agent/errors.js';
 import { assert, KnowledgeError } from '../core/errors.js';
 import { UUID_PATTERN } from '../core/schema.js';
 import { CoreManager } from '../core/manager.js';
@@ -113,7 +114,7 @@ function pluginError(response: ServerResponse, error: unknown): void {
     status = 409; message = '插件配置当前不可用，请检查插件状态后重试';
   } else if (code === 'INVALID_ARGUMENT' || code === 'INVALID_RELATION_CONFIG' || code === 'AGENT_INVALID_INPUT' || code === 'AGENT_PROFILE_NOT_FOUND') {
     status = 400; message = code === 'INVALID_ARGUMENT' ? value!.message ?? '参数无效' : '配置字段值无效，请核对后重试';
-  } else { status = 500; code = 'PLUGIN_DETAIL_FAILED'; message = '插件数据暂时无法读取或保存'; }
+  } else if (error instanceof AgentError) { status = 400; message = error.message; } else { status = 500; code = 'PLUGIN_DETAIL_FAILED'; message = '插件数据暂时无法读取或保存'; }
   previewJson(response, status, { ok: false, error: { code, message } });
 }
 
@@ -128,6 +129,8 @@ async function inspectPlugins<T>(context: PluginRouteContext, read: (manager: Co
   } finally { try { await plugins.stop(); } finally { await manager.close(); } }
 }
 
+function dataResult(response: ServerResponse, data: unknown): void { previewJson(response, 200, { ok: true, data }); }
+
 export async function handlePluginRoutes(request: IncomingMessage, response: ServerResponse, url: URL, origin: string, context: PluginRouteContext): Promise<boolean> {
   if (url.pathname !== '/api/plugins' && !url.pathname.startsWith('/api/plugins/')) return false;
   response.setHeader('Content-Security-Policy', "default-src 'none'; frame-ancestors 'none'");
@@ -139,6 +142,32 @@ export async function handlePluginRoutes(request: IncomingMessage, response: Ser
         dataVersion: item.dataVersion, failure: item.failure ? { ...item.failure, message: failureMessage(item) } : undefined,
       })));
       previewJson(response, 200, { ok: true, data });
+      return true;
+    }
+    // 只在显式 POST 时检测本机登录或调用模型；只读宿主不持有文件库写锁。
+    const action = /^\/api\/plugins\/agent\/(check|test|profiles)$/.exec(url.pathname)?.[1];
+    if (action) {
+      assert(request.method === 'POST', 'METHOD_NOT_ALLOWED', '请使用 POST');
+      const { values, expected, key } = await readConfig(request, origin, 'agent');
+      if (action === 'profiles') {
+        assert(typeof values.id === 'string' && typeof values.model === 'string' && values.model.trim().length > 0 && Object.keys(values).every(key => ['id', 'model'].includes(key)), 'INVALID_ARGUMENT', '新建配置字段无效');
+        const app = await openApplication(context.dataDir);
+        try {
+          assert(canConfigure(app.plugins, 'agent'), 'PLUGIN_UNAVAILABLE', 'Agent 不可用');
+          const profiles = await app.plugins.execute('agent profile list', {}) as { id: string }[];
+          assert(!profiles.some(profile => profile.id === values.id), 'CONFIG_CONFLICT', '配置 ID 已存在');
+          dataResult(response, await app.plugins.execute('agent profile set', { ...values, providerId: 'codex-cli', timeoutMs: 120000, maxTokens: 4096, temperature: 0, reasoning: 'off', reasoningEffort: 'low' }));
+        } finally { await app.close(); }
+      } else {
+        assert(Object.keys(values).length === 0, 'INVALID_ARGUMENT', '请先保存配置再检测');
+        const app = await openApplication(context.dataDir, { readOnly: true });
+        try {
+          assert(canConfigure(app.plugins, 'agent'), 'PLUGIN_UNAVAILABLE', 'Agent 不可用');
+          const configuration = await pluginConfiguration(app.manager, 'agent', true, key);
+          assert(configuration.kind === 'form' && configuration.configVersion === expected, 'CONFIG_CONFLICT', '配置已修改');
+          dataResult(response, await app.plugins.execute('agent ' + action, { profile: key }));
+        } finally { await app.close(); }
+      }
       return true;
     }
     const match = /^\/api\/plugins\/([a-z][a-z0-9-]*)(?:\/(config)|\/data\/([a-z][a-z0-9-]*))?$/.exec(url.pathname);

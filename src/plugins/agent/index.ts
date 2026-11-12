@@ -1,6 +1,7 @@
 import type { PluginDefinition } from '../../contracts/index.js';
 import { AgentService } from '../../agent/service.js';
-import { DeepSeekProvider } from '../../agent/deepseek.js';
+import { createDefaultProviders } from '../../agent/providers.js';
+import { CodexCliProvider } from '../../agent/codex-cli.js';
 import { AgentError, agentAssert } from '../../agent/errors.js';
 import type { AgentProfile, AgentProfileInput, AgentProvider, GenerateObjectInput, GenerateTextInput } from '../../agent/types.js';
 import { defaultProfiles } from '../../agent/profiles.js';
@@ -29,7 +30,18 @@ export function createAgentPlugin(options: AgentPluginOptions = {}): PluginDefin
     // load、status和profile查询仅本地读取；不会访问凭证文件或自动联网。
     const saved = await context.store.read<ProfileState>(PROFILE_KEY, { schemaVersion: 1, profiles: defaultProfiles() });
     agentAssert(saved?.schemaVersion === 1 && Array.isArray(saved.profiles), 'AGENT_INVALID_INPUT');
-    const service = options.service ?? new AgentService({ providers: options.providers ?? [new DeepSeekProvider()], profiles: saved.profiles, saveProfiles: async profiles => { await context.store.write(PROFILE_KEY, { schemaVersion: 1, profiles }); } });
+    const service = options.service ?? new AgentService({ providers: options.providers ?? createDefaultProviders(), profiles: saved.profiles, saveProfiles: async profiles => { await context.store.write(PROFILE_KEY, { schemaVersion: 1, profiles }); } });
+    context.registerCommand('agent check', async ({ input }) => {
+      agentAssert(Object.keys(cleanInput(input)).every(key => key === 'profile'), 'AGENT_INVALID_INPUT');
+      const profile = service.getProfile(input.profile as string | undefined);
+      return profile.providerId === 'codex-cli' ? new CodexCliProvider().check() : { state: service.status().profiles.find(item => item.identity.profileId === profile.id)?.credentialConfigured ? 'ready' : 'not-configured' };
+    });
+    context.registerCommand('agent test', async ({ input }) => {
+      agentAssert(Object.keys(cleanInput(input)).every(key => key === 'profile'), 'AGENT_INVALID_INPUT');
+      const started = Date.now();
+      const result = await service.generateObject({ profile: input.profile as string | undefined, messages: [{ role: 'user', content: 'Return {"ok":true}.' }], schema: { type: 'object', properties: { ok: { type: 'boolean', const: true } }, required: ['ok'], additionalProperties: false } });
+      return { ...result, elapsedMs: Date.now() - started };
+    });
     context.registerCommand('agent status', async () => service.status());
     context.registerCommand('agent profile list', async () => service.listProfiles());
     context.registerCommand('agent profile get', async ({ input }) => { agentAssert(input.id === undefined || typeof input.id === 'string' && input.id.trim(), 'AGENT_INVALID_INPUT'); return service.getProfile(input.id as string | undefined); });

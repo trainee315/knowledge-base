@@ -1,6 +1,6 @@
 export type ConfigValue = string | number | boolean | null;
 export type Values = Record<string, ConfigValue>;
-export interface Choice { value: string; label: string; description?: string }
+export interface Choice { value: string; label: string; description?: string; providerId?: string }
 export interface Field { key: string; label: string; type: 'text' | 'number' | 'boolean' | 'select'; options?: Choice[]; description?: string }
 export interface Configuration {
   kind: 'none' | 'form' | 'link' | 'cron';

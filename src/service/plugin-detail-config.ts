@@ -9,7 +9,7 @@ import { configureTranscript, transcriptDetail } from '../records/transcript.js'
 
 type Value = string | number | boolean | null;
 export type Values = Record<string, Value>;
-interface Choice { value: string; label: string; description?: string }
+interface Choice { value: string; label: string; description?: string; providerId?: string }
 interface Field {
   key: string;
   label: string;
@@ -39,9 +39,11 @@ const COMPRESSION_MODES: Choice[] = [
 ];
 const MODE_OPTIONS = [{ value: 'offline', label: '离线评分' }, { value: 'agent', label: '模型评分' }];
 const AGENT_FIELDS: Field[] = [
-  { key: 'model', label: '模型', type: 'text' },
+  { key: 'providerId', label: '调用方式', type: 'select', options: [{ value: 'deepseek', label: 'DeepSeek（API）' }, { value: 'codex-cli', label: 'Codex CLI（服务器订阅登录）' }] },
+  { key: 'reasoningEffort', label: 'Codex 推理强度', type: 'select', options: [{ value: 'low', label: '低' }, { value: 'medium', label: '中' }, { value: 'high', label: '高' }], description: '仅 Codex 使用；默认低。模型须支持所选强度。' },
+  { key: 'model', label: '模型', type: 'text', description: '填写模型 ID，可参考已有配置；保存后测试连接确认账号可用性。' },
   { key: 'timeoutMs', label: '超时（毫秒）', type: 'number' },
-  { key: 'maxTokens', label: '最大输出 token', type: 'number' },
+  { key: 'maxTokens', label: '输出 token 上限', type: 'number', description: 'DeepSeek 限制生成长度；Codex 仅在完成后拒收超限结果，不能限制实际额度消耗。' },
   { key: 'temperature', label: '温度', type: 'number' },
   { key: 'reasoning', label: '推理模式', type: 'select', options: [{ value: 'off', label: '关闭' }, { value: 'on', label: '开启' }] },
 ];
@@ -68,11 +70,11 @@ function agentForm(profiles: AgentProfile[], key: string | undefined, editable: 
   }
   const { id, revision, model, timeoutMs, maxTokens, temperature, reasoning } = profile;
   return {
-    kind: 'form', editable, fields: AGENT_FIELDS,
-    values: { model, timeoutMs, maxTokens, temperature, reasoning }, key: id,
+    kind: 'form', editable, fields: AGENT_FIELDS.map(field => field.key === 'model' ? { ...field, options: profiles.map(item => ({ value: item.model, label: item.model, providerId: item.providerId })) } : field),
+    values: { providerId: profile.providerId, model, timeoutMs, maxTokens, temperature, reasoning, reasoningEffort: profile.reasoningEffort ?? 'low' }, key: id,
     choices: profiles.map(profile => ({ value: profile.id, label: profile.id })),
-    configVersion: version([id, revision, model, timeoutMs, maxTokens, temperature, reasoning, profile.providerId, profile.credentialEnv]),
-    message: '供应商和凭证环境变量引用通过 CLI 管理。',
+    configVersion: version([id, revision, model, timeoutMs, maxTokens, temperature, reasoning, profile.providerId, profile.credentialEnv, profile.reasoningEffort]),
+    message: 'Codex 使用服务器运行账号已登录的 CLI；不自动回退付费 API。DeepSeek 凭证环境变量引用通过 CLI 管理。检查登录不调用模型，测试连接会消耗所选模型额度。',
   };
 }
 
@@ -88,13 +90,14 @@ export async function pluginConfiguration(manager: CoreManager, id: string, edit
       return { kind: 'link', editable: false, href: '#browse?type=session-transcript', message: '请先创建Session转录实例，再配置压缩模式。' };
     }
     const instance = transcriptDetail(selected);
+    const profiles = await savedProfiles(manager);
     return {
       kind: 'form', editable: editable && !instance.status.running, key: selected.id,
       choicesLabel: 'Session实例', choices: instances.map(item => ({ value: item.id, label: item.name })),
-      fields: [{ key: 'preprocessing', label: 'Session压缩模式', type: 'select', options: COMPRESSION_MODES, description: '各模式均以原始路径替换二进制和编码载荷。作用于所选实例后续新建任务。' }],
-      values: { preprocessing: instance.config.preprocessing ?? 'conservative' },
+      fields: [{ key: 'profile', label: '摘要模型配置', type: 'select', options: [...profiles.map(profile => ({ value: profile.id, label: profile.id + ' · ' + profile.providerId + ' · ' + profile.model })), ...(profiles.some(profile => profile.id === instance.config.profile) ? [] : [{ value: instance.config.profile, label: instance.config.profile + '（当前不可用）' }])] }, { key: 'preprocessing', label: 'Session压缩模式', type: 'select', options: COMPRESSION_MODES, description: '各模式均以原始路径替换二进制和编码载荷。作用于所选实例后续新建任务。' }],
+      values: { profile: instance.config.profile, preprocessing: instance.config.preprocessing ?? 'conservative' },
       configVersion: version([selected.id, selected.revision]),
-      message: instance.status.running ? '此Session实例正在转录，执行结束后刷新页面即可编辑。' : editable ? '选择Session实例，设置其转录输入压缩模式。' : '编辑需project-tracking与Session转录插件均启用并就绪。',
+      message: instance.status.running ? '此Session实例正在转录，执行结束后刷新页面即可编辑。' : editable ? '选择Session实例，设置摘要模型和输入压缩模式；仅影响后续新建任务。' : '编辑需project-tracking与Session转录插件均启用并就绪。',
     };
   }
   assert(key === undefined, 'INVALID_ARGUMENT', '此插件没有可选择的配置');
@@ -144,6 +147,7 @@ export async function savePluginConfig(app: ConfigApp, id: string, configuration
   if (id === 'agent') {
     const selected = (await savedProfiles(app.manager)).find(profile => profile.id === configuration.key);
     assert(selected, 'CONFIG_CONFLICT', '模型配置已删除，请刷新后重试');
+    if ((changed.providerId ?? selected.providerId) === 'codex-cli') { changed.temperature = 0; changed.reasoning = 'off'; }
     await app.plugins.execute('agent profile set', { ...changed, id: selected.id, expectedRevision: selected.revision });
     return;
   }

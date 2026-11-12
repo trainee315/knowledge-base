@@ -7,7 +7,7 @@ const emit = defineEmits<{ close: []; saved: [] }>();
 // 草稿与服务器修订分别保存，冲突和预览不会丢弃用户输入。
 const instance = ref<any>();
 const draft = ref<any>();
-const profiles = ref<{ id: string; model: string; credentialConfigured: boolean }[]>([]);
+const profiles = ref<{ id: string; model: string; providerId?: string; credentialConfigured: boolean }[]>([]);
 const editing = ref(props.id === 'new');
 const savedConfig = ref('');
 const tab = ref(props.id === 'new' ? 'config' : props.view || 'overview');
@@ -250,8 +250,8 @@ onUnmounted(() => {
         <fieldset :disabled="!editing || busy">
           <legend>转录设置</legend>
           <label>关注点<textarea v-model="draft.focus" rows="3"></textarea></label>
-          <label>模型 Profile<select v-model="draft.profile" aria-label="模型 Profile" required><option v-if="!selectedProfile" :value="draft.profile">{{ draft.profile }}（当前不可用）</option><option v-for="profile in profiles" :key="profile.id" :value="profile.id">{{ profile.id }} · {{ profile.model }}</option></select></label>
-          <p>{{ selectedProfile?.credentialConfigured ? '凭证已配置' : '凭证未配置或 Profile 不可用' }}</p>
+          <label>模型 Profile<select v-model="draft.profile" aria-label="模型 Profile" required><option v-if="!selectedProfile" :value="draft.profile">{{ draft.profile }}（当前不可用）</option><option v-for="profile in profiles" :key="profile.id" :value="profile.id">{{ profile.id }} · {{ profile.providerId }} · {{ profile.model }}</option></select></label>
+          <p>{{ selectedProfile?.providerId === 'codex-cli' ? '使用服务器 Codex 登录；可在 Agent 配置中检查状态' : selectedProfile?.credentialConfigured ? '凭证已配置' : '凭证未配置或 Profile 不可用' }}</p>
         </fieldset>
         <fieldset :disabled="!editing || busy">
           <legend>周期设置</legend>

@@ -41,7 +41,7 @@ export class AgentService implements AgentApi {
     return { profileId: profile.id, profileRevision: profile.revision, provider: { id: provider.id, version: provider.version }, model: profile.model, configurationHash: profileHash(profile, provider.version) };
   }
   status(): AgentStatus {
-    return { providers: [...this.providers.values()].map(provider => ({ id: provider.id, version: provider.version })), profiles: this.profiles.map(profile => { let credentialConfigured = false; try { credentialConfigured = this.providers.get(profile.providerId)?.isConfigured?.(profile.credentialEnv) ?? false; } catch { /* 凭证检查失败不能泄露provider异常或阻止离线检查。 */ } return { identity: this.describeProfile(profile.id), credentialEnv: profile.credentialEnv, credentialConfigured }; }), active: this.active, queued: this.queue.length, requests: this.requests, completed: this.completed, failed: this.failed };
+    return { providers: [...this.providers.values()].map(provider => ({ id: provider.id, version: provider.version })), profiles: this.profiles.map(profile => { let credentialConfigured = false; try { credentialConfigured = this.providers.get(profile.providerId)?.isConfigured?.(profile.credentialEnv) ?? false; } catch { /* 凭证检查失败不能泄露provider异常或阻止离线检查。 */ } return { identity: this.describeProfile(profile.id), credentialEnv: profile.credentialEnv, credentialConfigured, ...(profile.providerId === 'codex-cli' ? { authentication: 'codex-login' as const, readiness: 'unchecked' as const } : { authentication: 'api-key' as const }) }; }), active: this.active, queued: this.queue.length, requests: this.requests, completed: this.completed, failed: this.failed };
   }
   private async mutate<T>(action: () => Promise<T>): Promise<T> { const result = this.mutations.then(action); this.mutations = result.then(() => {}, () => {}); return result; }
   private async saveProfiles(profiles: AgentProfile[]): Promise<void> { try { await this.options.saveProfiles?.(structuredClone(profiles)); } catch (error) { if ((error as { code?: string })?.code === 'READ_ONLY') throw new KnowledgeError('READ_ONLY', '只读会话不能保存Agent配置'); throw new AgentError('AGENT_CONFIG_WRITE_FAILED'); } }
@@ -79,6 +79,7 @@ export class AgentService implements AgentApi {
     const request: AgentProviderRequest = { profile, messages: structuredClone(input.messages), output, maxTokens: input.maxTokens ?? profile.maxTokens, temperature: input.temperature ?? profile.temperature, reasoning: input.reasoning ?? profile.reasoning };
     // 覆盖项属于本次生成语义，结果hash与实际调用参数一致。
     identity.configurationHash = profileHash({ ...profile, maxTokens: request.maxTokens, temperature: request.temperature, reasoning: request.reasoning }, provider.version);
+    if (output === 'object') request.schema = structuredClone((input as GenerateObjectInput).schema);
     if (output === 'object') request.messages.unshift({ role: 'system', content: `Return exactly one valid JSON object matching this JSON schema. Do not include markdown fences. JSON schema: ${JSON.stringify((input as GenerateObjectInput).schema)}` });
     const controller = new AbortController(); this.controllers.add(controller); let timedOut = false;
     const abort = () => controller.abort(); input.signal?.addEventListener('abort', abort, { once: true }); if (input.signal?.aborted) controller.abort();
@@ -96,7 +97,7 @@ export class AgentService implements AgentApi {
       if (result.finishReason !== 'stop') throw new AgentError('AGENT_INVALID_RESPONSE');
       if (!result.text.trim()) throw new AgentError('AGENT_EMPTY_OUTPUT');
       const value = convert(result.text); this.completed++;
-      return { ...identity, actualModel: result.model, value, usage: result.usage, finishReason: 'stop', ...(result.requestId ? { requestId: result.requestId } : {}) };
+      return { ...identity, ...(result.modelReported === false ? {} : { actualModel: result.model }), value, usage: result.usage, finishReason: 'stop', ...(result.requestId ? { requestId: result.requestId } : {}) };
     } catch (error) { this.failed++; if (timedOut) throw new AgentError('AGENT_TIMEOUT'); if (controller.signal.aborted) throw new AgentError(this.stopped ? 'AGENT_STOPPED' : 'AGENT_ABORTED'); if (error instanceof AgentError) throw new AgentError(error.code as AgentErrorCode, error.details as { status?: number }); throw new AgentError('AGENT_PROVIDER_ERROR'); }
     finally { clearTimeout(timer); input.signal?.removeEventListener('abort', abort); this.controllers.delete(controller); }
   }

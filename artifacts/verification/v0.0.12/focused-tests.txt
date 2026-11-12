@@ -1,0 +1,17 @@
+✔ Codex subscription configuration has no fake credentials; changes affect identity (3.779ms)
+✔ Codex sends chosen model/schema over isolated exec; JSONL and Unicode round-trip (1092.6883ms)
+✔ Codex checks fail closed without inference or raw diagnostics (1237.8853ms)
+✔ Codex handles bad output, process failure, limits and output acceptance budget (1567.7936ms)
+✔ Codex cancellation kills the actual process and cleans isolated working files (792.2124ms)
+✔ Codex process output is bounded (421.1061ms)
+✔ Codex service timeout eventually releases actual process slot (1030.1189ms)
+✔ plugin detail exposes safe projections, enforces CAS and remains readable after plugin failure (2441.6845ms)
+✔ project-tracking compression form configures selected session with CAS and zero model calls (2450.6059ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6319.4362
