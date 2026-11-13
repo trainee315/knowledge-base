@@ -1,0 +1,93 @@
+{
+  "node": "v24.11.0",
+  "samples": 30,
+  "method": "串行单进程业务函数，首个请求单列为冷启动；未清理OS页缓存；内存为进程采样而非隔离峰值。合成索引仅验证查询规模，不代表模型质量。",
+  "cases": [
+    {
+      "name": "current-scale",
+      "documents": 62,
+      "keywords": 3486,
+      "before": {
+        "coldMs": 1242.8043,
+        "p50Ms": 1741.8120999999992,
+        "p95Ms": 1784.2852000000003,
+        "responseBytes": 2342,
+        "cpuMs": 51484,
+        "maxObservedRssBytes": 150286336
+      },
+      "after": {
+        "list": {
+          "coldMs": 26.70919999999751,
+          "p50Ms": 9.851999999998952,
+          "p95Ms": 23.14129999999568,
+          "responseBytes": 3013,
+          "cpuMs": 313,
+          "maxObservedRssBytes": 151019520
+        },
+        "documents": {
+          "coldMs": 11.220399999998335,
+          "p50Ms": 8.48530000000028,
+          "p95Ms": 13.238400000002002,
+          "responseBytes": 1173,
+          "cpuMs": 281,
+          "maxObservedRssBytes": 152399872
+        },
+        "fragments": {
+          "coldMs": 14.944000000003143,
+          "p50Ms": 8.414599999996426,
+          "p95Ms": 14.92609999999695,
+          "responseBytes": 5726,
+          "cpuMs": 297,
+          "maxObservedRssBytes": 152399872
+        }
+      },
+      "queryPlan": [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 55,
+          "detail": "SEARCH keyword_links USING COVERING INDEX sqlite_autoindex_keyword_links_1 (keyword=?)"
+        }
+      ]
+    },
+    {
+      "name": "large-index",
+      "documents": 500,
+      "keywords": 50001,
+      "after": {
+        "list": {
+          "coldMs": 12.146000000007916,
+          "p50Ms": 10.311799999995856,
+          "p95Ms": 15.895400000008522,
+          "responseBytes": 3040,
+          "cpuMs": 360,
+          "maxObservedRssBytes": 197701632
+        },
+        "documents": {
+          "coldMs": 8.332099999999627,
+          "p50Ms": 9.842399999994086,
+          "p95Ms": 17.31199999997625,
+          "responseBytes": 14783,
+          "cpuMs": 312,
+          "maxObservedRssBytes": 161333248
+        },
+        "fragments": {
+          "coldMs": 6.738400000002002,
+          "p50Ms": 9.166199999977835,
+          "p95Ms": 13.60000000000582,
+          "responseBytes": 8807,
+          "cpuMs": 297,
+          "maxObservedRssBytes": 161374208
+        }
+      },
+      "queryPlan": [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 55,
+          "detail": "SEARCH keyword_links USING COVERING INDEX sqlite_autoindex_keyword_links_1 (keyword=?)"
+        }
+      ]
+    }
+  ]
+}

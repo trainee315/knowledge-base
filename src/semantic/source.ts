@@ -15,7 +15,7 @@ export const tagSignature = (tag: Organization, model: string) => hash(JSON.stri
 export const activeTag = (tag: Organization) => tag.type === 'tag' && !tag.data.semanticDeletedAt;
 export async function source(dataDir: string) {
   const manager = await CoreManager.open(dataDir,{readOnly:true});
-  try { return await manager.storage.snapshot(async () => ({ resources:(await manager.listResources()).map(x=>x.resource), tags:(await manager.listOrganizations('tag')).filter(activeTag) })); }
+  try { return await manager.storage.snapshot(async () => ({ resources:(await manager.listResources()).map(x=>x.resource), tags:(await manager.listOrganizations('tag')).filter(activeTag), generation:await manager.storage.readJson<string>('state/keyword-generation.json','legacy') })); }
   finally { await manager.close(); }
 }
 export async function sourceRecord(dataDir: string, resource: ResourceMeta): Promise<SourceRecord | undefined> {

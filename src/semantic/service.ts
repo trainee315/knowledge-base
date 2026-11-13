@@ -5,6 +5,7 @@ import { previewJson } from '../preview/readonly.js';
 import { semanticCommand } from './api.js';
 import { runSemantic } from './engine.js';
 import { RECONCILE_MS } from './types.js';
+import { keywordBrowse } from './keyword-index.js';
 
 const BODY_LIMIT=16*1024; // 标签名称/说明请求无需承载整篇文档。
 /** 周期兜底与写入唤醒共用一个执行器，关闭/恢复前排空当前批次。 */
@@ -21,6 +22,11 @@ export function semanticService(dataDir:string,run:<T>(action:()=>Promise<T>)=>P
     start(){if(!stopped)return;stopped=false;controller=new AbortController();next=0;timer=setInterval(tick,1000);timer.unref();},
     async stop(){stopped=true;if(timer)clearInterval(timer);controller.abort(new Error('SEMANTIC_STOPPED'));await running;},
     async handle(request:IncomingMessage,response:ServerResponse,url:URL,origin:string) {
+      if(url.pathname.startsWith('/api/browse/')&&url.searchParams.get('type')==='keyword') {
+        assert(request.headers.host===new URL(origin).host&&(!request.headers.origin||request.headers.origin===origin),'LOCAL_ONLY','仅允许本地同源访问');
+        assert(request.method==='GET','INVALID_ARGUMENT','关键词浏览只支持 GET');
+        previewJson(response,200,{ok:true,data:await keywordBrowse(dataDir,url)});return true;
+      }
       if(!url.pathname.startsWith('/api/semantic/'))return false;
       const match=/^\/api\/semantic\/tags(?:\/([a-f\d-]{36})(?:\/(retry))?)?$/.exec(url.pathname);
       if(url.pathname==='/api/semantic/retry'&&request.method==='POST') {

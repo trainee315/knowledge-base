@@ -52,6 +52,7 @@ register('semantic update', 'id name description', '修改标签含义', '仅重
 for (const action of ['delete', 'retry']) register('semantic ' + action, 'id', action === 'delete' ? '删除标签入口并保留原文' : '重新匹配标签', '写标签状态；历史定义和原文保留', { id: '<标签UUID>' });
 register('semantic retry-all', '', '重试失败的语义任务', '排队；复用成功的编码缓存', {});
 register('semantic run', '', '执行一批语义任务', '写派生结果，可能调用本地编码模型', {});
+register('semantic rebuild', '', '重新生成完整关键词及双向索引', '排队并保留本地向量、标签定义和正文；运行中重复调用只续接现有重建，semantic run推进任务', {});
 
 export const booleanOptions = new Set(['stdin', 'json', 'help', 'copy', 'cascade', 'includeDeleted', 'content', ...Object.keys(fields).filter(key => fields[key].type === 'boolean')]);
 const transport = new Set(['input', 'json', 'help', 'dataDir']);

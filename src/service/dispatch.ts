@@ -1,6 +1,7 @@
 import { semanticResourceQuery } from '../semantic/query.js';
 import { semanticEnabled } from '../semantic/source.js';
 import { semanticCommand } from '../semantic/api.js';
+import { readKeywordIndex } from '../semantic/keyword-index.js';
 import { CoreManager } from '../core/manager.js';
 import { KnowledgeError } from '../core/errors.js';
 import { openApplication } from '../index.js';
@@ -19,6 +20,10 @@ function array(input: Record<string, unknown>, key: string): string[] | undefine
 export async function dispatch(dataDir: string, words: string[], input: Record<string, unknown>, stdinBytes?: Buffer): Promise<unknown> {
   const [group, action] = words;
   if (group === 'semantic') return semanticCommand(dataDir, action, input);
+  if(group==='keyword'&&action==='list'&&await semanticEnabled(dataDir))return readKeywordIndex(dataDir,(store,status)=>{
+    if(status.state!=='ready')throw new KnowledgeError('KEYWORD_INDEX_PENDING','关键词索引尚未就绪');
+    return store.all<{name:string}>('SELECT name FROM keyword_terms ORDER BY normalized,id').map(x=>x.name);
+  });
   if (group === 'organize' && action === 'run' && await semanticEnabled(dataDir)) return semanticCommand(dataDir, 'run', input);
   if (group === 'recall') return recallCommand(dataDir, words, input);
   if (group === 'note') return noteCommand(dataDir, action, input, async () => stdinBytes ?? Buffer.alloc(0));

@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "origin": "http://127.0.0.1:62945",
+  "keywords": 3795,
+  "activeTags": 23,
+  "retainedTagDefinitions": 28,
+  "performance": {
+    "list": {
+      "samples": 30,
+      "p50Ms": 7.310400000000072,
+      "p95Ms": 9.751000000000033,
+      "responseBytes": 3130
+    },
+    "documents": {
+      "samples": 30,
+      "p50Ms": 7.7432999999999765,
+      "p95Ms": 9.934399999999982,
+      "responseBytes": 1018
+    },
+    "fragments": {
+      "samples": 30,
+      "p50Ms": 8.300299999999993,
+      "p95Ms": 10.62009999999998,
+      "responseBytes": 2774
+    }
+  },
+  "browser": {
+    "realSelector": true,
+    "lazyRequests": true,
+    "documentAndFragment": true,
+    "refreshRestore": true,
+    "pageErrors": 0
+  },
+  "protectedDataUnchangedAfterServiceStart": true
+}

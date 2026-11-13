@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import SemanticTags from './SemanticTags.vue';
+import KeywordBrowser from './KeywordBrowser.vue';
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
 import TranscriptInstance from './TranscriptInstance.vue';
 import { renderMarkdown } from '../../src/preview/markdown';
@@ -45,6 +46,7 @@ function save(target?: { resource?: string }) {
 }
 async function loadCollections() {
   const request=++collectionGeneration;
+  if(['tag','keyword'].includes(type.value))return;
   if (type.value === 'session-transcript' && !props.types.some(kind => kind.id === type.value)) {
     collections.value = { items: [], total: 0 };
     return;
@@ -53,6 +55,7 @@ async function loadCollections() {
   catch(e){if(request===collectionGeneration)error.value=String((e as Error).message);}
 }
 async function loadDocuments() {
+  if(['tag','keyword'].includes(type.value))return;
   const request=++generation; ++detailGeneration; detail.value=undefined;documents.value={items:[],total:0};error.value='';loading.value=true;
   try { const data=ids.value.length ? await api('/api/browse/documents?'+params()) : {items:[],total:0};if(request===generation)documents.value=data; }
   catch(e){if(request===generation){documents.value={items:[],total:0};error.value=String((e as Error).message);}}
@@ -120,9 +123,10 @@ onUnmounted(()=>{generation++;collectionGeneration++;detailGeneration++;restoreG
 <template>
   <TranscriptInstance v-if="instanceId" :key="instanceId" ref="instancePanel" :id="instanceId" :view="instanceView" @close="closeInstance" @saved="instanceSaved" />
   <section v-else class="organization-browser" :data-step="mobileStep">
-    <div class="browse-toolbar"><label>组织方式 <select aria-label="组织方式" v-model="type" @change="changeType"><option v-for="kind in visibleTypes" :key="kind.id" :value="kind.id">{{ kind.name }}{{ kind.enabled?'':'（已停用新增）' }}</option></select></label><span class="muted">按{{ typeName }}浏览</span><button v-if="type === 'session-transcript'" @click="showInstance('new')">新建实例</button><button v-if="type!=='tag'" class="mobile-back" @click="mobileStep=mobileStep==='detail'?'documents':'collections'">返回上一级</button></div>
+    <div class="browse-toolbar"><label>组织方式 <select aria-label="组织方式" v-model="type" @change="changeType"><option v-for="kind in visibleTypes" :key="kind.id" :value="kind.id">{{ kind.name }}{{ kind.enabled?'':'（已停用新增）' }}</option></select></label><span class="muted">按{{ typeName }}浏览</span><button v-if="type === 'session-transcript'" @click="showInstance('new')">新建实例</button><button v-if="!['tag','keyword'].includes(type)" class="mobile-back" @click="mobileStep=mobileStep==='detail'?'documents':'collections'">返回上一级</button></div>
     <p v-if="error" role="alert" class="error">{{ error }}</p>
     <SemanticTags v-if="type==='tag'" />
+    <KeywordBrowser v-else-if="type==='keyword'" />
     <div v-else class="browse-columns">
       <aside class="browse-collections"><h2>{{ typeName }}</h2><form @submit.prevent="collectionOffset=0;save();loadCollections()"><input v-model="collectionQuery" aria-label="搜索组织条目" placeholder="搜索名称"><button>搜索</button></form>
         <div v-for="item in collections.items" :key="item.id" class="instance-list-row"><button :key="item.id" class="collection-row" :aria-pressed="ids.includes(item.id)" :class="{active:ids.includes(item.id)}" @click="choose(item.id)"><strong>{{ item.name }}</strong><span>{{ item.count }} 篇</span><small v-if="type === 'session-transcript'">{{ item.projectDir || '未限定项目目录' }} · {{ item.enabled ? '每 ' + item.intervalMinutes + ' 分钟检查' : '周期已停用' }}</small><small>{{ item.description }}</small></button><button v-if="type === 'session-transcript'" :aria-label="`查看 ${item.name} 详情`" @click="showInstance(item.id)">查看详情</button></div>

@@ -1,0 +1,19 @@
+(node:62720) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ 关键词列表只读持久词表，不调用全库资源扫描，也不返回文档计数 (916.5697ms)
+✔ 单词关联按文档分页且片元可定位，包含搜索和稳定代次正确 (864.5464ms)
+✔ 修改立即隐藏旧代次，删除/恢复与共用词回收保持双向一致 (1186.923ms)
+✔ 显式重建可续跑、重新派生而复用向量，不新增标签且无变更不重复发布 (1435.9352ms)
+✔ v1缓存只在写路径迁移，保留向量；迁移后重放资源发布；未来版本拒绝 (1201.2484ms)
+✔ 缺失索引只读返回待建；组合筛选使用完整关键词关系 (1358.0316ms)
+✔ 完整关键词索引包含摘要前100项以外的片元词汇 (1069.6231ms)
+✔ 发布失败回滚完整关系，重建保持不可见，显式重试恢复同一资源 (1513.4416ms)
+✔ 模型计算期间正文变更，丢弃旧发布并在下一轮索引新版本 (1681.6899ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11371.2183

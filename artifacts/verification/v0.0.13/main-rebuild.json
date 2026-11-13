@@ -1,0 +1,35 @@
+{
+  "startedAt": "2026-11-12T13:46:05.793Z",
+  "completedAt": "2026-11-12T13:46:21.321Z",
+  "model": "6cf47aee644c477e707d490c24bb21fe16219d01aaa005f8cb4af39b783dce88",
+  "rounds": 16,
+  "totals": {
+    "encodedTexts": 0,
+    "derivedFragments": 427,
+    "publishedResources": 62,
+    "comparisons": 0
+  },
+  "passed": true,
+  "resources": 62,
+  "tags": 28,
+  "keyword_terms": 3795,
+  "keyword_documents": 62,
+  "keyword_links": 4468,
+  "fragments": 427,
+  "matches": 186,
+  "labels": 23,
+  "positionChecks": 4468,
+  "protectedFiles": 106,
+  "protectedDataUnchanged": true,
+  "repeat": {
+    "complete": true,
+    "pending": 0,
+    "retryAfterMs": 1000,
+    "encodedTexts": 0,
+    "cacheHits": 0,
+    "comparisons": 0,
+    "publishedResources": 0,
+    "publishedTags": 0,
+    "derivedFragments": 0
+  }
+}

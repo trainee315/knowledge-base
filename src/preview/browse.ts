@@ -5,6 +5,7 @@ import { readPluginMeta } from '../plugins/shared.js';
 import type { KeywordData } from '../plugins/keywords/index.js';
 import type { TagData } from '../plugins/tags/index.js';
 import type { SystemData } from '../plugins/systems/index.js';
+import { keywordBrowse } from '../semantic/keyword-index.js';
 
 const PAGE_SIZE = 30; // 普通浏览批量上限与历史正文的20条上限分开。
 const MAX_PAGE = 200;
@@ -16,6 +17,8 @@ function page(url: URL, max = MAX_PAGE) {
 }
 /** 只读组织浏览：聚合现有权威数据，不建立组织成员的第二份索引。 */
 export async function browse(app: PreviewApplication, url: URL): Promise<unknown> {
+  const dataDir=(app.manager as {dataDir?:string}).dataDir;
+  if(url.searchParams.get('type')==='keyword'&&dataDir)return keywordBrowse(dataDir,url);
   const exec = (name: string, input: Record<string, unknown> = {}) => app.plugins.execute(name, input, []) as Promise<any>;
   const historical = /^\/api\/project-tracking\/([^/]+)\/entries\/([^/]+)$/.exec(url.pathname);
   if (historical) return exec('project-track read', { projectId: historical[1], entryId: historical[2], ...(url.searchParams.has('asOfVersion') ? { asOfVersion: url.searchParams.get('asOfVersion') } : {}) });
@@ -42,7 +45,7 @@ export async function browse(app: PreviewApplication, url: URL): Promise<unknown
   };
   if (url.pathname.endsWith('/collections')) {
     const entries = type === 'keyword'
-      ? [...new Set(resources.flatMap(words))].sort().map(word => ({ id: word, name: word, description: '关键词', count: resources.filter(r => words(r).includes(word)).length }))
+      ? [...new Set(resources.flatMap(words))].sort().map(word => ({ id: word, name: word }))
       : await Promise.all(organizations.map(async org => {
         const summary = {
           id: org.id, name: org.name, description: String(org.data.description ?? ''),

@@ -36,6 +36,7 @@ export const keywordsPlugin: PluginDefinition = {
         const resource = await context.core.getResource(id);
         const current = await api.get(id);
         if (current?.inputVersion === resource.contentVersion && current.processorVersion.startsWith('semantic-keywords-')) return current;
+        if(current?.processorVersion.startsWith('semantic-keywords-'))throw new KnowledgeError('KEYWORD_INDEX_PENDING','正文已变化，请等待语义任务更新关键词');
         const version = `${PROCESSOR_VERSION}:content-${content.processorVersion}`;
         if (current?.inputVersion === resource.contentVersion && current.processorVersion === version) return current;
         const parsed = await content.extract(id);

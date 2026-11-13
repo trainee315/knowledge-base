@@ -1,7 +1,7 @@
 import type { Fragment } from '../recall/types.js';
 
 // 版本进入派生身份，算法变化可复用不变的编码输入。
-export const KEYWORD_VERSION = 'semantic-keywords-1';
+export const KEYWORD_VERSION = 'semantic-keywords-2';
 export const MATCH_VERSION = 'semantic-match-1';
 export const MATCH_THRESHOLD = 0.55;
 export const KEYWORDS_PER_FRAGMENT = 12;
@@ -17,5 +17,5 @@ export interface Encoder {
   dimensions: number;
   encode(texts: string[], query: boolean): Promise<{ vectors: number[][]; truncated: boolean[] }>;
 }
-export interface Counters { encodedTexts: number; cacheHits: number; comparisons: number; publishedResources: number; publishedTags: number }
+export interface Counters { encodedTexts: number; cacheHits: number; comparisons: number; publishedResources: number; publishedTags: number; derivedFragments: number }
 export type Job = { kind: 'resource' | 'tag'; id: string; wanted: string; published: string; state: 'queued' | 'processing' | 'ready' | 'failed'; cursor: string; error: string; retryAt: number; done: number; total: number };

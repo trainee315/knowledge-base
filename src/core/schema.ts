@@ -17,7 +17,7 @@ export function validateReferenceShape(value: unknown): asserts value is Resourc
 export function validateFormalPath(file: unknown): asserts file is string {
   assert(typeof file === 'string' && !file.includes('\\') && !file.includes(':') && !file.includes('\0') && path.posix.normalize(file) === file && file.split('/').every(segment => segment !== '.' && segment !== '..' && !segment.startsWith('.')), 'INVALID_BACKUP_PATH', '备份包含非规范路径', { file });
   const id = '[0-9a-fA-F-]{36}';
-  assert(new RegExp(`^(resources/(?:[a-z0-9]{1,16}|unknown)/${id}(?:\\.[a-z0-9]{1,16})?|resources/history/${id}/[1-9][0-9]*(?:\\.[a-z0-9]{1,16})?|metadata/${id}\\.meta|organizations/${id}\\.json|organization-types/[a-z][a-z0-9-]{0,63}\\.json|plugins/[a-z][a-z0-9-]*/data/[a-zA-Z0-9][a-zA-Z0-9._-]*\\.json|state/(?:events|generation)\\.json)$`).test(file) && !file.endsWith('.tmp'), 'INVALID_BACKUP_PATH', '备份路径不属于正式数据白名单', { file });
+  assert(new RegExp(`^(resources/(?:[a-z0-9]{1,16}|unknown)/${id}(?:\\.[a-z0-9]{1,16})?|resources/history/${id}/[1-9][0-9]*(?:\\.[a-z0-9]{1,16})?|metadata/${id}\\.meta|organizations/${id}\\.json|organization-types/[a-z][a-z0-9-]{0,63}\\.json|plugins/[a-z][a-z0-9-]*/data/[a-zA-Z0-9][a-zA-Z0-9._-]*\\.json|state/(?:events|generation|keyword-generation)\\.json)$`).test(file) && !file.endsWith('.tmp'), 'INVALID_BACKUP_PATH', '备份路径不属于正式数据白名单', { file });
 }
 export function validateResource(value: unknown, file?: string): asserts value is ResourceMeta {
   assert(record(value), 'INVALID_META', '资源meta必须为对象');

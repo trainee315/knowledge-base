@@ -40,7 +40,7 @@ test('organization browser reads accepted tags, exact current keywords, recursiv
     assert.equal(command.status,0,command.stdout+command.stderr);assert.equal(JSON.parse(command.stdout).data.total,1);
     assert.equal((await get('/api/browse/documents?type=tag&tagMatch=all&'+both)).items[0].resource.plugins,undefined);
     assert.equal((await reader.plugins.execute('organize query',{tags:tags.map(t=>t.id),tagMatch:'all'},[]) as any).total,1);
-    const vocabulary=await get('/api/browse/collections?type=keyword');assert.ok(vocabulary.items.length);
+    const vocabulary=await get('/api/browse/collections?type=keyword');assert.equal(vocabulary.status.state,'pending'); // 旧词频元数据不冒充完整片元索引。
     assert.equal((await get('/api/browse/documents?type=keyword&id=definitely-not-a-term')).total,0);
     const tree=await get('/api/browse/documents?type=system&id='+system.id+'&nodeId=r');assert.equal(tree.total,1);assert.equal(tree.items[0].paths.length,2);assert.deepEqual(tree.nodes.map((n:any)=>n.id),['r','child','doc','again','other']);
     const timeline=await get('/api/browse/documents?type=project-development-tracking&id='+project.id+'&limit=1');assert.equal(timeline.total,2);assert.equal(timeline.items[0].text,undefined);assert.equal(timeline.items[0].entry.stage,'planned');assert.equal(timeline.baseline.entry.id,entry.id);assert.equal(timeline.baseline.text,undefined);

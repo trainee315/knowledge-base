@@ -3,10 +3,23 @@ import { normalize } from '../plugins/keywords/extract.js';
 import { strings } from '../plugins/shared.js';
 import { SemanticStore } from './store.js';
 import { source, semanticEnabled, resourceSignature, tagSignature } from './source.js';
+import { keywordResourceIds } from './keyword-index.js';
 
 const QUERY_BATCH=1000; // 与既有组合查询上限一致，最终交集完成后才分页。
 /** 资源列表和 CLI 组合查询复用同一语义标签关系，旧库保留原查询行为。 */
 export async function semanticResourceQuery(dataDir:string,input:Record<string,unknown>,query:(input:Record<string,unknown>)=>Promise<any>) {
+  const words=strings(input.keywords);
+  if(words.length&&await semanticEnabled(dataDir)) {
+    const matching=await keywordResourceIds(dataDir,words),items:any[]=[];
+    let base=0;
+    for(;;){const page=await semanticResourceQuery(dataDir,{...input,keywords:[],offset:base,limit:QUERY_BATCH},query);
+      for(const item of page.items)if(matching.has(item.resource.id))items.push({...item,matchReasons:[...(item.matchReasons??item.reasons??[]),'关键词: '+words.join(', ')]});
+      base+=page.items.length;if(base>=page.total||!page.items.length)break;
+    }
+    const offset=Number(input.offset??0),limit=Number(input.limit??50);
+    assert(Number.isSafeInteger(offset)&&offset>=0&&Number.isSafeInteger(limit)&&limit>=0&&limit<=QUERY_BATCH,'INVALID_ARGUMENT','分页参数无效');
+    return {items:items.slice(offset,offset+limit),total:items.length,offset,limit};
+  }
   const names=strings(input.tags);
   if(!names.length||!await semanticEnabled(dataDir))return query(input);
   const offset=Number(input.offset??0),limit=Number(input.limit??50);

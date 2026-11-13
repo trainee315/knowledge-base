@@ -8,12 +8,13 @@ import { SemanticStore } from './store.js';
 import { source, sourceRecord, resourceSignature, tagSignature, tagText, activeTag, requireSemanticPlugins } from './source.js';
 import { encode, localEncoder, vector, vectorKey, cosine } from './vectors.js';
 import { candidates, selectKeywords } from './keywords.js';
+import { publishKeywords, reconcileKeywords } from './keyword-index.js';
 import { KEYWORD_VERSION, MATCH_THRESHOLD, MATCH_BATCH, RETRY_MS, type Encoder, type Counters, type SemanticFragment, type Job } from './types.js';
 import type { Organization, ResourceMeta } from '../contracts/index.js';
 
 const AUTO_TAG_LIMIT=4; // 每轮最多晋升四个跨文档代表词，防止标签数量暴涨。
 const AUTO_EQUIVALENCE=0.93; // 仅对很相近的自动名称复用已有概念；人工定义不自动合并。
-const stats=():Counters=>({encodedTexts:0,cacheHits:0,comparisons:0,publishedResources:0,publishedTags:0});
+const stats=():Counters=>({encodedTexts:0,cacheHits:0,comparisons:0,publishedResources:0,publishedTags:0,derivedFragments:0});
 const encodedText=(f:{title:string;headings:string[];text:string})=>[f.title,f.headings.join(' / '),f.text].join('\n');
 
 /** 周期核对补漏；同实体只保留最新目标，已删除对象立即清除派生关系。 */
@@ -26,6 +27,7 @@ export async function reconcile(store:SemanticStore,dataDir:string,identity:stri
       if(job.kind==='resource'&&!current.resources.some(r=>r.id===job.id))store.removeResource(job.id);
       if(job.kind==='tag'&&!current.tags.some(t=>t.id===job.id))store.removeTag(job.id);
     }
+    reconcileKeywords(store,current,identity);
   });
   return current;
 }
@@ -47,6 +49,7 @@ async function processResource(store:SemanticStore,dataDir:string,r:ResourceMeta
       const terms=candidates(f.text);
       const embeddings=await encode(store,dataDir,encoder,[text,...terms.map(t=>t.value)],false,counters,signal);
       keywords=selectKeywords(terms,embeddings.slice(1),embeddings[0]);
+      counters.derivedFragments++;
       store.run('INSERT OR REPLACE INTO derivations VALUES(?,?)',KEYWORD_VERSION+':'+key,JSON.stringify(keywords));
     }
     const cached=store.get<{truncated:number}>('SELECT truncated FROM vectors WHERE key=?',key)!;
@@ -80,6 +83,7 @@ async function processResource(store:SemanticStore,dataDir:string,r:ResourceMeta
       store.run('DELETE FROM matches WHERE fragment IN (SELECT id FROM fragments WHERE resource=?)',r.id);
       store.run('DELETE FROM fragments WHERE resource=?',r.id);
       for(const f of output)store.run('INSERT INTO fragments VALUES(?,?,?,?,?)',f.id,r.id,wanted,JSON.stringify(f),f.vectorKey);
+      publishKeywords(store,latest,wanted,output,record?.text);
       for(const m of matches)store.run('INSERT INTO matches VALUES(?,?,?)',m.tag,m.fragment,m.score);
       store.run("UPDATE jobs SET published=?,state='ready',error='',retryAt=0 WHERE kind='resource' AND id=? AND wanted=?",wanted,r.id,wanted);
     });
@@ -166,11 +170,32 @@ export async function runSemantic(dataDir:string,options:{encoder?:Encoder;maxJo
           store.run('UPDATE jobs SET state=?,error=?,retryAt=? WHERE kind=? AND id=? AND wanted=?',deferred?'queued':'failed',(error as Error).message,Date.now()+(deferred?1000:RETRY_MS),job.kind,job.id,job.wanted);
         }
       }
-      if(options.automatic!==false)await autoTags(store,dataDir,encoder);
+      if(options.automatic!==false&&store.setting('keyword-rebuild')!=='running')await autoTags(store,dataDir,encoder);
       await reconcile(store,dataDir,encoder.identity);
       const unfinished=store.jobs().filter(j=>j.state!=='ready');const pending=unfinished.length;
+      if(!pending&&store.setting('keyword-rebuild')==='running')store.setSetting('keyword-rebuild','complete');
       const retryAfterMs=unfinished.length&&unfinished.every(j=>j.retryAt>Date.now())?Math.max(1000,Math.min(...unfinished.map(j=>j.retryAt))-Date.now()):1000;
       return {complete:pending===0,pending,retryAfterMs,...counters};
     } finally {store.close();}
+  });
+}
+
+/** 显式重建清除关键词派生缓存并排队，保留向量和标签；中断后 run 从持久任务续跑。 */
+export async function rebuildKeywords(dataDir:string) {
+  dataDir=await realpath(dataDir);
+  return exclusive('semantic:'+(process.platform==='win32'?dataDir.toLowerCase():dataDir),async()=>{
+    const manager=await CoreManager.open(dataDir);
+    try{await requireSemanticPlugins(manager);await manager.pluginStore('organizer').write('semantic-mode',true);}finally{await manager.close();}
+    const store=await SemanticStore.open(dataDir);
+    try {
+      if(store.setting('keyword-rebuild')==='running')return {queued:true,resumed:true};
+      await reconcile(store,dataDir,store.setting('model')??'pending-model');
+      store.transaction(()=>{
+        store.run('DELETE FROM derivations');
+        store.run("UPDATE jobs SET state='queued',retryAt=0,error='' WHERE kind='resource'");
+        store.setSetting('keyword-rebuild','running');store.bumpKeywordRevision();
+      });
+      return {queued:true,resumed:false,resources:store.jobs().filter(j=>j.kind==='resource').length};
+    }finally{store.close();}
   });
 }

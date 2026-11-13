@@ -59,6 +59,8 @@ export class CoreManager implements CoreApi {
       const events = await this.storage.readJson<CoreEvent[]>('state/events.json', []);
       events.push({ ...event, sequence: (events.at(-1)?.sequence ?? 0) + 1, at: now() });
       writes.push({ file: 'state/events.json', value: json(events) });
+      // 关键词读路径只检查此标记；资源变化与正式事务同时使旧索引失效。
+      if (event.type.startsWith('resource.')) writes.push({ file: 'state/keyword-generation.json', value: json(randomUUID()) });
     }
     try {
       await this.storage.transaction(writes);
@@ -268,6 +270,7 @@ export class CoreManager implements CoreApi {
           else if (entry.file.startsWith('organizations/')) { validateOrganization(parsed, entry.file); organizations.push(parsed); }
           else if (entry.file.startsWith('organization-types/')) validateOrganizationType(parsed, entry.file);
           else if (entry.file === 'state/generation.json') assert(Number.isSafeInteger(parsed) && Number(parsed) >= 0, 'INVALID_BACKUP', '提交序号非法');
+          else if (entry.file === 'state/keyword-generation.json') assert(typeof parsed==='string'&&UUID.test(parsed),'INVALID_BACKUP','关键词变更标记非法');
           else if (entry.file === 'state/events.json') assert(Array.isArray(parsed) && parsed.every((event, index) => event && Number.isSafeInteger(event.sequence) && event.sequence > 0 && (!index || event.sequence > parsed[index - 1].sequence) && typeof event.type === 'string' && typeof event.entityId === 'string' && (event.type.startsWith('organization-type.') ? /^[a-z][a-z0-9-]{0,63}$/.test(event.entityId) : UUID.test(event.entityId)) && Number.isSafeInteger(event.revision) && event.revision > 0 && Number.isFinite(Date.parse(event.at))), 'INVALID_BACKUP', '持久事件结构非法');
         }
         return { file: entry.file, value };

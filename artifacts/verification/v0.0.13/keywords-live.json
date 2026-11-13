@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "model": "6cf47aee644c477e707d490c24bb21fe16219d01aaa005f8cb4af39b783dce88",
+  "documents": 2,
+  "keywords": 6,
+  "first": {
+    "complete": true,
+    "pending": 0,
+    "retryAfterMs": 1000,
+    "encodedTexts": 27,
+    "cacheHits": 0,
+    "comparisons": 2,
+    "publishedResources": 2,
+    "publishedTags": 1,
+    "derivedFragments": 2
+  },
+  "rebuilt": {
+    "complete": true,
+    "pending": 0,
+    "retryAfterMs": 1000,
+    "encodedTexts": 0,
+    "cacheHits": 26,
+    "comparisons": 0,
+    "publishedResources": 2,
+    "publishedTags": 0,
+    "derivedFragments": 2
+  },
+  "unchanged": {
+    "complete": true,
+    "pending": 0,
+    "retryAfterMs": 1000,
+    "encodedTexts": 0,
+    "cacheHits": 0,
+    "comparisons": 0,
+    "publishedResources": 0,
+    "publishedTags": 0,
+    "derivedFragments": 0
+  }
+}

@@ -5,7 +5,7 @@ import { normalize } from '../plugins/keywords/extract.js';
 import { SemanticStore } from './store.js';
 import { activeTag, source, tagSignature, resourceSignature, requireSemanticPlugins } from './source.js';
 import type { Job, SemanticFragment } from './types.js';
-import { runSemantic } from './engine.js';
+import { runSemantic, rebuildKeywords } from './engine.js';
 
 const PAGE_LIMIT=100; // 所有筛选先于分页，避免只搜索当前页。
 const NAME_LIMIT=100;
@@ -73,7 +73,10 @@ export async function semanticView(dataDir:string,input:{id?:string;view?:string
     let items:unknown[];
     if(input.view==='keywords') {
       const terms=new Map<string,{value:string;score:number;documents:Set<string>;fragments:Set<string>}>();
-      for(const f of found)for(const k of f.keywords){const key=normalize(k.value),term=terms.get(key)??{value:k.value,score:0,documents:new Set<string>(),fragments:new Set<string>()};term.score=Math.max(term.score,f.score*k.score);term.documents.add(f.resourceId);term.fragments.add(f.id);terms.set(key,term);}
+      const visible=new Map(found.map(f=>[f.id,f]));
+      const indexed=Number(store.get<{user_version:number}>('PRAGMA user_version')?.user_version)===2;
+      const links=indexed?store.all<{fragment:string;value:string;score:number}>('SELECT k.fragment,k.value,k.score FROM keyword_links k JOIN matches m ON m.fragment=k.fragment WHERE m.tag=?',tag.id):found.flatMap(f=>f.keywords.map(k=>({fragment:f.id,value:k.value,score:k.score})));
+      for(const k of links){const f=visible.get(k.fragment);if(!f)continue;const key=normalize(k.value),term=terms.get(key)??{value:k.value,score:0,documents:new Set<string>(),fragments:new Set<string>()};term.score=Math.max(term.score,f.score*k.score);term.documents.add(f.resourceId);term.fragments.add(f.id);terms.set(key,term);}
       items=[...terms.values()].map(t=>({...t,documents:t.documents.size,fragments:t.fragments.size})).sort((a,b)=>b.score-a.score||a.value.localeCompare(b.value));
     } else if(input.view==='fragments')items=found;
     else {
@@ -85,6 +88,7 @@ export async function semanticView(dataDir:string,input:{id?:string;view?:string
   }finally{store.close();}
 }
 export async function semanticCommand(dataDir:string,action:string,input:Record<string,unknown>) {
+  if(action==='rebuild')return rebuildKeywords(dataDir);
   if(action==='run')return runSemantic(dataDir,{maxJobs:4});
   if(action==='retry-all'){const store=await SemanticStore.open(dataDir);try{store.run("UPDATE jobs SET state='queued',retryAt=0,error='' WHERE state='failed'");return {queued:true};}finally{store.close();}}
   if(action==='list'||action==='get')return semanticView(dataDir,{id:typeof input.id==='string'?input.id:undefined,view:input.view as string,query:input.query as string,keyword:input.keyword as string,offset:input.offset===undefined?undefined:Number(input.offset),limit:input.limit===undefined?undefined:Number(input.limit)});
