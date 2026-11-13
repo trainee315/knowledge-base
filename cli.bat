@@ -1,4 +1,4 @@
 @echo off
 setlocal
-node "%~dp0dist\cli\main.js" %*
+node "%~dp0scripts\launch.mjs" %*
 exit /b %errorlevel%

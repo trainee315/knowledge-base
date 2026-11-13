@@ -1,0 +1,156 @@
+{
+  "version": "0.0.15",
+  "date": "2026-11-13",
+  "status": "user-accepted-not-released",
+  "userAcceptance": {
+    "date": "2026-11-13",
+    "confirmation": "验收通过"
+  },
+  "algorithms": {
+    "keywords": "semantic-keywords-4",
+    "matching": "semantic-match-5"
+  },
+  "counts": {
+    "keywords": 839,
+    "tags": 37,
+    "resources": 62,
+    "fragments": 427,
+    "links": 2547,
+    "readyJobs": 99
+  },
+  "preservation": {
+    "passed": true,
+    "changes": [],
+    "files": 63,
+    "resources": 62,
+    "organizations": 4
+  },
+  "reviewedOutputEqualsCurrent": true,
+  "keywordSample": {
+    "sampled": 120,
+    "reviewed": 120,
+    "valid": 111,
+    "validRate": 0.925
+  },
+  "keywordConceptRetention": {
+    "total": 80,
+    "retained": 80
+  },
+  "originalOffsets": {
+    "checked": 2547,
+    "failures": 0
+  },
+  "automaticReview": {
+    "names": 37,
+    "nameValid": 37,
+    "evidence": 57,
+    "valid": 55,
+    "invalid": 0,
+    "uncertain": 2,
+    "validRate": 0.9649122807017544,
+    "caveat": "最高/最低证据压力样本，非总体无偏精确率；存疑不计有效；标题/作者主题只算文档证据。"
+  },
+  "originalLabelRegression": {
+    "pairs": 57,
+    "passed": 57
+  },
+  "contextRegression": {
+    "pairs": 35,
+    "tp": 18,
+    "fp": 1,
+    "fn": 0,
+    "tn": 16,
+    "precision": 0.9473684210526315,
+    "recall": 1
+  },
+  "finalIndependentLabelPairs": {
+    "pairs": 20,
+    "tp": 9,
+    "fp": 0,
+    "fn": 1,
+    "tn": 10,
+    "precision": 1,
+    "recall": 0.9
+  },
+  "tests": {
+    "full": {
+      "passed": 204,
+      "failed": 0
+    },
+    "focused": {
+      "passed": 28,
+      "failed": 0
+    },
+    "syntheticTagBrowser": {
+      "passed": true,
+      "checks": [
+        "alias-real-match",
+        "body-evidence",
+        "edit-alias-description",
+        "candidate-separation",
+        "body-fragments",
+        "keyword-drilldown",
+        "route-reload",
+        "desktop-mobile"
+      ],
+      "pageErrors": []
+    },
+    "syntheticKeywordBrowser": {
+      "passed": true,
+      "checks": [
+        "real-organization-selector",
+        "list-only-words",
+        "lazy-documents",
+        "lazy-fragments",
+        "lazy-fulltext",
+        "hash-restore",
+        "desktop-mobile",
+        "pending-hides-old-content",
+        "loading-not-empty",
+        "failure-retry",
+        "cancel-stale-response",
+        "back-navigation",
+        "generation-invalidation"
+      ],
+      "keywordRequests": 20,
+      "pageErrors": []
+    },
+    "currentBrowser": {
+      "passed": true,
+      "hits": {
+        "事件中心": 1,
+        "Prefab": 13
+      },
+      "pageErrors": [],
+      "checks": [
+        "actual-event-prefab-documents",
+        "original-evidence",
+        "original-invalid-term-absent",
+        "keyword-document-fragment",
+        "mobile-no-overflow"
+      ]
+    }
+  },
+  "performance": {
+    "warmRebuildMs": 25203,
+    "encodedTexts": 0,
+    "reads": {
+      "keywords": {
+        "samples": 30,
+        "p50": 7,
+        "p95": 10
+      },
+      "tags": {
+        "samples": 30,
+        "p50": 51,
+        "p95": 56
+      }
+    }
+  },
+  "limitations": [
+    "Keyword sample contains 9 uncertain items; not a whole-corpus accuracy estimate.",
+    "Automatic evidence is a strongest/weakest stress sample with 2 weak items.",
+    "One exclusion-context false positive and one semantic-only false negative remain in relation sets.",
+    "Independent relation pairs are drawn from the same 62-document corpus."
+  ]
+}

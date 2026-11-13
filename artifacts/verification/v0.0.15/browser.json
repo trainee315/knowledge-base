@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "checks": [
+    "alias-real-match",
+    "body-evidence",
+    "edit-alias-description",
+    "candidate-separation",
+    "body-fragments",
+    "keyword-drilldown",
+    "route-reload",
+    "desktop-mobile"
+  ],
+  "pageErrors": []
+}

@@ -9,13 +9,28 @@ import { source, sourceRecord, resourceSignature, tagSignature, tagText, activeT
 import { encode, localEncoder, vector, vectorKey, cosine } from './vectors.js';
 import { candidates, selectKeywords } from './keywords.js';
 import { publishKeywords, reconcileKeywords } from './keyword-index.js';
-import { KEYWORD_VERSION, MATCH_THRESHOLD, MATCH_BATCH, RETRY_MS, type Encoder, type Counters, type SemanticFragment, type Job } from './types.js';
+import { KEYWORD_VERSION, MATCH_BATCH, RETRY_MS, type Encoder, type Counters, type SemanticFragment, type Job, type MatchResult } from './types.js';
+import { matchFragment, tagQueries } from './matching.js';
+import { automaticConcepts } from './automatic-tags.js';
 import type { Organization, ResourceMeta } from '../contracts/index.js';
 
 const AUTO_TAG_LIMIT=4; // 每轮最多晋升四个跨文档代表词，防止标签数量暴涨。
-const AUTO_EQUIVALENCE=0.93; // 仅对很相近的自动名称复用已有概念；人工定义不自动合并。
 const stats=():Counters=>({encodedTexts:0,cacheHits:0,comparisons:0,publishedResources:0,publishedTags:0,derivedFragments:0});
-const encodedText=(f:{title:string;headings:string[];text:string})=>[f.title,f.headings.join(' / '),f.text].join('\n');
+const encodedText=(f:{text:string})=>f.text; // 标题单独作为主题证据，避免污染全部片元的语义向量。
+
+function similarity(store:SemanticStore,encoder:Encoder,tag:Organization,fragment:SemanticFragment):number {
+  const document=vector(store,fragment.vectorKey);
+  return Math.max(...tagQueries(tag).map(text=>cosine(document,vector(store,vectorKey(encoder.identity,text,true)))));
+}
+
+/** 正式命中和可复查候选共同保存依据，旧消费者只读取 matches。 */
+function publishMatch(store:SemanticStore,tag:string,fragment:string,result:MatchResult|undefined) {
+  store.run('DELETE FROM matches WHERE tag=? AND fragment=?',tag,fragment);
+  store.run('DELETE FROM match_evidence WHERE tag=? AND fragment=?',tag,fragment);
+  if(!result)return;
+  store.run('INSERT INTO match_evidence VALUES(?,?,?,?,?)',tag,fragment,result.status,result.score,JSON.stringify(result.evidence));
+  if(result.status==='accepted')store.run('INSERT INTO matches VALUES(?,?,?)',tag,fragment,result.score);
+}
 
 /** 周期核对补漏；同实体只保留最新目标，已删除对象立即清除派生关系。 */
 export async function reconcile(store:SemanticStore,dataDir:string,identity:string) {
@@ -28,6 +43,7 @@ export async function reconcile(store:SemanticStore,dataDir:string,identity:stri
       if(job.kind==='tag'&&!current.tags.some(t=>t.id===job.id))store.removeTag(job.id);
     }
     reconcileKeywords(store,current,identity);
+    store.setSetting('keyword-algorithm',KEYWORD_VERSION);
   });
   return current;
 }
@@ -65,26 +81,22 @@ async function processResource(store:SemanticStore,dataDir:string,r:ResourceMeta
     if(latest.deletedAt||resourceSignature(latest,encoder.identity)!==wanted)return;
     const tags=(await manager.listOrganizations('tag')).filter(activeTag);
     const labels=store.all<{id:string;signature:string;vectorKey:string}>('SELECT * FROM labels').filter(label=>tags.some(t=>t.id===label.id&&tagSignature(t,encoder.identity)===label.signature));
-    // 相同编码内容的旧命中可以换用新原文位置，避免重新计算所有相似度。
-    const previous=store.all<{tag:string;vectorKey:string;score:number}>('SELECT m.tag,f.vectorKey,m.score FROM matches m JOIN fragments f ON f.id=m.fragment WHERE f.resource=?',r.id);
-    const completedLabels=new Set(store.jobs().filter(j=>j.kind==='tag'&&j.published===j.wanted&&j.state==='ready').map(j=>j.id));
-    const oldKeys=new Set(store.all<{vectorKey:string}>('SELECT vectorKey FROM fragments WHERE resource=?',r.id).map(x=>x.vectorKey));
-    const matches:{tag:string;fragment:string;score:number}[]=[];
-    for(const f of output)for(const tag of labels) {
-      const reusable=oldKeys.has(f.vectorKey)&&completedLabels.has(tag.id);
-      const score=reusable?(previous.find(p=>p.tag===tag.id&&p.vectorKey===f.vectorKey)?.score??0):cosine(vector(store,f.vectorKey),vector(store,tag.vectorKey));
-      if(!reusable)counters.comparisons++;
-      if(score>=MATCH_THRESHOLD)matches.push({tag:tag.id,fragment:f.id,score});
+    const matches:{tag:string;fragment:string;result:MatchResult|undefined}[]=[];
+    for(const f of output)for(const label of labels) {
+      const tag=tags.find(t=>t.id===label.id)!;
+      const score=similarity(store,encoder,tag,f);counters.comparisons++;
+      matches.push({tag:tag.id,fragment:f.id,result:matchFragment(tag,f,score)});
     }
     const all=new Map<string,{value:string;count:number;weight:number}>();
     for(const f of output)for(const k of f.keywords){const key=normalize(k.value),old=all.get(key);all.set(key,{value:k.value,count:(old?.count??0)+k.count,weight:Math.max(old?.weight??0,k.score)});}
     await manager.updatePluginMeta(r.id,'keywords',{inputVersion:r.contentVersion,processorVersion:KEYWORD_VERSION,items:[...all.values()].sort((a,b)=>b.weight-a.weight).slice(0,100)},{schemaVersion:1,expectedRevision:latest.revision,expectedContentVersion:r.contentVersion});
     store.transaction(()=>{
       store.run('DELETE FROM matches WHERE fragment IN (SELECT id FROM fragments WHERE resource=?)',r.id);
+      store.run('DELETE FROM match_evidence WHERE fragment IN (SELECT id FROM fragments WHERE resource=?)',r.id);
       store.run('DELETE FROM fragments WHERE resource=?',r.id);
       for(const f of output)store.run('INSERT INTO fragments VALUES(?,?,?,?,?)',f.id,r.id,wanted,JSON.stringify(f),f.vectorKey);
       publishKeywords(store,latest,wanted,output,record?.text);
-      for(const m of matches)store.run('INSERT INTO matches VALUES(?,?,?)',m.tag,m.fragment,m.score);
+      for(const m of matches)publishMatch(store,m.tag,m.fragment,m.result);
       store.run("UPDATE jobs SET published=?,state='ready',error='',retryAt=0 WHERE kind='resource' AND id=? AND wanted=?",wanted,r.id,wanted);
     });
     counters.publishedResources++;
@@ -92,7 +104,7 @@ async function processResource(store:SemanticStore,dataDir:string,r:ResourceMeta
 }
 async function processTag(store:SemanticStore,dataDir:string,tag:Organization,encoder:Encoder,counters:Counters,signal?:AbortSignal) {
   const wanted=tagSignature(tag,encoder.identity),key=vectorKey(encoder.identity,tagText(tag),true);
-  await encode(store,dataDir,encoder,[tagText(tag)],true,counters,signal);
+  await encode(store,dataDir,encoder,tagQueries(tag),true,counters,signal);
   const manager=await CoreManager.open(dataDir);
   try {
     await requireSemanticPlugins(manager);
@@ -106,38 +118,38 @@ async function processTag(store:SemanticStore,dataDir:string,tag:Organization,en
     store.transaction(()=>{
       if(existing?.signature!==wanted) {
         store.run('DELETE FROM matches WHERE tag=?',tag.id);
+        store.run('DELETE FROM match_evidence WHERE tag=?',tag.id);
         store.run('INSERT OR REPLACE INTO labels VALUES(?,?,?)',tag.id,wanted,key);
         job.cursor='';
       }
-      const all=store.all<{id:string;resource:string;signature:string;vectorKey:string}>('SELECT id,resource,signature,vectorKey FROM fragments ORDER BY id').filter(f=>valid.get(f.resource)===f.signature);
-      const batch=all.filter(f=>f.id>job.cursor).slice(0,MATCH_BATCH);const labelVector=vector(store,key);
-      for(const f of batch){const score=cosine(labelVector,vector(store,f.vectorKey));counters.comparisons++;if(score>=MATCH_THRESHOLD)store.run('INSERT OR REPLACE INTO matches VALUES(?,?,?)',tag.id,f.id,score);else store.run('DELETE FROM matches WHERE tag=? AND fragment=?',tag.id,f.id);}
+      const all=store.all<{id:string;resource:string;signature:string;payload:string}>('SELECT id,resource,signature,payload FROM fragments ORDER BY id').filter(f=>valid.get(f.resource)===f.signature);
+      const batch=all.filter(f=>f.id>job.cursor).slice(0,MATCH_BATCH);
+      for(const row of batch){const f=JSON.parse(row.payload) as SemanticFragment;const score=similarity(store,encoder,tag,f);counters.comparisons++;publishMatch(store,tag.id,f.id,matchFragment(tag,f,score));}
       const cursor=batch.at(-1)?.id??job.cursor;const done=all.filter(f=>f.id<=cursor).length;const complete=done===all.length;
       store.run('UPDATE jobs SET state=?,cursor=?,done=?,total=?,published=?,error=\'\',retryAt=0 WHERE kind=\'tag\' AND id=?',complete?'ready':'processing',cursor,done,all.length,complete?wanted:job.published,tag.id);
       if(complete)counters.publishedTags++;
     });
   } finally {await manager.close();}
 }
-/** 自动标签只晋升跨文档的代表关键词，不创造新的上位概念。 */
+/** 在资源派生完成后按全库支持选择稳定概念，避免每轮随意晋升残句。 */
 async function autoTags(store:SemanticStore,dataDir:string,encoder:Encoder) {
   const manager=await CoreManager.open(dataDir);
   try {
   await requireSemanticPlugins(manager);
   const resources=(await manager.listResources()).map(x=>x.resource);const valid=new Map(resources.map(r=>[r.id,resourceSignature(r,encoder.identity)]));
-  const terms=new Map<string,{value:string;documents:Set<string>;key:string}>();
+  if(store.jobs().some(j=>j.kind==='resource'&&j.state!=='ready'))return;
+  const fragments:SemanticFragment[]=[];
   for(const row of store.all<{resource:string;signature:string;payload:string}>('SELECT resource,signature,payload FROM fragments')) {
     if(valid.get(row.resource)!==row.signature)continue;
-    const f=JSON.parse(row.payload) as SemanticFragment;
-    for(const word of f.keywords.slice(0,2)) {const name=normalize(word.value);const item=terms.get(name)??{value:word.value,documents:new Set<string>(),key:vectorKey(encoder.identity,word.value)};item.documents.add(f.resourceId);terms.set(name,item);}
+    fragments.push(JSON.parse(row.payload) as SemanticFragment);
   }
     const all=await manager.listOrganizations('tag');const names=new Set(all.flatMap(t=>[t.name,...(Array.isArray(t.data.aliases)?t.data.aliases.map(String):[])].map(normalize)));
-    const labelVectors=store.all<{vectorKey:string}>('SELECT vectorKey FROM labels').map(t=>vector(store,t.vectorKey));let count=0;
-    for(const [name,term] of terms) {
+    let count=0;
+    for(const term of automaticConcepts(fragments)) {
       if(count>=AUTO_TAG_LIMIT)break;
-      if(term.documents.size<2||names.has(name))continue;
-      const candidate=vector(store,term.key);if(labelVectors.some(v=>cosine(v,candidate)>=AUTO_EQUIVALENCE))continue;
-      await manager.createOrganization({type:'tag',pluginId:'tags',name:term.value,data:{aliases:[],description:'',semanticOrigin:'automatic'}});
-      names.add(name);labelVectors.push(candidate);count++;
+      const name=normalize(term.name);if(names.has(name))continue;
+      await manager.createOrganization({type:'tag',pluginId:'tags',name:term.name,data:{aliases:[],description:'',semanticOrigin:'automatic',semanticEvidence:{documents:term.documents,titleDocuments:term.titleDocuments,explicitDocuments:term.explicitDocuments}}});
+      names.add(name);count++;
     }
   } finally {await manager.close();}
 }
@@ -148,6 +160,7 @@ export async function runSemantic(dataDir:string,options:{encoder?:Encoder;maxJo
     const check=await CoreManager.open(dataDir);try{await requireSemanticPlugins(check);const mode=check.pluginStore('organizer');if(!await mode.read('semantic-mode',false))await mode.write('semantic-mode',true);}finally{await check.close();}
     const store=await SemanticStore.open(dataDir);const counters=stats();
     try {
+      if(store.setting('semantic-reset')==='running')return {complete:false,pending:0,retryAfterMs:RETRY_MS,error:'SEMANTIC_RESET_INCOMPLETE: 标签和关键词清理尚未完成，请按运行说明恢复清理后再生成。',...counters};
       store.db.exec('CREATE TABLE IF NOT EXISTS derivations(key TEXT PRIMARY KEY,payload TEXT)');
       let encoder:Encoder;
       try {encoder=options.encoder??await localEncoder(dataDir);}

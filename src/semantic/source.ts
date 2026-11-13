@@ -8,10 +8,11 @@ import type { Organization, ResourceMeta } from '../contracts/index.js';
 import type { SourceRecord } from '../recall/types.js';
 import { KEYWORD_VERSION, MATCH_VERSION } from './types.js';
 import { SPLITTER_VERSION } from '../recall/fragments.js';
+import { tagQueries } from './matching.js';
 
-export const tagText = (tag: Organization) => [tag.name, ...(Array.isArray(tag.data.aliases) ? tag.data.aliases : []), tag.data.description ?? ''].join('\n');
+export const tagText = (tag: Organization) => tagQueries(tag)[0];
 export const resourceSignature = (r: ResourceMeta, model: string) => hash(JSON.stringify([r.contentVersion,r.hash,r.originalName,SPLITTER_VERSION,KEYWORD_VERSION,model]));
-export const tagSignature = (tag: Organization, model: string) => hash(JSON.stringify([tagText(tag),tag.data.semanticRematch ?? '',MATCH_VERSION,model]));
+export const tagSignature = (tag: Organization, model: string) => hash(JSON.stringify([tagQueries(tag),tag.data.semanticRematch ?? '',MATCH_VERSION,model]));
 export const activeTag = (tag: Organization) => tag.type === 'tag' && !tag.data.semanticDeletedAt;
 export async function source(dataDir: string) {
   const manager = await CoreManager.open(dataDir,{readOnly:true});

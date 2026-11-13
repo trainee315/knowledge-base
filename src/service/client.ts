@@ -1,5 +1,6 @@
 import { spawn } from 'node:child_process';
-import { lstat, mkdir, readFile, realpath, rename, rm, writeFile } from 'node:fs/promises';
+import { lstat, mkdir, readFile, realpath, rename, rm, writeFile, open } from 'node:fs/promises';
+import { constants } from 'node:fs';
 import { resolve } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
@@ -66,7 +67,7 @@ export async function locateService(inputDataDir: string): Promise<{ state: Serv
 }
 
 function offline(dataDir: string): KnowledgeError {
-  return new KnowledgeError('SERVICE_OFFLINE', '知识库服务未运行，请先执行 service start --data-dir "' + dataDir + '"');
+  return new KnowledgeError('SERVICE_OFFLINE', '未检测到可验证的知识库服务；可能尚未启动或状态、连通性异常。请检查 service status --data-dir "' + dataDir + '"');
 }
 
 export async function serviceOrigin(dataDir: string): Promise<string> {
@@ -91,10 +92,16 @@ export async function callService(dataDir: string, command: ServiceCommand): Pro
   return reply.data;
 }
 
-function launch(dataDir: string, port?: number): Promise<PublicState> {
+async function launch(dataDir: string, port?: number): Promise<PublicState> {
+  const logPath = resolve(dataDir, '.runtime', 'service.log');
+  try { if ((await lstat(logPath)).isSymbolicLink()) throw new KnowledgeError('UNSAFE_PATH', '服务日志不能是符号链接'); }
+  catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; }
+  const log = await open(logPath, constants.O_WRONLY | constants.O_APPEND | constants.O_CREAT | (constants.O_NOFOLLOW ?? 0), 0o600);
+  await log.write(`${new Date().toISOString()} 启动知识库服务\n`);
+  try {
   return new Promise((resolve, reject) => {
     const args = [fileURLToPath(new URL('./worker.js', import.meta.url)), dataDir, ...(port === undefined ? [] : [String(port)])];
-    const child = spawn(process.execPath, args, { detached: true, windowsHide: true, shell: false, stdio: ['ignore', 'ignore', 'ignore', 'ipc'] });
+    const child = spawn(process.execPath, args, { detached: true, windowsHide: true, shell: false, stdio: ['ignore', log.fd, log.fd, 'ipc'] });
     let ready = false;
     const timer = setTimeout(() => {
       child.kill();
@@ -117,6 +124,7 @@ function launch(dataDir: string, port?: number): Promise<PublicState> {
       resolve(message.state);
     });
   });
+  } finally { await log.close(); }
 }
 
 export async function handleService(args: string[], inputDataDir: string): Promise<PublicState | { running: false; dataDir: string; stoppedPid?: number }> {

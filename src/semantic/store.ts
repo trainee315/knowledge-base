@@ -6,7 +6,7 @@ import { KnowledgeError } from '../core/errors.js';
 import type { Job, SemanticFragment } from './types.js';
 
 // 派生库可以重建；正式标签定义/删除抑制保存在核心组织数据中。
-const SCHEMA = 2;
+const SCHEMA = 3;
 export class SemanticStore {
   constructor(readonly db: DatabaseSync) {}
   static async open(dataDir: string, readOnly = false) {
@@ -18,7 +18,7 @@ export class SemanticStore {
     db.exec('PRAGMA busy_timeout=5000;');
     if(!readOnly)db.exec('PRAGMA journal_mode=WAL;');
     const version = Number((db.prepare('PRAGMA user_version').get() as any).user_version);
-    if (![0,1,SCHEMA].includes(version)) { db.close(); throw new KnowledgeError('SEMANTIC_SCHEMA', '语义缓存版本不支持'); }
+    if (![0,1,2,SCHEMA].includes(version)) { db.close(); throw new KnowledgeError('SEMANTIC_SCHEMA', '语义缓存版本不支持'); }
     if(readOnly&&exists)return new SemanticStore(db);
     db.exec(`CREATE TABLE IF NOT EXISTS jobs(kind TEXT,id TEXT,wanted TEXT,published TEXT DEFAULT '',state TEXT DEFAULT 'queued',cursor TEXT DEFAULT '',error TEXT DEFAULT '',retryAt INTEGER DEFAULT 0,done INTEGER DEFAULT 0,total INTEGER DEFAULT 0,PRIMARY KEY(kind,id));
       CREATE TABLE IF NOT EXISTS fragments(id TEXT PRIMARY KEY,resource TEXT,signature TEXT,payload TEXT,vectorKey TEXT);
@@ -38,7 +38,10 @@ export class SemanticStore {
       CREATE TABLE IF NOT EXISTS keyword_links(keyword TEXT NOT NULL,resource TEXT NOT NULL,fragment TEXT NOT NULL,value TEXT NOT NULL,start INTEGER NOT NULL,end INTEGER NOT NULL,count INTEGER NOT NULL,score REAL NOT NULL,PRIMARY KEY(keyword,resource,fragment));
       CREATE INDEX IF NOT EXISTS keyword_links_resource ON keyword_links(resource,keyword,fragment);
       CREATE INDEX IF NOT EXISTS keyword_links_fragment ON keyword_links(fragment,keyword);
-      PRAGMA user_version=2;
+      CREATE TABLE IF NOT EXISTS match_evidence(tag TEXT NOT NULL,fragment TEXT NOT NULL,status TEXT NOT NULL,score REAL NOT NULL,payload TEXT NOT NULL,PRIMARY KEY(tag,fragment));
+      CREATE INDEX IF NOT EXISTS match_evidence_fragment ON match_evidence(fragment);
+      CREATE INDEX IF NOT EXISTS match_evidence_status ON match_evidence(tag,status);
+      PRAGMA user_version=3;
       COMMIT;`);
     return new SemanticStore(db);
   }
@@ -54,6 +57,7 @@ export class SemanticStore {
   fragments() { return this.all<{payload:string}>('SELECT payload FROM fragments ORDER BY id').map(row => JSON.parse(row.payload) as SemanticFragment); }
   removeResource(id: string) {
     this.removeKeywordResource(id);
+    this.run('DELETE FROM match_evidence WHERE fragment IN (SELECT id FROM fragments WHERE resource=?)',id);
     this.run('DELETE FROM matches WHERE fragment IN (SELECT id FROM fragments WHERE resource=?)',id);
     this.run('DELETE FROM fragments WHERE resource=?',id);
     this.run("DELETE FROM jobs WHERE kind='resource' AND id=?",id);
@@ -68,5 +72,5 @@ export class SemanticStore {
   bumpKeywordRevision() { this.run("INSERT INTO settings VALUES('keyword-revision','1') ON CONFLICT(key) DO UPDATE SET value=CAST(value AS INTEGER)+1"); }
   setting(key:string) { return this.get<{value:string}>('SELECT value FROM settings WHERE key=?',key)?.value; }
   setSetting(key:string,value:string) {this.run('INSERT INTO settings VALUES(?,?) ON CONFLICT(key) DO UPDATE SET value=excluded.value WHERE settings.value!=excluded.value',key,value);}
-  removeTag(id: string) { this.run('DELETE FROM matches WHERE tag=?',id); this.run('DELETE FROM labels WHERE id=?',id); this.run("DELETE FROM jobs WHERE kind='tag' AND id=?",id); }
+  removeTag(id: string) { this.run('DELETE FROM match_evidence WHERE tag=?',id); this.run('DELETE FROM matches WHERE tag=?',id); this.run('DELETE FROM labels WHERE id=?',id); this.run("DELETE FROM jobs WHERE kind='tag' AND id=?",id); }
 }

@@ -34,6 +34,17 @@ test('关键词列表只读持久词表，不调用全库资源扫描，也不�
   }finally{await app.close();await rm(f.root,{recursive:true,force:true});}
 });
 
+test('只读浏览拒绝将旧算法词表展示为当前结果',async()=>{
+  const f=await fixture();
+  try {
+    const store=await SemanticStore.open(f.data);store.setSetting('keyword-algorithm','obsolete-version');store.close();
+    const result=await keywordBrowse(f.data,new URL('http://local/api/browse/collections?type=keyword'));
+    assert.equal(result.status.state,'pending');assert.equal(result.items.length,0);
+    await runSemantic(f.data,{encoder,maxJobs:20,automatic:false});
+    assert.equal((await keywordBrowse(f.data,new URL('http://local/api/browse/collections?type=keyword'))).status.state,'ready');
+  }finally{await rm(f.root,{recursive:true,force:true});}
+});
+
 test('单词关联按文档分页且片元可定位，包含搜索和稳定代次正确',async()=>{
   const f=await fixture();
   try {

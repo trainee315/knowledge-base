@@ -16,6 +16,7 @@ import { createCronService } from './cron-service.js';
 import { backupRestore, finishRestore } from './backup.js';
 import { semanticService } from '../semantic/service.js';
 import { handlePluginRoutes } from './plugin-routes.js';
+import { redactCredentials } from '../records/redaction.js';
 
 // 命令请求可携带二进制原文；浏览器写 API 自行使用更小限制。
 const COMMAND_BYTES_LIMIT = 64 * 1024 * 1024;
@@ -54,7 +55,7 @@ function commandError(response: ServerResponse, error: unknown): void {
   previewJson(response, 200, {
     ok: false,
     error: {
-      code: known ? error.code : 'EXECUTION_FAILED',
+      code: known ? error.code : (error as NodeJS.ErrnoException)?.code ?? 'EXECUTION_FAILED',
       message: error instanceof Error ? error.message : String(error),
       exitCode: known ? error.exitCode : 1,
       ...(known && error.details !== undefined ? { details: error.details } : {}),
@@ -241,7 +242,10 @@ async function start(): Promise<void> {
 }
 
 void start().catch((error: unknown) => {
-  process.send?.({ ok: false, code: error instanceof KnowledgeError ? error.code : undefined, message: error instanceof Error ? error.message : String(error) });
+  const message = redactCredentials(error instanceof Error ? error.message : String(error)).text;
+  const code = error instanceof KnowledgeError ? error.code : (error as NodeJS.ErrnoException)?.code;
+  process.stderr.write(`${new Date().toISOString()} ${code ?? 'SERVICE_START_FAILED'}: ${message}\n`);
+  process.send?.({ ok: false, code, message });
   process.exitCode = 1;
   process.disconnect?.();
 });

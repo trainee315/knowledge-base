@@ -5,7 +5,10 @@ import { fileURLToPath } from 'node:url';
 import { KnowledgeError } from '../core/errors.js';
 import { handleService, callService } from '../service/client.js';
 import { runDevelopmentWorkload } from '../recall/development.js';
-import { booleanOptions, commandHelp, validateCommand } from './contract.js';
+import { booleanOptions, commandHelp, validateCommand, canonicalWords } from './contract.js';
+import { errorOutput, renderText } from './output.js';
+import { doctor, startAndOpen, serviceLogs, prepareAndStart } from './local.js';
+import { interactive } from './interactive.js';
 
 // 数据位置与工作目录解耦，便于 PPC 从其他目录调用。
 const DEFAULT_DATA_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../.data');
@@ -16,9 +19,10 @@ async function stdin(): Promise<string> { const chunks: Buffer[] = []; for await
 async function parse(argv: string[]) {
   const words: string[] = []; const options: Record<string, unknown> = {};
   for (let index = 0; index < argv.length; index++) {
-    const token = argv[index];
+    const token = argv[index] === '-h' ? '--help' : argv[index];
     if (token.startsWith('--')) { const equal = token.indexOf('='); const key = (equal < 0 ? token.slice(2) : token.slice(2, equal)).replace(/-([a-z])/g, (_, letter: string) => letter.toUpperCase()); if (!key) argumentError('空选项'); let value: unknown = true; if (equal >= 0) value = token.slice(equal + 1); else if (argv[index + 1] && !argv[index + 1].startsWith('--') && (!booleanOptions.has(key) || ['true', 'false'].includes(argv[index + 1]))) value = argv[++index]; options[key] = value; } else words.push(token);
   }
+  context = { words, dataDir: typeof options.dataDir === 'string' && options.dataDir.trim() ? path.resolve(options.dataDir) : DEFAULT_DATA_DIR };
   let input: Record<string, unknown> = {};
   if (options.help !== undefined && ![true, false, 'true', 'false'].includes(options.help as any)) argumentError('--help 必须为布尔值');
   // 帮助先于input文件读取、stdin等待和任何实际动作。
@@ -29,11 +33,20 @@ async function parse(argv: string[]) {
   for (const key of ['json', 'help']) if (merged[key] !== undefined && ![true, false, 'true', 'false'].includes(merged[key] as any)) argumentError(`--${key} 必须为布尔值`);
   return { words, input: merged, dataDir: path.resolve(typeof merged.dataDir === 'string' ? merged.dataDir : DEFAULT_DATA_DIR) };
 }
-async function run(): Promise<unknown> {
-  const { words, input, dataDir } = await parse(process.argv.slice(2));
+/** 先验证命令契约，再分发本地控制或服务业务；菜单复用相同路径。 */
+async function execute(words: string[], input: Record<string, unknown>, dataDir: string): Promise<unknown> {
+  words = canonicalWords(words);
+  input = { ...input };
   const [group, action] = words;
-  if (!group || group === 'help' || flag(input, 'help')) return commandHelp(group === 'help' ? words.slice(1) : words);
+  if (!group) return { ...commandHelp([]), quickOnly: true };
+  if (group === 'help' || flag(input, 'help')) return commandHelp(group === 'help' ? words.slice(1) : words);
   validateCommand(words, input);
+  if (group === 'up') return startAndOpen(dataDir, input);
+  if (group === 'doctor') { const result = await doctor(dataDir); if (!result.healthy) process.exitCode = 1; return result; }
+  if (group === 'interactive') return interactive((nextWords, nextInput) => nextWords[0] === 'up' ? prepareAndStart(dataDir) : execute(nextWords, nextInput, dataDir), dataDir);
+  if (group === 'service' && action === 'logs') return serviceLogs(dataDir, input.lines === undefined ? 50 : Number(input.lines));
+  delete input.format;
+  delete input.help;
   if (group === 'recall' && action === 'workload') { const result = await runDevelopmentWorkload(input); if (result.exitCode !== 0) process.exitCode = 1; return result; }
   if (group === 'service' || group === 'preview') {
     const state = await handleService([...words.slice(1), ...(input.port !== undefined ? ['--port', String(input.port)] : [])], dataDir);
@@ -53,5 +66,24 @@ async function run(): Promise<unknown> {
   if (group === 'check' && (result as { valid?: boolean }).valid === false) process.exitCode = 1;
   return result;
 }
-try { const data = await run(); process.stdout.write(JSON.stringify({ ok: true, data }) + '\n'); }
-catch (error) { const known = error instanceof KnowledgeError; process.exitCode = known ? error.exitCode : 1; const output = { ok: false, error: { code: known ? error.code : 'EXECUTION_FAILED', message: error instanceof Error ? error.message : String(error), ...(known && error.details !== undefined ? { details: error.details } : {}) } }; process.stdout.write(JSON.stringify(output) + '\n'); }
+// 输出模式先从 argv 读取，确保参数解析失败也能返回可读错误。
+let textMode = process.argv.includes('--format=text') || process.argv.some((value, index, args) => value === '--format' && args[index + 1] === 'text');
+if (process.argv.includes('--json') || process.argv.includes('--json=true')) textMode = false;
+let context = { words: [] as string[], dataDir: DEFAULT_DATA_DIR };
+try {
+  const parsed = await parse(process.argv.slice(2));
+  context = parsed;
+  if (parsed.input.format !== undefined && !['json', 'text'].includes(String(parsed.input.format))) argumentError('--format 必须为 json/text');
+  textMode = !flag(parsed.input, 'json') && (parsed.input.format === 'text' || parsed.words[0] === 'interactive');
+  if (parsed.words[0] === 'interactive' && flag(parsed.input, 'json') && !flag(parsed.input, 'help')) argumentError('interactive 不支持 --json；脚本请调用具体命令');
+  const data = await execute(parsed.words, parsed.input, parsed.dataDir);
+  const output = { ok: true, data };
+  const rendered = textMode ? renderText(output) : JSON.stringify(output) + '\n';
+  // 菜单已等待所有提交操作；输出刷完后退出，释放 Windows 控制台未完成的读取。
+  if (parsed.words[0] === 'interactive' && !flag(parsed.input, 'help')) process.stdout.write(rendered, () => process.exit(process.exitCode ?? 0));
+  else process.stdout.write(rendered);
+} catch (error) {
+  process.exitCode = error instanceof KnowledgeError ? error.exitCode : 1;
+  const output = errorOutput(error, context.words, context.dataDir);
+  process.stdout.write(textMode ? renderText(output) : JSON.stringify(output) + '\n');
+}

@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url';
 import { commandHelp, validateCommand } from '../cli/contract.js';
 
 test('semantic commands share mainline CLI help and validation contracts', () => {
-  assert.equal(commandHelp([]).version, '0.0.11');
+  assert.equal(commandHelp([]).version, '0.0.15');
   assert.ok(commandHelp([]).commands?.includes('semantic create'));
   assert.deepEqual(commandHelp(['semantic', 'create']).required, ['name']);
   assert.doesNotThrow(() => validateCommand(['semantic', 'update'], { id: 'tag-id', description: '' }));

@@ -44,7 +44,7 @@ test('删除标签保留原文和历史人工决定；自动生成抑制，显�
 });
 test('失败任务跨实例重试复用成功批次，空结果与失败状态可区分',async()=>{
  const f=await setup(),e=encoder();await f.add('纹理 压缩 ASTC 性能 管理 资源 渲染 加载 模块 数据 缓存 处理 测试 文档 片元 标签 优化 编码 存储');const tag=await changeTag(f.data,'create',{name:'性能优化'});
- const original=e.encode.bind(e);let batches=0;e.encode=async(t,q)=>{if(++batches===3)throw new Error('injected encoding failure');return original(t,q);};await runSemantic(f.data,{encoder:e,maxJobs:20,automatic:false});
+ const original=e.encode.bind(e);let batches=0;e.encode=async(t,q)=>{if(++batches===2)throw new Error('injected encoding failure');return original(t,q);};await runSemantic(f.data,{encoder:e,maxJobs:20,automatic:false});
  const failed=await semanticView(f.data,{id:tag.id}) as any;assert(failed.status.failed>0);assert(failed.tag.partial);const encoded=e.calls.flat();e.encode=original;await semanticCommand(f.data,'retry-all',{});await drain(f.data,e);
  const final=e.calls.flat();for(const text of encoded)assert.equal(final.filter(t=>t===text).length,1);assert.equal((await semanticView(f.data,{id:tag.id}) as any).status.failed,0);
 });

@@ -1,13 +1,13 @@
 {
   "name": "agent-knowledge-base",
-  "version": "0.0.11",
+  "version": "0.0.15",
   "private": true,
   "type": "module",
   "engines": {
     "node": ">=24"
   },
   "bin": {
-    "knowledge-base": "dist/cli/main.js"
+    "knowledge-base": "scripts/launch.mjs"
   },
   "scripts": {
     "build:core": "tsc -p tsconfig.json",
@@ -16,13 +16,15 @@
     "dev": "vite --config web/vite.config.ts",
     "test": "npm run build && node --test dist/**/*.test.js",
     "test:web": "node web/tests/browser.mjs",
-    "cli": "node dist/cli/main.js",
+    "cli": "node scripts/launch.mjs",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test:recall": "npm run build:core && node --test dist/recall/recall.test.js && node tests/recall/cli.mjs",
     "test:chains": "npm run build:core && node --test tests/chains/chain.test.mjs",
     "demo:agent": "npm run build:core && node examples/agent/project-integration.mjs",
     "demo:recall": "npm run build:core && node tests/recall/demo.mjs",
-    "test:semantic": "npm run build:core && node --test dist/semantic/*.test.js"
+    "test:semantic": "npm run build:core && node --test dist/semantic/*.test.js",
+    "start": "node scripts/launch.mjs up --format text",
+    "test:cli": "npm run build && node --test dist/cli/*.test.js dist/semantic/cli-contract.test.js tests/cli-startup.mjs"
   },
   "dependencies": {
     "@huggingface/transformers": "3.8.1",

@@ -6,6 +6,7 @@ import type { ResourceMeta } from '../contracts/index.js';
 import type { SemanticFragment } from './types.js';
 import { SemanticStore } from './store.js';
 import { resourceSignature } from './source.js';
+import { KEYWORD_VERSION } from './types.js';
 
 const PAGE_SIZE=30; // 文档和片元都在数据库分页后才读取 payload。
 const MAX_PAGE=200; // 限制单次读取和批量词条参数数量。
@@ -56,7 +57,7 @@ export async function readKeywordIndex<T>(dataDir:string,read:(store:SemanticSto
     try {
       store.db.exec('BEGIN'); // 同一个 SQLite 读快照覆盖状态、计数及当前页。
       const schema=Number(store.get<{user_version:number}>('PRAGMA user_version')?.user_version);
-      const compatible=schema===2;
+      const compatible=(schema===2||schema===3)&&store.setting('keyword-algorithm')===KEYWORD_VERSION;
       if(schema===0)return read(store,{state:'pending',pending:0,failed:0},'0');
       const counts=store.get<{pending:number;failed:number}>("SELECT count(*) AS pending,coalesce(sum(state='failed'),0) AS failed FROM jobs WHERE kind='resource' AND state!='ready'")!;
       const status:KeywordStatus={state:!compatible||!store.setting('keyword-source-generation')?'pending':store.setting('keyword-rebuild')==='running'?'rebuilding':store.setting('keyword-source-generation')!==sourceGeneration?'pending':counts.failed?'failed':counts.pending?'partial':'ready',pending:counts.pending,failed:counts.failed};

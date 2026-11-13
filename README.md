@@ -1,5 +1,18 @@
 # Knowledge Base
 
+[v0.0.15 用户验收通过：关键词质量与标签匹配](doc/新增需求/v0.0.15/readme.md)。当前库已按授权丢弃旧标签与关键词并重建，62 篇文档及历史完整保留；支持标签别名、可解释证据及待核对候选。五轮质量复核和 204 项回归通过，2026-11-13 用户确认验收通过，未正式发布。[验证记录](doc/新增需求/v0.0.15/verification.md) · [使用与恢复](doc/新增需求/v0.0.15/running.md)。
+
+[v0.0.14 用户验收通过：启动与 CLI 易用性](doc/新增需求/v0.0.14/readme.md)。要求 Node.js 24+（包含 npm）。Windows 双击根目录 `start.bat`，或在仓库目录执行：
+
+```powershell
+.\cli.bat up --format text
+.\cli.bat interactive
+.\cli.bat help --format text
+.\cli.bat resource import --help --format text
+```
+
+`up` 首次自动准备依赖和构建，然后启动服务并打开页面；后续复用有效构建和运行中的服务。只启动而不打开页面可加 `--no-open`，自定义知识库加 `--data-dir 'D:\知识库数据'`。默认仍输出单 JSON，人工阅读使用 `--format text`。错误会附原因、修复建议和帮助命令。诊断使用 `doctor`，服务日志使用 `service logs`。[运行与恢复](doc/新增需求/v0.0.14/running.md) · [输出及兼容契约](doc/新增需求/v0.0.14/contracts.md)。2026-11-13 用户确认验收完成，未正式发布。
+
 [v0.0.13 用户验收通过](doc/新增需求/v0.0.13/readme.md)：关键词持久词表与双向索引，选词后查文档、选文档后查片元。当前库关键词已重新生成，2026-11-13 用户确认验证完成；[验证记录](doc/新增需求/v0.0.13/verification.md)。未正式发布。
 
 [v0.0.12 候选](doc/新增需求/v0.0.12/readme.md)：Agent 接入服务器 Codex CLI 订阅登录，支持模型配置及 Session 选择；已按用户要求以未验收状态并入主线，供一并验证。
@@ -18,7 +31,7 @@ v0.0.8 独立候选提供本地 `recall` CLI；`npm run demo:recall` 创建合�
 
 v0.0.9转录输入预处理与压缩模式页面配置于2026-11-12用户验收通过，支持off/conservative/aggressive及全模式载荷路径替换。页面入口为插件→project-tracking→配置，按Session实例保存。[需求、契约与验证记录](doc/新增需求/v0.0.9/readme.md)
 
-要求 Node.js 24+、npm。首次运行：
+要求 Node.js 24+、npm。需要手动准备环境时：
 
 ```powershell
 npm ci
@@ -37,7 +50,7 @@ npm run build
 
 开发时先构建并启动服务，再运行 `npm run dev`。Vite 在 `http://127.0.0.1:5183` 提供页面和热更新，并代理 `/api/` 到同一数据目录的服务。开发端口可用 `npm run dev -- --port 5184` 指定；使用其他库时，让 `KB_DATA_DIR` 与启动服务的 `--data-dir` 指向同一路径。停止 Vite 后，使用 `service stop` 单独停止服务。[页面开发说明](./web/README.md)
 
-所有命令支持 `--data-dir "D:\知识库数据"`，默认位置是本仓库 `.data`，与启动时工作目录无关。所有成功与失败均输出单个 JSON 对象，日志写 stderr；退出码成功 0，执行失败 1，参数错误 2。`--json` 明确声明结构化调用意图，输出保持一致。复杂参数放 UTF8 JSON 文件或用 `--input -` 读取 stdin，命令行参数覆盖同名输入字段。
+所有命令支持 `--data-dir "D:\知识库数据"`，默认位置是本仓库 `.data`，与启动时工作目录无关。默认成功与失败均输出单个 JSON 对象，日志写 stderr；退出码成功 0，执行失败 1，参数错误 2。`--json` 明确声明结构化调用意图，优先于 `--format text`。复杂参数放 UTF8 JSON 文件或用 `--input -` 读取 stdin，命令行参数覆盖同名输入字段。交互入口 `interactive` 仅在终端中使用，不接受 `--json`。
 
 标签创建和查询：
 

@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "checks": [
+    "real-organization-selector",
+    "list-only-words",
+    "lazy-documents",
+    "lazy-fragments",
+    "lazy-fulltext",
+    "hash-restore",
+    "desktop-mobile",
+    "pending-hides-old-content",
+    "loading-not-empty",
+    "failure-retry",
+    "cancel-stale-response",
+    "back-navigation",
+    "generation-invalidation"
+  ],
+  "keywordRequests": 20,
+  "pageErrors": []
+}
